@@ -1,0 +1,81 @@
+# Configuración del panel de edición (Pages CMS). No necesitas tocar este archivo.
+media:
+  input: img
+  output: /img
+content:
+  - name: catalogo
+    label: Catálogo Luz Mágica
+    type: file
+    path: datos.json
+    format: json
+    fields:
+      - name: negocio
+        label: Datos del negocio
+        type: object
+        fields:
+          - { name: nombre, label: Nombre del negocio, type: string }
+          - { name: subtitulo, label: Subtítulo (bajo el nombre), type: string }
+          - { name: logo, label: Logo, type: image }
+          - { name: direccion, label: Dirección (una línea por dato), type: string, list: true }
+          - { name: horario, label: Horario (una línea por dato), type: string, list: true }
+      - name: textos
+        label: Textos de menús, botones y títulos (opcional)
+        description: Si dejas un campo vacío se usa el texto original.
+        type: object
+        fields:
+          - { name: menuInicio, label: "Menú: Inicio", type: string }
+          - { name: menuCategorias, label: "Menú: Categorías", type: string }
+          - { name: menuInfo, label: "Menú: Información", type: string }
+          - { name: menuWhats, label: "Menú: WhatsApp", type: string }
+          - { name: btnPedir, label: "Botón de cada producto", type: string }
+          - { name: btnCatalogo, label: "Botón de la portada", type: string }
+          - { name: heroSub, label: "Palabra bajo el nombre en la portada", type: string }
+          - { name: heroTexto, label: "Texto de la portada", type: text }
+          - { name: tituloCategorias, label: "Título de las categorías", type: string }
+          - { name: tituloVisitanos, label: "Título del bloque de visita", type: string }
+          - { name: verInfo, label: "Enlace a la información", type: string }
+          - { name: catalogoTitulo, label: "Título de todos los productos", type: string }
+          - { name: buscar, label: "Texto del buscador", type: string }
+          - { name: infoTitulo, label: "Título de Información", type: string }
+          - { name: infoIntro, label: "Texto de Información", type: text }
+          - { name: tituloDireccion, label: "Título de la dirección", type: string }
+          - { name: tituloHorario, label: "Título del horario", type: string }
+          - { name: vendTitulo, label: "Título de WhatsApp", type: string }
+          - { name: vendIntro, label: "Texto de WhatsApp", type: text }
+      - name: categorias
+        label: Categorías (el orden es el del menú)
+        description: Cada producto debe tener la categoría escrita exactamente igual.
+        type: string
+        list: true
+      - name: productos
+        label: Productos
+        type: object
+        list:
+          collapsible: { collapsed: true }
+          summary: "{nombre}"
+        fields:
+          - { name: nombre, label: Nombre, type: string }
+          - { name: categoria, label: Categoría (igual que en la lista de categorías), type: string }
+          - { name: texto, label: Texto descriptivo (una línea por dato), type: string, list: true }
+          - { name: precios, label: Precios (uno por línea, ej. "PRECIO: 1.050.000$"), type: string, list: true }
+          - { name: imagenes, label: Fotos (la primera es la principal), type: image, list: true }
+          - { name: oculto, label: Ocultar este producto, type: boolean }
+      - name: info
+        label: Secciones de Información
+        type: object
+        list:
+          collapsible: { collapsed: true }
+          summary: "{titulo}"
+        fields:
+          - { name: titulo, label: Título de la sección, type: string }
+          - { name: lineas, label: Datos (una línea por dato), type: string, list: true }
+      - name: vendedores
+        label: Vendedores autorizados de WhatsApp
+        description: Número de 10 dígitos, sin espacios.
+        type: object
+        list:
+          collapsible: { collapsed: true }
+          summary: "{nombre} {numero}"
+        fields:
+          - { name: nombre, label: Nombre (opcional), type: string }
+          - { name: numero, label: Número de WhatsApp (10 dígitos), type: string }
