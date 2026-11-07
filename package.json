@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Catálogo web de Luz Mágica — tocadores, espejos y muebles fabricados a pedido en Medellín",
   "private": true,
+  "type": "module",
   "scripts": {
     "start": "eleventy --serve",
     "build": "eleventy"
