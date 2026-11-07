@@ -1,0 +1,173 @@
+---
+layout: base.njk
+permalink: /
+---
+{% from "tarjeta.njk" import producto %}
+{% set destacados = productos | selectattr("destacado") | list %}
+{% set nuevos = productos | selectattr("nuevo") | list %}
+
+<section class="hero">
+  <div class="contenedor hero__fila">
+    <div class="hero__texto">
+      <p class="rotulo">Fábrica y galería en Aranjuez</p>
+      <h1>{{ negocio.titular }}</h1>
+      <p class="hero__entrada">{{ negocio.presentacion }}</p>
+      <div class="hero__botones">
+        <a class="boton boton--oscuro boton--grande" href="/catalogo/">Ver el catálogo</a>
+        <a class="boton boton--linea boton--grande" href="/disena/">Diseña el tuyo</a>
+      </div>
+      <dl class="cifras">
+        <div><dt>{{ productos.length }}</dt><dd>Productos</dd></div>
+        <div><dt>{{ categorias.length }}</dt><dd>Líneas</dd></div>
+        <div><dt>10–15</dt><dd>Días hábiles</dd></div>
+      </dl>
+    </div>
+    <div class="hero__foto">
+      <div class="foto foto--alta">
+        <span class="foto__vacia">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="2"></rect><circle cx="8.8" cy="10" r="1.9"></circle><path d="M3.5 17.2l5-4.2 3.6 3 3-2.4 5.4 4.6"></path></svg>
+          <span>Foto principal · tocador encendido</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="seccion">
+  <div class="contenedor">
+    <header class="seccion__cabeza">
+      <div>
+        <p class="rotulo">¿No sabes por dónde empezar?</p>
+        <h2>Encuentra el tuyo</h2>
+      </div>
+    </header>
+    <div class="rejilla rejilla--3">
+      {% for a in negocio.atajos %}
+      <div class="atajo">
+        <h3>{{ a.titulo }}</h3>
+        <div class="fichas">
+          {% for o in a.opciones %}<a class="ficha" href="{{ o.enlace }}">{{ o.texto }}</a>{% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="seccion" id="lineas">
+  <div class="contenedor">
+    <header class="seccion__cabeza">
+      <div>
+        <p class="rotulo">El catálogo</p>
+        <h2>Compra por línea</h2>
+      </div>
+      <a class="enlace-subrayado" href="/catalogo/">Ver los {{ productos.length }} productos</a>
+    </header>
+    <div class="rejilla rejilla--5">
+      {% for c in categorias %}
+      {% set cuantos = productos | deCategoria(c.slug) | length %}
+      <a class="categoria" href="/categoria/{{ c.slug }}/">
+        <div class="foto foto--4-5">
+          {% if c.foto %}
+          <img src="{{ c.foto }}" alt="{{ c.nombre }}" loading="lazy" width="400" height="500">
+          {% else %}
+          <span class="foto__vacia">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="2"></rect><circle cx="8.8" cy="10" r="1.9"></circle><path d="M3.5 17.2l5-4.2 3.6 3 3-2.4 5.4 4.6"></path></svg>
+            <span>Foto</span>
+          </span>
+          {% endif %}
+          <span class="categoria__numero">{{ c.numero }}</span>
+        </div>
+        <h3>{{ c.nombre }}</h3>
+        <p>{{ cuantos }} producto{{ "s" if cuantos != 1 }}</p>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% if destacados.length %}
+<section class="seccion">
+  <div class="contenedor">
+    <header class="seccion__cabeza">
+      <div>
+        <p class="rotulo">Los más pedidos</p>
+        <h2>Favoritos de la casa</h2>
+      </div>
+      <a class="enlace-subrayado" href="/catalogo/">Ver todos</a>
+    </header>
+    <div class="rejilla rejilla--4">
+      {% for p in destacados | primeros(4) %}{{ producto(p, negocio) }}{% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if nuevos.length %}
+<section class="seccion">
+  <div class="contenedor">
+    <header class="seccion__cabeza">
+      <div>
+        <p class="rotulo">Recién llegados</p>
+        <h2>Nuevos lanzamientos</h2>
+      </div>
+      <a class="enlace-subrayado" href="/catalogo/">Ver todos</a>
+    </header>
+    <div class="rejilla rejilla--4">
+      {% for p in nuevos | primeros(4) %}{{ producto(p, negocio) }}{% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="pilares">
+  <div class="contenedor rejilla rejilla--4">
+    <div><h3>Pago contra entrega</h3><p>{{ negocio.formasDePago }}</p></div>
+    <div><h3>En tus colores</h3><p>Se fabrica en {% for c in negocio.colores %}{{ c.nombre | lower }}{% if not loop.last %}, {% endif %}{% endfor %}, con enchape {% for e in negocio.enchapes %}{{ e | lower }}{% if not loop.last %}, {% endif %}{% endfor %}.</p></div>
+    <div><h3>Domicilios en Medellín</h3><p>{{ negocio.domicilios }}</p></div>
+    <div><h3>Fabricación bajo pedido</h3><p>{{ negocio.plazoFabricacion }}</p></div>
+  </div>
+</section>
+
+<section class="seccion" id="asesores">
+  <div class="contenedor dos-columnas">
+    <div>
+      <p class="rotulo">{{ asesores | activos | length }} líneas autorizadas</p>
+      <h2>Te atiende una persona</h2>
+      <p class="parrafo">Cada asesor tiene su propio enlace del catálogo. Quien te lo haya enviado te acompaña en todo el recorrido: el catálogo lo recuerda y todos los botones de WhatsApp le escriben a esa persona.</p>
+      <a class="boton boton--linea" href="/asesores/">Ver los asesores autorizados</a>
+    </div>
+    <div class="caja">
+      <h3 class="rotulo">Tu asesor en esta visita</h3>
+      <p class="caja__dato"><strong data-asesor-nombre>{{ negocio.nombre }}</strong></p>
+      <p class="caja__nota" data-asesor-origen>Estás viendo el catálogo sin un enlace de asesor, así que te atiende la línea principal.</p>
+      <a class="boton boton--whatsapp" href="#" data-wa data-wa-texto="¡Hola {{ negocio.nombre }}! Quiero hacer un pedido:">Escribir por WhatsApp</a>
+      <p class="caja__nota">{{ negocio.atribucion.notaRegla }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="seccion" id="galeria">
+  <div class="contenedor">
+    <div class="galeria">
+      <div class="galeria__texto">
+        <p class="rotulo">Visítanos</p>
+        <h2>Galería {{ negocio.nombre }}, Aranjuez</h2>
+        <h3 class="rotulo">Dirección</h3>
+        <p class="parrafo">{{ negocio.direccion }}</p>
+        <h3 class="rotulo">Horario</h3>
+        <p class="parrafo">
+          {% for h in negocio.horario %}{{ h.dias }}: {% if h.nota %}{{ h.nota }}{% else %}{{ h.desde }} a {{ h.hasta }}{% endif %}<br>{% endfor %}
+        </p>
+        <h3 class="rotulo">Teléfono</h3>
+        <p class="parrafo"><a href="tel:{{ negocio.telefono | replace(" ", "") }}">{{ negocio.telefono }}</a></p>
+      </div>
+      <div class="galeria__mapa">
+        <span class="foto__vacia">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"></path><circle cx="12" cy="10" r="2.6"></circle></svg>
+          <span>Mapa · {{ negocio.direccion }}</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>

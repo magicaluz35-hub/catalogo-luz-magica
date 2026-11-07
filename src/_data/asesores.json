@@ -1,0 +1,16 @@
+[
+  {"codigo": "00", "nombre": "Línea principal", "whatsapp": "573242117323", "activo": true, "enRotacion": false, "nota": "Línea de la galería. No entra en el reparto automático."},
+  {"codigo": "01", "nombre": "[NOMBRE 01]", "whatsapp": "573013311432", "activo": true, "enRotacion": true, "nota": ""},
+  {"codigo": "02", "nombre": "[NOMBRE 02]", "whatsapp": "573011377175", "activo": true, "enRotacion": true, "nota": ""},
+  {"codigo": "03", "nombre": "[NOMBRE 03]", "whatsapp": "573019066741", "activo": true, "enRotacion": true, "nota": ""},
+  {"codigo": "04", "nombre": "[NOMBRE 04]", "whatsapp": "573246020921", "activo": true, "enRotacion": true, "nota": ""},
+  {"codigo": "05", "nombre": "[NOMBRE 05]", "whatsapp": "573042351581", "activo": true, "enRotacion": true, "nota": ""},
+  {"codigo": "06", "nombre": "[NOMBRE 06]", "whatsapp": "573005426992", "activo": true, "enRotacion": true, "nota": ""},
+  {"codigo": "07", "nombre": "[NOMBRE 07]", "whatsapp": "573042440809", "activo": true, "enRotacion": true, "nota": ""},
+  {"codigo": "08", "nombre": "[NOMBRE 08]", "whatsapp": "573217050038", "activo": true, "enRotacion": true, "nota": ""},
+  {"codigo": "09", "nombre": "[NOMBRE 09]", "whatsapp": "573217899727", "activo": true, "enRotacion": true, "nota": ""},
+  {"codigo": "10", "nombre": "[NOMBRE 10]", "whatsapp": "573024174550", "activo": true, "enRotacion": true, "nota": ""},
+  {"codigo": "11", "nombre": "[NOMBRE 11]", "whatsapp": "573019066740", "activo": true, "enRotacion": true, "nota": ""},
+  {"codigo": "12", "nombre": "[NOMBRE 12]", "whatsapp": "573045429378", "activo": true, "enRotacion": true, "nota": ""},
+  {"codigo": "13", "nombre": "[NOMBRE 13]", "whatsapp": "573018754323", "activo": true, "enRotacion": true, "nota": ""}
+]

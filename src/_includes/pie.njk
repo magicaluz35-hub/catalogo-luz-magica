@@ -1,0 +1,41 @@
+<footer class="pie">
+  <div class="contenedor">
+    <div class="pie__columnas">
+      <div>
+        <span class="marca__nombre marca__nombre--claro">{{ negocio.nombre }}</span>
+        <span class="marca__lema marca__lema--claro">{{ negocio.lema }}</span>
+        <div class="pie__redes">
+          <a href="{{ negocio.redes.instagram }}" rel="noopener">Instagram</a>
+          <a href="{{ negocio.redes.facebook }}" rel="noopener">Facebook</a>
+          <a href="{{ negocio.redes.tiktok }}" rel="noopener">TikTok</a>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="pie__titulo">Catálogo</h2>
+        {% for c in categorias | primeros(5) %}
+        <p><a href="/categoria/{{ c.slug }}/">{{ c.nombre }}</a></p>
+        {% endfor %}
+        <p><a href="/catalogo/">Ver todo</a></p>
+      </div>
+
+      <div>
+        <h2 class="pie__titulo">Galería</h2>
+        <p>{{ negocio.direccion }}</p>
+        {% for h in negocio.horario %}
+        <p>{{ h.dias }}: {% if h.nota %}{{ h.nota }}{% else %}{{ h.desde }} a {{ h.hasta }}{% endif %}</p>
+        {% endfor %}
+        <p><a href="tel:{{ negocio.telefono | replace(" ", "") }}">{{ negocio.telefono }}</a></p>
+      </div>
+
+      <div>
+        <h2 class="pie__titulo">Formas de pago</h2>
+        <p class="pie__legal">{{ negocio.formasDePago }}</p>
+        <p class="pie__legal">{{ negocio.domicilios }}</p>
+        <p><a href="/asesores/">Asesores autorizados</a></p>
+      </div>
+    </div>
+
+    <p class="pie__creditos">© {{ anio }} {{ negocio.nombre }} · {{ negocio.direccion }}</p>
+  </div>
+</footer>

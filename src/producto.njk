@@ -1,0 +1,133 @@
+---
+layout: base.njk
+pagination:
+  data: productos
+  size: 1
+  alias: p
+permalink: "/producto/{{ p.sku | lower }}/"
+eleventyComputed:
+  titulo: "{{ p.nombre }} · {{ negocio.nombre }}"
+  descripcion: "{{ p.descripcion or p.nombre }} Fabricación bajo pedido en Medellín, pago contra entrega."
+  ogImagen: "{{ p.fotos[0] if p.fotos.length else '' }}"
+---
+{% from "tarjeta.njk" import producto as tarjetaProducto %}
+{% set cat = categorias | selectattr("slug", "equalto", p.categoria) | first %}
+{% set relacionados = productos | deCategoria(p.categoria) | rejectattr("sku", "equalto", p.sku) | list %}
+
+<nav class="migas contenedor" aria-label="Migas de pan">
+  <a href="/">Inicio</a>
+  <span aria-hidden="true">/</span>
+  {% if cat %}<a href="/categoria/{{ cat.slug }}/">{{ cat.nombre }}</a><span aria-hidden="true">/</span>{% endif %}
+  <span>{{ p.nombre }}</span>
+</nav>
+
+<section class="seccion seccion--corta">
+  <div class="contenedor ficha">
+
+    <div class="ficha__fotos">
+      <div class="foto foto--4-5 foto--grande">
+        {% if p.fotos and p.fotos.length %}
+        <img src="{{ p.fotos[0] }}" alt="{{ p.nombre }}" width="720" height="900">
+        {% else %}
+        <span class="foto__vacia">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="2"></rect><circle cx="8.8" cy="10" r="1.9"></circle><path d="M3.5 17.2l5-4.2 3.6 3 3-2.4 5.4 4.6"></path></svg>
+          <span>Foto principal</span>
+        </span>
+        {% endif %}
+      </div>
+      {% if p.fotos and p.fotos.length > 1 %}
+      <div class="ficha__miniaturas">
+        {% for f in p.fotos %}
+        <div class="foto foto--1-1"><img src="{{ f }}" alt="{{ p.nombre }} — vista {{ loop.index }}" loading="lazy" width="200" height="200"></div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="ficha__datos">
+      {% if p.destacado %}<span class="etiqueta etiqueta--suelta">Destacado</span>{% endif %}
+      <p class="rotulo">SKU {{ p.sku }}</p>
+      <h1>{{ p.nombre }}</h1>
+      <p class="ficha__precio">{{ p.precio | pesos }}</p>
+
+      {% if p.descripcion %}
+      <p class="parrafo">{{ p.descripcion }} Disponible en {% for c in negocio.colores %}{{ c.nombre | lower }}{% if loop.revindex == 2 %} o {% elif not loop.last %}, {% endif %}{% endfor %}.</p>
+      {% else %}
+      <p class="parrafo">Se fabrica en {% for c in negocio.colores %}{{ c.nombre | lower }}{% if loop.revindex == 2 %} o {% elif not loop.last %}, {% endif %}{% endfor %}, con el enchape que elijas.</p>
+      {% endif %}
+
+      <p class="aviso-plazo">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="8.6"></circle><path d="M12 7.4V12l3 1.8"></path></svg>
+        <span>{{ p.plazo if p.plazo else negocio.plazoFabricacion }}</span>
+      </p>
+
+      <form class="opciones" data-opciones>
+        <fieldset>
+          <legend class="rotulo">Color del mueble</legend>
+          <div class="muestras">
+            {% for c in negocio.colores %}
+            <label class="muestra">
+              <input type="radio" name="color" value="{{ c.nombre }}" {{ "checked" if loop.first }}>
+              <span class="muestra__disco" style="background: {{ c.hex }}"></span>
+              <span class="oculto">{{ c.nombre }}</span>
+            </label>
+            {% endfor %}
+          </div>
+          <p class="opciones__elegido">Elegido: <strong data-elegido-color>{{ negocio.colores[0].nombre }}</strong></p>
+        </fieldset>
+
+        <fieldset>
+          <legend class="rotulo">Enchape</legend>
+          <div class="fichas">
+            {% for e in negocio.enchapes %}
+            <label class="ficha ficha--radio">
+              <input type="radio" name="enchape" value="{{ e }}" {{ "checked" if loop.first }}>
+              <span>{{ e }}</span>
+            </label>
+            {% endfor %}
+          </div>
+        </fieldset>
+      </form>
+
+      <div class="previsualizacion">
+        <p class="rotulo">Lo que le llega al asesor</p>
+        <p data-wa-previo></p>
+      </div>
+
+      <a class="boton boton--whatsapp boton--ancho" href="#" data-wa data-wa-ficha
+         data-sku="{{ p.sku }}" data-nombre="{{ p.nombre }}" data-precio="{{ p.precio | pesos }}">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.5L3.5 20.5l1.5-4.6A8.4 8.4 0 1 1 20.5 11.6z"></path></svg>
+        Pedir por WhatsApp
+      </a>
+
+      <div class="ficha__secundarios">
+        <button type="button" class="boton boton--linea" data-agregar
+                data-sku="{{ p.sku }}" data-nombre="{{ p.nombre }}" data-precio="{{ p.precio }}">Añadir al pedido</button>
+        <button type="button" class="boton boton--linea" data-compartir data-sku="{{ p.sku }}">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="17.5" cy="5.8" r="2.8"></circle><circle cx="6.5" cy="12" r="2.8"></circle><circle cx="17.5" cy="18.2" r="2.8"></circle><path d="M9 10.7l6-3.5"></path><path d="M9 13.3l6 3.5"></path></svg>
+          Compartir
+        </button>
+      </div>
+      <p class="nota">Al compartir, el enlace sale con el código del asesor incluido. {{ negocio.avisoWhatsapp }}</p>
+
+      <div class="ficha__legal">
+        <h2 class="rotulo">Formas de pago</h2>
+        <p class="parrafo">{{ negocio.formasDePago }}</p>
+        <h2 class="rotulo">Entrega y retiro</h2>
+        <p class="parrafo">{{ negocio.domicilios }} {{ negocio.retiro }}</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% if relacionados.length %}
+<section class="seccion">
+  <div class="contenedor">
+    <h2 class="seccion__titulo">También te puede interesar</h2>
+    <div class="rejilla rejilla--4">
+      {% for r in relacionados | primeros(4) %}{{ tarjetaProducto(r, negocio) }}{% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}

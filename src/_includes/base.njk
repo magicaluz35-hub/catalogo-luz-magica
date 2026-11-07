@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ titulo or negocio.nombre }}</title>
+<meta name="description" content="{{ descripcion or negocio.descripcionCorta }}">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ negocio.nombre }}">
+<meta property="og:locale" content="es_CO">
+<meta property="og:title" content="{{ titulo or negocio.nombre }}">
+<meta property="og:description" content="{{ descripcion or negocio.descripcionCorta }}">
+<meta property="og:url" content="{{ negocio.dominio }}{{ page.url }}">
+<meta property="og:image" content="{{ negocio.dominio }}{{ ogImagen or negocio.logo }}">
+<meta name="twitter:card" content="summary_large_image">
+
+<meta name="theme-color" content="#FFFFFF">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/assets/estilos.css">
+
+<script type="application/json" id="datos-asesores">{{ asesores | dump | safe }}</script>
+<script type="application/json" id="datos-negocio">{{ { "whatsapp": negocio.telefonoWhatsapp, "regla": negocio.atribucion.regla, "dias": negocio.atribucion.diasVigencia, "horario": negocio.horario } | dump | safe }}</script>
+</head>
+<body>
+
+<div class="promesas">
+  {% for p in negocio.promesas %}<span>{{ p }}</span>{% if not loop.last %}<span aria-hidden="true" class="punto">·</span>{% endif %}{% endfor %}
+</div>
+
+<div class="asesor-barra">
+  <div class="contenedor asesor-barra__fila">
+    <div class="asesor-barra__quien">
+      <span class="asesor-barra__ficha" aria-hidden="true" data-asesor-codigo>00</span>
+      <span>Te atiende <strong data-asesor-nombre>{{ negocio.nombre }}</strong> · asesor autorizado</span>
+    </div>
+    <div class="asesor-barra__info">
+      <span class="estado" data-estado-horario><span class="punto-estado" aria-hidden="true"></span><span data-estado-texto>Consultando horario…</span></span>
+      <a href="/asesores/">¿Te escribieron de otro número? Verifícalo</a>
+    </div>
+  </div>
+</div>
+
+{% include "cabecera.njk" %}
+
+<main id="contenido">
+{{ content | safe }}
+</main>
+
+{% include "pie.njk" %}
+
+<a class="wa-flotante" href="#" data-wa data-wa-texto="¡Hola {{ negocio.nombre }}! Quiero hacer un pedido:" aria-label="Pedir por WhatsApp">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.5L3.5 20.5l1.5-4.6A8.4 8.4 0 1 1 20.5 11.6z"></path></svg>
+  <span>Pedir por WhatsApp</span>
+</a>
+
+<script src="/assets/catalogo.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<header class="cabecera">
+  <div class="contenedor cabecera__fila">
+    <a class="marca" href="/">
+      <span class="marca__nombre">{{ negocio.nombre }}</span>
+      <span class="marca__lema">{{ negocio.lema }}</span>
+    </a>
+
+    <nav class="nav" aria-label="Navegación principal">
+      <a href="/catalogo/">Catálogo</a>
+      <a href="/categoria/tocadores-120/">Tocadores</a>
+      <a href="/categoria/espejos/">Espejos</a>
+      <a href="/disena/">Diseña el tuyo</a>
+      <a href="/#galeria">Galería</a>
+    </nav>
+
+    <div class="cabecera__acciones">
+      <form class="buscador" action="/catalogo/" method="get" role="search">
+        <label class="oculto" for="q">Buscar en el catálogo</label>
+        <input id="q" name="q" type="search" placeholder="Buscar tocador, espejo, puff…" autocomplete="off">
+      </form>
+      <a class="boton boton--marca" href="/pedido/">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 7h14l-1.2 12.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"></path><path d="M9 7V5.5a3 3 0 0 1 6 0V7"></path></svg>
+        Mi pedido <span class="contador" data-pedido-contador hidden>0</span>
+      </a>
+    </div>
+  </div>
+</header>

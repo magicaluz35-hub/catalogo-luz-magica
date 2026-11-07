@@ -1,0 +1,56 @@
+---
+layout: base.njk
+permalink: /asesores/
+titulo: Asesores autorizados · Luz Mágica
+descripcion: Los únicos números autorizados para vender Luz Mágica. Verifica aquí el número que te escribió antes de pagar.
+---
+{% set activos = asesores | activos %}
+
+<div class="contenedor pagina-angosta">
+
+  <p class="rotulo">Seguridad</p>
+  <h1>Asesores autorizados</h1>
+  <p class="parrafo parrafo--guia">Estos son los únicos números autorizados para vender {{ negocio.nombre }}. Antes de dar tus datos o acordar un pago, confirma que quien te escribió está en esta lista.</p>
+
+  <div class="alerta">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 3.6l8.4 15.2H3.6z"></path><path d="M12 9.6v4"></path><path d="M12 16.4h.01"></path></svg>
+    <div>
+      <h2>Si te escriben de un número que no está aquí, no es {{ negocio.nombre }}</h2>
+      <p>No consignes, no envíes abonos y no compartas tus datos. Escríbenos a la línea principal y lo verificamos contigo: <a href="tel:{{ negocio.telefono | replace(" ", "") }}">{{ negocio.telefono }}</a>.</p>
+    </div>
+  </div>
+
+  <section class="verificador">
+    <h2>Verifica un número</h2>
+    <p class="parrafo">Escribe el número desde el que te escribieron y te decimos si pertenece al equipo.</p>
+    <form data-verificador>
+      <label class="oculto" for="numero">Número a verificar</label>
+      <input id="numero" name="numero" type="tel" inputmode="tel" placeholder="Ej: 324 211 7323" autocomplete="off">
+      <button type="submit" class="boton boton--oscuro">Verificar</button>
+    </form>
+    <div class="resultado" data-verificador-resultado hidden></div>
+  </section>
+
+  <section>
+    <h2>El equipo</h2>
+    <p class="parrafo">{{ activos.length }} línea{{ "s" if activos.length != 1 }} activa{{ "s" if activos.length != 1 }}. El dueño agrega, cambia o desactiva cualquiera desde el panel; esta lista se actualiza sola.</p>
+
+    <table class="tabla">
+      <thead>
+        <tr><th scope="col">Asesor</th><th scope="col">Número</th><th scope="col">Estado</th></tr>
+      </thead>
+      <tbody>
+        {% for a in activos %}
+        <tr>
+          <td>{{ a.nombre }}</td>
+          <td>{% if a.whatsapp %}<a href="https://wa.me/{{ a.whatsapp }}" rel="noopener">+{{ a.whatsapp }}</a>{% else %}<span class="nota">Pendiente</span>{% endif %}</td>
+          <td><span class="estado estado--activo"><span class="punto-estado" aria-hidden="true"></span>Activo</span></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <p class="nota">¿Eres del equipo? Tu enlace personal y tu código QR están en <a href="/equipo/">{{ negocio.dominio | replace("https://", "") }}/equipo</a>. Comparte siempre ese enlace: es el que mantiene tu comisión.</p>
+  </section>
+
+</div>

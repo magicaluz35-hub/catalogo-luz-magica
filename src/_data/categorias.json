@@ -1,0 +1,12 @@
+[
+  {"slug": "tocadores-120", "numero": "01", "nombre": "Tocadores de 1.20", "descripcion": "Los tocadores grandes de la casa: 1.20 metros de frente, con espejo corredizo o de bombillos y cajones con riel metálico.", "foto": "/img/p007-1.webp"},
+  {"slug": "tocadores-metro-mini", "numero": "02", "nombre": "Tocadores de metro y mini", "descripcion": "Para habitaciones donde el espacio manda. Mismo acabado, medida más corta.", "foto": "/img/p062-1.webp"},
+  {"slug": "carvalo-solteron", "numero": "03", "nombre": "Carvalo y Solterón", "descripcion": "Las líneas Carvalo y Solterón, con espejo digital y acabados en enchape.", "foto": "/img/p054-1.webp"},
+  {"slug": "madera-rh", "numero": "04", "nombre": "Tocadores en madera RH", "descripcion": "Fabricados en madera RH, con bombillos, repisas y mesa. Se arman por combo.", "foto": "/img/p028-1.webp"},
+  {"slug": "hello-kitty", "numero": "05", "nombre": "Línea Hello Kitty", "descripcion": "Tocadores de la línea Hello Kitty, en 1.20 y en metro, con espejo digital y enchape.", "foto": "/img/p086-1.webp"},
+  {"slug": "paris-modular", "numero": "06", "nombre": "París Modular", "descripcion": "El sistema modular París: espejos digitales, ojos de buey, botones en cristal o corazón 3D, con y sin enchape.", "foto": "/img/p090-1.webp"},
+  {"slug": "nocheros-zapateros", "numero": "07", "nombre": "Nocheros, cómodas y zapateros", "descripcion": "Nocheros Luxury con sensor de tacto, cómodas y zapateros de lujo con luz LED.", "foto": "/img/p105-1.webp"},
+  {"slug": "espejos", "numero": "08", "nombre": "Espejos", "descripcion": "Espejos LED, corredizos, tapizados y de bombillos. Todos se fabrican en tus colores y con el enchape que elijas.", "foto": "/img/p117-1.webp"},
+  {"slug": "repisas", "numero": "09", "nombre": "Repisas", "descripcion": "Repisas sencillas y con luz y cajones, para acompañar el tocador.", "foto": "/img/p128-1.webp"},
+  {"slug": "sillas-puffs", "numero": "10", "nombre": "Sillas y puffs", "descripcion": "Sillas de gamuza, puffs baúl, redondos y de corazón, en tela gamuza, peluche o antifluido.", "foto": "/img/p139-1.webp"}
+]

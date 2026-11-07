@@ -1,0 +1,31 @@
+---
+layout: base.njk
+permalink: /equipo/
+titulo: Enlaces del equipo · Luz Mágica
+descripcion: Página interna del equipo de ventas.
+---
+<meta name="robots" content="noindex">
+
+<div class="contenedor pagina-angosta">
+  <p class="rotulo">Uso interno</p>
+  <h1>Tu enlace y tu código QR</h1>
+  <p class="parrafo parrafo--guia">Copia tu enlace y úsalo siempre: en tu estado de WhatsApp, en tu biografía y cuando le mandes el catálogo a un cliente. Quien abra tu enlace queda asignado a ti, y la comisión es de quien lo envió primero.</p>
+
+  <div class="equipo">
+    {% for a in asesores | activos %}
+    <article class="equipo__ficha">
+      <h2>{{ a.nombre }}</h2>
+      <p class="rotulo">Código {{ a.codigo }}</p>
+      <p class="equipo__enlace" data-enlace-base="/?a={{ a.codigo }}"></p>
+      <div class="equipo__acciones">
+        <button type="button" class="boton boton--linea boton--chico" data-copiar="/?a={{ a.codigo }}">Copiar enlace</button>
+      </div>
+      <div class="equipo__qr" data-qr="/?a={{ a.codigo }}" aria-label="Código QR del enlace de {{ a.nombre }}"></div>
+    </article>
+    {% endfor %}
+  </div>
+
+  <p class="nota">El código QR se dibuja en tu propio navegador: no se envía a ningún servicio. Imprímelo o guárdalo como imagen para tus tarjetas y para la galería.</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js" defer></script>

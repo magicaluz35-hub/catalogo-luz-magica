@@ -1,0 +1,97 @@
+{% from "tarjeta.njk" import producto %}
+
+<div class="fichas-linea">
+  <div class="contenedor fichas">
+    <a class="ficha {{ 'ficha--activa' if not c }}" href="/catalogo/">Todo</a>
+    {% for ct in categorias %}
+    <a class="ficha {{ 'ficha--activa' if c and c.slug == ct.slug }}" href="/categoria/{{ ct.slug }}/">{{ ct.nombre }}</a>
+    {% endfor %}
+  </div>
+</div>
+
+<nav class="migas contenedor" aria-label="Migas de pan">
+  <a href="/">Inicio</a>
+  <span aria-hidden="true">/</span>
+  <span>{{ c.nombre if c else "Todo el catálogo" }}</span>
+</nav>
+
+<div class="contenedor">
+  <h1 class="listado__titulo">{{ c.nombre if c else "Todo el catálogo" }}</h1>
+  <p class="listado__entrada">{{ c.descripcion if c else "Los " + (productos.length | string) + " productos de Luz Mágica. Filtra por precio o por luz LED, y compara dos modelos lado a lado." }}</p>
+</div>
+
+<div class="contenedor listado">
+
+  <aside class="filtros" data-filtros>
+    <div class="filtros__cabeza">
+      <h2 class="rotulo">Filtros</h2>
+      <button type="button" class="enlace-boton" data-limpiar>Limpiar</button>
+    </div>
+
+    <h3 class="filtros__titulo">Precio</h3>
+    <div class="filtros__grupo">
+      <button type="button" class="opcion opcion--activa" data-filtro="precio" data-valor="todos">Todos los precios</button>
+      <button type="button" class="opcion" data-filtro="precio" data-valor="bajo">Hasta $500.000</button>
+      <button type="button" class="opcion" data-filtro="precio" data-valor="medio">$500.000 a $1.000.000</button>
+      <button type="button" class="opcion" data-filtro="precio" data-valor="alto">Más de $1.000.000</button>
+    </div>
+
+    <h3 class="filtros__titulo">Luz LED</h3>
+    <div class="fichas">
+      <button type="button" class="ficha ficha--activa" data-filtro="led" data-valor="todos">Todos</button>
+      <button type="button" class="ficha" data-filtro="led" data-valor="si">Con LED</button>
+      <button type="button" class="ficha" data-filtro="led" data-valor="no">Sin LED</button>
+    </div>
+
+    <h3 class="filtros__titulo">Color del mueble</h3>
+    <p class="nota">Todos se fabrican en cualquiera de estos colores.</p>
+    <div class="muestras muestras--informativas">
+      {% for col in negocio.colores %}
+      <span class="muestra__disco" title="{{ col.nombre }}" style="background: {{ col.hex }}"></span>
+      {% endfor %}
+    </div>
+
+    <div class="caja caja--rosa">
+      <p><strong>¿No encuentras la medida?</strong></p>
+      <p class="nota">Se fabrica a la medida que necesites.</p>
+      <a class="enlace-subrayado" href="/disena/">Diseña el tuyo</a>
+    </div>
+  </aside>
+
+  <div class="resultados">
+    <div class="resultados__barra">
+      <p><strong data-contador>{{ lista.length }}</strong> <span data-contador-palabra>producto{{ "s" if lista.length != 1 }}</span></p>
+      <div class="fichas">
+        <button type="button" class="ficha ficha--activa" data-orden="destacados">Destacados</button>
+        <button type="button" class="ficha" data-orden="menor">Menor precio</button>
+        <button type="button" class="ficha" data-orden="mayor">Mayor precio</button>
+      </div>
+    </div>
+
+    <div class="rejilla rejilla--3" data-rejilla>
+      {% for p in lista %}{{ producto(p, negocio) }}{% endfor %}
+    </div>
+
+    <div class="vacio" data-vacio hidden>
+      <p class="vacio__titulo">Nada con esos filtros</p>
+      <p>Prueba ampliando el rango de precio.</p>
+      <button type="button" class="boton boton--linea" data-limpiar>Quitar los filtros</button>
+    </div>
+  </div>
+</div>
+
+<div class="barra-comparar" data-barra-comparar hidden>
+  <div class="contenedor barra-comparar__fila">
+    <span data-comparar-texto></span>
+    <div class="barra-comparar__botones">
+      <button type="button" class="boton boton--fantasma" data-comparar-limpiar>Quitar</button>
+      <button type="button" class="boton boton--claro" data-comparar-abrir>Comparar</button>
+    </div>
+  </div>
+</div>
+
+<div class="comparador" data-comparador hidden>
+  <div class="contenedor">
+    <div class="comparador__caja" data-comparador-tabla></div>
+  </div>
+</div>

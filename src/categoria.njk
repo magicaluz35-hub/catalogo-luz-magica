@@ -1,0 +1,14 @@
+---
+layout: base.njk
+pagination:
+  data: categorias
+  size: 1
+  alias: c
+permalink: "/categoria/{{ c.slug }}/"
+eleventyComputed:
+  titulo: "{{ c.nombre }} · {{ negocio.nombre }}"
+  descripcion: "{{ c.descripcion }}"
+---
+{% from "tarjeta.njk" import producto %}
+{% set lista = productos | deCategoria(c.slug) %}
+{% include "listado.njk" %}

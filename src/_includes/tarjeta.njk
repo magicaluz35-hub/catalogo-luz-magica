@@ -1,0 +1,27 @@
+{% macro producto(p, negocio) %}
+<article class="tarjeta" data-producto
+         data-sku="{{ p.sku }}"
+         data-nombre="{{ p.nombre }}"
+         data-precio="{{ p.precio }}"
+         data-categoria="{{ p.categoria }}"
+         data-led="{{ 'si' if p.led else 'no' }}">
+  <a class="tarjeta__enlace" href="/producto/{{ p.sku | lower }}/">
+    <div class="foto foto--4-5">
+      {% if p.fotos and p.fotos.length %}
+      <img src="{{ p.fotos[0] }}" alt="{{ p.nombre }}" loading="lazy" width="480" height="600">
+      {% else %}
+      <span class="foto__vacia">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="2"></rect><circle cx="8.8" cy="10" r="1.9"></circle><path d="M3.5 17.2l5-4.2 3.6 3 3-2.4 5.4 4.6"></path></svg>
+        <span>Foto</span>
+      </span>
+      {% endif %}
+      {% if p.destacado %}<span class="etiqueta">Destacado</span>{% elif p.nuevo %}<span class="etiqueta">Nuevo</span>{% endif %}
+    </div>
+    <p class="tarjeta__sku">{{ p.sku }}</p>
+    <h3 class="tarjeta__nombre">{{ p.nombre }}</h3>
+    <p class="tarjeta__precio">{{ p.precio | pesos }}</p>
+    <p class="tarjeta__plazo">{{ negocio.plazoCorto }}</p>
+  </a>
+  <button type="button" class="boton boton--linea boton--chico" data-comparar="{{ p.sku }}">Comparar</button>
+</article>
+{% endmacro %}

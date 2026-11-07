@@ -1,0 +1,28 @@
+---
+layout: base.njk
+permalink: /pedido/
+titulo: Mi pedido · Luz Mágica
+descripcion: Revisa los muebles que escogiste y envía el pedido por WhatsApp.
+---
+<div class="contenedor pagina-angosta">
+  <p class="rotulo">Tu selección</p>
+  <h1>Mi pedido</h1>
+
+  <div data-pedido-lista></div>
+
+  <div class="pedido__vacio" data-pedido-vacio hidden>
+    <p class="vacio__titulo">Todavía no has añadido nada</p>
+    <p class="parrafo">Recorre el catálogo y usa “Añadir al pedido” en los muebles que te gusten.</p>
+    <a class="boton boton--oscuro" href="/catalogo/">Ver el catálogo</a>
+  </div>
+
+  <div data-pedido-pie hidden>
+    <p class="pedido__total">Total aproximado: <strong data-pedido-total></strong></p>
+    <p class="nota">El domicilio se cobra aparte. {{ negocio.domicilios }}</p>
+    <a class="boton boton--whatsapp boton--ancho" href="#" data-wa data-wa-pedido>
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.5L3.5 20.5l1.5-4.6A8.4 8.4 0 1 1 20.5 11.6z"></path></svg>
+      Enviar el pedido por WhatsApp
+    </a>
+    <p class="nota nota--centrada">{{ negocio.avisoWhatsapp }}</p>
+  </div>
+</div>

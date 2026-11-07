@@ -1,0 +1,148 @@
+{
+  "nombre": "Luz Mágica",
+  "lema": "Tocadores y espejos",
+  "dominio": "https://luzmagica.pages.dev",
+  "titular": "Tu tocador, en tus colores",
+  "presentacion": "Tocadores Hollywood, espejos LED, nocheros y puffs fabricados uno por uno para ti. Eliges el color y el enchape; nosotros lo armamos y te lo llevamos.",
+  "descripcionCorta": "Tocadores Hollywood, espejos LED y muebles fabricados en tus colores, con pago contra entrega y domicilios en Medellín.",
+  "promesas": [
+    "Pago contra entrega",
+    "Fabricación en tus colores",
+    "Domicilios en Medellín"
+  ],
+  "direccion": "Carrera 51B Nº 90-42, Aranjuez, Medellín",
+  "telefono": "+57 324 211 7323",
+  "telefonoWhatsapp": "573242117323",
+  "horario": [
+    {
+      "dias": "Lunes a viernes",
+      "desde": "08:00",
+      "hasta": "17:30"
+    },
+    {
+      "dias": "Sábados",
+      "desde": "08:00",
+      "hasta": "15:00"
+    },
+    {
+      "dias": "Domingos",
+      "desde": "",
+      "hasta": "",
+      "nota": "Solo domicilios"
+    },
+    {
+      "dias": "Festivos",
+      "desde": "",
+      "hasta": "",
+      "nota": "No se labora"
+    }
+  ],
+  "plazoFabricacion": "Fabricación bajo pedido: entrega de 10 a 15 días hábiles según disponibilidad.",
+  "plazoCorto": "A pedido · 10–15 días",
+  "formasDePago": "Pago contra entrega. Se pide abono solo cuando es más de un producto, diseños especiales, modulares, diseños en RH o combos. No se hace devolución de dinero después de iniciada la fabricación.",
+  "domicilios": "El valor del domicilio depende del barrio, el piso y las indicaciones de entrega. Te lo confirmamos por WhatsApp antes de fabricar.",
+  "retiro": "También puedes retirar tu pedido en la galería de Aranjuez.",
+  "avisoWhatsapp": "Abrir WhatsApp no confirma tu pedido: se confirma en la conversación.",
+  "colores": [
+    {
+      "nombre": "Blanco",
+      "hex": "#FFFFFF"
+    },
+    {
+      "nombre": "Negro",
+      "hex": "#1C1C1C"
+    },
+    {
+      "nombre": "Beis veteado",
+      "hex": "#D9C7AE"
+    },
+    {
+      "nombre": "Gris veteado",
+      "hex": "#A9A6A1"
+    },
+    {
+      "nombre": "Rosado",
+      "hex": "#E8B9CB"
+    },
+    {
+      "nombre": "Lila",
+      "hex": "#C6B5DE"
+    }
+  ],
+  "enchapes": [
+    "Oro rosa",
+    "Gris humo",
+    "Plata",
+    "Sin enchape"
+  ],
+  "medidas": [
+    "1.20 m",
+    "Metro",
+    "Mini"
+  ],
+  "atajos": [
+    {
+      "titulo": "Por espacio",
+      "opciones": [
+        {
+          "texto": "Habitación pequeña",
+          "enlace": "/categoria/tocadores-metro-mini/"
+        },
+        {
+          "texto": "Habitación amplia",
+          "enlace": "/categoria/tocadores-120/"
+        }
+      ]
+    },
+    {
+      "titulo": "Por presupuesto",
+      "opciones": [
+        {
+          "texto": "Hasta $500.000",
+          "enlace": "/catalogo/?precio=bajo"
+        },
+        {
+          "texto": "$500.000 a $1.000.000",
+          "enlace": "/catalogo/?precio=medio"
+        },
+        {
+          "texto": "Más de $1.000.000",
+          "enlace": "/catalogo/?precio=alto"
+        }
+      ]
+    },
+    {
+      "titulo": "Por ocasión",
+      "opciones": [
+        {
+          "texto": "Regalo de quince",
+          "enlace": "/categoria/tocadores-120/"
+        },
+        {
+          "texto": "Primer apartamento",
+          "enlace": "/categoria/tocadores-metro-mini/"
+        },
+        {
+          "texto": "Renovar el cuarto",
+          "enlace": "/categoria/espejos/"
+        }
+      ]
+    }
+  ],
+  "redes": {
+    "instagram": "https://instagram.com/luz_magica__",
+    "facebook": "https://facebook.com/profile.php?id=61594714269382",
+    "tiktok": "https://tiktok.com/@luz_magica__"
+  },
+  "atribucion": {
+    "regla": "primero",
+    "diasVigencia": 90,
+    "notaRegla": "La comisión queda con el asesor que envió el enlace primero. Un segundo enlace no reemplaza al guardado hasta que venzan los días de vigencia."
+  },
+  "materiales": [
+    "Madera MDF gruesa de 9 mm",
+    "Madera RH (solo algunos diseños)"
+  ],
+  "plazoDetalle": "Entre 10 y 15 días hábiles para tocadores y espejos, según disponibilidad. Los París Modular tardan de 15 a 20 días hábiles, y los diseños en madera RH, modificados o en colores fuertes, hasta 25 días hábiles. Algunos diseños tienen entrega inmediata según disponibilidad.",
+  "logo": "/img/logo.webp"
+}
