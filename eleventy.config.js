@@ -8,7 +8,6 @@ export default function (eleventyConfig) {
   // Las fotos viven en la carpeta img/ de la raíz del repositorio,
   // la misma del catálogo anterior. Se copian tal cual al sitio publicado.
   eleventyConfig.addPassthroughCopy({ "img": "img" });
-  eleventyConfig.addPassthroughCopy({ "src/_redirects": "_redirects" });
 
   // Formatea un número como precio colombiano: 360000 -> "$ 360.000"
   eleventyConfig.addFilter("pesos", (valor) => {
@@ -16,16 +15,6 @@ export default function (eleventyConfig) {
     if (!Number.isFinite(n)) return "";
     return "$ " + n.toLocaleString("es-CO");
   });
-
-  // Convierte un texto en un identificador para URL: "París Modular" -> "paris-modular"
-  eleventyConfig.addFilter("slug", (texto) =>
-    String(texto)
-      .normalize("NFD")
-      .replace(/[̀-ͯ]/g, "")
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "")
-  );
 
   // Deja solo los productos de una categoría
   eleventyConfig.addFilter("deCategoria", (productos, slug) =>
@@ -50,4 +39,20 @@ export default function (eleventyConfig) {
     htmlTemplateEngine: "njk",
     markdownTemplateEngine: "njk"
   };
+}
+
+Para wrangler.jsonc (es nuevo): Add file → Create new file, escribe el nombre wrangler.jsonc y pega:
+
+jsonc
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "catalogo-luz-magica",
+  "compatibility_date": "2026-11-04",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "_site",
+    "not_found_handling": "404-page"
+  }
 }
