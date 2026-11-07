@@ -1,0 +1,16 @@
+// Configuración de publicación en Cloudflare.
+// El dueño NO necesita tocar este archivo.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "catalogo-luz-magica",
+  "compatibility_date": "2026-11-04",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "_site",
+    // Si alguien abre un enlace viejo de un producto que ya no existe,
+    // en vez de un error del navegador se le muestra nuestra página 404.
+    "not_found_handling": "404-page"
+  }
+}

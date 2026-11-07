@@ -22,11 +22,10 @@ tercero, que es justo lo que este proyecto viene a resolver.
    proyecto las lee de ahí con los mismos nombres (`p105-1.webp`, etc.).
    Quien suba los archivos necesita permiso de escritura en el repositorio
    (Settings → Collaborators).
-2. **Cloudflare Pages.** Entrar a Cloudflare con la cuenta del negocio →
-   Workers & Pages → Create → Pages → Connect to Git → elegir el repositorio. Configurar:
-   - Framework preset: `None`
-   - Build command: `npm run build`
-   - Build output directory: `_site`
+2. **Cloudflare.** Entrar con la cuenta del negocio → Workers & Pages → Create →
+   conectar el repositorio. La configuración ya viene en `wrangler.jsonc`:
+   compila con `npm run build`, publica la carpeta `_site` y, si alguien abre un enlace
+   viejo, muestra la página 404 propia en vez de un error del navegador.
 3. **Panel de edición.** Entrar a <https://pagescms.org>, iniciar sesión con la cuenta de
    GitHub del negocio y elegir el repositorio. El archivo `.pages.yml` ya define todos
    los campos editables; no hay nada más que configurar.
@@ -86,6 +85,7 @@ verificador para que el cliente confirme que quien lo contactó es del equipo.
 ```
 .pages.yml              Campos que ve el dueño en el panel de edición
 eleventy.config.js      Configuración del generador
+wrangler.jsonc          Configuración de publicación en Cloudflare
 src/
   _data/
     negocio.json        Nombre, dirección, horarios, políticas, colores, textos
