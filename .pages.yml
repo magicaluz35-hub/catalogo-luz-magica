@@ -1,0 +1,210 @@
+# Configuración del panel de edición (Pages CMS) — Luz Mágica
+# Esto define lo que el dueño ve y puede cambiar en pagescms.org.
+# Si agregas un campo aquí, aparece en el panel. No borres los campos "sku" ni "codigo".
+
+media:
+  input: img
+  output: /img
+  extensions: [jpg, jpeg, png, webp]
+
+content:
+  - name: productos
+    label: Productos
+    type: file
+    path: src/_data/productos.json
+    list: true
+    view:
+      fields: [nombre, precio, categoria, sku]
+      primary: nombre
+    fields:
+      - name: nombre
+        label: Nombre del producto
+        type: string
+        required: true
+      - name: sku
+        label: Código SKU (NO LO CAMBIES después de publicar)
+        description: Este código forma la dirección web del producto. Si lo cambias, los enlaces que ya compartieron los asesores dejan de funcionar.
+        type: string
+        required: true
+        pattern:
+          regex: "^[A-Za-z0-9-]+$"
+          message: Solo letras, números y guiones. Sin espacios ni tildes.
+      - name: precio
+        label: Precio en pesos (solo números, sin puntos)
+        type: number
+        required: true
+      - name: categoria
+        label: Línea
+        type: select
+        required: true
+        options:
+          values:
+            - { value: tocadores-120, label: Tocadores de 1.20 }
+            - { value: tocadores-metro-mini, label: Tocadores de metro y mini }
+            - { value: carvalo-solteron, label: Carvalo y Solterón }
+            - { value: madera-rh, label: Tocadores en madera RH }
+            - { value: hello-kitty, label: Línea Hello Kitty }
+            - { value: paris-modular, label: París Modular }
+            - { value: nocheros-zapateros, label: Nocheros, cómodas y zapateros }
+            - { value: espejos, label: Espejos }
+            - { value: repisas, label: Repisas }
+            - { value: sillas-puffs, label: Sillas y puffs }
+      - name: descripcion
+        label: Descripción
+        description: Qué trae y qué lo hace especial. Si la dejas vacía, sale un texto general.
+        type: text
+      - name: plazo
+        label: Plazo de fabricación propio
+        description: Déjalo vacío si el mueble se entrega en el plazo normal de 10 a 15 días hábiles. Llénalo solo cuando este producto tarde distinto.
+        type: string
+      - name: fotos
+        label: Fotos
+        description: La primera es la que se ve en el catálogo y en la vista previa de WhatsApp. Súbelas todas en vertical.
+        type: image
+        list: true
+      - name: led
+        label: Tiene luz LED
+        type: boolean
+      - name: destacado
+        label: Mostrar en "Favoritos de la casa"
+        type: boolean
+      - name: nuevo
+        label: Mostrar en "Recién llegados"
+        type: boolean
+
+  - name: asesores
+    label: Asesores
+    type: file
+    path: src/_data/asesores.json
+    list: true
+    view:
+      fields: [nombre, whatsapp, codigo, activo]
+      primary: nombre
+    fields:
+      - name: nombre
+        label: Nombre del asesor
+        type: string
+        required: true
+      - name: whatsapp
+        label: WhatsApp con indicativo, solo números
+        description: "Ejemplo: 573001234567. Sin el signo + y sin espacios."
+        type: string
+        pattern:
+          regex: "^[0-9]*$"
+          message: Solo números, sin el signo + ni espacios.
+      - name: codigo
+        label: Código (NO LO CAMBIES después de repartir el enlace)
+        description: Es el que arma el enlace personal del asesor. Si lo cambias, pierde los clientes que ya tenía asignados.
+        type: string
+        required: true
+      - name: activo
+        label: Activo
+        description: Desmárcalo cuando alguien salga del equipo. Desaparece de la lista pública y su enlace deja de asignarle clientes.
+        type: boolean
+      - name: enRotacion
+        label: Recibe clientes que llegan sin enlace
+        type: boolean
+      - name: nota
+        label: Nota interna
+        type: string
+
+  - name: categorias
+    label: Líneas del catálogo
+    type: file
+    path: src/_data/categorias.json
+    list: true
+    view:
+      fields: [numero, nombre]
+      primary: nombre
+    fields:
+      - name: numero
+        label: Número de orden
+        type: string
+      - name: nombre
+        label: Nombre de la línea
+        type: string
+        required: true
+      - name: slug
+        label: Identificador web (NO LO CAMBIES)
+        description: Forma la dirección de la línea y conecta los productos con ella.
+        type: string
+        required: true
+      - name: descripcion
+        label: Descripción
+        type: text
+      - name: foto
+        label: Foto de portada
+        type: image
+
+  - name: negocio
+    label: Datos del negocio
+    type: file
+    path: src/_data/negocio.json
+    fields:
+      - { name: nombre, label: Nombre del negocio, type: string }
+      - { name: lema, label: Lema, type: string }
+      - { name: dominio, label: Dirección del sitio, type: string }
+      - { name: titular, label: Titular de la página de inicio, type: string }
+      - { name: presentacion, label: Texto de presentación, type: text }
+      - { name: descripcionCorta, label: Descripción para buscadores y WhatsApp, type: text }
+      - { name: promesas, label: Promesas de la barra superior, type: string, list: true }
+      - { name: direccion, label: Dirección de la galería, type: string }
+      - { name: telefono, label: Teléfono para mostrar, type: string }
+      - { name: telefonoWhatsapp, label: WhatsApp de la línea principal (solo números), type: string }
+      - name: horario
+        label: Horario
+        type: object
+        list: true
+        fields:
+          - { name: dias, label: Días, type: string }
+          - { name: desde, label: Abre (24h, ej. 08:00), type: string }
+          - { name: hasta, label: Cierra (24h, ej. 17:30), type: string }
+          - { name: nota, label: Nota en vez de horario, type: string }
+      - { name: plazoFabricacion, label: Texto del plazo de fabricación, type: text }
+      - { name: plazoCorto, label: Plazo corto para las tarjetas, type: string }
+      - { name: formasDePago, label: Formas de pago, type: text }
+      - { name: domicilios, label: Texto de domicilios, type: text }
+      - { name: retiro, label: Texto de retiro en tienda, type: text }
+      - { name: avisoWhatsapp, label: Aviso bajo los botones de WhatsApp, type: text }
+      - name: colores
+        label: Colores disponibles
+        type: object
+        list: true
+        fields:
+          - { name: nombre, label: Nombre del color, type: string }
+          - { name: hex, label: Color (código #RRGGBB), type: string }
+      - { name: enchapes, label: Enchapes disponibles, type: string, list: true }
+      - { name: medidas, label: Medidas disponibles, type: string, list: true }
+      - name: atajos
+        label: Atajos de "Encuentra el tuyo"
+        type: object
+        list: true
+        fields:
+          - { name: titulo, label: Título del grupo, type: string }
+          - name: opciones
+            label: Opciones
+            type: object
+            list: true
+            fields:
+              - { name: texto, label: Texto, type: string }
+              - { name: enlace, label: Enlace, type: string }
+      - name: redes
+        label: Redes sociales
+        type: object
+        fields:
+          - { name: instagram, label: Instagram, type: string }
+          - { name: facebook, label: Facebook, type: string }
+          - { name: tiktok, label: TikTok, type: string }
+      - name: atribucion
+        label: Comisiones de los asesores
+        type: object
+        fields:
+          - name: regla
+            label: ¿De quién es la comisión?
+            type: select
+            options:
+              values:
+                - { value: primero, label: Del primero que envió el enlace }
+                - { value: ultimo, label: Del último enlace que abrió el cliente }
+          - { name: diasVigencia, label: Días que dura la asignación, type: number }
+          - { name: notaRegla, label: Explicación que se muestra en la web, type: text }
