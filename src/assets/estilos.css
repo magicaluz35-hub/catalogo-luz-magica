@@ -594,6 +594,7 @@ body.sin-desplazar { overflow: hidden; }
   background: var(--verde); color: #fff; text-decoration: none;
   font-size: 0.9rem; font-weight: 600; box-shadow: 0 6px 20px rgba(26, 20, 22, 0.18);
 }
+.wa-flotante__corto { display: none; }
 
 /* Pantallas medianas y celulares */
 @media (max-width: 1040px) {
@@ -675,7 +676,8 @@ body.sin-desplazar { overflow: hidden; }
   .galeria__texto { padding: 28px; }
   .filtros { max-width: none; flex-basis: 100%; }
   .barra-comparar { bottom: 88px; }
-  .wa-flotante span { display: none; }
-  .wa-flotante { width: 56px; padding: 0; justify-content: center; }
+  .wa-flotante { padding: 0 18px; }
+  .wa-flotante__largo { display: none; }
+  .wa-flotante__corto { display: inline; }
   .tabla th, .tabla td { padding: 11px 12px; font-size: 0.82rem; }
 }
