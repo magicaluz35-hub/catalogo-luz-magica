@@ -29,7 +29,6 @@ body {
   color: var(--tinta);
   background: var(--papel);
   -webkit-font-smoothing: antialiased;
-  padding-bottom: 92px;
 }
 
 h1, h2, h3 { font-family: var(--display); font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
@@ -572,7 +571,10 @@ body.sin-desplazar { overflow: hidden; }
 }
 
 /* Pie */
-.pie { background: var(--tinta); color: #C9BCC1; padding: 56px 0 28px; }
+/* El espacio que deja libre el botón flotante de WhatsApp va dentro
+   del pie, no debajo del body: así queda en el fondo oscuro y no
+   aparece una franja blanca al final de la página. */
+.pie { background: var(--tinta); color: #C9BCC1; padding: 56px 0 96px; }
 .pie__columnas { display: flex; flex-wrap: wrap; gap: 36px; padding-bottom: 36px; border-bottom: 1px solid #332A2E; }
 .pie__columnas > * { flex: 1 1 220px; min-width: 0; }
 .pie__titulo { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: #E0B9A4; font-weight: 600; margin-bottom: 1rem; }
@@ -611,7 +613,7 @@ body.sin-desplazar { overflow: hidden; }
 .icono:focus-visible { outline: 2px solid var(--rosa); outline-offset: 2px; }
 
 @media (max-width: 720px) {
-  body { padding-bottom: 84px; }
+  .pie { padding-bottom: 88px; }
   .contenedor { padding: 0 16px; }
   .seccion { padding: 48px 0; }
   .migas { margin-top: 20px; margin-bottom: 14px; }
