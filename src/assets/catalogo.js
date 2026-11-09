@@ -130,7 +130,12 @@
   function pintarHorario() {
     var caja = document.querySelector("[data-estado-horario]");
     var texto = document.querySelector("[data-estado-texto]");
+    var corto = document.querySelector("[data-estado-corto]");
     if (!caja || !texto) return;
+    function poner(largo, breve) {
+      texto.textContent = largo;
+      if (corto) corto.textContent = breve;
+    }
 
     var hoy = franjaDeHoy();
     var ahora = new Date();
@@ -142,14 +147,14 @@
     }
 
     if (abierto) {
-      texto.textContent = "Abierto ahora · te responden enseguida";
+      poner("Abierto ahora · te responden enseguida", "Abierto");
       caja.classList.remove("estado--cerrado");
     } else {
       caja.classList.add("estado--cerrado");
       if (hoy && hoy.nota) {
-        texto.textContent = "Hoy: " + hoy.nota.toLowerCase();
+        poner("Hoy: " + hoy.nota.toLowerCase(), hoy.nota);
       } else {
-        texto.textContent = "Cerrado ahora · escríbenos y te responden al abrir";
+        poner("Cerrado ahora · escríbenos y te responden al abrir", "Cerrado");
       }
     }
   }
@@ -696,6 +701,18 @@
     }
   }
 
+  // ---------- 5b-ter. Buscador plegable en celular ----------
+  function iniciarBusqueda() {
+    var boton = document.querySelector("[data-abrir-busqueda]");
+    var caja = document.getElementById("buscador");
+    if (!boton || !caja) return;
+    boton.addEventListener("click", function () {
+      var abierto = caja.classList.toggle("buscador--abierto");
+      boton.setAttribute("aria-expanded", abierto ? "true" : "false");
+      if (abierto) caja.querySelector("input").focus();
+    });
+  }
+
   // ---------- 5b-bis. Carrusel de líneas ----------
   function iniciarCarrusel() {
     var caja = document.querySelector("[data-carrusel]");
@@ -793,6 +810,7 @@
     pintarAsesor();
     pintarHorario();
     iniciarListado();
+    iniciarBusqueda();
     iniciarCarrusel();
     iniciarPedido();
     iniciarCompartir();
