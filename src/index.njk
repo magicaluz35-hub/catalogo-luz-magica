@@ -177,12 +177,29 @@ permalink: /
         </p>
         <h3 class="rotulo">Teléfono</h3>
         <p class="parrafo"><a href="tel:{{ negocio.telefono | replace(" ", "") }}">{{ negocio.telefono }}</a></p>
+
+        {% if negocio.latitud and negocio.longitud %}
+        <a class="boton boton--oscuro" href="https://www.google.com/maps/dir/?api=1&destination={{ negocio.latitud }}%2C{{ negocio.longitud }}" target="_blank" rel="noopener">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"></path><circle cx="12" cy="10" r="2.6"></circle></svg>
+          Cómo llegar
+        </a>
+        <p class="nota">Se abre en tu aplicación de mapas con la ruta desde donde estés.</p>
+        {% endif %}
       </div>
       <div class="galeria__mapa">
+        {% if negocio.latitud and negocio.longitud %}
+        <iframe
+          src="https://www.google.com/maps?q={{ negocio.latitud }},{{ negocio.longitud }}&hl=es&z=17&output=embed"
+          title="Mapa de la galería {{ negocio.nombre }} en {{ negocio.direccion }}"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen></iframe>
+        {% else %}
         <span class="foto__vacia">
           <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"></path><circle cx="12" cy="10" r="2.6"></circle></svg>
           <span>Mapa · {{ negocio.direccion }}</span>
         </span>
+        {% endif %}
       </div>
     </div>
   </div>

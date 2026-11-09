@@ -163,6 +163,14 @@ content:
       - { name: descripcionCorta, label: Descripción para buscadores y WhatsApp, type: text }
       - { name: promesas, label: Promesas de la barra superior, type: string, list: true }
       - { name: direccion, label: Dirección de la galería, type: string }
+      - name: latitud
+        label: Latitud de la galería
+        description: Para el mapa. Si se mudan, abre Google Maps, haz clic derecho sobre el punto exacto y copia los dos números que aparecen. El primero va aquí.
+        type: string
+      - name: longitud
+        label: Longitud de la galería
+        description: El segundo de los dos números. Siempre empieza con signo menos en Colombia.
+        type: string
       - { name: telefono, label: Teléfono para mostrar, type: string }
       - { name: telefonoWhatsapp, label: WhatsApp de la línea principal (solo números), type: string }
       - name: horario
