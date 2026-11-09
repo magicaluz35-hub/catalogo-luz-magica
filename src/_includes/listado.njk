@@ -1,11 +1,13 @@
 {% from "tarjeta.njk" import producto %}
 
 <div class="fichas-linea">
-  <div class="contenedor fichas">
-    <a class="ficha {{ 'ficha--activa' if not c }}" href="/catalogo/">Todo</a>
-    {% for ct in categorias %}
-    <a class="ficha {{ 'ficha--activa' if c and c.slug == ct.slug }}" href="/categoria/{{ ct.slug }}/">{{ ct.nombre }}</a>
-    {% endfor %}
+  <div class="contenedor">
+    <div class="fichas fichas--rodante" role="navigation" aria-label="Líneas del catálogo">
+      <a class="ficha {{ 'ficha--activa' if not c }}" href="/catalogo/">Todo</a>
+      {% for ct in categorias %}
+      <a class="ficha {{ 'ficha--activa' if c and c.slug == ct.slug }}" href="/categoria/{{ ct.slug }}/">{{ ct.nombre }}</a>
+      {% endfor %}
+    </div>
   </div>
 </div>
 
@@ -53,8 +55,8 @@
 
     <div class="caja caja--rosa">
       <p><strong>¿No encuentras la medida?</strong></p>
-      <p class="nota">Se fabrica a la medida que necesites.</p>
-      <a class="enlace-subrayado" href="/disena/">Diseña el tuyo</a>
+      <p class="nota">Se fabrica a la medida que necesites, en el color y el enchape que elijas.</p>
+      <a class="enlace-subrayado" href="#" data-wa data-wa-texto="¡Hola {{ negocio.nombre }}! Busco un mueble a la medida y no lo encontré en el catálogo.">Cuéntanos qué necesitas</a>
     </div>
   </aside>
 

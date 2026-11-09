@@ -167,11 +167,29 @@ img { max-width: 100%; height: auto; display: block; }
 .ficha--radio:focus-within { outline: 2px solid var(--rosa); outline-offset: 2px; }
 .fichas-linea { border-bottom: 1px solid var(--linea); padding: 12px 0; }
 
+/* Una sola fila que se desliza con el dedo, en vez de partirse en varias */
+.fichas--rodante {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+  padding-bottom: 2px;
+}
+.fichas--rodante::-webkit-scrollbar { display: none; }
+.fichas--rodante .ficha { flex: none; scroll-snap-align: start; }
+
+/* Grupos de categorías en el inicio */
+.grupo + .grupo { margin-top: 56px; }
+.grupo__cabeza { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+.grupo__nombre { font-family: var(--display); font-size: 1.5rem; font-weight: 600; letter-spacing: -0.01em; margin: 0; }
+.grupo__cuenta { font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--oro); }
+.grupo__entrada { margin: 8px 0 22px; font-size: 0.95rem; line-height: 1.6; color: var(--tinta-suave); max-width: 44rem; }
+
 /* Categorías y tarjetas */
 .categoria { text-decoration: none; color: inherit; display: block; }
-.categoria h3 { margin: 12px 0 4px; font-size: 0.92rem; line-height: 1.3; }
+.categoria h3, .categoria h4 { margin: 12px 0 4px; font-size: 0.92rem; font-family: var(--texto); font-weight: 600; letter-spacing: 0; line-height: 1.3; }
 .categoria p { margin: 0; font-size: 0.78rem; color: var(--gris); }
-.categoria__numero { position: absolute; top: 10px; left: 12px; font-family: var(--display); font-size: 0.85rem; color: var(--oro); }
 
 .tarjeta { display: flex; flex-direction: column; }
 .tarjeta__enlace { text-decoration: none; color: inherit; display: block; flex: 1; }

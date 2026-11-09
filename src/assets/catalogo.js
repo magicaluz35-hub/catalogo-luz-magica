@@ -60,15 +60,31 @@
     var delEnlace = params.get("a");
     var nuevo = delEnlace ? buscarAsesor(delEnlace) : null;
 
-    // Regla "primero": si ya hay uno vigente, el enlace nuevo NO lo reemplaza.
-    if (vigente) {
+    // Regla "primero": la comisión queda con el PRIMER VENDEDOR QUE ENVIÓ SU ENLACE.
+    // Solo una asignación que vino de un enlace bloquea a las siguientes.
+    // Un reparto automático de la casa no es nadie enviando un enlace, así que
+    // se deja reemplazar en cuanto llega un enlace de verdad.
+    if (vigente && guardado.origen === "enlace") {
       var previo = buscarAsesor(guardado.codigo);
-      if (previo) return { asesor: previo, origen: guardado.origen || "enlace" };
+      if (previo) {
+        // Si vuelve con el enlace del mismo asesor, se renuevan los días de vigencia.
+        if (nuevo && nuevo.codigo === previo.codigo) {
+          guardar(LLAVE_ASESOR, { codigo: previo.codigo, desde: Date.now(), origen: "enlace" });
+        }
+        return { asesor: previo, origen: "enlace" };
+      }
     }
 
     if (nuevo) {
       guardar(LLAVE_ASESOR, { codigo: nuevo.codigo, desde: Date.now(), origen: "enlace" });
       return { asesor: nuevo, origen: "enlace" };
+    }
+
+    // Sin enlace, pero ya había un reparto vigente: se respeta, para que el mismo
+    // visitante no caiga con un asesor distinto en cada visita.
+    if (vigente) {
+      var repartoPrevio = buscarAsesor(guardado.codigo);
+      if (repartoPrevio) return { asesor: repartoPrevio, origen: "reparto" };
     }
 
     var reparto = asesorPorDefecto();
@@ -167,17 +183,6 @@
     return lineas.join("\n");
   }
 
-  function textoDisena() {
-    var o = opcionesDe(document.querySelector("[data-disena]"));
-    var lineas = ["¡Hola Luz Mágica! Quiero cotizar:"];
-    if (o.linea) lineas.push("· Mueble: " + o.linea);
-    if (o.color) lineas.push("· Color: " + o.color);
-    if (o.enchape) lineas.push("· Enchape: " + o.enchape);
-    if (o.medida) lineas.push("· Medida: " + o.medida);
-    lineas.push(urlDe("/disena/") + " · " + REF);
-    return lineas.join("\n");
-  }
-
   function textoPedido() {
     var pedido = recuperar(LLAVE_PEDIDO) || [];
     var lineas = ["¡Hola Luz Mágica! Quiero hacer este pedido:"];
@@ -195,16 +200,15 @@
     document.querySelectorAll("[data-wa]").forEach(function (a) {
       var texto;
       if (a.hasAttribute("data-wa-ficha")) texto = textoFicha(a);
-      else if (a.hasAttribute("data-wa-disena")) texto = textoDisena();
       else if (a.hasAttribute("data-wa-pedido")) texto = textoPedido();
       else texto = (a.dataset.waTexto || "¡Hola Luz Mágica!") + "\n" + REF;
       a.setAttribute("href", enlaceWA(texto));
     });
 
     var previo = document.querySelector("[data-wa-previo]");
+    var botonFicha = document.querySelector("[data-wa-ficha]");
     if (previo) {
-      previo.textContent = document.querySelector("[data-disena]") ? textoDisena()
-        : (document.querySelector("[data-wa-ficha]") ? textoFicha(document.querySelector("[data-wa-ficha]")) : "");
+      previo.textContent = botonFicha ? textoFicha(botonFicha) : "";
     }
 
     var elegido = document.querySelector("[data-elegido-color]");

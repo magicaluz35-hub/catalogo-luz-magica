@@ -21,6 +21,19 @@ export default function (eleventyConfig) {
     (productos || []).filter((p) => p.categoria === slug)
   );
 
+  // Deja solo las categorías de un grupo ("tocadores" o "acompanar")
+  eleventyConfig.addFilter("deGrupo", (categorias, grupo) =>
+    (categorias || []).filter((c) => c.grupo === grupo)
+  );
+
+  // Cuenta los productos de todas las categorías de un grupo
+  eleventyConfig.addFilter("cuentaGrupo", (productos, categorias, grupo) => {
+    const slugs = (categorias || [])
+      .filter((c) => c.grupo === grupo)
+      .map((c) => c.slug);
+    return (productos || []).filter((p) => slugs.includes(p.categoria)).length;
+  });
+
   // Deja solo los asesores activos
   eleventyConfig.addFilter("activos", (asesores) =>
     (asesores || []).filter((a) => a.activo !== false)
@@ -39,20 +52,4 @@ export default function (eleventyConfig) {
     htmlTemplateEngine: "njk",
     markdownTemplateEngine: "njk"
   };
-}
-
-Para wrangler.jsonc (es nuevo): Add file → Create new file, escribe el nombre wrangler.jsonc y pega:
-
-jsonc
-{
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "catalogo-luz-magica",
-  "compatibility_date": "2026-11-04",
-  "observability": {
-    "enabled": true
-  },
-  "assets": {
-    "directory": "_site",
-    "not_found_handling": "404-page"
-  }
 }

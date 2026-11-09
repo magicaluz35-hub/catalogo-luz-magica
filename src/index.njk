@@ -14,7 +14,7 @@ permalink: /
       <p class="hero__entrada">{{ negocio.presentacion }}</p>
       <div class="hero__botones">
         <a class="boton boton--oscuro boton--grande" href="/catalogo/">Ver el catálogo</a>
-        <a class="boton boton--linea boton--grande" href="/disena/">Diseña el tuyo</a>
+        <a class="boton boton--linea boton--grande" href="/categoria/tocadores-120/">Ver tocadores</a>
       </div>
       <dl class="cifras">
         <div><dt>{{ productos.length }}</dt><dd>Productos</dd></div>
@@ -63,26 +63,36 @@ permalink: /
       </div>
       <a class="enlace-subrayado" href="/catalogo/">Ver los {{ productos.length }} productos</a>
     </header>
-    <div class="rejilla rejilla--5">
-      {% for c in categorias %}
-      {% set cuantos = productos | deCategoria(c.slug) | length %}
-      <a class="categoria" href="/categoria/{{ c.slug }}/">
-        <div class="foto foto--4-5">
-          {% if c.foto %}
-          <img src="{{ c.foto }}" alt="{{ c.nombre }}" loading="lazy" width="400" height="500">
-          {% else %}
-          <span class="foto__vacia">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="2"></rect><circle cx="8.8" cy="10" r="1.9"></circle><path d="M3.5 17.2l5-4.2 3.6 3 3-2.4 5.4 4.6"></path></svg>
-            <span>Foto</span>
-          </span>
-          {% endif %}
-          <span class="categoria__numero">{{ c.numero }}</span>
-        </div>
-        <h3>{{ c.nombre }}</h3>
-        <p>{{ cuantos }} producto{{ "s" if cuantos != 1 }}</p>
-      </a>
-      {% endfor %}
+    {% for clave, g in grupos %}
+    {% set delGrupo = categorias | deGrupo(clave) %}
+    {% set enGrupo = productos | cuentaGrupo(categorias, clave) %}
+    <div class="grupo">
+      <div class="grupo__cabeza">
+        <h3 class="grupo__nombre">{{ g.nombre }}</h3>
+        <span class="grupo__cuenta">{{ delGrupo | length }} líneas · {{ enGrupo }} productos</span>
+      </div>
+      <p class="grupo__entrada">{{ g.descripcion }}</p>
+      <div class="rejilla rejilla--{{ delGrupo | length if delGrupo | length < 5 else 3 }}">
+        {% for c in delGrupo %}
+        {% set cuantos = productos | deCategoria(c.slug) | length %}
+        <a class="categoria" href="/categoria/{{ c.slug }}/">
+          <div class="foto foto--4-5">
+            {% if c.foto %}
+            <img src="{{ c.foto }}" alt="{{ c.nombre }}" loading="lazy" width="400" height="500">
+            {% else %}
+            <span class="foto__vacia">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="2"></rect><circle cx="8.8" cy="10" r="1.9"></circle><path d="M3.5 17.2l5-4.2 3.6 3 3-2.4 5.4 4.6"></path></svg>
+              <span>Foto</span>
+            </span>
+            {% endif %}
+          </div>
+          <h4>{{ c.nombre }}</h4>
+          <p>{{ cuantos }} producto{{ "s" if cuantos != 1 }}</p>
+        </a>
+        {% endfor %}
+      </div>
     </div>
+    {% endfor %}
   </div>
 </section>
 

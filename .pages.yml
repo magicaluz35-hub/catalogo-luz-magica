@@ -114,16 +114,22 @@ content:
     path: src/_data/categorias.json
     list: true
     view:
-      fields: [numero, nombre]
+      fields: [nombre, grupo]
       primary: nombre
     fields:
-      - name: numero
-        label: Número de orden
-        type: string
       - name: nombre
         label: Nombre de la línea
         type: string
         required: true
+      - name: grupo
+        label: Grupo
+        description: Decide en cuál de los dos bloques del inicio aparece la línea.
+        type: select
+        required: true
+        options:
+          values:
+            - { value: tocadores, label: Tocadores }
+            - { value: acompanar, label: Para acompañar }
       - name: slug
         label: Identificador web (NO LO CAMBIES)
         description: Forma la dirección de la línea y conecta los productos con ella.
