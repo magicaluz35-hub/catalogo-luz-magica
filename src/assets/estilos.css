@@ -405,6 +405,17 @@ img { max-width: 100%; height: auto; display: block; }
 .campo textarea { min-height: 72px; resize: vertical; }
 .campo input:focus, .campo textarea:focus { outline: 2px solid var(--rosa); outline-offset: 1px; border-color: var(--rosa); }
 .campo__pista { display: block; margin-top: 5px; font-size: 0.75rem; color: var(--oro); }
+.obligatorio { color: var(--rosa); font-weight: 600; }
+.campo__error { display: block; margin-top: 6px; font-size: 0.78rem; line-height: 1.45; color: #9A2238; }
+.campo__error[hidden] { display: none; }
+.campo input.campo--malo, .campo textarea.campo--malo { border-color: #9A2238; background: #FDF6F7; }
+.campo input.campo--malo:focus { outline-color: #9A2238; }
+.resumen-error {
+  margin: 0 0 18px; padding: 12px 16px;
+  background: #FDF6F7; border: 1px solid #E8C6CE; border-left: 4px solid #9A2238;
+  font-size: 0.88rem; color: #6E1527;
+}
+.resumen-error[hidden] { display: none; }
 .campo__opcional { font-weight: 400; color: var(--gris); font-size: 0.78rem; }
 .campo-fila { display: flex; flex-wrap: wrap; gap: 16px; }
 .campo-fila > .campo { flex: 1 1 180px; min-width: 0; }

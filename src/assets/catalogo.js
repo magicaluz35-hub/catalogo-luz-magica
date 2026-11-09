@@ -575,7 +575,88 @@
       form.addEventListener("change", actualizarEnlacesWA);
     }
 
+    iniciarValidacion();
     pintar();
+  }
+
+  // ---------- 5a-bis. El pedido no sale sin los datos del cliente ----------
+  // Qué se exige en cada campo. El orden manda: es el orden del formulario,
+  // y el primero que falle es al que saltamos.
+  var REGLAS = [
+    { campo: "nombre", vacio: "Escribe tu nombre completo.",
+      prueba: function (v) { return v.trim().length >= 3; },
+      malo: "Escribe tu nombre completo, no solo una letra." },
+    { campo: "telefono", vacio: "Necesitamos tu WhatsApp para responderte.",
+      prueba: function (v) { return v.replace(/\D/g, "").length >= 7; },
+      malo: "Ese número está incompleto. Escríbelo con el indicativo." },
+    { campo: "ciudad", vacio: "Dinos en qué ciudad estás." },
+    { campo: "barrio", vacio: "El barrio define el valor del domicilio." },
+    { campo: "direccion", vacio: "Escribe la dirección donde entregamos.",
+      prueba: function (v) { return v.trim().length >= 6; },
+      malo: "Esa dirección se ve incompleta." },
+    { campo: "piso", vacio: "El piso también define el domicilio. Si es casa, escribe 1." }
+  ];
+
+  function iniciarValidacion() {
+    var form = document.querySelector("[data-datos-cliente]");
+    var boton = document.querySelector("[data-wa-pedido]");
+    if (!form || !boton) return;
+    var resumen = document.querySelector("[data-resumen-error]");
+
+    function mostrarError(nombre, mensaje) {
+      var campo = form.querySelector("[name='" + nombre + "']");
+      var hueco = form.querySelector("[data-error-de='" + nombre + "']");
+      if (campo) {
+        campo.classList.toggle("campo--malo", !!mensaje);
+        campo.setAttribute("aria-invalid", mensaje ? "true" : "false");
+      }
+      if (hueco) {
+        hueco.textContent = mensaje || "";
+        hueco.hidden = !mensaje;
+      }
+    }
+
+    function revisar() {
+      var malos = [];
+      REGLAS.forEach(function (r) {
+        var campo = form.querySelector("[name='" + r.campo + "']");
+        if (!campo) return;
+        var v = campo.value || "";
+        var mensaje = "";
+        if (!v.trim()) mensaje = r.vacio;
+        else if (r.prueba && !r.prueba(v)) mensaje = r.malo;
+        mostrarError(r.campo, mensaje);
+        if (mensaje) malos.push({ campo: campo, mensaje: mensaje });
+      });
+      return malos;
+    }
+
+    // Mientras escribe, solo quitamos el error que ya corrigió. No sumamos
+    // errores nuevos en campos que todavía no ha tocado.
+    form.addEventListener("input", function (e) {
+      var nombre = e.target.name;
+      var regla = REGLAS.filter(function (r) { return r.campo === nombre; })[0];
+      if (!regla || !e.target.classList.contains("campo--malo")) return;
+      var v = e.target.value || "";
+      if (v.trim() && (!regla.prueba || regla.prueba(v))) mostrarError(nombre, "");
+    });
+
+    boton.addEventListener("click", function (e) {
+      var malos = revisar();
+      if (!malos.length) {
+        if (resumen) resumen.hidden = true;
+        return; // deja pasar: el enlace abre WhatsApp
+      }
+      e.preventDefault();
+      if (resumen) {
+        resumen.textContent = malos.length === 1
+          ? "Falta un dato para poder enviar el pedido."
+          : "Faltan " + malos.length + " datos para poder enviar el pedido.";
+        resumen.hidden = false;
+      }
+      malos[0].campo.focus();
+      malos[0].campo.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
   }
 
   // ---------- 5b. Compartir conservando el código ----------

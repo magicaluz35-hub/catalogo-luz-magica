@@ -22,40 +22,48 @@ descripcion: Revisa los muebles que escogiste, déjanos tus datos y envía el pe
 
     <form class="formulario" data-datos-cliente autocomplete="on" novalidate>
       <h2 class="formulario__titulo">Tus datos para la entrega</h2>
-      <p class="nota">Con esto el asesor te cotiza el domicilio de una vez, sin tener que preguntarte.</p>
+      <p class="nota">Con esto el asesor te cotiza el domicilio de una vez, sin tener que preguntarte. Los campos marcados con <span class="obligatorio" aria-hidden="true">*</span> son obligatorios.</p>
+
+      <p class="resumen-error" data-resumen-error role="alert" hidden></p>
 
       <div class="campo">
-        <label for="nombre">Nombre completo</label>
-        <input id="nombre" name="nombre" type="text" autocomplete="name" placeholder="Ana María Restrepo">
+        <label for="nombre">Nombre completo <span class="obligatorio" aria-hidden="true">*</span></label>
+        <input id="nombre" name="nombre" type="text" autocomplete="name" placeholder="Ana María Restrepo" required aria-describedby="error-nombre">
+        <span class="campo__error" id="error-nombre" data-error-de="nombre" hidden></span>
       </div>
 
       <div class="campo">
-        <label for="telefono">Tu WhatsApp</label>
-        <input id="telefono" name="telefono" type="tel" inputmode="tel" autocomplete="tel" placeholder="300 123 4567">
+        <label for="telefono">Tu WhatsApp <span class="obligatorio" aria-hidden="true">*</span></label>
+        <input id="telefono" name="telefono" type="tel" inputmode="tel" autocomplete="tel" placeholder="300 123 4567" required aria-describedby="error-telefono">
+        <span class="campo__error" id="error-telefono" data-error-de="telefono" hidden></span>
       </div>
 
       <div class="campo-fila">
         <div class="campo">
-          <label for="ciudad">Ciudad</label>
-          <input id="ciudad" name="ciudad" type="text" autocomplete="address-level2" value="Medellín">
+          <label for="ciudad">Ciudad <span class="obligatorio" aria-hidden="true">*</span></label>
+          <input id="ciudad" name="ciudad" type="text" autocomplete="address-level2" value="Medellín" required aria-describedby="error-ciudad">
+          <span class="campo__error" id="error-ciudad" data-error-de="ciudad" hidden></span>
         </div>
         <div class="campo">
-          <label for="barrio">Barrio</label>
-          <input id="barrio" name="barrio" type="text" autocomplete="address-level3" placeholder="Aranjuez">
+          <label for="barrio">Barrio <span class="obligatorio" aria-hidden="true">*</span></label>
+          <input id="barrio" name="barrio" type="text" autocomplete="address-level3" placeholder="Aranjuez" required aria-describedby="error-barrio">
           <span class="campo__pista">Define el valor del domicilio</span>
+          <span class="campo__error" id="error-barrio" data-error-de="barrio" hidden></span>
         </div>
       </div>
 
       <div class="campo">
-        <label for="direccion">Dirección de entrega</label>
-        <input id="direccion" name="direccion" type="text" autocomplete="street-address" placeholder="Calle 93 #51-20, apto 302">
+        <label for="direccion">Dirección de entrega <span class="obligatorio" aria-hidden="true">*</span></label>
+        <input id="direccion" name="direccion" type="text" autocomplete="street-address" placeholder="Calle 93 #51-20, apto 302" required aria-describedby="error-direccion">
+        <span class="campo__error" id="error-direccion" data-error-de="direccion" hidden></span>
       </div>
 
       <div class="campo-fila">
         <div class="campo">
-          <label for="piso">Piso</label>
-          <input id="piso" name="piso" type="text" inputmode="numeric" placeholder="3">
-          <span class="campo__pista">También define el domicilio</span>
+          <label for="piso">Piso <span class="obligatorio" aria-hidden="true">*</span></label>
+          <input id="piso" name="piso" type="text" inputmode="numeric" placeholder="3" required aria-describedby="error-piso">
+          <span class="campo__pista">También define el domicilio. Si es casa, escribe 1.</span>
+          <span class="campo__error" id="error-piso" data-error-de="piso" hidden></span>
         </div>
         <div class="campo campo--casilla">
           <label for="ascensor">
