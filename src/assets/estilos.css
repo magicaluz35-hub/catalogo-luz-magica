@@ -351,7 +351,10 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* Migas */
-.migas { padding-top: 20px; padding-bottom: 18px; font-size: 0.78rem; color: var(--gris); }
+/* El aire va en el margen, no en el padding: en celular la regla
+   .contenedor reescribe el padding completo y borraría este espacio,
+   dejando las migas pegadas a la línea de la cabecera. */
+.migas { margin-top: 28px; margin-bottom: 20px; font-size: 0.78rem; color: var(--gris); }
 .migas a { color: var(--gris); text-decoration: none; }
 .migas span[aria-hidden] { margin: 0 8px; color: #C7B7BE; }
 
@@ -611,6 +614,7 @@ body.sin-desplazar { overflow: hidden; }
   body { padding-bottom: 84px; }
   .contenedor { padding: 0 16px; }
   .seccion { padding: 48px 0; }
+  .migas { margin-top: 20px; margin-bottom: 14px; }
 
   /* Promesas: dos líneas centradas y sin los puntos sueltos del final */
   .promesas { padding: 9px 16px; gap: 2px 14px; font-size: 0.62rem; letter-spacing: 0.08em; line-height: 1.5; }
