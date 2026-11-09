@@ -183,15 +183,67 @@
     return lineas.join("\n");
   }
 
+  // Lee el formulario de datos del cliente. Nada de esto sale del navegador:
+  // se arma dentro del mensaje y se va derecho al WhatsApp del asesor.
+  function datosCliente() {
+    var form = document.querySelector("[data-datos-cliente]");
+    if (!form) return null;
+    var d = {};
+    form.querySelectorAll("input, textarea, select").forEach(function (campo) {
+      if (campo.type === "checkbox") d[campo.name] = campo.checked;
+      else d[campo.name] = (campo.value || "").trim();
+    });
+    return d;
+  }
+
   function textoPedido() {
     var pedido = recuperar(LLAVE_PEDIDO) || [];
-    var lineas = ["¡Hola Luz Mágica! Quiero hacer este pedido:"];
+    var d = datosCliente();
+    var lineas = ["PEDIDO · Luz Mágica", ""];
+
+    if (d && (d.nombre || d.telefono || d.direccion)) {
+      lineas.push("CLIENTE");
+      if (d.nombre) lineas.push("Nombre: " + d.nombre);
+      if (d.telefono) lineas.push("WhatsApp: " + d.telefono);
+      var donde = [];
+      if (d.ciudad) donde.push(d.ciudad);
+      if (d.barrio) donde.push("Barrio " + d.barrio);
+      if (donde.length) lineas.push(donde.join(" · "));
+      if (d.direccion) lineas.push("Dirección: " + d.direccion);
+      var piso = [];
+      if (d.piso) piso.push("Piso " + d.piso);
+      if (d.ascensor) piso.push("con ascensor");
+      else if (d.piso) piso.push("sin ascensor");
+      if (piso.length) lineas.push(piso.join(", "));
+      if (d.indicaciones) lineas.push("Indicaciones: " + d.indicaciones);
+      lineas.push("");
+    }
+
+    lineas.push("PRODUCTOS");
     var total = 0;
-    pedido.forEach(function (p) {
-      lineas.push("· " + p.nombre + " (" + p.sku + ") — " + pesos(p.precio));
-      total += Number(p.precio) || 0;
+    pedido.forEach(function (p, i) {
+      var cantidad = Number(p.cantidad) || 1;
+      var subtotal = (Number(p.precio) || 0) * cantidad;
+      total += subtotal;
+      lineas.push((i + 1) + ". " + p.nombre + " (" + p.sku + ")");
+      var variante = [];
+      if (p.color) variante.push("Color: " + p.color);
+      if (p.enchape && p.enchape !== "Sin enchape") variante.push("Enchape: " + p.enchape);
+      else if (p.enchape) variante.push("Sin enchape");
+      if (variante.length) lineas.push("   " + variante.join(" · "));
+      lineas.push("   " + (cantidad > 1 ? cantidad + " × " + pesos(p.precio) + " = " : "") + pesos(subtotal));
     });
-    lineas.push("Total aproximado: " + pesos(total));
+
+    lineas.push("");
+    lineas.push("Total productos: " + pesos(total));
+    lineas.push("Domicilio: por confirmar según barrio y piso");
+
+    if (d && d.observaciones) {
+      lineas.push("");
+      lineas.push("Observaciones: " + d.observaciones);
+    }
+
+    lineas.push("");
     lineas.push(urlDe("/pedido/") + " · " + REF);
     return lineas.join("\n");
   }
@@ -210,6 +262,9 @@
     if (previo) {
       previo.textContent = botonFicha ? textoFicha(botonFicha) : "";
     }
+
+    var previoPedido = document.querySelector("[data-wa-previo-pedido]");
+    if (previoPedido) previoPedido.textContent = textoPedido();
 
     var elegido = document.querySelector("[data-elegido-color]");
     var form = document.querySelector("[data-opciones]");
@@ -387,58 +442,140 @@
   // ---------- 5a. Pedido guardado ----------
   function pintarContadorPedido() {
     var pedido = recuperar(LLAVE_PEDIDO) || [];
+    var piezas = pedido.reduce(function (s, p) { return s + (Number(p.cantidad) || 1); }, 0);
     document.querySelectorAll("[data-pedido-contador]").forEach(function (n) {
-      n.textContent = pedido.length;
-      n.hidden = pedido.length === 0;
+      n.textContent = piezas;
+      n.hidden = piezas === 0;
     });
   }
 
-  function iniciarPedido() {
+  function escapar(t) {
+    return String(t == null ? "" : t)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
+
+  // Un renglón del pedido se identifica por producto + color + enchape:
+  // el mismo tocador en blanco y en rosado son dos renglones distintos.
+  function claveRenglon(p) {
+    return [p.sku, p.color || "", p.enchape || ""].join("|");
+  }
+
+  function iniciarAgregar() {
     document.querySelectorAll("[data-agregar]").forEach(function (b) {
       b.addEventListener("click", function () {
+        var o = opcionesDe(document.querySelector("[data-opciones]"));
+        var nuevo = {
+          sku: b.dataset.sku,
+          nombre: b.dataset.nombre,
+          precio: Number(b.dataset.precio),
+          color: o.color || "",
+          enchape: o.enchape || "",
+          foto: b.dataset.foto || "",
+          cantidad: 1
+        };
         var pedido = recuperar(LLAVE_PEDIDO) || [];
-        if (!pedido.some(function (p) { return p.sku === b.dataset.sku; })) {
-          pedido.push({ sku: b.dataset.sku, nombre: b.dataset.nombre, precio: Number(b.dataset.precio) });
-          guardar(LLAVE_PEDIDO, pedido);
-        }
+        var yaEsta = pedido.filter(function (p) { return claveRenglon(p) === claveRenglon(nuevo); })[0];
+        if (yaEsta) yaEsta.cantidad = (Number(yaEsta.cantidad) || 1) + 1;
+        else pedido.push(nuevo);
+        guardar(LLAVE_PEDIDO, pedido);
+
+        var original = b.textContent;
         b.textContent = "Añadido al pedido";
+        setTimeout(function () { b.textContent = original; }, 1800);
         pintarContadorPedido();
         actualizarEnlacesWA();
       });
     });
+  }
+
+  function iniciarPedido() {
+    iniciarAgregar();
 
     var lista = document.querySelector("[data-pedido-lista]");
     if (!lista) return;
-    var pedido = recuperar(LLAVE_PEDIDO) || [];
+
     var vacio = document.querySelector("[data-pedido-vacio]");
     var pie = document.querySelector("[data-pedido-pie]");
-
-    if (!pedido.length) {
-      if (vacio) vacio.hidden = false;
-      return;
-    }
-    if (pie) pie.hidden = false;
-
-    var total = 0;
-    pedido.forEach(function (p) {
-      total += Number(p.precio) || 0;
-      var fila = document.createElement("div");
-      fila.className = "pedido__linea";
-      fila.innerHTML = '<div><p class="tarjeta__sku">' + p.sku + '</p><p><strong>' + p.nombre + "</strong></p></div>"
-        + "<div><p>" + pesos(p.precio) + '</p><button type="button" class="enlace-boton" data-quitar="' + p.sku + '">Quitar</button></div>';
-      lista.appendChild(fila);
-    });
-
     var totalNodo = document.querySelector("[data-pedido-total]");
-    if (totalNodo) totalNodo.textContent = pesos(total);
+
+    function pintar() {
+      var pedido = recuperar(LLAVE_PEDIDO) || [];
+      if (vacio) vacio.hidden = pedido.length > 0;
+      if (pie) pie.hidden = pedido.length === 0;
+      lista.innerHTML = "";
+
+      var total = 0;
+      pedido.forEach(function (p, i) {
+        var cantidad = Number(p.cantidad) || 1;
+        var subtotal = (Number(p.precio) || 0) * cantidad;
+        total += subtotal;
+
+        var variante = [];
+        if (p.color) variante.push(escapar(p.color));
+        if (p.enchape) variante.push(escapar(p.enchape));
+
+        var foto = p.foto
+          ? '<img src="' + escapar(p.foto) + '" alt="" width="72" height="90" loading="lazy">'
+          : '<span class="pedido__sinfoto" aria-hidden="true"></span>';
+
+        var fila = document.createElement("article");
+        fila.className = "pedido__linea";
+        fila.innerHTML =
+          '<div class="pedido__foto">' + foto + "</div>" +
+          '<div class="pedido__datos">' +
+            '<p class="tarjeta__sku">' + escapar(p.sku) + "</p>" +
+            "<h2>" + escapar(p.nombre) + "</h2>" +
+            (variante.length ? '<p class="pedido__variante">' + variante.join(" · ") + "</p>" : "") +
+          "</div>" +
+          '<div class="pedido__cantidad">' +
+            '<button type="button" class="pedido__paso" data-menos="' + i + '" aria-label="Quitar uno">−</button>' +
+            '<span class="pedido__num" aria-label="Cantidad">' + cantidad + "</span>" +
+            '<button type="button" class="pedido__paso" data-mas="' + i + '" aria-label="Agregar uno">+</button>' +
+          "</div>" +
+          '<div class="pedido__precio">' +
+            "<p>" + pesos(subtotal) + "</p>" +
+            '<button type="button" class="enlace-boton" data-quitar="' + i + '">Quitar</button>' +
+          "</div>";
+        lista.appendChild(fila);
+      });
+
+      if (totalNodo) totalNodo.textContent = pesos(total);
+      pintarContadorPedido();
+      actualizarEnlacesWA();
+    }
 
     lista.addEventListener("click", function (e) {
-      var sku = e.target && e.target.dataset ? e.target.dataset.quitar : null;
-      if (!sku) return;
-      var actual = (recuperar(LLAVE_PEDIDO) || []).filter(function (p) { return p.sku !== sku; });
-      guardar(LLAVE_PEDIDO, actual);
-      window.location.reload();
+      var b = e.target.closest ? e.target.closest("button") : null;
+      if (!b) return;
+      var pedido = recuperar(LLAVE_PEDIDO) || [];
+      var i;
+
+      if (b.dataset.quitar !== undefined) {
+        pedido.splice(Number(b.dataset.quitar), 1);
+      } else if (b.dataset.mas !== undefined) {
+        i = Number(b.dataset.mas);
+        pedido[i].cantidad = (Number(pedido[i].cantidad) || 1) + 1;
+      } else if (b.dataset.menos !== undefined) {
+        i = Number(b.dataset.menos);
+        pedido[i].cantidad = (Number(pedido[i].cantidad) || 1) - 1;
+        if (pedido[i].cantidad < 1) pedido.splice(i, 1);
+      } else {
+        return;
+      }
+
+      guardar(LLAVE_PEDIDO, pedido);
+      pintar();
     });
+
+    // Cada cambio en el formulario rearma el mensaje de WhatsApp
+    var form = document.querySelector("[data-datos-cliente]");
+    if (form) {
+      form.addEventListener("input", actualizarEnlacesWA);
+      form.addEventListener("change", actualizarEnlacesWA);
+    }
+
+    pintar();
   }
 
   // ---------- 5b. Compartir conservando el código ----------
@@ -476,6 +613,42 @@
     } else {
       boton.textContent = texto;
     }
+  }
+
+  // ---------- 5b-bis. Carrusel de líneas ----------
+  function iniciarCarrusel() {
+    var caja = document.querySelector("[data-carrusel]");
+    if (!caja) return;
+    var pista = caja.querySelector("[data-carrusel-pista]");
+    var izq = caja.querySelector("[data-carrusel-izq]");
+    var der = caja.querySelector("[data-carrusel-der]");
+    if (!pista) return;
+
+    function refrescar() {
+      var sobra = pista.scrollWidth - pista.clientWidth;
+      var hayIzq = pista.scrollLeft > 4;
+      var hayDer = sobra > 4 && pista.scrollLeft < sobra - 4;
+      caja.toggleAttribute("data-hay-izq", hayIzq);
+      caja.toggleAttribute("data-hay-der", hayDer);
+      if (izq) izq.hidden = !hayIzq;
+      if (der) der.hidden = !hayDer;
+    }
+
+    function mover(signo) {
+      pista.scrollBy({ left: signo * Math.round(pista.clientWidth * 0.8), behavior: "smooth" });
+    }
+
+    if (izq) izq.addEventListener("click", function () { mover(-1); });
+    if (der) der.addEventListener("click", function () { mover(1); });
+    pista.addEventListener("scroll", refrescar, { passive: true });
+    window.addEventListener("resize", refrescar);
+
+    // Deja a la vista la línea en la que está el visitante
+    var activa = pista.querySelector(".ficha--activa");
+    if (activa && activa.offsetLeft > pista.clientWidth * 0.6) {
+      pista.scrollLeft = activa.offsetLeft - 20;
+    }
+    refrescar();
   }
 
   // ---------- 5c. Verificador de números ----------
@@ -539,6 +712,7 @@
     pintarAsesor();
     pintarHorario();
     iniciarListado();
+    iniciarCarrusel();
     iniciarPedido();
     iniciarCompartir();
     iniciarVerificador();

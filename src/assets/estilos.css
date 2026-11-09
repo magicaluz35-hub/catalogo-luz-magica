@@ -167,17 +167,66 @@ img { max-width: 100%; height: auto; display: block; }
 .ficha--radio:focus-within { outline: 2px solid var(--rosa); outline-offset: 2px; }
 .fichas-linea { border-bottom: 1px solid var(--linea); padding: 12px 0; }
 
-/* Una sola fila que se desliza con el dedo, en vez de partirse en varias */
+/* Una sola fila que se desliza, con flechas en escritorio y el dedo en celular */
+.carrusel { position: relative; }
 .fichas--rodante {
   flex-wrap: nowrap;
   overflow-x: auto;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: x proximity;
+  scroll-behavior: smooth;
   padding-bottom: 2px;
 }
 .fichas--rodante::-webkit-scrollbar { display: none; }
 .fichas--rodante .ficha { flex: none; scroll-snap-align: start; }
+
+/* Degradado que avisa que la fila sigue */
+.carrusel::before,
+.carrusel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 56px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+  z-index: 1;
+}
+.carrusel::before { left: 0; background: linear-gradient(90deg, var(--papel), transparent); }
+.carrusel::after { right: 0; background: linear-gradient(270deg, var(--papel), transparent); }
+.carrusel[data-hay-izq]::before,
+.carrusel[data-hay-der]::after { opacity: 1; }
+
+.carrusel__flecha {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--linea-fuerte);
+  background: var(--papel);
+  color: var(--tinta);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-shadow: 0 2px 10px rgba(26, 20, 22, 0.12);
+}
+.carrusel__flecha:hover { background: var(--crema); }
+.carrusel__flecha:focus-visible { outline: 2px solid var(--rosa); outline-offset: 2px; }
+.carrusel__flecha--izq { left: -6px; }
+.carrusel__flecha--der { right: -6px; }
+.carrusel__flecha[hidden] { display: none; }
+
+/* En pantallas táctiles sobran las flechas: se desliza con el dedo */
+@media (hover: none) {
+  .carrusel__flecha { display: none; }
+}
 
 /* Grupos de categorías en el inicio */
 .grupo + .grupo { margin-top: 56px; }
@@ -315,9 +364,62 @@ img { max-width: 100%; height: auto; display: block; }
 .equipo__qr table { border-collapse: collapse; width: 100%; }
 
 /* Pedido */
-.pedido__linea { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid var(--linea); }
-.pedido__total { font-size: 1.1rem; margin: 1.2rem 0; }
+.pedido__linea {
+  display: grid;
+  grid-template-columns: 72px 1fr auto auto;
+  gap: 16px;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--linea);
+}
+.pedido__foto { width: 72px; }
+.pedido__foto img { width: 72px; height: 90px; object-fit: cover; border: 1px solid var(--rosa-linea); }
+.pedido__sinfoto { display: block; width: 72px; height: 90px; background: var(--rosa-papel); border: 1px solid var(--rosa-linea); }
+.pedido__datos { min-width: 0; }
+.pedido__datos h2 { font-family: var(--texto); font-size: 0.95rem; font-weight: 600; letter-spacing: 0; line-height: 1.35; margin: 4px 0; }
+.pedido__variante { margin: 0; font-size: 0.8rem; color: var(--gris); }
+.pedido__cantidad { display: flex; align-items: center; gap: 2px; border: 1px solid var(--linea-fuerte); border-radius: 999px; padding: 2px; }
+.pedido__paso {
+  width: 36px; height: 36px; border: none; border-radius: 50%;
+  background: transparent; color: var(--tinta); cursor: pointer;
+  font-family: inherit; font-size: 1.05rem; line-height: 1;
+}
+.pedido__paso:hover { background: var(--crema); }
+.pedido__num { min-width: 26px; text-align: center; font-size: 0.9rem; font-weight: 600; }
+.pedido__precio { text-align: right; }
+.pedido__precio p { margin: 0 0 4px; font-family: var(--display); font-size: 1.05rem; font-weight: 600; }
+.pedido__total { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
 .pedido__total strong { font-family: var(--display); font-size: 1.4rem; }
+
+/* Formulario de datos del cliente */
+.formulario { border: 1px solid var(--linea); padding: 28px; margin: 28px 0; }
+.formulario__titulo { font-family: var(--display); font-size: 1.5rem; font-weight: 600; margin: 0 0 0.4rem; }
+.formulario .nota { margin-bottom: 1.4rem; }
+.campo { margin-bottom: 16px; }
+.campo label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; }
+.campo input[type="text"], .campo input[type="tel"], .campo textarea {
+  width: 100%; min-height: 50px; padding: 13px 16px;
+  border: 1px solid var(--linea-fuerte); border-radius: 6px;
+  font-family: inherit; font-size: 0.95rem; color: var(--tinta); background: #fff;
+}
+.campo textarea { min-height: 72px; resize: vertical; }
+.campo input:focus, .campo textarea:focus { outline: 2px solid var(--rosa); outline-offset: 1px; border-color: var(--rosa); }
+.campo__pista { display: block; margin-top: 5px; font-size: 0.75rem; color: var(--oro); }
+.campo__opcional { font-weight: 400; color: var(--gris); font-size: 0.78rem; }
+.campo-fila { display: flex; flex-wrap: wrap; gap: 16px; }
+.campo-fila > .campo { flex: 1 1 180px; min-width: 0; }
+.campo--casilla { display: flex; align-items: center; }
+.campo--casilla label { display: flex; align-items: center; gap: 10px; font-weight: 400; font-size: 0.9rem; margin: 0; min-height: 50px; cursor: pointer; }
+.campo--casilla input { width: 20px; height: 20px; accent-color: var(--rosa); }
+
+@media (max-width: 720px) {
+  .pedido__linea { grid-template-columns: 64px 1fr; row-gap: 12px; }
+  .pedido__foto, .pedido__foto img, .pedido__sinfoto { width: 64px; }
+  .pedido__foto img, .pedido__sinfoto { height: 80px; }
+  .pedido__cantidad { grid-column: 1 / 2; }
+  .pedido__precio { grid-column: 2 / 3; }
+  .formulario { padding: 20px 16px; }
+}
 
 /* Pie */
 .pie { background: var(--tinta); color: #C9BCC1; padding: 56px 0 28px; }

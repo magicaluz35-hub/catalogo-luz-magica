@@ -2,13 +2,11 @@
 layout: base.njk
 permalink: /pedido/
 titulo: Mi pedido · Luz Mágica
-descripcion: Revisa los muebles que escogiste y envía el pedido por WhatsApp.
+descripcion: Revisa los muebles que escogiste, déjanos tus datos y envía el pedido por WhatsApp.
 ---
 <div class="contenedor pagina-angosta">
   <p class="rotulo">Tu selección</p>
   <h1>Mi pedido</h1>
-
-  <div data-pedido-lista></div>
 
   <div class="pedido__vacio" data-pedido-vacio hidden>
     <p class="vacio__titulo">Todavía no has añadido nada</p>
@@ -16,10 +14,76 @@ descripcion: Revisa los muebles que escogiste y envía el pedido por WhatsApp.
     <a class="boton boton--oscuro" href="/catalogo/">Ver el catálogo</a>
   </div>
 
+  <div data-pedido-lista></div>
+
   <div data-pedido-pie hidden>
-    <p class="pedido__total">Total aproximado: <strong data-pedido-total></strong></p>
-    <p class="nota">El domicilio se cobra aparte. {{ negocio.domicilios }}</p>
-    <a class="boton boton--whatsapp boton--ancho" href="#" data-wa data-wa-pedido>
+    <p class="pedido__total">Total productos: <strong data-pedido-total></strong></p>
+    <p class="nota">{{ negocio.domicilios }}</p>
+
+    <form class="formulario" data-datos-cliente autocomplete="on" novalidate>
+      <h2 class="formulario__titulo">Tus datos para la entrega</h2>
+      <p class="nota">Con esto el asesor te cotiza el domicilio de una vez, sin tener que preguntarte.</p>
+
+      <div class="campo">
+        <label for="nombre">Nombre completo</label>
+        <input id="nombre" name="nombre" type="text" autocomplete="name" placeholder="Ana María Restrepo">
+      </div>
+
+      <div class="campo">
+        <label for="telefono">Tu WhatsApp</label>
+        <input id="telefono" name="telefono" type="tel" inputmode="tel" autocomplete="tel" placeholder="300 123 4567">
+      </div>
+
+      <div class="campo-fila">
+        <div class="campo">
+          <label for="ciudad">Ciudad</label>
+          <input id="ciudad" name="ciudad" type="text" autocomplete="address-level2" value="Medellín">
+        </div>
+        <div class="campo">
+          <label for="barrio">Barrio</label>
+          <input id="barrio" name="barrio" type="text" autocomplete="address-level3" placeholder="Aranjuez">
+          <span class="campo__pista">Define el valor del domicilio</span>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label for="direccion">Dirección de entrega</label>
+        <input id="direccion" name="direccion" type="text" autocomplete="street-address" placeholder="Calle 93 #51-20, apto 302">
+      </div>
+
+      <div class="campo-fila">
+        <div class="campo">
+          <label for="piso">Piso</label>
+          <input id="piso" name="piso" type="text" inputmode="numeric" placeholder="3">
+          <span class="campo__pista">También define el domicilio</span>
+        </div>
+        <div class="campo campo--casilla">
+          <label for="ascensor">
+            <input id="ascensor" name="ascensor" type="checkbox">
+            <span>El edificio tiene ascensor</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label for="indicaciones">Indicaciones de entrega <span class="campo__opcional">opcional</span></label>
+        <input id="indicaciones" name="indicaciones" type="text" placeholder="Portería, horarios, puntos de referencia">
+      </div>
+
+      <div class="campo">
+        <label for="observaciones">Observaciones del pedido <span class="campo__opcional">opcional</span></label>
+        <textarea id="observaciones" name="observaciones" rows="2" placeholder="Algo más que debamos saber"></textarea>
+      </div>
+
+      <p class="nota">Estos datos no se guardan en ningún servidor. Se escriben aquí, se arman dentro del mensaje y se van directo al WhatsApp de tu asesor.</p>
+    </form>
+
+    <div class="previsualizacion">
+      <p class="rotulo">Así le llega el pedido a tu asesor</p>
+      <p data-wa-previo-pedido></p>
+    </div>
+
+    <a class="boton boton--whatsapp boton--ancho boton--grande" href="#" data-wa data-wa-pedido>
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.5L3.5 20.5l1.5-4.6A8.4 8.4 0 1 1 20.5 11.6z"></path></svg>
       Enviar el pedido por WhatsApp
     </a>

@@ -102,7 +102,8 @@ eleventyComputed:
 
       <div class="ficha__secundarios">
         <button type="button" class="boton boton--linea" data-agregar
-                data-sku="{{ p.sku }}" data-nombre="{{ p.nombre }}" data-precio="{{ p.precio }}">Añadir al pedido</button>
+                data-sku="{{ p.sku }}" data-nombre="{{ p.nombre }}" data-precio="{{ p.precio }}"
+                data-foto="{{ p.fotos[0] if p.fotos.length else '' }}">Añadir al pedido</button>
         <button type="button" class="boton boton--linea" data-compartir data-sku="{{ p.sku }}">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="17.5" cy="5.8" r="2.8"></circle><circle cx="6.5" cy="12" r="2.8"></circle><circle cx="17.5" cy="18.2" r="2.8"></circle><path d="M9 10.7l6-3.5"></path><path d="M9 13.3l6 3.5"></path></svg>
           Compartir
