@@ -26,6 +26,17 @@ export default function (eleventyConfig) {
     (categorias || []).filter((c) => c.grupo === grupo)
   );
 
+  // Busca una categoría por su identificador web.
+  // Nunjucks no trae un selectattr con comparación fiable, así que va aparte.
+  eleventyConfig.addFilter("categoriaDe", (categorias, slug) =>
+    (categorias || []).filter((c) => c.slug === slug)[0]
+  );
+
+  // Todos los productos de una categoría menos uno (para "también te puede interesar")
+  eleventyConfig.addFilter("menos", (productos, sku) =>
+    (productos || []).filter((p) => p.sku !== sku)
+  );
+
   // Cuenta los productos de todas las categorías de un grupo
   eleventyConfig.addFilter("cuentaGrupo", (productos, categorias, grupo) => {
     const slugs = (categorias || [])

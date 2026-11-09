@@ -11,8 +11,8 @@ eleventyComputed:
   ogImagen: "{{ p.fotos[0] if p.fotos.length else '' }}"
 ---
 {% from "tarjeta.njk" import producto as tarjetaProducto %}
-{% set cat = categorias | selectattr("slug", "equalto", p.categoria) | first %}
-{% set relacionados = productos | deCategoria(p.categoria) | rejectattr("sku", "equalto", p.sku) | list %}
+{% set cat = categorias | categoriaDe(p.categoria) %}
+{% set relacionados = productos | deCategoria(p.categoria) | menos(p.sku) %}
 
 <nav class="migas contenedor" aria-label="Migas de pan">
   <a href="/">Inicio</a>
@@ -24,21 +24,29 @@ eleventyComputed:
 <section class="seccion seccion--corta">
   <div class="contenedor ficha">
 
-    <div class="ficha__fotos">
+    <div class="ficha__fotos" data-galeria>
+      {% if p.fotos and p.fotos.length %}
+      <a class="foto foto--4-5 foto--grande ficha__principal" href="{{ p.fotos[0] }}" data-galeria-abrir aria-label="Ver la foto en grande">
+        <img src="{{ p.fotos[0] }}" alt="{{ p.nombre }}" width="720" height="900" data-galeria-principal>
+        <span class="ficha__lupa" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="11" cy="11" r="6.4"></circle><path d="M15.8 15.8L20.5 20.5"></path><path d="M11 8.6v4.8"></path><path d="M8.6 11h4.8"></path></svg>
+        </span>
+      </a>
+      {% else %}
       <div class="foto foto--4-5 foto--grande">
-        {% if p.fotos and p.fotos.length %}
-        <img src="{{ p.fotos[0] }}" alt="{{ p.nombre }}" width="720" height="900">
-        {% else %}
         <span class="foto__vacia">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="2"></rect><circle cx="8.8" cy="10" r="1.9"></circle><path d="M3.5 17.2l5-4.2 3.6 3 3-2.4 5.4 4.6"></path></svg>
           <span>Foto principal</span>
         </span>
-        {% endif %}
       </div>
+      {% endif %}
+
       {% if p.fotos and p.fotos.length > 1 %}
       <div class="ficha__miniaturas">
         {% for f in p.fotos %}
-        <div class="foto foto--1-1"><img src="{{ f }}" alt="{{ p.nombre }} — vista {{ loop.index }}" loading="lazy" width="200" height="200"></div>
+        <a class="foto foto--1-1 miniatura{{ ' miniatura--activa' if loop.first }}" href="{{ f }}" data-galeria-ir="{{ loop.index0 }}" aria-label="Ver la foto {{ loop.index }} de {{ p.fotos.length }}">
+          <img src="{{ f }}" alt="" loading="lazy" width="200" height="200">
+        </a>
         {% endfor %}
       </div>
       {% endif %}

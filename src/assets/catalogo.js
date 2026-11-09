@@ -701,6 +701,121 @@
     }
   }
 
+  // ---------- 5a-ter. Galería de la ficha de producto ----------
+  // Sin JavaScript las miniaturas siguen siendo enlaces a la foto, así que
+  // nunca quedan muertas: aquí solo mejoramos el comportamiento.
+  function iniciarGaleria() {
+    var caja = document.querySelector("[data-galeria]");
+    if (!caja) return;
+    var principal = caja.querySelector("[data-galeria-principal]");
+    var abrir = caja.querySelector("[data-galeria-abrir]");
+    var mini = Array.prototype.slice.call(caja.querySelectorAll("[data-galeria-ir]"));
+    var fotos = mini.length
+      ? mini.map(function (m) { return m.getAttribute("href"); })
+      : (principal ? [principal.getAttribute("src")] : []);
+    if (!fotos.length) return;
+
+    var actual = 0;
+    var visor = null;
+    var visorImg = null;
+    var visorNum = null;
+    var antesDelVisor = null;
+
+    function elegir(i, moverVisor) {
+      actual = (i + fotos.length) % fotos.length;
+      if (principal) principal.src = fotos[actual];
+      if (abrir) abrir.setAttribute("href", fotos[actual]);
+      mini.forEach(function (m, k) {
+        m.classList.toggle("miniatura--activa", k === actual);
+        m.setAttribute("aria-current", k === actual ? "true" : "false");
+      });
+      if (moverVisor && visorImg) {
+        visorImg.src = fotos[actual];
+        if (visorNum) visorNum.textContent = (actual + 1) + " / " + fotos.length;
+      }
+    }
+
+    function construirVisor() {
+      visor = document.createElement("div");
+      visor.className = "visor";
+      visor.setAttribute("role", "dialog");
+      visor.setAttribute("aria-modal", "true");
+      visor.setAttribute("aria-label", "Fotos del producto");
+      visor.innerHTML =
+        '<button type="button" class="visor__cerrar" data-cerrar aria-label="Cerrar">' +
+          '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></svg>' +
+        "</button>" +
+        (fotos.length > 1 ?
+        '<button type="button" class="visor__paso visor__paso--izq" data-ir="-1" aria-label="Foto anterior">' +
+          '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M15 5l-7 7 7 7"></path></svg>' +
+        "</button>" : "") +
+        '<img alt="" data-visor-img>' +
+        (fotos.length > 1 ?
+        '<button type="button" class="visor__paso visor__paso--der" data-ir="1" aria-label="Foto siguiente">' +
+          '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M9 5l7 7-7 7"></path></svg>' +
+        "</button>" : "") +
+        (fotos.length > 1 ? '<span class="visor__num" data-visor-num></span>' : "");
+      document.body.appendChild(visor);
+      visorImg = visor.querySelector("[data-visor-img]");
+      visorNum = visor.querySelector("[data-visor-num]");
+
+      visor.addEventListener("click", function (e) {
+        var b = e.target.closest ? e.target.closest("button") : null;
+        if (b && b.dataset.cerrar !== undefined) return cerrar();
+        if (b && b.dataset.ir !== undefined) return elegir(actual + Number(b.dataset.ir), true);
+        if (e.target === visor) cerrar();
+      });
+
+      // Deslizar con el dedo
+      var x0 = null;
+      visor.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+      visor.addEventListener("touchend", function (e) {
+        if (x0 === null) return;
+        var d = e.changedTouches[0].clientX - x0;
+        if (Math.abs(d) > 45) elegir(actual + (d < 0 ? 1 : -1), true);
+        x0 = null;
+      }, { passive: true });
+    }
+
+    function alTeclado(e) {
+      if (e.key === "Escape") cerrar();
+      else if (e.key === "ArrowRight") elegir(actual + 1, true);
+      else if (e.key === "ArrowLeft") elegir(actual - 1, true);
+    }
+
+    function mostrar() {
+      if (!visor) construirVisor();
+      antesDelVisor = document.activeElement;
+      visorImg.src = fotos[actual];
+      if (visorNum) visorNum.textContent = (actual + 1) + " / " + fotos.length;
+      visor.classList.add("visor--abierto");
+      document.body.classList.add("sin-desplazar");
+      document.addEventListener("keydown", alTeclado);
+      visor.querySelector("[data-cerrar]").focus();
+    }
+
+    function cerrar() {
+      if (!visor) return;
+      visor.classList.remove("visor--abierto");
+      document.body.classList.remove("sin-desplazar");
+      document.removeEventListener("keydown", alTeclado);
+      if (antesDelVisor && antesDelVisor.focus) antesDelVisor.focus();
+    }
+
+    mini.forEach(function (m) {
+      m.addEventListener("click", function (e) {
+        e.preventDefault();
+        elegir(Number(m.dataset.galeriaIr), false);
+      });
+      // Doble toque o Enter sobre una miniatura ya activa: abre el visor
+      m.addEventListener("dblclick", function (e) { e.preventDefault(); mostrar(); });
+    });
+
+    if (abrir) {
+      abrir.addEventListener("click", function (e) { e.preventDefault(); mostrar(); });
+    }
+  }
+
   // ---------- 5b-ter. Buscador plegable en celular ----------
   function iniciarBusqueda() {
     var boton = document.querySelector("[data-abrir-busqueda]");
@@ -810,6 +925,7 @@
     pintarAsesor();
     pintarHorario();
     iniciarListado();
+    iniciarGaleria();
     iniciarBusqueda();
     iniciarCarrusel();
     iniciarPedido();
