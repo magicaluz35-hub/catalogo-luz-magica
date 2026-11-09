@@ -12,7 +12,7 @@
 <meta property="og:title" content="{{ titulo or negocio.nombre }}">
 <meta property="og:description" content="{{ descripcion or negocio.descripcionCorta }}">
 <meta property="og:url" content="{{ negocio.dominio }}{{ page.url }}">
-<meta property="og:image" content="{{ negocio.dominio }}{{ ogImagen or negocio.logo }}">
+<meta property="og:image" content="{{ negocio.dominio }}{{ ogImagen or negocio.fotoPrincipal or negocio.logo }}">
 <meta name="twitter:card" content="summary_large_image">
 
 <meta name="theme-color" content="#FFFFFF">

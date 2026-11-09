@@ -1,9 +1,11 @@
 {
   "nombre": "Luz Mágica",
   "lema": "Tocadores y espejos",
-  "dominio": "https://luzmagica.pages.dev",
+  "dominio": "https://catalogo-luz-magica.luzmagica.workers.dev",
   "titular": "Tu tocador, en tus colores",
   "presentacion": "Tocadores Hollywood, espejos LED, nocheros y puffs fabricados uno por uno para ti. Eliges el color y el enchape; nosotros lo armamos y te lo llevamos.",
+  "fotoPrincipal": "/img/principal.webp",
+  "fotoPrincipalAlt": "Tocador blanco con espejo redondo retroiluminado, espejos de cuerpo entero con luz LED y silla tapizada",
   "descripcionCorta": "Tocadores Hollywood, espejos LED y muebles fabricados en tus colores, con pago contra entrega y domicilios en Medellín.",
   "promesas": [
     "Pago contra entrega",

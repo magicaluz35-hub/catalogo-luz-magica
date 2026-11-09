@@ -152,6 +152,14 @@ content:
       - { name: dominio, label: Dirección del sitio, type: string }
       - { name: titular, label: Titular de la página de inicio, type: string }
       - { name: presentacion, label: Texto de presentación, type: text }
+      - name: fotoPrincipal
+        label: Foto principal del inicio
+        description: La primera foto que ve quien entra, y la que aparece cuando alguien comparte el enlace del catálogo por WhatsApp. Súbela vertical, en proporción 4:5 (por ejemplo 1600 × 2000 px).
+        type: image
+      - name: fotoPrincipalAlt
+        label: Descripción de la foto principal
+        description: Para quien no puede ver la foto y para los buscadores. Describe en una línea qué se ve.
+        type: string
       - { name: descripcionCorta, label: Descripción para buscadores y WhatsApp, type: text }
       - { name: promesas, label: Promesas de la barra superior, type: string, list: true }
       - { name: direccion, label: Dirección de la galería, type: string }

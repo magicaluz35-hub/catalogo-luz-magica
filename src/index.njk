@@ -23,11 +23,17 @@ permalink: /
       </dl>
     </div>
     <div class="hero__foto">
-      <div class="foto foto--alta">
+      {% set portada = negocio.fotoPrincipal %}
+      {% if not portada %}{% set portada = (productos | selectattr("destacado") | first).fotos[0] %}{% endif %}
+      <div class="foto foto--4-5">
+        {% if portada %}
+        <img src="{{ portada }}" alt="{{ negocio.fotoPrincipalAlt or negocio.titular }}" width="825" height="1024" fetchpriority="high">
+        {% else %}
         <span class="foto__vacia">
           <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="2"></rect><circle cx="8.8" cy="10" r="1.9"></circle><path d="M3.5 17.2l5-4.2 3.6 3 3-2.4 5.4 4.6"></path></svg>
           <span>Foto principal · tocador encendido</span>
         </span>
+        {% endif %}
       </div>
     </div>
   </div>
