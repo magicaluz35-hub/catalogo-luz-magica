@@ -47,12 +47,17 @@ permalink: /
         <h2>Encuentra el tuyo</h2>
       </div>
     </header>
-    <div class="rejilla rejilla--3">
+    <div class="atajos">
       {% for a in negocio.atajos %}
       <div class="atajo">
-        <h3>{{ a.titulo }}</h3>
+        <h3 class="atajo__titulo">{{ a.titulo }}</h3>
         <div class="fichas">
-          {% for o in a.opciones %}<a class="ficha" href="{{ o.enlace }}">{{ o.texto }}</a>{% endfor %}
+          {% for o in a.opciones %}
+          <a class="ficha ficha--atajo" href="{{ o.enlace }}">
+            <span>{{ o.texto }}</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h13"></path><path d="M12.5 6l6 6-6 6"></path></svg>
+          </a>
+          {% endfor %}
         </div>
       </div>
       {% endfor %}

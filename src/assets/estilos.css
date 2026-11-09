@@ -194,8 +194,44 @@ img { max-width: 100%; height: auto; display: block; }
 .cifras dt { font-family: var(--display); font-size: 1.8rem; font-weight: 600; line-height: 1; }
 .cifras dd { margin: 6px 0 0; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gris); }
 
-/* Atajos y fichas */
-.atajo { border: 1px solid var(--linea); padding: 24px; }
+/* Atajos: un solo panel con tres grupos, en vez de tres cajas disparejas */
+.atajos {
+  background: var(--rosa-papel);
+  border: 1px solid var(--rosa-linea);
+  padding: 34px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+.atajo__titulo {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--oro);
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+.ficha--atajo {
+  background: var(--papel);
+  border-color: var(--linea-fuerte);
+  gap: 9px;
+  padding: 0 18px;
+  white-space: nowrap;
+  transition: border-color 0.18s, color 0.18s, transform 0.18s;
+}
+.ficha--atajo svg { flex: none; opacity: 0.4; transition: transform 0.18s, opacity 0.18s; }
+.ficha--atajo:hover,
+.ficha--atajo:focus-visible {
+  border-color: var(--rosa);
+  color: var(--rosa-oscuro);
+  transform: translateY(-1px);
+}
+.ficha--atajo:hover svg,
+.ficha--atajo:focus-visible svg { opacity: 1; transform: translateX(3px); }
+@media (prefers-reduced-motion: reduce) {
+  .ficha--atajo, .ficha--atajo svg { transition: none; }
+  .ficha--atajo:hover { transform: none; }
+}
 .fichas { display: flex; flex-wrap: wrap; gap: 8px; }
 .ficha {
   display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 999px;
@@ -565,6 +601,14 @@ img { max-width: 100%; height: auto; display: block; }
   }
   .nav::-webkit-scrollbar { display: none; }
   .nav a { flex: none; display: flex; align-items: center; min-height: 44px; padding: 0 10px; }
+
+  /* Atajos: el panel se ajusta y las fichas aprovechan todo el ancho */
+  .atajos { padding: 24px 18px; gap: 22px; }
+  .atajo__titulo { margin-bottom: 10px; }
+  /* A todo el ancho y con la flecha al borde: se lee como una lista,
+     no como fichas sueltas con un vacío a la derecha. */
+  .ficha--atajo { width: 100%; justify-content: space-between; font-size: 0.88rem; padding: 0 18px; }
+  .atajo .fichas { gap: 7px; }
   .rejilla--3, .rejilla--5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .equipo { grid-template-columns: 1fr; }
   .hero__texto { padding: 44px 0 0; }
