@@ -138,7 +138,47 @@ img { max-width: 100%; height: auto; display: block; }
   gap: 8px; color: var(--oro-claro); text-align: center; padding: 12px;
 }
 .foto__vacia span { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--oro); }
-.etiqueta { position: absolute; top: 10px; left: 10px; background: var(--tinta); color: #fff; font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 5px 10px; }
+.etiqueta { position: absolute; top: 10px; left: 10px; background: var(--tinta); color: #fff; font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 5px 10px; z-index: 2; }
+
+/* Segunda vista al pasar el mouse. En pantallas táctiles no aplica:
+   ahí no hay "pasar por encima", así que ni se carga ni se muestra. */
+.foto__segunda {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+.tarjeta:hover .foto__segunda,
+.tarjeta:focus-within .foto__segunda { opacity: 1; }
+
+/* Cuántas fotos tiene el producto, abajo a la derecha */
+.foto__masfotos {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 2;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 7px;
+  border-radius: 999px;
+  background: rgba(26, 20, 22, 0.62);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(2px);
+}
+.tarjeta:hover .foto__masfotos { background: rgba(26, 20, 22, 0.85); }
+
+@media (hover: none) {
+  .foto__segunda { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .foto__segunda { transition: none; }
+}
 .etiqueta--suelta { position: static; display: inline-block; margin-bottom: 14px; }
 
 /* Hero */
