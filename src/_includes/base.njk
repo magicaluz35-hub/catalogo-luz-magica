@@ -52,7 +52,9 @@
 {% include "pie.njk" %}
 
 <a class="wa-flotante" href="#" data-wa data-wa-texto="¡Hola {{ negocio.nombre }}! Quiero hacer un pedido:" aria-label="Pedir por WhatsApp">
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.5L3.5 20.5l1.5-4.6A8.4 8.4 0 1 1 20.5 11.6z"></path></svg>
+  {# Logo oficial de WhatsApp, descargado del Brand Resource Center de Meta.
+     No se modifica ni se recolorea: va blanco sobre el verde del botón. #}
+  <img class="wa-logo" src="/img/whatsapp.svg" alt="" width="22" height="22" aria-hidden="true">
   {# En celular se acorta el texto, pero la palabra "WhatsApp" nunca
      desaparece: sin ella el botón era solo un globo sin dueño. #}
   <span class="wa-flotante__largo">Pedir por WhatsApp</span>

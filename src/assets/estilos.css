@@ -595,6 +595,7 @@ body.sin-desplazar { overflow: hidden; }
   font-size: 0.9rem; font-weight: 600; box-shadow: 0 6px 20px rgba(26, 20, 22, 0.18);
 }
 .wa-flotante__corto { display: none; }
+.wa-logo { display: block; flex: none; }
 
 /* Pantallas medianas y celulares */
 @media (max-width: 1040px) {
