@@ -16,7 +16,9 @@ descripcion: Los únicos números autorizados para vender Luz Mágica. Verifica 
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 3.6l8.4 15.2H3.6z"></path><path d="M12 9.6v4"></path><path d="M12 16.4h.01"></path></svg>
     <div>
       <h2>Si te escriben de un número que no está aquí, no es {{ negocio.nombre }}</h2>
-      <p>No consignes, no envíes abonos y no compartas tus datos. Escríbenos a la línea principal y lo verificamos contigo: <a href="tel:{{ negocio.telefono | replace(" ", "") }}">{{ negocio.telefono }}</a>.</p>
+      <p>No consignes, no envíes abonos y no compartas tus datos. Escríbenos a la línea principal y lo verificamos contigo: {# Esta va siempre a la línea principal, nunca al asesor: justamente se
+   trata de verificar con la casa si ese asesor es de verdad. #}
+<a href="https://wa.me/{{ negocio.telefonoWhatsapp }}?text={{ ('¡Hola ' + negocio.nombre + '! Quiero verificar si un número es un asesor autorizado:') | urlencode }}" target="_blank" rel="noopener">{{ negocio.telefono }}</a>.</p>
     </div>
   </div>
 

@@ -187,14 +187,27 @@ permalink: /
           {% for h in negocio.horario %}{{ h.dias }}: {% if h.nota %}{{ h.nota }}{% else %}{{ h.desde }} a {{ h.hasta }}{% endif %}<br>{% endfor %}
         </p>
         <h3 class="rotulo">Teléfono</h3>
-        <p class="parrafo"><a href="tel:{{ negocio.telefono | replace(" ", "") }}">{{ negocio.telefono }}</a></p>
+        <p class="parrafo">{{ negocio.telefono }}</p>
 
+        <div class="galeria__botones">
+          {# El href de respaldo apunta a la línea principal por si el
+             visitante tiene el JavaScript desactivado; con JavaScript se
+             reemplaza por el WhatsApp del asesor que lo está atendiendo. #}
+          <a class="boton boton--whatsapp"
+             href="https://wa.me/{{ negocio.telefonoWhatsapp }}?text={{ ('¡Hola ' + negocio.nombre + '! Quiero preguntar por la galería:') | urlencode }}"
+             data-wa data-wa-texto="¡Hola {{ negocio.nombre }}! Quiero preguntar por la galería:">
+            <img class="wa-logo" src="/img/whatsapp.svg" alt="" width="17" height="17" aria-hidden="true">
+            Escribir por WhatsApp
+          </a>
+          {% if negocio.latitud and negocio.longitud %}
+          <a class="boton boton--oscuro" href="https://www.google.com/maps/dir/?api=1&destination={{ negocio.latitud }}%2C{{ negocio.longitud }}" target="_blank" rel="noopener">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"></path><circle cx="12" cy="10" r="2.6"></circle></svg>
+            Cómo llegar
+          </a>
+          {% endif %}
+        </div>
         {% if negocio.latitud and negocio.longitud %}
-        <a class="boton boton--oscuro" href="https://www.google.com/maps/dir/?api=1&destination={{ negocio.latitud }}%2C{{ negocio.longitud }}" target="_blank" rel="noopener">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"></path><circle cx="12" cy="10" r="2.6"></circle></svg>
-          Cómo llegar
-        </a>
-        <p class="nota">Se abre en tu aplicación de mapas con la ruta desde donde estés.</p>
+        <p class="nota">El mapa se abre en tu aplicación con la ruta desde donde estés.</p>
         {% endif %}
       </div>
       <div class="galeria__mapa">

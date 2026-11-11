@@ -25,7 +25,9 @@
         {% for h in negocio.horario %}
         <p>{{ h.dias }}: {% if h.nota %}{{ h.nota }}{% else %}{{ h.desde }} a {{ h.hasta }}{% endif %}</p>
         {% endfor %}
-        <p><a href="tel:{{ negocio.telefono | replace(" ", "") }}">{{ negocio.telefono }}</a></p>
+        {# Sin enlace de llamada: todo el contacto va por WhatsApp, que es
+           donde el asesor queda registrado. #}
+        <p>{{ negocio.telefono }}</p>
       </div>
 
       <div>
