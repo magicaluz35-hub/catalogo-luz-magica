@@ -579,7 +579,7 @@ body.sin-desplazar { overflow: hidden; }
 .pedido__variante { margin: 0; font-size: 0.8rem; color: var(--gris); }
 .pedido__cantidad { display: flex; align-items: center; gap: 2px; border: 1px solid var(--linea-fuerte); border-radius: 999px; padding: 2px; }
 .pedido__paso {
-  width: 36px; height: 36px; border: none; border-radius: 50%;
+  width: 44px; height: 44px; border: none; border-radius: 50%;
   background: transparent; color: var(--tinta); cursor: pointer;
   font-family: inherit; font-size: 1.05rem; line-height: 1;
 }
@@ -655,7 +655,7 @@ body.sin-desplazar { overflow: hidden; }
    negro, se perdería. El nombre se queda en aria-label para los
    lectores de pantalla. */
 .pie__redes a.pie__red {
-  width: 40px; height: 40px;
+  width: 44px; height: 44px;
   display: grid; place-items: center;
   background: #fff;
   border: 0;

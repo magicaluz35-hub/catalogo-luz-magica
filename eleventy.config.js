@@ -5,6 +5,26 @@
 import fs from "node:fs";
 
 export default function (eleventyConfig) {
+  // Un producto nunca debe mostrar una foto que no está en el repositorio:
+  // el navegador pinta el ícono de imagen rota y parece un sitio abandonado.
+  // Aquí se descartan antes de construir y se avisa en el registro, para que
+  // quede claro cuál hay que volver a subir.
+  (function avisarFotosPerdidas() {
+    const lista = JSON.parse(fs.readFileSync("src/_data/productos.json", "utf8"));
+    const perdidas = [];
+    for (const p of lista) {
+      for (const f of p.fotos || []) if (!fs.existsSync("." + f)) perdidas.push(`${p.sku} → ${f}`);
+    }
+    if (perdidas.length) {
+      console.warn(
+        `\n[Luz Mágica] ¡OJO! ${perdidas.length} foto(s) de productos no están en img/.\n  ` +
+        perdidas.join("\n  ") +
+        "\n  El navegador va a mostrar el ícono de imagen rota. Sube la foto o quita\n" +
+        "  esa línea del producto en el panel.\n"
+      );
+    }
+  })();
+
   // ¿Existe este archivo en el repositorio?
   // Lo usa el pie de página para mostrar el logo oficial de una red
   // apenas alguien lo suba a img/, y mientras tanto dejar el nombre
