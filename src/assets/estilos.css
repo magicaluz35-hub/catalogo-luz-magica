@@ -40,6 +40,24 @@ a { color: var(--rosa); }
 a:hover { color: var(--rosa-oscuro); }
 img { max-width: 100%; height: auto; display: block; }
 
+/* En celular, arrastrar el dedo desde un botón o una etiqueta hacía que
+   el navegador creyera que se está seleccionando texto y pintaba media
+   página de azul. Los controles dejan de ser seleccionables; el texto de
+   verdad (descripciones, dirección, teléfono, el mensaje del asesor)
+   sigue siéndolo para que el cliente lo pueda copiar. */
+.boton, button, label, legend, .rotulo, .nav a, .cabecera a, .pie a,
+.migas, .etiqueta, .contador, .miniatura, .categoria, .tarjeta__pie,
+.cifras, .promesas, .asesor-barra, .carrusel__flecha, .filtros {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Quita el destello gris que Android pinta encima de lo que se toca:
+   cada botón ya tiene su propio estado visible. */
+a, button, label, summary {
+  -webkit-tap-highlight-color: transparent;
+}
+
 .contenedor { max-width: var(--ancho); margin: 0 auto; padding: 0 20px; }
 .oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
