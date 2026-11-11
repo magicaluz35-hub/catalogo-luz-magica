@@ -214,57 +214,56 @@ a, button, label, summary {
 .cifras dt { font-family: var(--display); font-size: 1.8rem; font-weight: 600; line-height: 1; }
 .cifras dd { margin: 6px 0 0; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gris); }
 
-/* Atajos: un solo panel con tres grupos, en vez de tres cajas disparejas */
-/* Tres tarjetas, una por grupo, en vez de un solo bloque rosado con
-   ocho renglones iguales: se recorre de un vistazo y ocupa la mitad. */
+/* Encuentra el tuyo: tres tarjetas en blanco, cada opción como un
+   renglón con su línea divisoria. Se lee como el índice de un catálogo
+   impreso y no quedan huecos cuando un grupo tiene menos opciones. */
 .atajos {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  gap: 18px;
+  align-items: start;
 }
 .atajo {
-  background: var(--rosa-papel);
-  border: 1px solid var(--rosa-linea);
-  border-radius: 20px;
-  padding: 22px 20px 20px;
-}
-.atajo__cabeza { display: flex; align-items: center; gap: 11px; margin-bottom: 15px; }
-.atajo__icono {
-  width: 40px; height: 40px; flex: none;
-  display: grid; place-items: center;
-  border-radius: 50%;
   background: var(--papel);
   border: 1px solid var(--rosa-linea);
+  border-radius: 22px;
+  padding: 24px 24px 10px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.atajo:hover { border-color: var(--rosa-linea); box-shadow: 0 12px 32px rgba(26, 20, 22, 0.07); }
+.atajo__cabeza { display: flex; align-items: center; gap: 12px; padding-bottom: 16px; }
+.atajo__icono {
+  width: 42px; height: 42px; flex: none;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--rosa-papel);
   color: var(--oro);
 }
 .atajo__titulo {
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--oro);
+  font-family: var(--display);
+  font-size: 1.18rem;
   font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--tinta);
   margin: 0;
 }
-.ficha--atajo {
-  background: var(--papel);
-  border-color: var(--linea-fuerte);
-  gap: 9px;
-  padding: 0 18px;
-  white-space: nowrap;
-  transition: border-color 0.18s, color 0.18s, transform 0.18s;
+.atajo__lista { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rosa-linea); }
+.atajo__lista li + li { border-top: 1px solid var(--rosa-linea); }
+.atajo__opcion {
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  min-height: 54px; padding: 10px 2px;
+  color: var(--tinta); text-decoration: none;
+  font-size: 0.95rem; font-weight: 500; line-height: 1.35;
+  transition: color 0.18s;
 }
-.ficha--atajo svg { flex: none; opacity: 0.4; transition: transform 0.18s, opacity 0.18s; }
-.ficha--atajo:hover,
-.ficha--atajo:focus-visible {
-  border-color: var(--rosa);
-  color: var(--rosa-oscuro);
-  transform: translateY(-1px);
-}
-.ficha--atajo:hover svg,
-.ficha--atajo:focus-visible svg { opacity: 1; transform: translateX(3px); }
+.atajo__flecha { flex: none; color: var(--oro); transition: transform 0.18s; }
+.atajo__opcion:hover,
+.atajo__opcion:focus-visible { color: var(--rosa-oscuro); }
+.atajo__opcion:hover .atajo__flecha,
+.atajo__opcion:focus-visible .atajo__flecha { transform: translateX(4px); }
 @media (prefers-reduced-motion: reduce) {
-  .ficha--atajo, .ficha--atajo svg { transition: none; }
-  .ficha--atajo:hover { transform: none; }
+  .atajo, .atajo__opcion, .atajo__flecha { transition: none; }
 }
 .fichas { display: flex; flex-wrap: wrap; gap: 8px; }
 .ficha {
@@ -716,23 +715,13 @@ body.sin-desplazar { overflow: hidden; }
 
   /* Atajos: el panel se ajusta y las fichas aprovechan todo el ancho */
   .atajos { grid-template-columns: 1fr; gap: 14px; }
-  .atajo { padding: 18px 16px; }
-  .atajo__cabeza { margin-bottom: 12px; }
+  .atajo { padding: 18px 18px 6px; border-radius: 18px; }
+  .atajo__cabeza { padding-bottom: 12px; gap: 11px; }
+  .atajo__icono { width: 38px; height: 38px; }
+  .atajo__titulo { font-size: 1.08rem; }
+  .atajo__opcion { min-height: 48px; padding: 8px 2px; font-size: 0.92rem; }
   /* A todo el ancho y con la flecha al borde: se lee como una lista,
      no como fichas sueltas con un vacío a la derecha. */
-  /* Dos por renglón. El que no alcance a entrar de a dos ocupa el ancho
-     completo por sí solo, sin que haya que decidirlo producto por producto. */
-  .ficha--atajo {
-    flex: 1 1 142px;
-    justify-content: center;
-    text-align: center;
-    white-space: normal;
-    line-height: 1.25;
-    font-size: 0.84rem;
-    padding: 8px 12px;
-  }
-  .ficha--atajo svg { display: none; }
-  .atajo .fichas { gap: 8px; }
   .rejilla--3, .rejilla--5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .equipo { grid-template-columns: 1fr; }
   .hero__texto { padding: 44px 0 0; }
