@@ -45,7 +45,7 @@ content:
             - { value: madera-rh, label: Tocadores en madera RH }
             - { value: hello-kitty, label: Línea Hello Kitty }
             - { value: paris-modular, label: París Modular }
-            - { value: nocheros-zapateros, label: Nocheros, cómodas y zapateros }
+            - { value: nocheros-zapateros, label: "Nocheros, cómodas y zapateros" }
             - { value: espejos, label: Espejos }
             - { value: repisas, label: Repisas }
             - { value: sillas-puffs, label: Sillas y puffs }
@@ -194,7 +194,7 @@ content:
         list: true
         fields:
           - { name: nombre, label: Nombre del color, type: string }
-          - { name: hex, label: Color (código #RRGGBB), type: string }
+          - { name: hex, label: "Color (código #RRGGBB)", type: string }
       - { name: enchapes, label: Enchapes disponibles, type: string, list: true }
       - { name: medidas, label: Medidas disponibles, type: string, list: true }
       - name: atajos
@@ -203,6 +203,16 @@ content:
         list: true
         fields:
           - { name: titulo, label: Título del grupo, type: string }
+          - name: icono
+            label: Ícono del grupo
+            description: Elige el dibujito que acompaña al título. Si creas un grupo nuevo y no eliges ninguno, sale una brújula.
+            type: select
+            options:
+              values:
+                - { value: espacio, label: Habitación (plano) }
+                - { value: presupuesto, label: Presupuesto (tarjeta) }
+                - { value: ocasion, label: Ocasión (regalo) }
+                - { value: brujula, label: Brújula (genérico) }
           - name: opciones
             label: Opciones
             type: object
@@ -210,6 +220,10 @@ content:
             fields:
               - { name: texto, label: Texto, type: string }
               - { name: enlace, label: Enlace, type: string }
+      - name: logo
+        label: Logo (respaldo para compartir en WhatsApp)
+        description: Solo se usa si no hay foto principal. Normalmente no hay que tocarlo.
+        type: image
       - name: redes
         label: Redes sociales
         type: object
