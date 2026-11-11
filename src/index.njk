@@ -4,6 +4,7 @@ permalink: /
 ---
 {% from "tarjeta.njk" import producto %}
 {% from "iconos.njk" import atajo as iconoAtajo %}
+{% from "iconos.njk" import pilar as iconoPilar %}
 {% set destacados = productos | selectattr("destacado") | list %}
 {% set nuevos = productos | selectattr("nuevo") | list %}
 
@@ -148,11 +149,23 @@ permalink: /
 {% endif %}
 
 <section class="pilares">
-  <div class="contenedor rejilla rejilla--4">
-    <div><h3>Pago contra entrega</h3><p>{{ negocio.formasDePago }}</p></div>
-    <div><h3>En tus colores</h3><p>Se fabrica en {% for c in negocio.colores %}{{ c.nombre | lower }}{% if not loop.last %}, {% endif %}{% endfor %}, con enchape {% for e in negocio.enchapes %}{{ e | lower }}{% if not loop.last %}, {% endif %}{% endfor %}.</p></div>
-    <div><h3>Domicilios en Medellín</h3><p>{{ negocio.domicilios }}</p></div>
-    <div><h3>Fabricación bajo pedido</h3><p>{{ negocio.plazoFabricacion }}</p></div>
+  <div class="contenedor pilares__fila">
+    <div class="pilar">
+      <h3 class="pilar__titulo"><span class="pilar__icono">{{ iconoPilar("tarjeta") }}</span>Pago contra entrega</h3>
+      <p>{{ negocio.formasDePago }}</p>
+    </div>
+    <div class="pilar">
+      <h3 class="pilar__titulo"><span class="pilar__icono">{{ iconoPilar("corazon") }}</span>En tus colores</h3>
+      <p>Se fabrica en {% for c in negocio.colores %}{{ c.nombre | lower }}{% if not loop.last %}, {% endif %}{% endfor %}, con enchape {% for e in negocio.enchapes %}{{ e | lower }}{% if not loop.last %}, {% endif %}{% endfor %}.</p>
+    </div>
+    <div class="pilar">
+      <h3 class="pilar__titulo"><span class="pilar__icono">{{ iconoPilar("camion") }}</span>Domicilios en Medellín</h3>
+      <p>{{ negocio.domicilios }}</p>
+    </div>
+    <div class="pilar">
+      <h3 class="pilar__titulo"><span class="pilar__icono">{{ iconoPilar("reloj") }}</span>Fabricación bajo pedido</h3>
+      <p>{{ negocio.plazoFabricacion }}</p>
+    </div>
   </div>
 </section>
 

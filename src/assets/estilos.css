@@ -373,9 +373,28 @@ a, button, label, summary {
 .tarjeta[hidden] { display: none; }
 
 /* Pilares */
-.pilares { background: var(--rosa-papel); border-top: 1px solid var(--rosa-linea); border-bottom: 1px solid var(--rosa-linea); padding: 56px 0; }
-.pilares h3 { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--oro); margin-bottom: 10px; }
-.pilares p { margin: 0; font-size: 0.88rem; line-height: 1.6; color: var(--tinta-suave); }
+.pilares { background: var(--rosa-papel); border-top: 1px solid var(--rosa-linea); border-bottom: 1px solid var(--rosa-linea); padding: 40px 0; }
+.pilares__fila { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+/* La línea va en el borde izquierdo de cada columna, menos la primera:
+   así no sobra una suelta al final. */
+.pilar { padding: 2px 30px; border-left: 1px solid var(--rosa-linea); }
+.pilar:first-child { border-left: 0; padding-left: 0; }
+.pilar:last-child { padding-right: 0; }
+.pilar__titulo {
+  /* Arriba, no al centro: si el título ocupa dos renglones el ícono
+     debe quedar junto al primero. */
+  display: flex; align-items: flex-start; gap: 11px;
+  font-family: var(--display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--tinta);
+  margin: 0 0 9px;
+}
+.pilar__icono { flex: none; display: grid; place-items: center; color: var(--oro); margin-top: -1px; }
+/* El texto arranca debajo del título, no debajo del ícono. */
+.pilar p { margin: 0; padding-left: 30px; font-size: 0.83rem; line-height: 1.65; color: var(--tinta-suave); }
 
 /* Cajas */
 .caja { background: var(--crema); border: 1px solid var(--linea); padding: 28px; }
@@ -723,6 +742,14 @@ body.sin-desplazar { overflow: hidden; }
   .nav a { flex: none; display: flex; align-items: center; min-height: 44px; padding: 0 10px; }
 
   /* Atajos: el panel se ajusta y las fichas aprovechan todo el ancho */
+  .pilares { padding: 28px 0; }
+  .pilares__fila { grid-template-columns: 1fr 1fr; }
+  .pilar { padding: 14px 14px; border-left: 1px solid var(--rosa-linea); }
+  .pilar:nth-child(odd) { border-left: 0; padding-left: 0; }
+  .pilar:nth-child(even) { padding-right: 0; }
+  .pilar:nth-child(n + 3) { border-top: 1px solid var(--rosa-linea); }
+  .pilar__titulo { font-size: 0.72rem; gap: 9px; letter-spacing: 0.12em; }
+  .pilar p { padding-left: 0; font-size: 0.79rem; }
   .atajos { grid-template-columns: 1fr; gap: 14px; }
   .atajo { padding: 18px 18px 6px; border-radius: 18px; }
   .atajo__cabeza { padding-bottom: 12px; gap: 11px; }

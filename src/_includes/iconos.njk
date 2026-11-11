@@ -1,6 +1,21 @@
 {# Íconos de los grupos de "Encuentra el tuyo".
    El dueño elige cuál usar con el campo "icono" de cada grupo en el panel.
    Si escribe uno que no existe, sale la brújula. #}
+{# Íconos de las cuatro promesas de la franja del inicio. #}
+{% macro pilar(nombre) %}
+{%- if nombre == "tarjeta" -%}
+<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.8" y="5.6" width="18.4" height="12.8" rx="2.2"></rect><path d="M2.8 9.8h18.4"></path><path d="M6.4 14.4h3.4"></path></svg>
+{%- elif nombre == "corazon" -%}
+<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.3S3.6 15.2 3.6 9.5a4.5 4.5 0 0 1 8.4-2.3 4.5 4.5 0 0 1 8.4 2.3c0 5.7-8.4 10.8-8.4 10.8z"></path></svg>
+{%- elif nombre == "camion" -%}
+<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.6 6.4h10.6v9.4H2.6z"></path><path d="M13.2 9.6h3.9l2.9 3v3.2h-6.8z"></path><circle cx="6.6" cy="18" r="1.9"></circle><circle cx="16.6" cy="18" r="1.9"></circle></svg>
+{%- elif nombre == "reloj" -%}
+<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"></circle><path d="M12 6.9V12l3.3 2"></path></svg>
+{%- else -%}
+<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9.6" r="5.4"></circle><path d="M8.4 14.2L7.2 21l4.8-2.6L16.8 21l-1.2-6.8"></path></svg>
+{%- endif -%}
+{% endmacro %}
+
 {% macro atajo(nombre) %}
 {%- if nombre == "espacio" -%}
 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="1.8"></rect><path d="M3.5 14.2h7v5.3"></path><path d="M14.2 4.5v5.1h6.3"></path></svg>
