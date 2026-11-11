@@ -281,18 +281,8 @@ a, button, label, summary {
   border-bottom: 1px solid var(--rosa-linea);
   padding: 13px 0;
 }
-.ficha--linea { gap: 9px; padding: 0 15px 0 5px; }
-.ficha__mini {
-  width: 32px; height: 32px; flex: none;
-  border-radius: 50%; overflow: hidden;
-  background: var(--crema);
-  display: grid; place-items: center;
-}
-.ficha__mini img { width: 100%; height: 100%; object-fit: cover; }
-.ficha__mini--todo { color: var(--oro); }
+.ficha--linea { gap: 8px; padding: 0 16px; }
 .ficha__cuenta { font-size: 0.72rem; color: var(--gris); font-variant-numeric: tabular-nums; }
-.ficha--activa .ficha__mini { background: rgba(255, 255, 255, 0.16); }
-.ficha--activa .ficha__mini--todo { color: #fff; }
 .ficha--activa .ficha__cuenta { color: rgba(255, 255, 255, 0.7); }
 
 /* Una sola fila que se desliza, con flechas en escritorio y el dedo en celular */
