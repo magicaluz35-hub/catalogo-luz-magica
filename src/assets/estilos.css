@@ -562,11 +562,17 @@ body.sin-desplazar { overflow: hidden; }
 .campo--casilla input { width: 20px; height: 20px; accent-color: var(--rosa); }
 
 @media (max-width: 720px) {
-  .pedido__linea { grid-template-columns: 64px 1fr; row-gap: 12px; }
+  /* La foto ocupa las dos filas de la izquierda; al lado va el nombre
+     arriba y, debajo, el control de cantidad con el precio a la derecha.
+     Antes la cantidad caía en la columna de 64px de la foto y los botones
+     – y + se salían del borde redondeado. */
+  .pedido__linea { grid-template-columns: 64px 1fr auto; row-gap: 12px; column-gap: 14px; }
   .pedido__foto, .pedido__foto img, .pedido__sinfoto { width: 64px; }
   .pedido__foto img, .pedido__sinfoto { height: 80px; }
-  .pedido__cantidad { grid-column: 1 / 2; }
-  .pedido__precio { grid-column: 2 / 3; }
+  .pedido__foto { grid-column: 1; grid-row: 1 / 3; align-self: start; }
+  .pedido__datos { grid-column: 2 / 4; grid-row: 1; }
+  .pedido__cantidad { grid-column: 2; grid-row: 2; justify-self: start; }
+  .pedido__precio { grid-column: 3; grid-row: 2; text-align: right; }
   .formulario { padding: 20px 16px; }
 }
 
@@ -616,7 +622,10 @@ body.sin-desplazar { overflow: hidden; }
 
 @media (max-width: 720px) {
   .pie { padding-bottom: 88px; }
-  .contenedor { padding: 0 16px; }
+  /* Solo los lados. En atajo ("padding: 0 16px") esta regla borraba el
+     espacio de arriba y de abajo de todo lo que además usa .contenedor,
+     como el título de una página o las migas de pan. */
+  .contenedor { padding-left: 16px; padding-right: 16px; }
   .seccion { padding: 48px 0; }
   .migas { margin-top: 20px; margin-bottom: 14px; }
 
