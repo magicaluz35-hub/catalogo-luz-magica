@@ -212,13 +212,27 @@ a, button, label, summary {
 .cifras dd { margin: 6px 0 0; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gris); }
 
 /* Atajos: un solo panel con tres grupos, en vez de tres cajas disparejas */
+/* Tres tarjetas, una por grupo, en vez de un solo bloque rosado con
+   ocho renglones iguales: se recorre de un vistazo y ocupa la mitad. */
 .atajos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.atajo {
   background: var(--rosa-papel);
   border: 1px solid var(--rosa-linea);
-  padding: 34px 36px;
-  display: flex;
-  flex-direction: column;
-  gap: 26px;
+  border-radius: 20px;
+  padding: 22px 20px 20px;
+}
+.atajo__cabeza { display: flex; align-items: center; gap: 11px; margin-bottom: 15px; }
+.atajo__icono {
+  width: 40px; height: 40px; flex: none;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--papel);
+  border: 1px solid var(--rosa-linea);
+  color: var(--oro);
 }
 .atajo__titulo {
   font-size: 0.72rem;
@@ -226,7 +240,7 @@ a, button, label, summary {
   text-transform: uppercase;
   color: var(--oro);
   font-weight: 600;
-  margin: 0 0 12px;
+  margin: 0;
 }
 .ficha--atajo {
   background: var(--papel);
@@ -690,12 +704,24 @@ body.sin-desplazar { overflow: hidden; }
   .nav a { flex: none; display: flex; align-items: center; min-height: 44px; padding: 0 10px; }
 
   /* Atajos: el panel se ajusta y las fichas aprovechan todo el ancho */
-  .atajos { padding: 24px 18px; gap: 22px; }
-  .atajo__titulo { margin-bottom: 10px; }
+  .atajos { grid-template-columns: 1fr; gap: 14px; }
+  .atajo { padding: 18px 16px; }
+  .atajo__cabeza { margin-bottom: 12px; }
   /* A todo el ancho y con la flecha al borde: se lee como una lista,
      no como fichas sueltas con un vacío a la derecha. */
-  .ficha--atajo { width: 100%; justify-content: space-between; font-size: 0.88rem; padding: 0 18px; }
-  .atajo .fichas { gap: 7px; }
+  /* Dos por renglón. El que no alcance a entrar de a dos ocupa el ancho
+     completo por sí solo, sin que haya que decidirlo producto por producto. */
+  .ficha--atajo {
+    flex: 1 1 142px;
+    justify-content: center;
+    text-align: center;
+    white-space: normal;
+    line-height: 1.25;
+    font-size: 0.84rem;
+    padding: 8px 12px;
+  }
+  .ficha--atajo svg { display: none; }
+  .atajo .fichas { gap: 8px; }
   .rejilla--3, .rejilla--5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .equipo { grid-template-columns: 1fr; }
   .hero__texto { padding: 44px 0 0; }

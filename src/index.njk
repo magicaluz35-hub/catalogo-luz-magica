@@ -3,6 +3,7 @@ layout: base.njk
 permalink: /
 ---
 {% from "tarjeta.njk" import producto %}
+{% from "iconos.njk" import atajo as iconoAtajo %}
 {% set destacados = productos | selectattr("destacado") | list %}
 {% set nuevos = productos | selectattr("nuevo") | list %}
 
@@ -50,7 +51,10 @@ permalink: /
     <div class="atajos">
       {% for a in negocio.atajos %}
       <div class="atajo">
-        <h3 class="atajo__titulo">{{ a.titulo }}</h3>
+        <div class="atajo__cabeza">
+          <span class="atajo__icono">{{ iconoAtajo(a.icono) }}</span>
+          <h3 class="atajo__titulo">{{ a.titulo }}</h3>
+        </div>
         <div class="fichas">
           {% for o in a.opciones %}
           <a class="ficha ficha--atajo" href="{{ o.enlace }}">

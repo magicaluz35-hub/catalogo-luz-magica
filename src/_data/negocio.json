@@ -87,6 +87,7 @@
   "atajos": [
     {
       "titulo": "Por espacio",
+      "icono": "espacio",
       "opciones": [
         {
           "texto": "Habitación pequeña",
@@ -100,6 +101,7 @@
     },
     {
       "titulo": "Por presupuesto",
+      "icono": "presupuesto",
       "opciones": [
         {
           "texto": "Hasta $500.000",
@@ -117,6 +119,7 @@
     },
     {
       "titulo": "Por ocasión",
+      "icono": "ocasion",
       "opciones": [
         {
           "texto": "Regalo de quince",
