@@ -427,12 +427,6 @@ a, button, label, summary {
 .vacio { border: 1px solid var(--linea); padding: 40px; text-align: center; }
 .vacio__titulo { font-family: var(--display); font-size: 1.4rem; font-weight: 600; margin-bottom: 0.4rem; }
 
-/* Comparador */
-.barra-comparar { position: sticky; bottom: 96px; z-index: 5; padding: 0 0 16px; }
-.barra-comparar__fila { background: var(--tinta); color: #F7F2F3; padding: 16px 22px; border-radius: 4px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
-.barra-comparar__botones { display: flex; gap: 10px; }
-.comparador { padding-bottom: 72px; }
-.comparador__caja { border: 1px solid var(--linea); overflow-x: auto; }
 
 /* Muestras de color */
 .muestras { display: flex; flex-wrap: wrap; gap: 12px; }
@@ -746,7 +740,6 @@ body.sin-desplazar { overflow: hidden; }
   .foto--alta { min-height: 260px; }
   .galeria__texto { padding: 28px; }
   .filtros { max-width: none; flex-basis: 100%; }
-  .barra-comparar { bottom: 88px; }
   .wa-flotante { padding: 0 18px; }
   .wa-flotante__largo { display: none; }
   .wa-flotante__corto { display: inline; }

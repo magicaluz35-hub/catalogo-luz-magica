@@ -5,7 +5,7 @@
    1. Atribución de asesor por enlace (?a=07) — la comisión es del primero.
    2. Estado del horario en vivo.
    3. Armado de los mensajes de WhatsApp.
-   4. Filtros, orden y comparador del listado.
+   4. Filtros y orden del listado.
    5. Pedido guardado, verificador de números y códigos QR del equipo.
 */
 (function () {
@@ -284,14 +284,13 @@
     return "$ " + n.toLocaleString("es-CO");
   }
 
-  // ---------- 4. Listado: filtros, orden y comparador ----------
+  // ---------- 4. Listado: filtros y orden ----------
   function iniciarListado() {
     var rejilla = document.querySelector("[data-rejilla]");
     if (!rejilla) return;
 
     var tarjetas = Array.prototype.slice.call(rejilla.querySelectorAll("[data-producto]"));
     var estado = { precio: "todos", led: "todos", orden: "destacados", q: "" };
-    var comparar = [];
 
     var params = new URLSearchParams(window.location.search);
     if (params.get("precio")) estado.precio = params.get("precio");
@@ -372,76 +371,7 @@
       });
     });
 
-    // Comparador
-    var barra = document.querySelector("[data-barra-comparar]");
-    var textoBarra = document.querySelector("[data-comparar-texto]");
-    var caja = document.querySelector("[data-comparador]");
-    var tabla = document.querySelector("[data-comparador-tabla]");
-
-    function pintarBarra() {
-      if (!barra) return;
-      barra.hidden = comparar.length === 0;
-      if (textoBarra) {
-        textoBarra.textContent = comparar.length === 1
-          ? "Elegiste 1 mueble. Marca otro para compararlos lado a lado."
-          : "Dos muebles listos para comparar.";
-      }
-      tarjetas.forEach(function (t) {
-        var boton = t.querySelector("[data-comparar]");
-        if (!boton) return;
-        var activo = comparar.indexOf(t.dataset.sku) !== -1;
-        boton.textContent = activo ? "Quitar de la comparación" : "Comparar";
-        boton.classList.toggle("boton--activo", activo);
-      });
-    }
-
-    document.querySelectorAll("[data-comparar]").forEach(function (b) {
-      b.addEventListener("click", function () {
-        var sku = b.dataset.comparar;
-        var i = comparar.indexOf(sku);
-        if (i !== -1) comparar.splice(i, 1);
-        else if (comparar.length < 2) comparar.push(sku);
-        else comparar = [comparar[1], sku];
-        if (caja) caja.hidden = true;
-        pintarBarra();
-      });
-    });
-
-    var limpiarCmp = document.querySelector("[data-comparar-limpiar]");
-    if (limpiarCmp) limpiarCmp.addEventListener("click", function () {
-      comparar = [];
-      if (caja) caja.hidden = true;
-      pintarBarra();
-    });
-
-    var abrirCmp = document.querySelector("[data-comparar-abrir]");
-    if (abrirCmp) abrirCmp.addEventListener("click", function () {
-      if (comparar.length < 2 || !tabla || !caja) return;
-      var elegidos = comparar.map(function (sku) {
-        return tarjetas.filter(function (t) { return t.dataset.sku === sku; })[0];
-      });
-      var filas = [
-        ["Precio", function (t) { return pesos(t.dataset.precio); }],
-        ["Luz LED", function (t) { return t.dataset.led === "si" ? "Sí" : "No"; }],
-        ["Línea", function (t) { return t.dataset.categoria; }],
-        ["Entrega", function () { return "10 a 15 días hábiles"; }]
-      ];
-      var html = '<table class="tabla"><thead><tr><th scope="col">Comparación</th>';
-      elegidos.forEach(function (t) { html += "<th scope=\"col\">" + t.dataset.nombre + "</th>"; });
-      html += "</tr></thead><tbody>";
-      filas.forEach(function (f) {
-        html += '<tr><th scope="row">' + f[0] + "</th>";
-        elegidos.forEach(function (t) { html += "<td>" + f[1](t) + "</td>"; });
-        html += "</tr>";
-      });
-      html += "</tbody></table>";
-      tabla.innerHTML = html;
-      caja.hidden = false;
-      caja.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    });
-
     aplicar();
-    pintarBarra();
   }
 
   // ---------- 5a. Pedido guardado ----------

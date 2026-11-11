@@ -36,7 +36,7 @@
 
 <div class="contenedor">
   <h1 class="listado__titulo">{{ c.nombre if c else "Todo el catálogo" }}</h1>
-  <p class="listado__entrada">{{ c.descripcion if c else "Los " + (productos.length | string) + " productos de Luz Mágica. Filtra por precio o por luz LED, y compara dos modelos lado a lado." }}</p>
+  <p class="listado__entrada">{{ c.descripcion if c else "Los " + (productos.length | string) + " productos de Luz Mágica. Filtra por precio o por luz LED para encontrar el tuyo." }}</p>
 </div>
 
 <div class="contenedor listado">
@@ -96,21 +96,5 @@
       <p>Prueba ampliando el rango de precio.</p>
       <button type="button" class="boton boton--linea" data-limpiar>Quitar los filtros</button>
     </div>
-  </div>
-</div>
-
-<div class="barra-comparar" data-barra-comparar hidden>
-  <div class="contenedor barra-comparar__fila">
-    <span data-comparar-texto></span>
-    <div class="barra-comparar__botones">
-      <button type="button" class="boton boton--fantasma" data-comparar-limpiar>Quitar</button>
-      <button type="button" class="boton boton--claro" data-comparar-abrir>Comparar</button>
-    </div>
-  </div>
-</div>
-
-<div class="comparador" data-comparador hidden>
-  <div class="contenedor">
-    <div class="comparador__caja" data-comparador-tabla></div>
   </div>
 </div>
