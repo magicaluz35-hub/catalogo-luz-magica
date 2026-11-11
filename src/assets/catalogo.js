@@ -859,7 +859,10 @@
     // Deja a la vista la línea en la que está el visitante
     var activa = pista.querySelector(".ficha--activa");
     if (activa && activa.offsetLeft > pista.clientWidth * 0.6) {
-      pista.scrollLeft = activa.offsetLeft - 20;
+      // El margen que deja libre el degradado lo pone scroll-padding-left
+      // en el CSS; el imán del scroll lo respeta y lo aplica también
+      // cuando el visitante desliza con el dedo.
+      pista.scrollLeft = activa.offsetLeft - 52;
     }
     refrescar();
   }
