@@ -131,6 +131,17 @@ a, button, label, summary {
 .boton--fantasma { background: transparent; color: #F7F2F3; border-color: #4A3C41; }
 .boton--activo { background: var(--tinta); color: #fff; border-color: var(--tinta); }
 .enlace-boton { border: none; background: none; padding: 0; cursor: pointer; font-family: inherit; font-size: 0.8rem; color: var(--rosa-oscuro); text-decoration: underline; }
+/* El área que se toca con el dedo llega a 44px sin que el texto crezca ni
+   empuje nada: el pseudoelemento se extiende por encima y por debajo. */
+.enlace-boton { position: relative; }
+.enlace-boton::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 44px;
+}
 .enlace-subrayado { font-size: 0.85rem; font-weight: 600; color: var(--tinta); text-decoration: none; border-bottom: 2px solid var(--rosa); padding-bottom: 4px; }
 
 /* Secciones y rejillas */

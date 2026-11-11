@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "eleventy --serve",
-    "build": "eleventy"
+    "build": "eleventy",
+    "probar": "node pruebas/pruebas.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0"
