@@ -51,6 +51,10 @@
 
 {% include "pie.njk" %}
 
+{# En la página del pedido este botón no va: manda un mensaje suelto sin
+   los datos de entrega y se salta el formulario obligatorio. Allá el
+   único camino es "Enviar el pedido por WhatsApp", que sí valida. #}
+{% if page.url != "/pedido/" %}
 <a class="wa-flotante" href="#" data-wa data-wa-texto="¡Hola {{ negocio.nombre }}! Quiero hacer un pedido:" aria-label="Pedir por WhatsApp">
   {# Logo oficial de WhatsApp, descargado del Brand Resource Center de Meta.
      No se modifica ni se recolorea: va blanco sobre el verde del botón. #}
@@ -60,6 +64,7 @@
   <span class="wa-flotante__largo">Pedir por WhatsApp</span>
   <span class="wa-flotante__corto">WhatsApp</span>
 </a>
+{% endif %}
 
 <script src="/assets/catalogo.js" defer></script>
 </body>
