@@ -4,8 +4,8 @@
       <div>
         <span class="marca__nombre marca__nombre--claro">{{ negocio.nombre }}</span>
         <span class="marca__lema marca__lema--claro">{{ negocio.lema }}</span>
-        {# Si en img/ está el logo oficial de la red (instagram.svg,
-           facebook.svg, tiktok.svg) se muestra el logo; si no, queda el
+        {# Si en img/ está el logo oficial de la red (instagram, facebook o
+           tiktok, en .svg o .png) se muestra el logo; si no, queda el
            nombre escrito. Subir el archivo basta: no hay que tocar nada
            más para que cambie. #}
         <div class="pie__redes">
@@ -16,12 +16,14 @@
           ] %}
           {% set enlace = negocio.redes[red.clave] %}
           {% if enlace %}
-          {% set logo = "/img/" + red.clave + ".svg" %}
+          {% set svg = "/img/" + red.clave + ".svg" %}
+          {% set png = "/img/" + red.clave + ".png" %}
+          {% set logo = svg if svg | existe else (png if png | existe else "") %}
           <a href="{{ enlace }}" rel="noopener" target="_blank"
-             class="{{ 'pie__red' if logo | existe }}"
+             class="{{ 'pie__red' if logo }}"
              aria-label="{{ negocio.nombre }} en {{ red.nombre }}">
-            {% if logo | existe %}
-            <img src="{{ logo }}" alt="" width="22" height="22" loading="lazy">
+            {% if logo %}
+            <img src="{{ logo }}" alt="" width="26" height="26" loading="lazy">
             {% else %}{{ red.nombre }}{% endif %}
           </a>
           {% endif %}

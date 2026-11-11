@@ -649,19 +649,23 @@ body.sin-desplazar { overflow: hidden; }
 .pie a:hover { text-decoration: underline; }
 .pie__redes { display: flex; align-items: center; gap: 18px; font-size: 0.85rem; }
 .pie__redes a { border-bottom: 1px solid #4A3C41; }
-/* Cuando la red muestra su logo oficial, el enlace es un botón redondo
-   sin subrayado; el nombre se queda en aria-label para los lectores de
-   pantalla. */
+/* Cuando la red muestra su logo oficial, el enlace es un disco blanco
+   sin subrayado. El disco va blanco porque los logos oficiales están
+   hechos para fondo claro: sobre el pie oscuro el de TikTok, que es
+   negro, se perdería. El nombre se queda en aria-label para los
+   lectores de pantalla. */
 .pie__redes a.pie__red {
   width: 40px; height: 40px;
   display: grid; place-items: center;
-  border: 1px solid #4A3C41;
+  background: #fff;
+  border: 0;
   border-radius: 50%;
-  transition: border-color 0.18s, background 0.18s;
+  transition: transform 0.18s, box-shadow 0.18s;
 }
-.pie__redes a.pie__red:hover { border-color: #8A7A80; background: rgba(255, 255, 255, 0.05); }
-.pie__redes a.pie__red img { width: 22px; height: 22px; }
-@media (prefers-reduced-motion: reduce) { .pie__redes a.pie__red { transition: none; } }
+.pie__redes a.pie__red:hover,
+.pie__redes a.pie__red:focus-visible { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35); }
+.pie__redes a.pie__red img { width: 26px; height: 26px; }
+@media (prefers-reduced-motion: reduce) { .pie__redes a.pie__red { transition: none; } .pie__redes a.pie__red:hover { transform: none; } }
 .pie__legal { font-size: 0.78rem; line-height: 1.65; color: #9A8A90; }
 .pie__creditos { margin-top: 24px; font-size: 0.78rem; color: #8A7A80; }
 
