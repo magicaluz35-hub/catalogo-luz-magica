@@ -8,6 +8,9 @@
   --rosa: #B4336B;
   --rosa-oscuro: #8C2552;
   --rosa-papel: #FBF1F5;
+  /* Rosa más tenue, para franjas anchas donde el tono normal pesa mucho */
+  --rosa-tenue: #FDF8FA;
+  --rosa-tenue-linea: #F5EBF0;
   --rosa-linea: #F0E3E9;
   --oro: #8A5A47;
   --oro-claro: #C79A86;
@@ -276,9 +279,9 @@ a, button, label, summary {
 /* Franja con fondo propio: contra la cabecera blanca la fila de líneas
    se leía como un renglón más del menú y el cliente pasaba de largo. */
 .fichas-linea {
-  background: var(--rosa-papel);
-  border-top: 1px solid var(--rosa-linea);
-  border-bottom: 1px solid var(--rosa-linea);
+  background: var(--rosa-tenue);
+  border-top: 1px solid var(--rosa-tenue-linea);
+  border-bottom: 1px solid var(--rosa-tenue-linea);
   padding: 13px 0;
 }
 .ficha--linea { gap: 8px; padding: 0 16px; }
@@ -316,8 +319,8 @@ a, button, label, summary {
   z-index: 1;
 }
 /* El degradado toma el color de la franja, no el del fondo de la página. */
-.carrusel::before { left: 0; background: linear-gradient(90deg, var(--rosa-papel), transparent); }
-.carrusel::after { right: 0; background: linear-gradient(270deg, var(--rosa-papel), transparent); }
+.carrusel::before { left: 0; background: linear-gradient(90deg, var(--rosa-tenue), transparent); }
+.carrusel::after { right: 0; background: linear-gradient(270deg, var(--rosa-tenue), transparent); }
 .carrusel[data-hay-izq]::before,
 .carrusel[data-hay-der]::after { opacity: 1; }
 
