@@ -2,7 +2,17 @@
 // Esto le dice al generador dónde están los archivos y cómo construir el sitio.
 // El dueño NO necesita tocar este archivo.
 
+import fs from "node:fs";
+
 export default function (eleventyConfig) {
+  // ¿Existe este archivo en el repositorio?
+  // Lo usa el pie de página para mostrar el logo oficial de una red
+  // apenas alguien lo suba a img/, y mientras tanto dejar el nombre
+  // escrito. Así no hay que tocar código para cambiarlo.
+  eleventyConfig.addFilter("existe", (ruta) =>
+    fs.existsSync("." + String(ruta || ""))
+  );
+
   // Copia tal cual las carpetas de estilos, scripts e imágenes
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
   // Las fotos viven en la carpeta img/ de la raíz del repositorio,

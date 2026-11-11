@@ -647,8 +647,21 @@ body.sin-desplazar { overflow: hidden; }
 .pie p { font-size: 0.85rem; margin: 0 0 0.6rem; }
 .pie a { color: #F0E8EA; text-decoration: none; }
 .pie a:hover { text-decoration: underline; }
-.pie__redes { display: flex; gap: 18px; font-size: 0.85rem; }
+.pie__redes { display: flex; align-items: center; gap: 18px; font-size: 0.85rem; }
 .pie__redes a { border-bottom: 1px solid #4A3C41; }
+/* Cuando la red muestra su logo oficial, el enlace es un botón redondo
+   sin subrayado; el nombre se queda en aria-label para los lectores de
+   pantalla. */
+.pie__redes a.pie__red {
+  width: 40px; height: 40px;
+  display: grid; place-items: center;
+  border: 1px solid #4A3C41;
+  border-radius: 50%;
+  transition: border-color 0.18s, background 0.18s;
+}
+.pie__redes a.pie__red:hover { border-color: #8A7A80; background: rgba(255, 255, 255, 0.05); }
+.pie__redes a.pie__red img { width: 22px; height: 22px; }
+@media (prefers-reduced-motion: reduce) { .pie__redes a.pie__red { transition: none; } }
 .pie__legal { font-size: 0.78rem; line-height: 1.65; color: #9A8A90; }
 .pie__creditos { margin-top: 24px; font-size: 0.78rem; color: #8A7A80; }
 
