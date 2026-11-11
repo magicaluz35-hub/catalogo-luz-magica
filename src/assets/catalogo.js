@@ -789,10 +789,17 @@
     // Deja a la vista la línea en la que está el visitante
     var activa = pista.querySelector(".ficha--activa");
     if (activa && activa.offsetLeft > pista.clientWidth * 0.6) {
+      // Al abrir la página la barra debe APARECER ya puesta en su sitio.
+      // El CSS la deja en modo suave para las flechas, y eso hacía que al
+      // cambiar de categoría se viera deslizarse sola cada vez. Aquí se
+      // apaga lo suave solo para este salto y luego se devuelve.
+      var suave = pista.style.scrollBehavior;
+      pista.style.scrollBehavior = "auto";
       // El margen que deja libre el degradado lo pone scroll-padding-left
       // en el CSS; el imán del scroll lo respeta y lo aplica también
       // cuando el visitante desliza con el dedo.
       pista.scrollLeft = activa.offsetLeft - 52;
+      pista.style.scrollBehavior = suave;
     }
     refrescar();
   }
