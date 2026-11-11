@@ -861,7 +861,23 @@
   }
 
   // ---------- Arranque ----------
+  // ---------- Botón flotante: se aparta al llegar al final ----------
+  // Así el pie no tiene que reservar un espacio vacío debajo para que el
+  // botón no tape el último renglón.
+  function iniciarBotonFlotante() {
+    var boton = document.querySelector(".wa-flotante");
+    var final = document.querySelector(".pie__creditos");
+    if (!boton || !final || !("IntersectionObserver" in window)) return;
+
+    new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        boton.classList.toggle("wa-flotante--guardado", e.isIntersecting);
+      });
+    }).observe(final);
+  }
+
   function iniciar() {
+    iniciarBotonFlotante();
     pintarAsesor();
     pintarHorario();
     iniciarListado();

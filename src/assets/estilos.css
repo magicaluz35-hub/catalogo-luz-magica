@@ -619,10 +619,9 @@ body.sin-desplazar { overflow: hidden; }
 }
 
 /* Pie */
-/* El espacio que deja libre el botón flotante de WhatsApp va dentro
-   del pie, no debajo del body: así queda en el fondo oscuro y no
-   aparece una franja blanca al final de la página. */
-.pie { background: var(--tinta); color: #C9BCC1; padding: 56px 0 96px; }
+/* Ya no hace falta reservar espacio para el botón flotante: al llegar
+   al final de la página el botón se esconde solo. */
+.pie { background: var(--tinta); color: #C9BCC1; padding: 56px 0 34px; }
 .pie__columnas { display: flex; flex-wrap: wrap; gap: 36px; padding-bottom: 36px; border-bottom: 1px solid #332A2E; }
 .pie__columnas > * { flex: 1 1 220px; min-width: 0; }
 .pie__titulo { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: #E0B9A4; font-weight: 600; margin-bottom: 1rem; }
@@ -643,6 +642,16 @@ body.sin-desplazar { overflow: hidden; }
   font-size: 0.9rem; font-weight: 600; box-shadow: 0 6px 20px rgba(26, 20, 22, 0.18);
 }
 .wa-flotante__corto { display: none; }
+/* Al tocar fondo de página el botón se aparta: ya se ven los datos de
+   contacto del pie y no tiene a quién estorbar. */
+.wa-flotante--guardado {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  pointer-events: none;
+}
+.wa-flotante { transition: opacity 0.25s, transform 0.25s, visibility 0.25s; }
+@media (prefers-reduced-motion: reduce) { .wa-flotante { transition: none; } }
 .wa-logo { display: block; flex: none; }
 
 /* Pantallas medianas y celulares */
@@ -663,7 +672,7 @@ body.sin-desplazar { overflow: hidden; }
 .icono:focus-visible { outline: 2px solid var(--rosa); outline-offset: 2px; }
 
 @media (max-width: 720px) {
-  .pie { padding-bottom: 88px; }
+  .pie { padding-bottom: 30px; }
   /* Solo los lados. En atajo ("padding: 0 16px") esta regla borraba el
      espacio de arriba y de abajo de todo lo que además usa .contenedor,
      como el título de una página o las migas de pan. */
