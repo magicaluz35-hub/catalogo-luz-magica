@@ -33,13 +33,32 @@ Cada vez que guardas algo, el catálogo se actualiza solo en menos de un minuto.
 ### Sobre el código SKU
 
 El SKU forma la dirección del producto en internet. El mueble `LM-105` vive en
-`luzmagica.com/producto/lm-105`.
+`catalogo-luz-magica.luzmagica.workers.dev/producto/lm-105`.
 
 Puedes cambiar el nombre, el precio, la descripción, las fotos y hasta la línea: el
 enlace sigue funcionando. **Lo único que no se puede cambiar es el SKU.** Si lo cambias,
 todos los enlaces que los asesores ya mandaron por WhatsApp dejan de abrir ese producto.
 
 Si de verdad necesitas corregir un SKU, hazlo antes de que alguien lo comparta.
+
+**Cómo numerar el próximo mueble**
+
+1. Las letras `LM` no cambian nunca.
+2. El número sigue al más alto que ya exista, más uno. Hoy el más alto es **LM-149**,
+   así que el próximo es **LM-150**. Para verlo, entra a *Productos* y ordena por la
+   columna del código: el último de la lista es el más alto.
+3. Siempre tres cifras: `LM-150`, no `LM-15` ni `LM-0150`.
+4. Hay 37 números sin usar entre el 5 y el 149, de muebles del catálogo viejo que no
+   pasaron. **No los rellenes**: sigue contando hacia adelante.
+
+**Cuando un mismo mueble tiene dos precios** según el enchape, van dos fichas con el
+mismo número y una letra al final: la `A` es la versión más económica y la `B` la más
+costosa. Así están las 7 parejas que ya existen — por ejemplo `LM-034A` ($1.200.000,
+enchape plata) y `LM-034B` ($1.300.000, gris humo u oro rosa). Un mueble con un solo
+precio no lleva letra.
+
+**Nunca repitas un código** ni reutilices el de un mueble descontinuado: quien tenga el
+enlace viejo cae en el mueble equivocado.
 
 ---
 
