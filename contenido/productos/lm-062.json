@@ -1,0 +1,15 @@
+{
+  "sku": "LM-062",
+  "nombre": "Tocador de metro corredizo LED diámetro PVC con enchape",
+  "orden": 210,
+  "precio": 960000,
+  "categoria": "tocadores-metro-mini",
+  "descripcion": "Tocador Hollywood de metro con espejo LED diámetro y PVC, vidrio de 4 mm. Medidas: 1,75 m de alto × 1 m de ancho. Mesa enchapada y botones de cristal.",
+  "plazo": "",
+  "led": true,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p062-1.webp"
+  ]
+}

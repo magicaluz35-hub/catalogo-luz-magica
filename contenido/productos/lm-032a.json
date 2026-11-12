@@ -1,0 +1,19 @@
+{
+  "sku": "LM-032A",
+  "nombre": "Tocador flotante LED en madera RH de 1 metro",
+  "orden": 600,
+  "precio": 620000,
+  "categoria": "madera-rh",
+  "descripcion": "Tocador flotante con luz LED en madera RH.",
+  "plazo": "Fabricación bajo pedido: entrega hasta 25 días hábiles.",
+  "led": true,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p032-1.webp",
+    "/img/p032-2.webp",
+    "/img/p032-3.webp",
+    "/img/p032-4.webp",
+    "/img/p032-5.webp"
+  ]
+}

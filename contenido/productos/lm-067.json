@@ -1,0 +1,16 @@
+{
+  "sku": "LM-067",
+  "nombre": "Tocador de metro corredizo digital con repisas y enchape",
+  "orden": 250,
+  "precio": 860000,
+  "categoria": "tocadores-metro-mini",
+  "descripcion": "Tocador Hollywood con espejo táctil (digital) y enchape. Medidas: 1,75 m de alto × 1 m de ancho. Espejo corredizo, repisas y botones de cristal.",
+  "plazo": "",
+  "led": false,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p067-1.webp",
+    "/img/p067-2.webp"
+  ]
+}

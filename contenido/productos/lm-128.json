@@ -1,0 +1,15 @@
+{
+  "sku": "LM-128",
+  "nombre": "Repisa con luz y cajones enchapada",
+  "orden": 980,
+  "precio": 460000,
+  "categoria": "repisas",
+  "descripcion": "Repisa con luz y cajones, enchapada. Medidas: 1,80 m de alto × 30 cm de ancho × 40 cm de fondo.",
+  "plazo": "",
+  "led": true,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p128-1.webp"
+  ]
+}

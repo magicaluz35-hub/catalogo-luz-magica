@@ -1,0 +1,16 @@
+{
+  "sku": "LM-089",
+  "nombre": "Tocador de metro Hello Kitty sencillo digital con enchape",
+  "orden": 640,
+  "precio": 720000,
+  "categoria": "hello-kitty",
+  "descripcion": "Tocador Hello Kitty con espejo táctil (digital) y enchape. Medidas: 1,75 m de alto × 1 m de ancho. Botones de cristal.",
+  "plazo": "",
+  "led": false,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p089-1.webp",
+    "/img/p089-2.webp"
+  ]
+}

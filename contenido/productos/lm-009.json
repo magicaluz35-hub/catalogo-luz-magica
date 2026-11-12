@@ -1,0 +1,19 @@
+{
+  "sku": "LM-009",
+  "nombre": "Tocador 1.20 corredizo digital diámetro con enchape",
+  "orden": 70,
+  "precio": 980000,
+  "categoria": "tocadores-120",
+  "descripcion": "Tocador Hollywood con espejo diámetro táctil (digital) y enchape. Medidas: 1,75 m de alto × 1,20 m de ancho. Espejo corredizo, repisas y botones brillantes de cristal.",
+  "plazo": "",
+  "led": false,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p009-1.webp",
+    "/img/p009-2.webp",
+    "/img/p009-3.webp",
+    "/img/p009-4.webp",
+    "/img/p009-5.webp"
+  ]
+}

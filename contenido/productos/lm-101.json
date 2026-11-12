@@ -1,0 +1,16 @@
+{
+  "sku": "LM-101",
+  "nombre": "París Modular Pink con botones de cristal",
+  "orden": 710,
+  "precio": 1100000,
+  "categoria": "paris-modular",
+  "descripcion": "Combo de clóset más tocador. Medidas: 1,20 m de ancho × 2 m de alto. Versión Pink con espejos digitales, espejo corredizo y botones de cristal.",
+  "plazo": "Fabricación bajo pedido: entrega de 15 a 20 días hábiles.",
+  "led": false,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p101-1.webp",
+    "/img/p101-2.webp"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "sku": "LM-113",
+  "nombre": "Espejo corredizo LED",
+  "orden": 850,
+  "precio": 580000,
+  "categoria": "espejos",
+  "descripcion": "Espejo corredizo con luz LED. Medidas: 1,75 m de alto × 80 cm de ancho.",
+  "plazo": "",
+  "led": true,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p113-1.webp",
+    "/img/p113-2.webp"
+  ]
+}

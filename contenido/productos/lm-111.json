@@ -1,0 +1,16 @@
+{
+  "sku": "LM-111",
+  "nombre": "Zapatero de lujo LED cuadrado sin enchape",
+  "orden": 790,
+  "precio": 650000,
+  "categoria": "nocheros-zapateros",
+  "descripcion": "Zapatero cuadrado con espejo corredizo LED y 7 compartimentos. Medidas: 1,80 m de alto × 80 cm de ancho × 40 cm de fondo.",
+  "plazo": "",
+  "led": true,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p111-1.webp",
+    "/img/p111-2.webp"
+  ]
+}

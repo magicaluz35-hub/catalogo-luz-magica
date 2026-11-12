@@ -1,0 +1,15 @@
+{
+  "sku": "LM-060",
+  "nombre": "Carvalo corredizo con ojos de buey sin enchape",
+  "orden": 510,
+  "precio": 570000,
+  "categoria": "carvalo-solteron",
+  "descripcion": "Carvalo con espejo de ojos de buey. Medidas: 1,75 m de alto × 1 m de ancho. Espejo corredizo y repisas.",
+  "plazo": "",
+  "led": false,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p060-4.webp"
+  ]
+}

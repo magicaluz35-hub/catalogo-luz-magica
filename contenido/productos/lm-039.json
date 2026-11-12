@@ -1,0 +1,15 @@
+{
+  "sku": "LM-039",
+  "nombre": "Tocador 1.20 sencillo digital sin enchape",
+  "orden": 150,
+  "precio": 740000,
+  "categoria": "tocadores-120",
+  "descripcion": "Tocador Hollywood con espejo táctil de 1,20 m (digital). Medidas: 1,75 m de alto × 1,20 m de ancho. Con botones brillantes: $760.000.",
+  "plazo": "",
+  "led": false,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p039-1.webp"
+  ]
+}

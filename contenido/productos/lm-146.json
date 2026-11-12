@@ -1,0 +1,17 @@
+{
+  "sku": "LM-146",
+  "nombre": "Puff redondo estándar",
+  "orden": 1130,
+  "precio": 130000,
+  "categoria": "sillas-puffs",
+  "descripcion": "Puff redondo estándar. Color a elección según disponibilidad. Disponibilidad de colores y telas se confirma por WhatsApp.",
+  "plazo": "",
+  "led": false,
+  "destacado": false,
+  "nuevo": true,
+  "fotos": [
+    "/img/p146-1.webp",
+    "/img/p146-2.webp",
+    "/img/p146-3.webp"
+  ]
+}

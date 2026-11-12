@@ -1,0 +1,16 @@
+{
+  "sku": "LM-090",
+  "nombre": "París Modular diámetro con espejos digitales y enchape",
+  "orden": 660,
+  "precio": 1340000,
+  "categoria": "paris-modular",
+  "descripcion": "Combo de clóset más tocador. Medidas: 1,20 m de ancho × 2 m de alto. Espejo diámetro redondo, espejo corredizo, dos espejos con luz digital y botones de cristal. Con enchape.",
+  "plazo": "Fabricación bajo pedido: entrega de 15 a 20 días hábiles.",
+  "led": true,
+  "destacado": true,
+  "nuevo": false,
+  "fotos": [
+    "/img/p090-1.webp",
+    "/img/p090-2.webp"
+  ]
+}

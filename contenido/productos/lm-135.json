@@ -1,0 +1,23 @@
+{
+  "sku": "LM-135",
+  "nombre": "Puff baúl peluche o tela gamuza",
+  "orden": 1080,
+  "precio": 150000,
+  "categoria": "sillas-puffs",
+  "descripcion": "Puff baúl en peluche o tela gamuza. Color a elección según disponibilidad. Disponibilidad de colores y telas se confirma por WhatsApp.",
+  "plazo": "",
+  "led": false,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p135-1.webp",
+    "/img/p135-2.webp",
+    "/img/p135-3.webp",
+    "/img/p135-4.webp",
+    "/img/p135-5.webp",
+    "/img/p135-6.webp",
+    "/img/p135-7.webp",
+    "/img/p135-8.webp",
+    "/img/p135-9.webp"
+  ]
+}

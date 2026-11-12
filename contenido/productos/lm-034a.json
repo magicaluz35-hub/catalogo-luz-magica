@@ -1,0 +1,15 @@
+{
+  "sku": "LM-034A",
+  "nombre": "Tocador 1.20 con espejo LED y mesa con enchape plata",
+  "orden": 40,
+  "precio": 1200000,
+  "categoria": "tocadores-120",
+  "descripcion": "Tocador con espejo LED y mesa enchapada. Medidas: 1,75 m de alto × 1,20 m de ancho. Botones brillantes de cristal. Precio con enchape plata.",
+  "plazo": "",
+  "led": true,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p034-1.webp"
+  ]
+}

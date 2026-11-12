@@ -1,0 +1,16 @@
+{
+  "sku": "LM-106",
+  "nombre": "Nochero Luxury LED humo",
+  "orden": 820,
+  "precio": 360000,
+  "categoria": "nocheros-zapateros",
+  "descripcion": "Nochero con luz LED, sensor de tacto y cajones con riel de metal. Enchape humo.",
+  "plazo": "",
+  "led": true,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p106-1.webp",
+    "/img/p106-2.webp"
+  ]
+}

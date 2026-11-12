@@ -1,0 +1,16 @@
+{
+  "sku": "LM-147",
+  "nombre": "Silla de gamuza con patas metálicas en U",
+  "orden": 1120,
+  "precio": 140000,
+  "categoria": "sillas-puffs",
+  "descripcion": "Silla en gamuza con patas metálicas en U. Color a elección según disponibilidad. Disponibilidad de colores y telas se confirma por WhatsApp.",
+  "plazo": "",
+  "led": false,
+  "destacado": false,
+  "nuevo": true,
+  "fotos": [
+    "/img/p147-1.webp",
+    "/img/p147-2.webp"
+  ]
+}

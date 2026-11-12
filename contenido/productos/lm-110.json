@@ -1,0 +1,16 @@
+{
+  "sku": "LM-110",
+  "nombre": "Zapatero de lujo LED ovalado",
+  "orden": 800,
+  "precio": 630000,
+  "categoria": "nocheros-zapateros",
+  "descripcion": "Zapatero ovalado con espejo corredizo LED y 4 compartimentos. Medidas: 1,80 m de alto × 80 cm de ancho × 40 cm de fondo.",
+  "plazo": "",
+  "led": true,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p110-1.webp",
+    "/img/p110-2.webp"
+  ]
+}

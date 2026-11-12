@@ -1,0 +1,17 @@
+{
+  "sku": "LM-143",
+  "nombre": "Puff baúl tela antirasguño o antifluido",
+  "orden": 1060,
+  "precio": 160000,
+  "categoria": "sillas-puffs",
+  "descripcion": "Puff baúl en tela antirasguño o antifluido. Color a elección según disponibilidad. Disponibilidad de colores y telas se confirma por WhatsApp.",
+  "plazo": "",
+  "led": false,
+  "destacado": false,
+  "nuevo": true,
+  "fotos": [
+    "/img/p143-1.webp",
+    "/img/p143-2.webp",
+    "/img/p143-3.webp"
+  ]
+}

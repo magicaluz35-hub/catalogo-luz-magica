@@ -1,0 +1,16 @@
+{
+  "sku": "LM-129",
+  "nombre": "Repisa con luz y cajones",
+  "orden": 990,
+  "precio": 340000,
+  "categoria": "repisas",
+  "descripcion": "Repisa con luz y cajones. Medidas: 1,80 m de alto × 30 cm de ancho × 40 cm de fondo.",
+  "plazo": "",
+  "led": true,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p129-1.webp",
+    "/img/p129-2.webp"
+  ]
+}

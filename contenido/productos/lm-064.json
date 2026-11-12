@@ -1,0 +1,15 @@
+{
+  "sku": "LM-064",
+  "nombre": "Tocador de metro colgante LED enchapado",
+  "orden": 220,
+  "precio": 950000,
+  "categoria": "tocadores-metro-mini",
+  "descripcion": "Tocador Hollywood de metro con espejo colgante LED, vidrio de 4 mm. Medidas: 1,75 m de alto × 1 m de ancho. Mesa enchapada y botones de cristal.",
+  "plazo": "",
+  "led": true,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p064-1.webp"
+  ]
+}

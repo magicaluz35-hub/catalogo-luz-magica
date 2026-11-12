@@ -1,0 +1,17 @@
+{
+  "sku": "LM-149",
+  "nombre": "Puff gamuza",
+  "orden": 1150,
+  "precio": 100000,
+  "categoria": "sillas-puffs",
+  "descripcion": "Puff en gamuza. Color a elección según disponibilidad. Disponibilidad de colores y telas se confirma por WhatsApp.",
+  "plazo": "",
+  "led": false,
+  "destacado": false,
+  "nuevo": true,
+  "fotos": [
+    "/img/p149-1.webp",
+    "/img/p149-2.webp",
+    "/img/p149-3.webp"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "sku": "LM-065",
+  "nombre": "Tocador de metro colgante con bombillos",
+  "orden": 280,
+  "precio": 730000,
+  "categoria": "tocadores-metro-mini",
+  "descripcion": "Tocador Hollywood de metro con espejo colgante de bombillos, vidrio de 4 mm. Medidas: 1,75 m de alto × 1 m de ancho.",
+  "plazo": "",
+  "led": true,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p065-1.webp",
+    "/img/p065-2.webp"
+  ]
+}

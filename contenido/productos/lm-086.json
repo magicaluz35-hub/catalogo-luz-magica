@@ -1,0 +1,16 @@
+{
+  "sku": "LM-086",
+  "nombre": "Tocador 1.20 Hello Kitty corredizo digital con enchape",
+  "orden": 620,
+  "precio": 980000,
+  "categoria": "hello-kitty",
+  "descripcion": "Tocador Hello Kitty con espejo táctil (digital) y enchape. Medidas: 1,75 m de alto × 1,20 m de ancho. Espejo corredizo y botones de cristal.",
+  "plazo": "",
+  "led": false,
+  "destacado": true,
+  "nuevo": false,
+  "fotos": [
+    "/img/p086-1.webp",
+    "/img/p086-2.webp"
+  ]
+}

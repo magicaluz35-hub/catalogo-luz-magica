@@ -1,0 +1,15 @@
+{
+  "sku": "LM-079",
+  "nombre": "Tocador mini LED con enchape",
+  "orden": 300,
+  "precio": 680000,
+  "categoria": "tocadores-metro-mini",
+  "descripcion": "Tocador mini con espejo diámetro LED y enchape. Medidas: 1,60 m de alto × 80 cm de ancho.",
+  "plazo": "",
+  "led": true,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p079-1.webp"
+  ]
+}

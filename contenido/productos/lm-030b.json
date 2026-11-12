@@ -1,0 +1,16 @@
+{
+  "sku": "LM-030B",
+  "nombre": "Tocador en madera RH 1.20 con bombillos sin enchape, 11 cajones",
+  "orden": 580,
+  "precio": 1300000,
+  "categoria": "madera-rh",
+  "descripcion": "Tocador en madera RH con espejo de bombillos, 11 cajones. Medidas: 1,75 m de alto × 1,20 m de ancho.",
+  "plazo": "Fabricación bajo pedido: entrega hasta 25 días hábiles.",
+  "led": true,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p030-1.webp",
+    "/img/p030-2.webp"
+  ]
+}

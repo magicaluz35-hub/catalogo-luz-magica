@@ -1,0 +1,15 @@
+{
+  "sku": "LM-120",
+  "nombre": "Espejo LED de metro",
+  "orden": 960,
+  "precio": 230000,
+  "categoria": "espejos",
+  "descripcion": "Espejo LED con luz de una sola tonalidad. Medidas: 80 cm de alto × 1 m de ancho. También en otras medidas, luz de 3 tonos o multicolor (el precio varía). Precio con matizado; sin matizado: $210.000.",
+  "plazo": "",
+  "led": true,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p120-1.webp"
+  ]
+}

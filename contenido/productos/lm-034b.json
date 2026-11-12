@@ -1,0 +1,15 @@
+{
+  "sku": "LM-034B",
+  "nombre": "Tocador 1.20 con espejo LED y mesa con enchape gris humo u oro rosa",
+  "orden": 20,
+  "precio": 1300000,
+  "categoria": "tocadores-120",
+  "descripcion": "Tocador con espejo LED y mesa enchapada. Medidas: 1,75 m de alto × 1,20 m de ancho. Botones brillantes de cristal. Precio con enchape gris humo u oro rosa.",
+  "plazo": "",
+  "led": true,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p034-1.webp"
+  ]
+}

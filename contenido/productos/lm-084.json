@@ -1,0 +1,16 @@
+{
+  "sku": "LM-084",
+  "nombre": "Tocador de metro sencillo ojos de buey con enchape",
+  "orden": 350,
+  "precio": 560000,
+  "categoria": "tocadores-metro-mini",
+  "descripcion": "Tocador Hollywood con espejo de ojos de buey y enchape. Medidas: 1,75 m de alto × 1 m de ancho. Botones de cristal.",
+  "plazo": "",
+  "led": false,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p084-1.webp",
+    "/img/p084-2.webp"
+  ]
+}

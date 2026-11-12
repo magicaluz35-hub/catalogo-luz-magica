@@ -1,0 +1,19 @@
+{
+  "sku": "LM-017",
+  "nombre": "Tocador 1.20 corredizo digital sin enchape",
+  "orden": 120,
+  "precio": 840000,
+  "categoria": "tocadores-120",
+  "descripcion": "Tocador Hollywood con espejo táctil (digital). Medidas: 1,75 m de alto × 1,20 m de ancho. Espejo corredizo, repisas y botones brillantes de cristal.",
+  "plazo": "",
+  "led": false,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p017-1.webp",
+    "/img/p017-2.webp",
+    "/img/p017-3.webp",
+    "/img/p017-4.webp",
+    "/img/p017-5.webp"
+  ]
+}

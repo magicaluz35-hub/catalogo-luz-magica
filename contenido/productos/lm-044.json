@@ -1,0 +1,16 @@
+{
+  "sku": "LM-044",
+  "nombre": "Carvalo LED media luna con WPC sin enchape",
+  "orden": 410,
+  "precio": 860000,
+  "categoria": "carvalo-solteron",
+  "descripcion": "Carvalo con espejo táctil media luna (digital) y WPC. Medidas: 1,80 m de alto × 1 m de ancho. Espejo corredizo, repisas y botones de cristal.",
+  "plazo": "",
+  "led": true,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p044-1.webp",
+    "/img/p044-2.webp"
+  ]
+}

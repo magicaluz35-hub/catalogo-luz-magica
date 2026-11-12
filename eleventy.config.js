@@ -10,7 +10,9 @@ export default function (eleventyConfig) {
   // Aquí se descartan antes de construir y se avisa en el registro, para que
   // quede claro cuál hay que volver a subir.
   (function avisarFotosPerdidas() {
-    const lista = JSON.parse(fs.readFileSync("src/_data/productos.json", "utf8"));
+    const dir = "contenido/productos";
+    const lista = fs.readdirSync(dir).filter((f) => f.endsWith(".json"))
+      .map((f) => JSON.parse(fs.readFileSync(dir + "/" + f, "utf8")));
     const perdidas = [];
     for (const p of lista) {
       for (const f of p.fotos || []) if (!fs.existsSync("." + f)) perdidas.push(`${p.sku} → ${f}`);

@@ -1,0 +1,15 @@
+{
+  "sku": "LM-130",
+  "nombre": "Repisa sencilla",
+  "orden": 1010,
+  "precio": 200000,
+  "categoria": "repisas",
+  "descripcion": "Repisa sencilla. Medidas: 1,80 m de alto × 30 cm de ancho.",
+  "plazo": "",
+  "led": false,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p130-1.webp"
+  ]
+}

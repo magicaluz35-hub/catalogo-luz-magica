@@ -1,0 +1,15 @@
+{
+  "sku": "LM-109",
+  "nombre": "Zapatero de lujo LED ovalado con enchape",
+  "orden": 770,
+  "precio": 700000,
+  "categoria": "nocheros-zapateros",
+  "descripcion": "Zapatero ovalado con espejo corredizo LED, 7 compartimentos, enchape humo y cajón enchapado. Medidas: 1,80 m de alto × 80 cm de ancho × 40 cm de fondo.",
+  "plazo": "",
+  "led": true,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p109-1.webp"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "sku": "LM-077",
+  "nombre": "Tocador mini LED",
+  "orden": 360,
+  "precio": 560000,
+  "categoria": "tocadores-metro-mini",
+  "descripcion": "Tocador mini con espejo diámetro LED. Medidas: 1,60 m de alto × 80 cm de ancho.",
+  "plazo": "",
+  "led": true,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p077-1.webp",
+    "/img/p077-2.webp",
+    "/img/p077-3.webp"
+  ]
+}

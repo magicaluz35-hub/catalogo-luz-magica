@@ -44,7 +44,13 @@ const revisar = async (area, n, fn) => {
   catch (e) { falla(area, n, "error: " + e.message.split("\n")[0].slice(0, 160)); }
 };
 
-const productos = JSON.parse(fs.readFileSync(path.join(RAIZ, "src/_data/productos.json")));
+// Los productos viven en una carpeta, un archivo por mueble, y el sitio los
+// ordena por el campo "orden". Aquí se lee igual para comparar contra lo que
+// sale publicado.
+const productos = fs.readdirSync(path.join(RAIZ, "contenido/productos"))
+  .filter((f) => f.endsWith(".json"))
+  .map((f) => JSON.parse(fs.readFileSync(path.join(RAIZ, "contenido/productos", f))))
+  .sort((a, b) => (a.orden ?? Infinity) - (b.orden ?? Infinity) || String(a.sku).localeCompare(String(b.sku)));
 const asesores = JSON.parse(fs.readFileSync(path.join(RAIZ, "src/_data/asesores.json")));
 const categorias = JSON.parse(fs.readFileSync(path.join(RAIZ, "src/_data/categorias.json")));
 

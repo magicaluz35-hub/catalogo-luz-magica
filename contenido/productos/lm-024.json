@@ -1,0 +1,16 @@
+{
+  "sku": "LM-024",
+  "nombre": "Carvalo LED ovalado WPC sin enchape",
+  "orden": 420,
+  "precio": 860000,
+  "categoria": "carvalo-solteron",
+  "descripcion": "Carvalo con espejo táctil ovalado y WPC. Medidas: 1,80 m de alto × 1 m de ancho. Espejo corredizo, repisas y botones de cristal.",
+  "plazo": "",
+  "led": true,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p024-1.webp",
+    "/img/p024-2.webp"
+  ]
+}

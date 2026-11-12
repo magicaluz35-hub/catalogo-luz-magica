@@ -1,0 +1,17 @@
+{
+  "sku": "LM-145",
+  "nombre": "Puff redondo alto",
+  "orden": 1100,
+  "precio": 150000,
+  "categoria": "sillas-puffs",
+  "descripcion": "Puff redondo alto. Color a elección según disponibilidad. Disponibilidad de colores y telas se confirma por WhatsApp.",
+  "plazo": "",
+  "led": false,
+  "destacado": false,
+  "nuevo": true,
+  "fotos": [
+    "/img/p145-1.webp",
+    "/img/p145-2.webp",
+    "/img/p145-3.webp"
+  ]
+}

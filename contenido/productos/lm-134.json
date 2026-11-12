@@ -1,0 +1,18 @@
+{
+  "sku": "LM-134",
+  "nombre": "Puff baúl peluche premium",
+  "orden": 1030,
+  "precio": 180000,
+  "categoria": "sillas-puffs",
+  "descripcion": "Puff baúl en peluche premium. Color a elección según disponibilidad. Disponibilidad de colores y telas se confirma por WhatsApp.",
+  "plazo": "",
+  "led": false,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p134-1.webp",
+    "/img/p134-2.webp",
+    "/img/p134-3.webp",
+    "/img/p134-4.webp"
+  ]
+}

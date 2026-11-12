@@ -1,0 +1,16 @@
+{
+  "sku": "LM-121",
+  "nombre": "Espejo diámetro",
+  "orden": 970,
+  "precio": 200000,
+  "categoria": "espejos",
+  "descripcion": "Espejo redondo con luz de una sola tonalidad. Medidas: 60 × 60 cm. También en otras medidas, luz de 3 tonos o multicolor (el precio varía). Precio con matizado; sin matizado: $180.000.",
+  "plazo": "",
+  "led": true,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p121-1.webp",
+    "/img/p121-2.webp"
+  ]
+}

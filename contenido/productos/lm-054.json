@@ -1,0 +1,16 @@
+{
+  "sku": "LM-054",
+  "nombre": "Carvalo Pink corredizo digital con enchape",
+  "orden": 430,
+  "precio": 860000,
+  "categoria": "carvalo-solteron",
+  "descripcion": "Carvalo Pink con espejo digital y enchape. Medidas: 1,80 m de alto × 1 m de ancho. Espejo corredizo y repisas. Botones en corazón 3D.",
+  "plazo": "",
+  "led": false,
+  "destacado": true,
+  "nuevo": false,
+  "fotos": [
+    "/img/p054-1.webp",
+    "/img/p054-2.webp"
+  ]
+}

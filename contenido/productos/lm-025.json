@@ -1,0 +1,16 @@
+{
+  "sku": "LM-025",
+  "nombre": "Solterón LED media luna con WPC y enchape",
+  "orden": 460,
+  "precio": 760000,
+  "categoria": "carvalo-solteron",
+  "descripcion": "Solterón LED con espejo táctil media luna, WPC y enchape. Medidas: 1,80 m de alto × 80 cm de ancho. Espejo corredizo, repisas, 3 cajones y botones de cristal.",
+  "plazo": "",
+  "led": true,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p025-1.webp",
+    "/img/p025-2.webp"
+  ]
+}

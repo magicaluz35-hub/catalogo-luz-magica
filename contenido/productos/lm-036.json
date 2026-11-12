@@ -1,0 +1,15 @@
+{
+  "sku": "LM-036",
+  "nombre": "Tocador 1.20 con bombillos sin enchape",
+  "orden": 100,
+  "precio": 890000,
+  "categoria": "tocadores-120",
+  "descripcion": "Tocador con espejo de bombillos, sin enchape. Medidas: 1,75 m de alto × 1,20 m de ancho. Botones brillantes de cristal.",
+  "plazo": "",
+  "led": true,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p036-1.webp"
+  ]
+}

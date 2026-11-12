@@ -1,0 +1,16 @@
+{
+  "sku": "LM-015",
+  "nombre": "Tocador 1.20 corredizo LED diámetro WPC sin enchape",
+  "orden": 80,
+  "precio": 960000,
+  "categoria": "tocadores-120",
+  "descripcion": "Tocador Hollywood con espejo táctil diámetro y WPC. Medidas: 1,75 m de alto × 1,20 m de ancho. Espejo corredizo, repisas y botones brillantes de cristal.",
+  "plazo": "",
+  "led": true,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p015-1.webp",
+    "/img/p015-2.webp"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "sku": "LM-041",
+  "nombre": "Tocador 1.20 sencillo ojos de buey con enchape",
+  "orden": 180,
+  "precio": 680000,
+  "categoria": "tocadores-120",
+  "descripcion": "Tocador Hollywood con espejo de ojos de buey y enchape. Medidas: 1,75 m de alto × 1,20 m de ancho. Botones de cristal.",
+  "plazo": "",
+  "led": false,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p041-1.webp",
+    "/img/p041-2.webp"
+  ]
+}

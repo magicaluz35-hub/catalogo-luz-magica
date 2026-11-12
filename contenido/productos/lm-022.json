@@ -1,0 +1,18 @@
+{
+  "sku": "LM-022",
+  "nombre": "Tocador 1.20 corredizo con ojos de buey sin enchape",
+  "orden": 190,
+  "precio": 670000,
+  "categoria": "tocadores-120",
+  "descripcion": "Tocador Hollywood con espejo de ojos de buey. Medidas: 1,75 m de alto × 1,20 m de ancho. Espejo corredizo y repisas.",
+  "plazo": "",
+  "led": false,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p022-1.webp",
+    "/img/p022-2.webp",
+    "/img/p022-3.webp",
+    "/img/p022-4.webp"
+  ]
+}

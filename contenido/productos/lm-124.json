@@ -1,0 +1,16 @@
+{
+  "sku": "LM-124",
+  "nombre": "Espejo ovalado",
+  "orden": 950,
+  "precio": 280000,
+  "categoria": "espejos",
+  "descripcion": "Espejo ovalado con luz de una sola tonalidad. Medidas: 1,60 m de alto × 60 cm de ancho. También en otras medidas o multicolor (el precio varía). Con matizado: $300.000.",
+  "plazo": "",
+  "led": true,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p124-1.webp",
+    "/img/p124-2.webp"
+  ]
+}

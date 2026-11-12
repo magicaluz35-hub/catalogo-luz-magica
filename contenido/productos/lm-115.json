@@ -1,0 +1,19 @@
+{
+  "sku": "LM-115",
+  "nombre": "Espejo tapizado",
+  "orden": 890,
+  "precio": 480000,
+  "categoria": "espejos",
+  "descripcion": "Espejo tapizado. Medidas: 1,70 m de alto × 70 cm de ancho. Se fabrica en cualquier medida (el precio varía según la medida). Color y tela a elección según disponibilidad.",
+  "plazo": "",
+  "led": false,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p115-1.webp",
+    "/img/p115-2.webp",
+    "/img/p115-3.webp",
+    "/img/p115-4.webp",
+    "/img/p115-5.webp"
+  ]
+}

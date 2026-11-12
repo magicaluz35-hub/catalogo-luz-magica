@@ -1,0 +1,16 @@
+{
+  "sku": "LM-107",
+  "nombre": "Nochero Luxury LED plata",
+  "orden": 840,
+  "precio": 340000,
+  "categoria": "nocheros-zapateros",
+  "descripcion": "Nochero con luz LED, sensor de tacto y cajones con riel de metal. Enchape plata.",
+  "plazo": "",
+  "led": true,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p107-1.webp",
+    "/img/p107-2.webp"
+  ]
+}

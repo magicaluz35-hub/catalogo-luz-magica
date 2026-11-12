@@ -1,0 +1,15 @@
+{
+  "sku": "LM-122",
+  "nombre": "Espejo LED cuerpo entero",
+  "orden": 920,
+  "precio": 290000,
+  "categoria": "espejos",
+  "descripcion": "Espejo LED de cuerpo entero con luz de una sola tonalidad. Medidas: 1,70 m de alto × 60 cm de ancho. También en otras medidas, luz de 3 tonos o multicolor (el precio varía). Precio con matizado; sin matizado: $260.000.",
+  "plazo": "",
+  "led": true,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p122-1.webp"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "sku": "LM-066",
+  "nombre": "Tocador mini corredizo LED",
+  "orden": 320,
+  "precio": 620000,
+  "categoria": "tocadores-metro-mini",
+  "descripcion": "Tocador Hollywood con espejo táctil (digital). Medidas: 1,75 m de alto × 80 cm de ancho. Espejo corredizo, repisas y botones de cristal.",
+  "plazo": "",
+  "led": true,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p066-1.webp",
+    "/img/p066-2.webp"
+  ]
+}

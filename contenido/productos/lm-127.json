@@ -1,0 +1,16 @@
+{
+  "sku": "LM-127",
+  "nombre": "Espejo sencillo con ojos de buey",
+  "orden": 910,
+  "precio": 300000,
+  "categoria": "espejos",
+  "descripcion": "Espejo con 10 ojos de buey. Medidas: 1,75 m de alto × 75 cm de ancho.",
+  "plazo": "",
+  "led": false,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p127-1.webp",
+    "/img/p127-2.webp"
+  ]
+}

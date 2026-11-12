@@ -1,0 +1,16 @@
+{
+  "sku": "LM-112",
+  "nombre": "Zapatero de lujo LED con enchape",
+  "orden": 780,
+  "precio": 680000,
+  "categoria": "nocheros-zapateros",
+  "descripcion": "Zapatero con espejo corredizo LED, 7 compartimentos, enchape humo y cajón enchapado. Medidas: 1,80 m de alto × 80 cm de ancho × 40 cm de fondo.",
+  "plazo": "",
+  "led": true,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p112-1.webp",
+    "/img/p112-2.webp"
+  ]
+}

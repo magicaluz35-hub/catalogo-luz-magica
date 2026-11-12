@@ -1,0 +1,16 @@
+{
+  "sku": "LM-105",
+  "nombre": "Nochero Luxury LED oro rosa",
+  "orden": 830,
+  "precio": 360000,
+  "categoria": "nocheros-zapateros",
+  "descripcion": "Nochero con luz LED, sensor de tacto y cajones con riel de metal. Enchape oro rosa.",
+  "plazo": "",
+  "led": true,
+  "destacado": true,
+  "nuevo": false,
+  "fotos": [
+    "/img/p105-1.webp",
+    "/img/p105-2.webp"
+  ]
+}

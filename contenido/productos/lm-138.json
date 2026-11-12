@@ -1,0 +1,16 @@
+{
+  "sku": "LM-138",
+  "nombre": "Puff baúl peluche o tela gamuza grande",
+  "orden": 1050,
+  "precio": 160000,
+  "categoria": "sillas-puffs",
+  "descripcion": "Puff baúl en peluche o tela gamuza, versión grande. Color a elección según disponibilidad. Disponibilidad de colores y telas se confirma por WhatsApp.",
+  "plazo": "",
+  "led": false,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p138-1.webp",
+    "/img/p138-2.webp"
+  ]
+}

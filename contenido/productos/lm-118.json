@@ -1,0 +1,18 @@
+{
+  "sku": "LM-118",
+  "nombre": "Espejo minimalista",
+  "orden": 880,
+  "precio": 480000,
+  "categoria": "espejos",
+  "descripcion": "Espejo minimalista. Medidas: 1,65 m de alto × 85 cm de ancho. Se fabrica en cualquier medida (el precio varía según la medida). Color y tela a elección según disponibilidad.",
+  "plazo": "",
+  "led": false,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p118-1.webp",
+    "/img/p118-2.webp",
+    "/img/p118-3.webp",
+    "/img/p118-4.webp"
+  ]
+}

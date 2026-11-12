@@ -10,20 +10,26 @@ media:
 content:
   - name: productos
     label: Productos
-    type: file
-    path: src/_data/productos.json
-    list: true
+    # Una carpeta con un archivo por mueble, no un archivo con los 115.
+    # El buscador y el orden del panel solo funcionan así; con todo en un
+    # solo archivo tocaba bajar por la lista entera para encontrar uno.
+    type: collection
+    path: contenido/productos
+    format: json
+    filename: "{fields.sku}.json"
     view:
-      # Con 115 productos la lista plana es inmanejable: el buscador y el
-      # orden por línea son lo que hace que el dueño encuentre algo.
-      fields: [fotos, nombre, sku, categoria, precio]
+      fields: [nombre, sku, categoria, precio, fotos]
       primary: nombre
       search: [nombre, sku, descripcion, categoria]
-      sort: [categoria, nombre, precio, sku]
+      sort: [orden, nombre, precio, sku, categoria]
       default:
-        sort: categoria
+        sort: orden
         order: asc
     fields:
+      - name: orden
+        label: Posición en el catálogo
+        description: Número que decide en qué puesto sale. Más bajo, más arriba. Van de diez en diez para poder meter uno en medio sin renumerar los demás.
+        type: number
       - name: nombre
         label: Nombre del producto
         type: string

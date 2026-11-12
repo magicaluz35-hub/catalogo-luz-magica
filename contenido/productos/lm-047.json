@@ -1,0 +1,15 @@
+{
+  "sku": "LM-047",
+  "nombre": "Carvalo corredizo LED espejo medio arco con enchape",
+  "orden": 390,
+  "precio": 880000,
+  "categoria": "carvalo-solteron",
+  "descripcion": "Carvalo con espejo LED medio arco y enchape. Medidas: 1,80 m de alto × 1 m de ancho. Espejo corredizo, repisas y botones de cristal.",
+  "plazo": "",
+  "led": true,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p047-1.webp"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "sku": "LM-131",
+  "nombre": "Repisa sencilla con enchape",
+  "orden": 1000,
+  "precio": 260000,
+  "categoria": "repisas",
+  "descripcion": "Repisa sencilla con enchape. Medidas: 1,80 m de alto × 30 cm de ancho.",
+  "plazo": "",
+  "led": false,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p131-1.webp"
+  ]
+}

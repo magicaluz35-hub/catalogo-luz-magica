@@ -1,0 +1,20 @@
+{
+  "sku": "LM-139",
+  "nombre": "Puff corazón en tela gamuza",
+  "orden": 1070,
+  "precio": 160000,
+  "categoria": "sillas-puffs",
+  "descripcion": "Puff en forma de corazón, tela gamuza. Color a elección según disponibilidad. Disponibilidad de colores y telas se confirma por WhatsApp.",
+  "plazo": "",
+  "led": false,
+  "destacado": true,
+  "nuevo": false,
+  "fotos": [
+    "/img/p139-1.webp",
+    "/img/p139-2.webp",
+    "/img/p139-3.webp",
+    "/img/p139-4.webp",
+    "/img/p139-5.webp",
+    "/img/p139-6.webp"
+  ]
+}

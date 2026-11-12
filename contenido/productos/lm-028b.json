@@ -1,0 +1,15 @@
+{
+  "sku": "LM-028B",
+  "nombre": "Tocador en madera RH 1.40 con bombillos y mesa con enchape plata",
+  "orden": 530,
+  "precio": 1680000,
+  "categoria": "madera-rh",
+  "descripcion": "En madera RH: espejo con bombillos, mesa de 1,40 m con 13 cajones enchapados y repisas en RH enchapadas. Medidas: 1,75 m de alto × 1,40 m de ancho. Botones brillantes de cristal. Solo el tocador del combo (sin las repisas).",
+  "plazo": "Fabricación bajo pedido: entrega hasta 25 días hábiles.",
+  "led": true,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p028-1.webp"
+  ]
+}

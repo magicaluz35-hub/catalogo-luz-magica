@@ -1,0 +1,16 @@
+{
+  "sku": "LM-144",
+  "nombre": "Puff baúl tela gamuza",
+  "orden": 1090,
+  "precio": 150000,
+  "categoria": "sillas-puffs",
+  "descripcion": "Puff baúl en tela gamuza. Color a elección según disponibilidad. Disponibilidad de colores y telas se confirma por WhatsApp.",
+  "plazo": "",
+  "led": false,
+  "destacado": false,
+  "nuevo": true,
+  "fotos": [
+    "/img/p144-1.webp",
+    "/img/p144-2.webp"
+  ]
+}

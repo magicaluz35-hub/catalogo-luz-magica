@@ -1,0 +1,20 @@
+{
+  "sku": "LM-141",
+  "nombre": "Silla de madera y gamuza 3 patas",
+  "orden": 1140,
+  "precio": 130000,
+  "categoria": "sillas-puffs",
+  "descripcion": "Silla de madera y gamuza de 3 patas. Color a elección según disponibilidad. Disponibilidad de colores y telas se confirma por WhatsApp.",
+  "plazo": "",
+  "led": false,
+  "destacado": false,
+  "nuevo": true,
+  "fotos": [
+    "/img/p141-1.webp",
+    "/img/p141-2.webp",
+    "/img/p141-3.webp",
+    "/img/p141-4.webp",
+    "/img/p141-5.webp",
+    "/img/p141-6.webp"
+  ]
+}

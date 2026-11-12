@@ -1,0 +1,16 @@
+{
+  "sku": "LM-148",
+  "nombre": "Silla de gamuza con patas metálicas",
+  "orden": 1110,
+  "precio": 140000,
+  "categoria": "sillas-puffs",
+  "descripcion": "Silla en gamuza con patas metálicas. Color a elección según disponibilidad. Disponibilidad de colores y telas se confirma por WhatsApp.",
+  "plazo": "",
+  "led": false,
+  "destacado": false,
+  "nuevo": true,
+  "fotos": [
+    "/img/p148-1.webp",
+    "/img/p148-2.webp"
+  ]
+}

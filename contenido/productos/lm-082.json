@@ -1,0 +1,16 @@
+{
+  "sku": "LM-082",
+  "nombre": "Tocador de metro digital con enchape",
+  "orden": 310,
+  "precio": 670000,
+  "categoria": "tocadores-metro-mini",
+  "descripcion": "Tocador Hollywood con espejo táctil (digital) colgante y enchape. Medidas: 1,75 m de alto × 1 m de ancho. Botones de cristal.",
+  "plazo": "",
+  "led": false,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p082-1.webp",
+    "/img/p082-2.webp"
+  ]
+}

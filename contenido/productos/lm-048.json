@@ -1,0 +1,19 @@
+{
+  "sku": "LM-048",
+  "nombre": "Carvalo corredizo digital espejo ovalado sin enchape",
+  "orden": 450,
+  "precio": 760000,
+  "categoria": "carvalo-solteron",
+  "descripcion": "Carvalo con espejo táctil ovalado (digital). Medidas: 1,80 m de alto × 1 m de ancho. Espejo corredizo, repisas y botones de cristal.",
+  "plazo": "",
+  "led": false,
+  "destacado": false,
+  "nuevo": false,
+  "fotos": [
+    "/img/p048-1.webp",
+    "/img/p048-2.webp",
+    "/img/p048-3.webp",
+    "/img/p048-4.webp",
+    "/img/p048-5.webp"
+  ]
+}
