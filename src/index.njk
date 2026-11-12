@@ -124,7 +124,9 @@ permalink: /
       </div>
       <a class="enlace-subrayado" href="/catalogo/">Ver todos</a>
     </header>
-    <div class="rejilla rejilla--4">
+    {# La rejilla se ajusta a cuántos haya marcados: con uno o dos, una
+         rejilla de cuatro deja media fila vacía y parece un error. #}
+    <div class="rejilla rejilla--{{ 4 if destacados | length > 4 else destacados | length }}">
       {% for p in destacados | primeros(4) %}{{ producto(p, negocio) }}{% endfor %}
     </div>
   </div>
@@ -141,7 +143,9 @@ permalink: /
       </div>
       <a class="enlace-subrayado" href="/catalogo/">Ver todos</a>
     </header>
-    <div class="rejilla rejilla--4">
+    {# La rejilla se ajusta a cuántos haya marcados: con uno o dos, una
+         rejilla de cuatro deja media fila vacía y parece un error. #}
+    <div class="rejilla rejilla--{{ 4 if nuevos | length > 4 else nuevos | length }}">
       {% for p in nuevos | primeros(4) %}{{ producto(p, negocio) }}{% endfor %}
     </div>
   </div>
