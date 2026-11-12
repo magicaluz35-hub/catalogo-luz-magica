@@ -14,8 +14,15 @@ content:
     path: src/_data/productos.json
     list: true
     view:
-      fields: [nombre, precio, categoria, sku]
+      # Con 115 productos la lista plana es inmanejable: el buscador y el
+      # orden por línea son lo que hace que el dueño encuentre algo.
+      fields: [fotos, nombre, sku, categoria, precio]
       primary: nombre
+      search: [nombre, sku, descripcion, categoria]
+      sort: [categoria, nombre, precio, sku]
+      default:
+        sort: categoria
+        order: asc
     fields:
       - name: nombre
         label: Nombre del producto
@@ -78,8 +85,13 @@ content:
     path: src/_data/asesores.json
     list: true
     view:
-      fields: [nombre, whatsapp, codigo, activo]
+      fields: [nombre, codigo, whatsapp, activo]
       primary: nombre
+      search: [nombre, codigo, whatsapp]
+      sort: [codigo, nombre]
+      default:
+        sort: codigo
+        order: asc
     fields:
       - name: nombre
         label: Nombre del asesor
@@ -114,8 +126,13 @@ content:
     path: src/_data/categorias.json
     list: true
     view:
-      fields: [nombre, grupo]
+      fields: [foto, nombre, grupo]
       primary: nombre
+      search: [nombre, slug, descripcion]
+      sort: [grupo, nombre]
+      default:
+        sort: grupo
+        order: asc
     fields:
       - name: nombre
         label: Nombre de la línea
