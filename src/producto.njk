@@ -5,6 +5,7 @@ pagination:
   size: 1
   alias: p
 permalink: "/producto/{{ p.sku | lower }}/"
+sinFlotante: true
 eleventyComputed:
   titulo: "{{ p.nombre }} · {{ negocio.nombre }}"
   descripcion: "{{ p.descripcion or p.nombre }} Fabricación bajo pedido en Medellín, pago contra entrega."
@@ -97,26 +98,32 @@ eleventyComputed:
         </fieldset>
       </form>
 
-      <div class="previsualizacion">
-        <p class="rotulo">Lo que le llega al asesor</p>
-        <p data-wa-previo></p>
-      </div>
-
-      <a class="boton boton--whatsapp boton--ancho" href="#" data-wa data-wa-ficha
-         data-sku="{{ p.sku }}" data-nombre="{{ p.nombre }}" data-precio="{{ p.precio | pesos }}">
-        <img class="wa-logo" src="/img/whatsapp.svg" alt="" width="19" height="19" aria-hidden="true">
-        Pedir por WhatsApp
-      </a>
+      {# El pedido es la acción principal: deja juntar varios muebles y llega
+         al asesor con los datos de entrega ya puestos. WhatsApp queda al lado,
+         para quien solo quiere preguntar algo. #}
+      <button type="button" class="boton boton--marca boton--ancho boton--grande" data-agregar
+              data-sku="{{ p.sku }}" data-nombre="{{ p.nombre }}" data-precio="{{ p.precio }}"
+              data-foto="{{ p.fotos[0] if p.fotos.length else '' }}">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.4 4.3h2.4l2.3 10.6h9.3l2-7.1H7"></path><circle cx="9.6" cy="19.1" r="1.5"></circle><circle cx="16.9" cy="19.1" r="1.5"></circle></svg>
+        Añadir al pedido
+      </button>
 
       <div class="ficha__secundarios">
-        <button type="button" class="boton boton--linea" data-agregar
-                data-sku="{{ p.sku }}" data-nombre="{{ p.nombre }}" data-precio="{{ p.precio }}"
-                data-foto="{{ p.fotos[0] if p.fotos.length else '' }}">Añadir al pedido</button>
+        <a class="boton boton--linea boton--wa" href="#" data-wa data-wa-ficha
+           data-sku="{{ p.sku }}" data-nombre="{{ p.nombre }}" data-precio="{{ p.precio | pesos }}">
+          <img class="wa-logo" src="/img/whatsapp-verde.svg" alt="" width="18" height="18" aria-hidden="true">
+          Preguntar por WhatsApp
+        </a>
         <button type="button" class="boton boton--linea" data-compartir data-sku="{{ p.sku }}">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="17.5" cy="5.8" r="2.8"></circle><circle cx="6.5" cy="12" r="2.8"></circle><circle cx="17.5" cy="18.2" r="2.8"></circle><path d="M9 10.7l6-3.5"></path><path d="M9 13.3l6 3.5"></path></svg>
           Compartir
         </button>
       </div>
+
+      <details class="previsualizacion">
+        <summary class="rotulo">Ver lo que le llega al asesor</summary>
+        <p data-wa-previo></p>
+      </details>
       <p class="nota">Al compartir, el enlace sale con el código del asesor incluido. {{ negocio.avisoWhatsapp }}</p>
 
       <div class="ficha__legal">

@@ -51,10 +51,10 @@
 
 {% include "pie.njk" %}
 
-{# En la página del pedido este botón no va: manda un mensaje suelto sin
-   los datos de entrega y se salta el formulario obligatorio. Allá el
-   único camino es "Enviar el pedido por WhatsApp", que sí valida. #}
-{% if page.url != "/pedido/" %}
+{# No va donde ya hay un botón de WhatsApp a la vista: en la ficha sería el
+   mismo botón dos veces, y en la página del pedido se saltaría el
+   formulario obligatorio. Cada plantilla lo pide con sinFlotante. #}
+{% if not sinFlotante %}
 <a class="wa-flotante" href="#" data-wa data-wa-texto="¡Hola {{ negocio.nombre }}! Quiero hacer un pedido:" aria-label="Pedir por WhatsApp">
   {# Logo oficial de WhatsApp, descargado del Brand Resource Center de Meta.
      No se modifica ni se recolorea: va blanco sobre el verde del botón. #}

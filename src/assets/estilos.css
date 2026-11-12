@@ -527,7 +527,12 @@ body.sin-desplazar { overflow: hidden; }
 }
 .ficha__datos { flex: 1 1 400px; min-width: 0; }
 .ficha__precio { font-family: var(--display); font-size: 1.8rem; font-weight: 600; margin-bottom: 1.2rem; }
-.ficha__secundarios { display: flex; flex-wrap: wrap; gap: 10px; margin: 10px 0; }
+.ficha__secundarios { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0; }
+/* WhatsApp en segundo plano: el mismo verde de la marca, pero en el borde y
+   en la letra, no rellenando el botón. Sigue siendo reconocible sin competir
+   con "Añadir al pedido". */
+.boton--wa { border-color: var(--verde); color: var(--verde); }
+.boton--wa:hover { background: rgba(37, 110, 80, 0.06); }
 .ficha__secundarios .boton { flex: 1 1 170px; }
 .ficha__legal { border-top: 1px solid var(--linea); padding-top: 20px; margin-top: 24px; }
 .ficha__legal .parrafo { font-size: 0.85rem; }
@@ -537,6 +542,11 @@ body.sin-desplazar { overflow: hidden; }
 .opciones legend { padding: 0; }
 .previsualizacion { background: var(--crema); border: 1px solid var(--linea); padding: 16px 18px; margin-bottom: 1.2rem; }
 .previsualizacion p:last-child { margin: 0; font-size: 0.85rem; line-height: 1.7; color: var(--tinta-suave); white-space: pre-line; }
+/* Plegada por defecto: es información que tranquiliza cuando se busca, no
+   algo que deba robarle atención al botón principal. */
+.previsualizacion > summary { cursor: pointer; margin: 0; }
+.previsualizacion > summary::marker { color: var(--oro); }
+.previsualizacion[open] > summary { margin-bottom: 10px; }
 .previsualizacion--oscura { background: #251D20; border-color: #3A2E33; }
 .previsualizacion--oscura p:last-child { color: #F0E8EA; }
 

@@ -240,7 +240,13 @@ const ctxCel = await navegador.newContext({ ...devices["iPhone 13"] });
     return antes !== despues ? true : "el texto no cambió al elegir otro color";
   });
 
-  await revisar("WhatsApp", "El botón flotante escribe al mismo asesor", async () => {
+  await revisar("WhatsApp", "En la ficha no hay botón flotante duplicado", async () => {
+    const n = await p.evaluate(() => document.querySelectorAll(".wa-flotante").length);
+    return n === 0 ? true : "aparece el mismo botón dos veces en la misma pantalla";
+  });
+
+  await revisar("WhatsApp", "El botón flotante del catálogo escribe al mismo asesor", async () => {
+    await nav(p, "/catalogo/");
     await interceptarWA(p);
     await p.click(".wa-flotante");
     const w = await leerWA(p);
@@ -328,6 +334,23 @@ const ctxCel = await navegador.newContext({ ...devices["iPhone 13"] });
       return v ? !v.hidden && v.offsetParent !== null : false;
     });
     return vacio ? true : "no apareció el aviso de pedido vacío";
+  });
+
+  await revisar("Pedido", "El botón principal de la ficha es Añadir al pedido, no WhatsApp", async () => {
+    await nav(p, `/producto/${productos[0].sku.toLowerCase()}/`);
+    const d = await p.evaluate(() => {
+      const ped = document.querySelector("[data-agregar]");
+      const wa = document.querySelector("[data-wa-ficha]");
+      if (!ped || !wa) return null;
+      const a = ped.getBoundingClientRect(), b = wa.getBoundingClientRect();
+      return { pedidoArriba: a.top < b.top, pedidoMasAncho: a.width > b.width,
+               pedidoRelleno: getComputedStyle(ped).backgroundColor,
+               waRelleno: getComputedStyle(wa).backgroundColor };
+    });
+    if (!d) return "falta alguno de los dos botones";
+    if (!d.pedidoArriba) return "WhatsApp sigue apareciendo primero";
+    if (!d.pedidoMasAncho) return "los dos tienen el mismo peso visual";
+    return true;
   });
 
   await revisar("Pedido", "No hay botón flotante de WhatsApp en la página del pedido", async () => {
