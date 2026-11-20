@@ -36,7 +36,7 @@
 
 <div class="contenedor">
   <h1 class="listado__titulo">{{ c.nombre if c else "Todo el catálogo" }}</h1>
-  <p class="listado__entrada">{{ c.descripcion if c else "Los " + (productos.length | string) + " productos de Luz Mágica. Filtra por precio o por luz LED para encontrar el tuyo." }}</p>
+  <p class="listado__entrada">{{ c.descripcion if c else (("El único producto de " + negocio.nombre) if productos.length == 1 else ("Los " + (productos.length | string) + " productos de " + negocio.nombre)) + ". Filtra por precio o por luz LED para encontrar el tuyo." }}</p>
 </div>
 
 <div class="contenedor listado">

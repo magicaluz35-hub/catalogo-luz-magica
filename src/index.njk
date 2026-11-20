@@ -79,7 +79,7 @@ permalink: /
         <p class="rotulo">El catálogo</p>
         <h2>Compra por línea</h2>
       </div>
-      <a class="enlace-subrayado" href="/catalogo/">Ver los {{ productos.length }} productos</a>
+      <a class="enlace-subrayado" href="/catalogo/">{{ "Ver el producto" if productos.length == 1 else "Ver los " + (productos.length | string) + " productos" }}</a>
     </header>
     {% for clave, g in grupos %}
     {% set delGrupo = categorias | deGrupo(clave) %}
@@ -87,7 +87,7 @@ permalink: /
     <div class="grupo">
       <div class="grupo__cabeza">
         <h3 class="grupo__nombre">{{ g.nombre }}</h3>
-        <span class="grupo__cuenta">{{ delGrupo | length }} líneas · {{ enGrupo }} productos</span>
+        <span class="grupo__cuenta">{{ delGrupo | length }} línea{{ "s" if delGrupo | length != 1 }} · {{ enGrupo }} producto{{ "s" if enGrupo != 1 }}</span>
       </div>
       <p class="grupo__entrada">{{ g.descripcion }}</p>
       <div class="rejilla rejilla--{{ delGrupo | length if delGrupo | length < 5 else 3 }}">
@@ -176,7 +176,7 @@ permalink: /
 <section class="seccion" id="asesores">
   <div class="contenedor dos-columnas">
     <div>
-      <p class="rotulo">{{ asesores | activos | length }} líneas autorizadas</p>
+      <p class="rotulo">{% set nAs = asesores | activos | length %}{{ nAs }} línea{{ "s" if nAs != 1 }} autorizada{{ "s" if nAs != 1 }}</p>
       <h2>Te atiende una persona</h2>
       <p class="parrafo">Cada asesor tiene su propio enlace del catálogo. Quien te lo haya enviado te acompaña en todo el recorrido: el catálogo lo recuerda y todos los botones de WhatsApp le escriben a esa persona.</p>
       <a class="boton boton--linea" href="/asesores/">Ver los asesores autorizados</a>

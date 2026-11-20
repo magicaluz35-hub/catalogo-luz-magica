@@ -36,6 +36,23 @@ que en celular nada se desborde ni quede un botón más chico que el dedo.
 el mensaje, que una foto se vea bonita, que un precio esté al día, ni que el
 mapa lleve a la dirección correcta. Eso hay que probarlo a mano.
 
+## Revisar la ortografía
+
+Aparte de las 74 pruebas, hay un revisor de ortografía que lee todo el texto que ve
+el visitante: los nombres y descripciones de los 115 productos, los datos del negocio,
+las plantillas y los mensajes del JavaScript.
+
+Requirement already satisfied: spylls in /usr/local/lib/python3.13/site-packages (0.1.7)
+492 fragmentos revisados · 0 palabras marcadas
+
+Usa el diccionario de español que está en `pruebas/dicc/`. Marca solo palabras que no
+reconoce. Las propias del negocio —enchape, WPC, Carvalo, Solterón, gamuza— están en la
+lista `PROPIAS` dentro del script: si entra un producto con una palabra nueva legítima,
+agrégala ahí para que el revisor vuelva a dar cero.
+
+Ojo: un diccionario encuentra palabras mal escritas, pero no tildes que cambian el
+sentido ("esta" por "está") ni concordancias. Eso sigue necesitando ojo humano.
+
 ## Si una prueba falla
 
 Que una prueba falle no siempre significa que el sitio esté roto: puede estar
