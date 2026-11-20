@@ -42,8 +42,10 @@ Aparte de las 74 pruebas, hay un revisor de ortografía que lee todo el texto qu
 el visitante: los nombres y descripciones de los 115 productos, los datos del negocio,
 las plantillas y los mensajes del JavaScript.
 
-Requirement already satisfied: spylls in /usr/local/lib/python3.13/site-packages (0.1.7)
-492 fragmentos revisados · 0 palabras marcadas
+```
+pip install spylls
+python3 pruebas/ortografia.py
+```
 
 Usa el diccionario de español que está en `pruebas/dicc/`. Marca solo palabras que no
 reconoce. Las propias del negocio —enchape, WPC, Carvalo, Solterón, gamuza— están en la
