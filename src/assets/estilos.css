@@ -229,6 +229,10 @@ a, button, label, summary {
 
 /* Franja de marca: una sola frase, centrada y con aire, entre la portada
    y el catálogo. Sin fondo de color para que no compita con la foto. */
+/* La foto de portada se recorta por abajo, no por el centro: el letrero de
+   Luz Mágica va pegado al borde de arriba y el recorte centrado se lo comía. */
+.hero__foto img { object-position: top; }
+
 .marca-frase {
   border-top: 1px solid var(--rosa-linea);
   border-bottom: 1px solid var(--rosa-linea);
