@@ -863,14 +863,15 @@ body.sin-desplazar { overflow: hidden; }
 
 
 /* ==========================================================================
-   Presentación de marca — el letrero que se enciende
+   Presentación de marca — el espejo que se enciende
    --------------------------------------------------------------------------
    El logo de Luz Mágica es un neón dentro de un marco de bombillos. Aquí se
-   dibuja ese marco, se encienden los bombillos en círculo, aparece el nombre
-   y el telón sube para destapar la página. Dura 3,3 segundos.
+   dibuja ese marco —doble línea, con las luces en la banda del medio, como un
+   espejo de tocador—, se encienden los bombillos en círculo, aparece el
+   nombre y el telón sube para destapar la página. Dura 3,3 segundos.
 
-   Para ajustar los tiempos no hay que tocar los fotogramas: las cuatro
-   variables de abajo mandan sobre toda la secuencia.
+   Para ajustar no hay que tocar los fotogramas: mandan las variables de
+   abajo. --banda es el ancho de la franja de luces.
 
    Importante: el telón sube con una animación de CSS, no con JavaScript. Si
    el JavaScript falla, la página igual queda destapada.
@@ -885,9 +886,10 @@ body.sin-desplazar { overflow: hidden; }
 }
 
 .con-intro .intro {
-  --enciende: 820ms;   /* cuándo se prende el primer bombillo */
-  --paso: 28ms;        /* cuánto espera cada bombillo al anterior */
-  --espera: 2600ms;    /* cuándo empieza a subir el telón */
+  --banda: clamp(17px, 4.6vw, 26px);  /* ancho de la franja de luces */
+  --enciende: 880ms;   /* cuándo se prende el primer bombillo */
+  --paso: 24ms;        /* cuánto espera cada bombillo al anterior */
+  --espera: 2660ms;    /* cuándo empieza a subir el telón */
   --telon: 680ms;      /* cuánto tarda en subir */
 
   position: fixed;
@@ -922,32 +924,52 @@ body.sin-desplazar { overflow: hidden; }
              calc(var(--espera) - 180ms) forwards;
 }
 
-/* El marco: cuatro líneas que crecen una tras otra, girando a favor del
-   reloj. Cada una arranca donde terminó la anterior, así que se lee como un
-   solo trazo continuo. */
+/* El cristal del espejo: un brillo diagonal muy bajito, lo justo para que el
+   centro no se lea como un hueco negro. */
+.intro__cristal {
+  position: absolute;
+  inset: var(--banda);
+  opacity: 0;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0) 58%);
+  animation: intro-aparece 900ms ease-out 620ms forwards;
+}
+
+/* Los dos marcos. El de afuera pega con el borde del letrero; el de adentro
+   va metido el ancho de la banda, y entremedio quedan los bombillos. */
+.intro__borde { position: absolute; --retraso: 0ms; }
+.intro__borde--fuera  { inset: 0; }
+.intro__borde--dentro { inset: var(--banda); --retraso: 90ms; opacity: 0.82; }
+
+/* Cada línea crece donde terminó la anterior, así el marco se lee como un
+   solo trazo continuo que gira a favor del reloj. */
 .intro__linea { position: absolute; background: var(--oro-claro); opacity: 0.78; }
 .intro__linea--arriba, .intro__linea--abajo { left: 0; right: 0; height: 1px; transform: scaleX(0); }
 .intro__linea--izq, .intro__linea--der { top: 0; bottom: 0; width: 1px; transform: scaleY(0); }
 
 .intro__linea--arriba {
   top: 0; transform-origin: left center;
-  animation: intro-ancho 230ms ease-out 150ms forwards;
+  animation: intro-ancho 190ms ease-out calc(140ms + var(--retraso)) forwards;
 }
 .intro__linea--der {
   right: 0; transform-origin: center top;
-  animation: intro-alto 160ms ease-out 380ms forwards;
+  animation: intro-alto 140ms ease-out calc(330ms + var(--retraso)) forwards;
 }
 .intro__linea--abajo {
   bottom: 0; transform-origin: right center;
-  animation: intro-ancho 230ms ease-out 540ms forwards;
+  animation: intro-ancho 190ms ease-out calc(470ms + var(--retraso)) forwards;
 }
 .intro__linea--izq {
   left: 0; transform-origin: center bottom;
-  animation: intro-alto 160ms ease-out 770ms forwards;
+  animation: intro-alto 140ms ease-out calc(660ms + var(--retraso)) forwards;
 }
 
-/* Bombillos: puntos de luz, no imágenes. El resplandor es fijo y lo único
-   que se anima es la opacidad y el tamaño, que es lo barato de animar. */
+/* Los bombillos van en su propia caja, metida media banda hacia adentro: así
+   quedan centrados entre las dos líneas y cada uno conserva su posición en
+   porcentaje sin tener que recalcularla. */
+.intro__bombillos { position: absolute; inset: calc(var(--banda) / 2); }
+
+/* El resplandor es fijo y lo único que se anima es la opacidad y el tamaño,
+   que es lo barato de animar. */
 .intro__bombillo {
   position: absolute;
   width: 7px;
@@ -966,19 +988,19 @@ body.sin-desplazar { overflow: hidden; }
   display: grid;
   justify-items: center;
   gap: 0.7rem;
-  padding: 0 9%;
+  padding: 0 7%;
   text-align: center;
 }
 
 .intro__nombre {
   font-family: var(--display);
   font-weight: var(--display-peso);
-  font-size: clamp(2rem, 8vw, 3.3rem);
+  font-size: clamp(1.85rem, 7.4vw, 3.1rem);
   line-height: 1;
   color: #FFF5F8;
   text-shadow: 0 0 20px rgba(255, 138, 180, 0.45), 0 0 52px rgba(195, 44, 102, 0.38);
   opacity: 0;
-  animation: intro-nombre 700ms cubic-bezier(0.22, 1, 0.36, 1) 1060ms forwards;
+  animation: intro-nombre 700ms cubic-bezier(0.22, 1, 0.36, 1) 1080ms forwards;
 }
 
 .intro__lema {
@@ -989,7 +1011,7 @@ body.sin-desplazar { overflow: hidden; }
      este margen negativo se lo quita. */
   margin-right: -0.34em;
   opacity: 0;
-  animation: intro-lema 740ms cubic-bezier(0.22, 1, 0.36, 1) 1360ms forwards;
+  animation: intro-lema 740ms cubic-bezier(0.22, 1, 0.36, 1) 1380ms forwards;
 }
 
 /* Saltarla: cualquier toque, tecla o intento de bajar la apaga de una.
@@ -1025,7 +1047,7 @@ body.sin-desplazar { overflow: hidden; }
 }
 
 /* En pantallas bajas y acostadas el letrero no cabe cómodo: se angosta y se
-   vuelve más cuadrado. */
+   vuelve más alargado. */
 @media (max-height: 460px) {
   .con-intro .intro__letrero { width: min(58vw, 380px); aspect-ratio: 1.9; }
 }

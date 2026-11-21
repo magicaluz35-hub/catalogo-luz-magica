@@ -1,9 +1,13 @@
-{# Presentación de marca — el letrero que se enciende.
+{# Presentación de marca — el espejo que se enciende.
 
    La identidad de Luz Mágica es un letrero de neón dentro de un marco de
-   bombillos: eso mismo se dibuja aquí y se enciende, en vez de poner el
-   logo quieto sobre un fondo. Dura 3,3 segundos y se puede saltar tocando
-   la pantalla.
+   bombillos: eso mismo se dibuja aquí y se enciende, en vez de poner el logo
+   quieto sobre un fondo. Dura 3,3 segundos y se puede saltar tocando la
+   pantalla.
+
+   El marco va de doble línea, con los bombillos en la mitad de la banda,
+   igual que un espejo de tocador de verdad: el borde de afuera, el borde del
+   cristal, y la fila de luces entre los dos.
 
    Tres reglas de seguridad, porque esto tapa el sitio entero:
    1. Solo se muestra si base.njk le puso la clase "con-intro" al <html>.
@@ -13,42 +17,57 @@
    3. Los bombillos no son imágenes: son puntos de CSS. No agregan ni un
       archivo que descargar.
 
-   Para cambiar la duración: la variable --intro-total en estilos.css. #}
+   Para cambiar la duración: las variables de .con-intro .intro, en
+   estilos.css. Para cambiar el ancho de la banda de luces: --banda. #}
 
 <div class="intro" data-intro aria-hidden="true">
   <div class="intro__halo" aria-hidden="true"></div>
 
   <div class="intro__letrero">
-    {# El marco se dibuja solo, como un trazo a mano: arriba hacia la derecha,
-       baja por la derecha, vuelve por abajo y sube por la izquierda. El mismo
-       recorrido que después hacen los bombillos al encenderse.
+    {# El cristal: un brillo apenas insinuado, para que el centro se lea como
+       un espejo y no como un hueco. #}
+    <span class="intro__cristal"></span>
 
-       Son cuatro líneas que crecen, no un dibujo de SVG. Se probó con SVG y
-       el trazo salía a pedazos: el truco de medir el contorno en porcentaje
+    {# Los dos marcos se dibujan como un trazo a mano: arriba hacia la
+       derecha, baja por la derecha, vuelve por abajo y sube por la izquierda.
+       El de adentro sale 90 ms después, así se leen como dos líneas y no como
+       una sola gruesa.
+
+       Son líneas que crecen, no un dibujo de SVG. Se probó con SVG y el trazo
+       salía a pedazos: el truco de medir el contorno en porcentaje
        (pathLength) deja de funcionar cuando el marco se estira a una forma
-       que no es cuadrada. Cuatro líneas que crecen se ven igual, se controlan
+       que no es cuadrada. Las líneas que crecen se ven igual, se controlan
        mejor y solo mueven escalas, que es lo más barato que puede animar un
        teléfono. #}
-    <span class="intro__linea intro__linea--arriba"></span>
-    <span class="intro__linea intro__linea--der"></span>
-    <span class="intro__linea intro__linea--abajo"></span>
-    <span class="intro__linea intro__linea--izq"></span>
+    {% for borde in ["fuera", "dentro"] %}
+    <span class="intro__borde intro__borde--{{ borde }}">
+      <span class="intro__linea intro__linea--arriba"></span>
+      <span class="intro__linea intro__linea--der"></span>
+      <span class="intro__linea intro__linea--abajo"></span>
+      <span class="intro__linea intro__linea--izq"></span>
+    </span>
+    {% endfor %}
 
-    {# Los bombillos se encienden en círculo: arriba de izquierda a derecha,
-       baja por la derecha, vuelve por abajo y sube por la izquierda. El
+    {# Los bombillos viven en su propia caja, metida justo media banda hacia
+       adentro: así quedan centrados entre las dos líneas sin tener que
+       recalcular cada posición.
+
+       Se encienden en círculo, siguiendo el mismo recorrido del trazo. El
        número --n es el turno de cada uno. #}
-    {% for i in range(0, 7) %}
-    <span class="intro__bombillo" style="left:{{ (i / 6 * 100) | round(2) }}%;top:0%;--n:{{ i }}"></span>
-    {% endfor %}
-    {% for j in range(1, 3) %}
-    <span class="intro__bombillo" style="left:100%;top:{{ (j / 3 * 100) | round(2) }}%;--n:{{ 6 + j }}"></span>
-    {% endfor %}
-    {% for i in range(0, 7) %}
-    <span class="intro__bombillo" style="left:{{ ((6 - i) / 6 * 100) | round(2) }}%;top:100%;--n:{{ 9 + i }}"></span>
-    {% endfor %}
-    {% for j in range(1, 3) %}
-    <span class="intro__bombillo" style="left:0%;top:{{ ((3 - j) / 3 * 100) | round(2) }}%;--n:{{ 15 + j }}"></span>
-    {% endfor %}
+    <span class="intro__bombillos">
+      {% for i in range(0, 7) %}
+      <span class="intro__bombillo" style="left:{{ (i / 6 * 100) | round(2) }}%;top:0%;--n:{{ i }}"></span>
+      {% endfor %}
+      {% for j in range(1, 3) %}
+      <span class="intro__bombillo" style="left:100%;top:{{ (j / 3 * 100) | round(2) }}%;--n:{{ 6 + j }}"></span>
+      {% endfor %}
+      {% for i in range(0, 7) %}
+      <span class="intro__bombillo" style="left:{{ ((6 - i) / 6 * 100) | round(2) }}%;top:100%;--n:{{ 9 + i }}"></span>
+      {% endfor %}
+      {% for j in range(1, 3) %}
+      <span class="intro__bombillo" style="left:0%;top:{{ ((3 - j) / 3 * 100) | round(2) }}%;--n:{{ 15 + j }}"></span>
+      {% endfor %}
+    </span>
 
     <div class="intro__texto">
       <span class="intro__nombre">{{ negocio.nombre }}</span>

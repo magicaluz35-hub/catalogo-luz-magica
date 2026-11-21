@@ -133,8 +133,9 @@ discusión, la prueba está en el chat.
 ## La presentación de marca
 
 Es el letrero de Luz Mágica que se enciende a pantalla completa cuando alguien
-entra al catálogo: se dibuja el marco, se prenden los bombillos uno por uno,
-aparece el nombre y el telón sube para mostrar la página.
+entra al catálogo: se dibuja el marco de doble línea, se prenden los bombillos
+uno por uno en la franja del medio —como un espejo de tocador—, aparece el
+nombre y el telón sube para mostrar la página.
 
 Cómo se porta:
 

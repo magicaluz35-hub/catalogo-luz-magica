@@ -802,7 +802,7 @@ await saltarIntro(ctxCel);
 // hay que probar no es que se vea bonita: es que SIEMPRE se quite.
 {
   const AREA = "Presentación de marca";
-  const DURA = 3280;   // --espera (2600) + --telon (680)
+  const DURA = 3340;   // --espera (2660) + --telon (680)
 
   // Navegador sin estrenar: es la primera vez que este visitante entra.
   const ctx = await navegador.newContext({ viewport: { width: 1280, height: 900 } });

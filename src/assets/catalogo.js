@@ -911,7 +911,7 @@
     }
 
     // Debe coincidir con --espera + --telon de la hoja de estilos.
-    var ESPERA = 2600, TELON = 680, MARGEN = 120;
+    var ESPERA = 2660, TELON = 680, MARGEN = 120;
     var sucesos = ["pointerdown", "keydown", "wheel", "touchmove"];
     var terminada = false;
 
