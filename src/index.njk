@@ -4,6 +4,7 @@ permalink: /
 ---
 {% from "tarjeta.njk" import producto %}
 {% from "iconos.njk" import atajo as iconoAtajo %}
+{% from "ilustraciones.njk" import ilustracion %}
 {% from "iconos.njk" import pilar as iconoPilar %}
 {% set destacados = productos | selectattr("destacado") | list %}
 {% set nuevos = productos | selectattr("nuevo") | list %}
@@ -65,9 +66,12 @@ permalink: /
 </section>
 {% endif %}
 
-<section class="seccion">
+{# "Encuentra el tuyo". Cada grupo lleva una mancha de color detrás del
+   ícono y un dibujo plano en la esquina. Los dibujos están hechos con
+   figuras, no son imágenes: no agregan ningún archivo que descargar. #}
+<section class="seccion seccion--atajos">
   <div class="contenedor">
-    <header class="seccion__cabeza">
+    <header class="seccion__cabeza seccion__cabeza--centrada">
       <div>
         <p class="rotulo">¿No sabes por dónde empezar?</p>
         <h2>Encuentra el tuyo</h2>
@@ -75,7 +79,8 @@ permalink: /
     </header>
     <div class="atajos">
       {% for a in negocio.atajos %}
-      <div class="atajo">
+      <div class="atajo atajo--{{ a.icono or 'brujula' }}">
+        {{ ilustracion(a.icono) }}
         <div class="atajo__cabeza">
           <span class="atajo__icono">{{ iconoAtajo(a.icono) }}</span>
           <h3 class="atajo__titulo">{{ a.titulo }}</h3>

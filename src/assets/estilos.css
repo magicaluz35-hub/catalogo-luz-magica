@@ -434,52 +434,96 @@ a, button, label, summary {
 /* Encuentra el tuyo: tres tarjetas en blanco, cada opción como un
    renglón con su línea divisoria. Se lee como el índice de un catálogo
    impreso y no quedan huecos cuando un grupo tiene menos opciones. */
-/* Atajos de "Encuentra el tuyo". Tarjetas limpias, sin adornos.
-   De los intentos anteriores se conservan dos cosas que sí eran arreglos y
-   no decoración: las tarjetas quedan del mismo alto aunque un grupo tenga
-   una opción más que otro, y la lista reparte sus filas para llenarlas. */
+/* ------------------------------------------------------------------
+   "Encuentra el tuyo"
+   Tarjetas crema sobre el blanco de la página: el color está en la tarjeta,
+   no en una franja que parta la página en dos. Cada grupo lleva una mancha
+   orgánica detrás del ícono y un dibujo plano en la esquina.
+
+   Los dibujos están hechos con figuras dentro del HTML, no son imágenes:
+   no agregan ningún archivo que descargar y se ven nítidos en cualquier
+   pantalla. Viven detrás del texto, así que el texto manda.
+   ------------------------------------------------------------------ */
+
+.seccion--atajos .seccion__cabeza--centrada { justify-content: center; text-align: center; }
+.seccion--atajos .rotulo--centrado { justify-content: center; }
+
 .atajos {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
+  gap: 20px;
   align-items: stretch;
 }
+
 .atajo {
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  background: var(--papel);
-  border: 1px solid var(--rosa-linea);
-  border-radius: 22px;
-  padding: 24px 24px 12px;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  background: #F9F3EE;
+  border-radius: 20px;
+  padding: 26px 26px 14px;
+  transition: transform 0.22s, box-shadow 0.22s;
 }
-.atajo:hover { border-color: var(--linea-fuerte); box-shadow: 0 12px 32px rgba(26, 20, 22, 0.07); }
-.atajo__cabeza { display: flex; align-items: center; gap: 12px; padding-bottom: 16px; }
+.atajo:hover { transform: translateY(-3px); box-shadow: 0 16px 36px -18px rgba(122, 84, 58, 0.45); }
+
+/* El dibujo: pegado a la esquina de abajo a la derecha y por detrás de
+   todo. Si se le sube la opacidad se empieza a pelear con el texto. */
+.atajo__dibujo {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 50%;
+  height: auto;
+  opacity: 0.88;
+  pointer-events: none;
+}
+
+.atajo__cabeza { position: relative; display: flex; align-items: center; gap: 13px; padding-bottom: 18px; }
+
+/* La mancha: un círculo deformado con los cuatro radios distintos. Cada
+   grupo lleva el suyo, de la familia cálida de la marca. */
 .atajo__icono {
-  width: 42px; height: 42px; flex: none;
+  width: 54px; height: 50px; flex: none;
   display: grid; place-items: center;
-  border-radius: 50%;
-  background: var(--rosa-papel);
-  color: var(--oro);
+  /* Los cuatro radios bien distintos entre sí: con valores cerca de 50%
+     vuelve a salir un círculo y se pierde la forma de mancha. */
+  border-radius: 64% 36% 42% 58% / 40% 58% 42% 60%;
+  background: var(--oro);
+  color: #fff;
 }
+.atajo--espacio .atajo__icono { background: #A9625F; }
+.atajo--presupuesto .atajo__icono {
+  background: #B8616B;
+  border-radius: 38% 62% 58% 42% / 56% 38% 62% 44%;
+}
+.atajo--ocasion .atajo__icono {
+  background: #C9A07C;
+  border-radius: 56% 44% 34% 66% / 62% 48% 52% 38%;
+}
+
 .atajo__titulo {
   font-family: var(--display);
-  font-size: 1.18rem;
+  font-size: 1.2rem;
   font-weight: var(--display-peso);
   letter-spacing: 0;
   text-transform: none;
   color: var(--tinta);
   margin: 0;
 }
+
 .atajo__lista {
+  position: relative;
   list-style: none; margin: 0; padding: 0;
-  border-top: 1px solid var(--rosa-linea);
+  border-top: 1px solid rgba(166, 124, 110, 0.22);
+  /* Ocupa lo que sobre y reparte sus filas: las tarjetas quedan parejas
+     aunque un grupo tenga una opción más que otro. */
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 .atajo__lista li { display: flex; flex: 1; }
-.atajo__lista li + li { border-top: 1px solid var(--rosa-linea); }
+.atajo__lista li + li { border-top: 1px solid rgba(166, 124, 110, 0.18); }
 .atajo__opcion {
   display: flex; align-items: center; justify-content: space-between; gap: 14px;
   width: 100%;
@@ -488,13 +532,14 @@ a, button, label, summary {
   font-size: 0.95rem; font-weight: 500; line-height: 1.35;
   transition: color 0.18s;
 }
-.atajo__flecha { flex: none; color: var(--oro); transition: transform 0.18s; }
+.atajo__flecha { flex: none; color: #A9625F; transition: transform 0.18s; }
 .atajo__opcion:hover,
 .atajo__opcion:focus-visible { color: var(--rosa-oscuro); }
 .atajo__opcion:hover .atajo__flecha,
 .atajo__opcion:focus-visible .atajo__flecha { transform: translateX(4px); }
 @media (prefers-reduced-motion: reduce) {
   .atajo, .atajo__opcion, .atajo__flecha { transition: none; }
+  .atajo:hover { transform: none; }
 }
 .fichas { display: flex; flex-wrap: wrap; gap: 8px; }
 .ficha {
