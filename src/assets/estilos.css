@@ -308,7 +308,11 @@ a, button, label, summary {
   /* El texto se apoya abajo: arriba, en la foto, está el letrero del local y
      se pisaban. */
   align-items: flex-end;
-  min-height: clamp(560px, 80vh, 800px);
+  /* El tope alto importa: la caja del banner es ancho x alto, y entre más
+     baja sea la caja más alargada queda y más alto le sobra a la foto, que
+     el navegador recorta. Subir el tope de 800 a 900 le devuelve parte del
+     alto a la foto en pantallas grandes sin volver la portada desmedida. */
+  min-height: clamp(560px, 80vh, 900px);
 }
 .hero__texto { flex: 1 1 100%; min-width: 0; padding: 80px 0 62px; color: #fff; }
 .hero__caja { width: 100%; max-width: 34rem; }
