@@ -227,6 +227,33 @@ a, button, label, summary {
 .cifras dt { font-family: var(--display); font-size: 1.8rem; font-weight: 600; line-height: 1; }
 .cifras dd { margin: 6px 0 0; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gris); }
 
+/* Franja de marca: una sola frase, centrada y con aire, entre la portada
+   y el catálogo. Sin fondo de color para que no compita con la foto. */
+.marca-frase {
+  border-top: 1px solid var(--rosa-linea);
+  border-bottom: 1px solid var(--rosa-linea);
+  padding: 54px 0;
+  text-align: center;
+}
+.marca-frase__texto {
+  font-family: var(--display);
+  font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+  line-height: 1.35;
+  color: var(--tinta);
+  max-width: 34ch;
+  margin: 0 auto;
+  text-wrap: balance;
+}
+.marca-frase__pie {
+  margin: 18px auto 0;
+  max-width: 30ch;
+  text-wrap: balance;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--oro);
+}
+
 /* Encuentra el tuyo: tres tarjetas en blanco, cada opción como un
    renglón con su línea divisoria. Se lee como el índice de un catálogo
    impreso y no quedan huecos cuando un grupo tiene menos opciones. */
@@ -790,6 +817,9 @@ body.sin-desplazar { overflow: hidden; }
   .pilar:nth-child(n + 3) { border-top: 1px solid var(--rosa-linea); }
   .pilar__titulo { font-size: 0.72rem; gap: 9px; letter-spacing: 0.12em; }
   .pilar p { padding-left: 0; font-size: 0.79rem; }
+  .marca-frase { padding: 38px 0; }
+  .marca-frase__texto { max-width: none; }
+  .marca-frase__pie { font-size: 0.72rem; letter-spacing: 0.12em; }
   .atajos { grid-template-columns: 1fr; gap: 14px; }
   .atajo { padding: 18px 18px 6px; border-radius: 18px; }
   .atajo__cabeza { padding-bottom: 12px; gap: 11px; }

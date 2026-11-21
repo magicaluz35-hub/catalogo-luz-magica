@@ -247,6 +247,14 @@ content:
         label: Logo (respaldo para compartir en WhatsApp)
         description: Solo se usa si no hay foto principal. Normalmente no hay que tocarlo.
         type: image
+      - name: fraseMarca
+        label: Frase de marca (franja del inicio)
+        description: Una sola frase sobre el negocio. Sale centrada entre la portada y el catálogo. Si la dejas vacía, la franja desaparece.
+        type: text
+      - name: trayectoria
+        label: Años en el mercado (línea bajo la frase)
+        description: Va en mayúsculas debajo de la frase de marca. Déjalo vacío si no quieres que salga.
+        type: string
       - name: redes
         label: Redes sociales
         type: object

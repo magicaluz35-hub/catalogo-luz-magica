@@ -19,8 +19,8 @@ permalink: /
         <a class="boton boton--linea boton--grande" href="/categoria/tocadores-120/">Ver tocadores</a>
       </div>
       <dl class="cifras">
+        <div><dt>7</dt><dd>Años en el mercado</dd></div>
         <div><dt>{{ productos.length }}</dt><dd>Productos</dd></div>
-        <div><dt>{{ categorias.length }}</dt><dd>Líneas</dd></div>
         <div><dt>10–15</dt><dd>Días hábiles</dd></div>
       </dl>
     </div>
@@ -40,6 +40,17 @@ permalink: /
     </div>
   </div>
 </section>
+
+{% if negocio.fraseMarca or negocio.trayectoria %}
+{# Franja de marca: lo que el negocio dice de sí mismo, entre la portada y
+   el catálogo. Si el dueño vacía los dos campos, la franja desaparece. #}
+<section class="marca-frase">
+  <div class="contenedor">
+    {% if negocio.fraseMarca %}<p class="marca-frase__texto">{{ negocio.fraseMarca }}</p>{% endif %}
+    {% if negocio.trayectoria %}<p class="marca-frase__pie">{{ negocio.trayectoria }}</p>{% endif %}
+  </div>
+</section>
+{% endif %}
 
 <section class="seccion">
   <div class="contenedor">

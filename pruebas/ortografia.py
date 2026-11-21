@@ -64,6 +64,8 @@ PROPIAS = {"magica","mágica","wpc","led","leds","rh","sku","whatsapp","aranjuez
  "pink","luxury","premium","harmony",
  # Telas y acabados del oficio
  "antifluido","antirasguño","combos","retroiluminado","gamuza","peluche","fronda",
+ # "al detal" es como se dice "al por menor" en Colombia
+ "detal",
  # Imperativos con pronombre pegado: correctos, el diccionario no los arma
  "imprímelo","guárdalo","verifícalo","visítanos","escríbenos","cuéntanos","úsalo"}
 
