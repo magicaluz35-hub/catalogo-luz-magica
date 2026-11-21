@@ -436,9 +436,10 @@ a, button, label, summary {
    impreso y no quedan huecos cuando un grupo tiene menos opciones. */
 /* ------------------------------------------------------------------
    "Encuentra el tuyo"
-   Tarjetas crema sobre el blanco de la página: el color está en la tarjeta,
-   no en una franja que parta la página en dos. Cada grupo lleva una mancha
-   orgánica detrás del ícono y un dibujo plano en la esquina.
+   Tarjetas en el rosa de la casa sobre el blanco de la página: el color está
+   en la tarjeta, no en una franja que parta la página en dos. Cada grupo
+   lleva una mancha orgánica detrás del ícono y un dibujo plano en la
+   esquina.
 
    Los dibujos están hechos con figuras dentro del HTML, no son imágenes:
    no agregan ningún archivo que descargar y se ven nítidos en cualquier
@@ -460,7 +461,9 @@ a, button, label, summary {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  background: #F9F3EE;
+  /* El mismo rosa de la franja de promesas, no un color nuevo: así la
+     sección pertenece a la página en vez de parecer pegada. */
+  background: var(--rosa-papel);
   border-radius: 20px;
   padding: 26px 26px 14px;
   transition: transform 0.22s, box-shadow 0.22s;
