@@ -357,10 +357,37 @@ a, button, label, summary {
 /* En pantalla angosta la portada se apila. La foto sigue entera y sigue
    dentro del mismo margen que el resto del sitio. */
 @media (max-width: 900px) {
-  .hero__fila { gap: 32px; }
-  .hero__texto { flex: 1 1 100%; padding: 46px 0 0; }
+  .hero__fila { gap: 0; }
+  /* En un teléfono la foto va PRIMERO. Abajo del texto quedaba fuera de la
+     primera pantalla, y es lo que de verdad convence: el visitante entraba a
+     un muro de letras. Va a sangre, de borde a borde, porque en una pantalla
+     angosta el margen la vuelve una estampita.
+
+     El margen negativo tiene que coincidir con el relleno del contenedor, o
+     aparece barra de desplazamiento horizontal. Son 20px aquí y 16px más
+     abajo de 720. */
+  .hero__foto {
+    order: -1;
+    flex: 1 1 100%;
+    margin: 0 -20px;
+    padding: 0;
+    justify-content: center;
+  }
+  /* Sin marco ni sombra: a sangre, el marco no tiene dónde apoyarse. */
+  .hero__marco { border: 0; background: none; box-shadow: none; }
+  /* Cuadrada y recortada por abajo: el neón está pegado al borde de arriba,
+     así que por arriba no se puede tocar. */
+  .hero__marco img {
+    aspect-ratio: 1 / 1;
+    height: auto;
+    /* En una tableta la foto cuadrada se vuelve enorme y empuja el titular
+       dos pantallas abajo. El tope la deja alta pero no desmedida. */
+    max-height: min(56vh, 520px);
+    object-fit: cover;
+    object-position: 50% 0%;
+  }
+  .hero__texto { flex: 1 1 100%; padding: 30px 0 0; }
   .hero__caja { max-width: none; }
-  .hero__foto { flex: 1 1 100%; padding: 0 0 50px; justify-content: center; }
   /* El marco corrido solo tiene sentido cuando hay dos columnas que coser. */
   .hero__foto::before { display: none; }
   .hero__luz {
@@ -370,8 +397,12 @@ a, button, label, summary {
   }
 }
 
+@media (max-width: 720px) {
+  .hero__foto { margin: 0 -16px; }
+}
+
 @media (max-width: 420px) {
-  .hero__texto { padding: 38px 0 0; }
+  .hero__texto { padding: 26px 0 0; }
   /* Las tres cifras, lo más cerca posible de una sola fila: partidas dejaban
      un renglón suelto. Se queda en flex —no en grid de tres columnas— para
      que en un teléfono angosto envuelvan en vez de desbordarse. */
