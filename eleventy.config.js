@@ -85,37 +85,6 @@ export default function (eleventyConfig) {
   // Corta una lista a los primeros N elementos
   eleventyConfig.addFilter("primeros", (lista, n) => (lista || []).slice(0, n));
 
-  // La foto que representa a un atajo de "Encuentra el tuyo".
-  // El dueño solo escribe el texto y el enlace; la foto sale sola del
-  // producto al que ese enlace lleva, así nunca hay que subir ni mantener
-  // una imagen aparte. Si el enlace cambia, la foto cambia con él.
-  eleventyConfig.addFilter("fotoAtajo", (productos, enlace) => {
-    const lista = productos || [];
-    const ruta = String(enlace || "");
-    let candidatos;
-
-    const categoria = ruta.match(/^\/categoria\/([^/]+)\//);
-    if (categoria) {
-      candidatos = lista.filter((p) => p.categoria === categoria[1]);
-    } else if (/precio=bajo/.test(ruta)) {
-      candidatos = lista.filter((p) => p.precio <= 500000);
-    } else if (/precio=medio/.test(ruta)) {
-      candidatos = lista.filter((p) => p.precio > 500000 && p.precio <= 1000000);
-    } else if (/precio=alto/.test(ruta)) {
-      candidatos = lista.filter((p) => p.precio > 1000000);
-    } else {
-      candidatos = lista;
-    }
-
-    // Solo sirven las fotos que de verdad están en el repositorio: una foto
-    // declarada pero no subida pinta el ícono de imagen rota.
-    const conFoto = candidatos.filter(
-      (p) => p.fotos && p.fotos[0] && fs.existsSync("." + p.fotos[0])
-    );
-    const elegido = conFoto.find((p) => p.destacado) || conFoto[0];
-    return elegido ? elegido.fotos[0] : "";
-  });
-
   return {
     dir: {
       input: "src",

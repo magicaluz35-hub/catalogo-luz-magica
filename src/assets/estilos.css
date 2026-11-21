@@ -434,80 +434,152 @@ a, button, label, summary {
 /* Encuentra el tuyo: tres tarjetas en blanco, cada opción como un
    renglón con su línea divisoria. Se lee como el índice de un catálogo
    impreso y no quedan huecos cuando un grupo tiene menos opciones. */
+/* ------------------------------------------------------------------
+   "Encuentra el tuyo" — tres espejos encendidos
+   Cada grupo es un espejo de tocador: marco doble y bombillos arriba y
+   abajo, que es el lenguaje del logo y de la presentación de marca.
+
+   Va sobre fondo oscuro a propósito. Una luz solo se lee como luz si hay
+   penumbra: los mismos bombillos sobre blanco son puntos grises. Es también
+   lo que le da respiro a la página, que viene de dos franjas claras
+   seguidas.
+
+   Los bombillos no son imágenes ni elementos sueltos: son una tira de
+   degradado radial que se repite. Cero archivos, cero nodos de más.
+   ------------------------------------------------------------------ */
+
+.seccion--espejos {
+  position: relative;
+  background: var(--tinta);
+  overflow: hidden;
+}
+/* El cuarto en penumbra: dos luces cálidas lejanas. */
+.seccion--espejos::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(52% 60% at 16% 4%, rgba(226, 184, 139, 0.13), transparent 66%),
+    radial-gradient(50% 62% at 90% 96%, rgba(226, 150, 170, 0.12), transparent 70%);
+}
+.seccion--espejos > .contenedor { position: relative; }
+.seccion--espejos .rotulo { color: var(--oro-claro); }
+.seccion--espejos h2 { color: #fff; }
+
 .atajos {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-  /* Estiradas, no "start": una tarjeta tiene dos opciones y las otras tres,
-     y sueltas la fila quedaba despareja, como si algo se hubiera roto. */
+  gap: 22px;
   align-items: stretch;
 }
+
 .atajo {
+  position: relative;
   display: flex;
   flex-direction: column;
-  background: var(--papel);
-  border: 1px solid var(--rosa-linea);
-  border-radius: 22px;
-  padding: 24px 24px 12px;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  padding: 34px 28px 18px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255, 244, 236, 0.075), rgba(255, 244, 236, 0.025));
+  transition: transform 0.22s, box-shadow 0.22s;
 }
-.atajo:hover { border-color: var(--rosa-linea); box-shadow: 0 12px 32px rgba(26, 20, 22, 0.07); }
-.atajo__cabeza { display: flex; align-items: center; gap: 12px; padding-bottom: 16px; }
+
+/* El marco doble del espejo. */
+.atajo__marco {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  border: 1px solid rgba(210, 156, 165, 0.34);
+  pointer-events: none;
+  transition: border-color 0.22s;
+}
+.atajo__marco::after {
+  content: "";
+  position: absolute;
+  inset: 11px;
+  border-radius: 9px;
+  border: 1px solid rgba(210, 156, 165, 0.17);
+}
+
+/* Los bombillos, sentados sobre la línea interior: una fila arriba y otra
+   abajo, como en el letrero. */
+.atajo__luces {
+  position: absolute;
+  inset: 11px;
+  pointer-events: none;
+}
+.atajo__luces::before,
+.atajo__luces::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  height: 9px;
+  /* closest-side es la clave: sin eso el círculo se estira al ancho de la
+     baldosa y los bombillos salen rectangulares. La fila va centrada para
+     que los dos extremos se corten igual. */
+  background: radial-gradient(circle closest-side, #FFF1DD 0 62%, rgba(255, 224, 186, 0.55) 82%, rgba(255, 224, 186, 0) 100%) 50% 50% / 30px 9px repeat-x;
+  filter: drop-shadow(0 0 6px rgba(255, 199, 134, 0.9));
+  opacity: 0.95;
+  transition: opacity 0.22s, filter 0.22s;
+}
+.atajo__luces::before { top: -4.5px; }
+.atajo__luces::after { bottom: -4.5px; }
+
+.atajo:hover { transform: translateY(-3px); box-shadow: 0 22px 46px rgba(0, 0, 0, 0.3); }
+.atajo:hover .atajo__marco { border-color: rgba(210, 156, 165, 0.6); }
+.atajo:hover .atajo__luces::before,
+.atajo:hover .atajo__luces::after {
+  opacity: 1;
+  filter: drop-shadow(0 0 7px rgba(255, 201, 140, 0.95));
+}
+
+.atajo__cabeza { display: flex; align-items: center; gap: 13px; padding-bottom: 18px; }
 .atajo__icono {
-  width: 42px; height: 42px; flex: none;
+  width: 44px; height: 44px; flex: none;
   display: grid; place-items: center;
   border-radius: 50%;
-  background: var(--rosa-papel);
-  color: var(--oro);
+  background: rgba(210, 156, 165, 0.14);
+  border: 1px solid rgba(210, 156, 165, 0.26);
+  color: var(--oro-claro);
 }
 .atajo__titulo {
   font-family: var(--display);
-  font-size: 1.18rem;
+  font-size: 1.22rem;
   font-weight: var(--display-peso);
   letter-spacing: 0;
   text-transform: none;
-  color: var(--tinta);
+  color: #fff;
   margin: 0;
 }
-/* La lista ocupa lo que sobre y reparte sus filas: así la tarjeta de dos
-   opciones llena su alto en vez de dejar un hueco al final. */
+
 .atajo__lista {
   list-style: none; margin: 0; padding: 0;
-  border-top: 1px solid var(--rosa-linea);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  /* Ocupa lo que sobre y reparte las filas: las tarjetas quedan parejas
+     aunque un grupo tenga una opción más que otro. */
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 .atajo__lista li { display: flex; flex: 1; }
-.atajo__lista li + li { border-top: 1px solid var(--rosa-linea); }
+.atajo__lista li + li { border-top: 1px solid rgba(255, 255, 255, 0.1); }
 .atajo__opcion {
-  display: flex; align-items: center; gap: 14px;
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
   width: 100%;
-  min-height: 54px; padding: 12px 2px;
-  color: var(--tinta); text-decoration: none;
-  font-size: 0.95rem; font-weight: 500; line-height: 1.35;
+  min-height: 58px; padding: 12px 2px;
+  color: rgba(255, 250, 251, 0.9); text-decoration: none;
+  font-size: 0.98rem; font-weight: 500; line-height: 1.35;
   transition: color 0.18s;
 }
-/* La cara de cada opción: la foto del producto al que lleva. Es lo que
-   convierte esta sección de un formulario en parte del catálogo. */
-.atajo__mini {
-  flex: none;
-  width: 52px; height: 65px;
-  border-radius: 4px;
-  overflow: hidden;
-  background: var(--rosa-papel);
-  box-shadow: 0 2px 8px rgba(122, 84, 58, 0.14);
-}
-.atajo__mini img { width: 100%; height: 100%; object-fit: cover; display: block; }
-/* El texto empuja la flecha al borde. */
-.atajo__opcion > span:not(.atajo__mini) { flex: 1; }
-.atajo__flecha { flex: none; color: var(--oro); transition: transform 0.18s; }
+.atajo__flecha { flex: none; color: var(--oro-claro); transition: transform 0.18s; }
 .atajo__opcion:hover,
-.atajo__opcion:focus-visible { color: var(--rosa-oscuro); }
+.atajo__opcion:focus-visible { color: #fff; }
 .atajo__opcion:hover .atajo__flecha,
 .atajo__opcion:focus-visible .atajo__flecha { transform: translateX(4px); }
 @media (prefers-reduced-motion: reduce) {
-  .atajo, .atajo__opcion, .atajo__flecha { transition: none; }
+  .atajo, .atajo__opcion, .atajo__flecha, .atajo__marco, .atajo__luces::before, .atajo__luces::after { transition: none; }
+  .atajo:hover { transform: none; }
 }
 .fichas { display: flex; flex-wrap: wrap; gap: 8px; }
 .ficha {
@@ -1024,12 +1096,15 @@ body.sin-desplazar { overflow: hidden; }
   .marca-frase { padding: 38px 0; }
   .marca-frase__texto { max-width: none; }
   .marca-frase__pie { font-size: 0.72rem; letter-spacing: 0.12em; }
-  .atajos { grid-template-columns: 1fr; gap: 14px; }
-  .atajo { padding: 18px 18px 6px; border-radius: 18px; }
-  .atajo__cabeza { padding-bottom: 12px; gap: 11px; }
+  .atajos { grid-template-columns: 1fr; gap: 16px; }
+  /* Más aire arriba que en computador: si no, el título queda pegado a la
+     fila de bombillos. */
+  .atajo { padding: 28px 22px 16px; border-radius: 18px; }
+  .atajo__cabeza { padding-bottom: 14px; gap: 11px; }
   .atajo__icono { width: 38px; height: 38px; }
-  .atajo__titulo { font-size: 1.08rem; }
-  .atajo__opcion { min-height: 48px; padding: 8px 2px; font-size: 0.92rem; }
+  .atajo__titulo { font-size: 1.1rem; }
+  .atajo__opcion { min-height: 50px; padding: 10px 2px; font-size: 0.94rem; }
+  .atajo__luces::before, .atajo__luces::after { left: 12px; right: 12px; }
   /* A todo el ancho y con la flecha al borde: se lee como una lista,
      no como fichas sueltas con un vacío a la derecha. */
   .rejilla--3, .rejilla--5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }

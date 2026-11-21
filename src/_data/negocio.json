@@ -95,17 +95,14 @@
       "opciones": [
         {
           "texto": "Habitación pequeña",
-          "foto": "/img/p077-1.webp",
           "enlace": "/categoria/tocadores-metro-mini/"
         },
         {
           "texto": "Habitación amplia",
-          "foto": "/img/p022-1.webp",
           "enlace": "/categoria/tocadores-120/"
         },
         {
           "texto": "Para el clóset",
-          "foto": "/img/p110-1.webp",
           "enlace": "/categoria/nocheros-zapateros/"
         }
       ]
@@ -116,17 +113,14 @@
       "opciones": [
         {
           "texto": "Hasta $500.000",
-          "foto": "/img/p141-1.webp",
           "enlace": "/catalogo/?precio=bajo"
         },
         {
           "texto": "$500.000 a $1.000.000",
-          "foto": "/img/p104-1.webp",
           "enlace": "/catalogo/?precio=medio"
         },
         {
           "texto": "Más de $1.000.000",
-          "foto": "/img/p028-1.webp",
           "enlace": "/catalogo/?precio=alto"
         }
       ]
@@ -137,17 +131,14 @@
       "opciones": [
         {
           "texto": "Regalo de quince",
-          "foto": "/img/p041-1.webp",
           "enlace": "/categoria/tocadores-120/"
         },
         {
           "texto": "Primer apartamento",
-          "foto": "/img/p075-1.webp",
           "enlace": "/categoria/tocadores-metro-mini/"
         },
         {
           "texto": "Renovar el cuarto",
-          "foto": "/img/p118-1.webp",
           "enlace": "/categoria/espejos/"
         }
       ]

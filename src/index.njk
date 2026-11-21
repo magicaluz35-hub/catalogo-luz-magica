@@ -65,7 +65,12 @@ permalink: /
 </section>
 {% endif %}
 
-<section class="seccion">
+{# "Encuentra el tuyo". Cada grupo es un espejo de tocador encendido: marco
+   doble y bombillos arriba y abajo, el mismo lenguaje del logo y de la
+   presentación de marca. Los bombillos son CSS, no imágenes: ni un archivo
+   más que descargar. Va sobre fondo oscuro porque una luz solo se ve si hay
+   penumbra: sobre blanco los bombillos serían puntos grises. #}
+<section class="seccion seccion--espejos">
   <div class="contenedor">
     <header class="seccion__cabeza">
       <div>
@@ -76,21 +81,16 @@ permalink: /
     <div class="atajos">
       {% for a in negocio.atajos %}
       <div class="atajo">
+        <span class="atajo__marco" aria-hidden="true"></span>
+        <span class="atajo__luces" aria-hidden="true"></span>
         <div class="atajo__cabeza">
           <span class="atajo__icono">{{ iconoAtajo(a.icono) }}</span>
           <h3 class="atajo__titulo">{{ a.titulo }}</h3>
         </div>
         <ul class="atajo__lista">
           {% for o in a.opciones %}
-          {# La miniatura: la que el dueño eligió para ese atajo y, si la deja
-             vacía, la del primer producto al que lleva el enlace. Así nunca
-             queda una fila sin cara, pero se puede escoger la mejor foto. #}
-          {% set mini = o.foto or (productos | fotoAtajo(o.enlace)) %}
           <li>
             <a class="atajo__opcion" href="{{ o.enlace }}">
-              {% if mini %}
-              <span class="atajo__mini"><img src="{{ mini }}" alt="" width="52" height="65" loading="lazy"></span>
-              {% endif %}
               <span>{{ o.texto }}</span>
               <svg class="atajo__flecha" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"></path><path d="M12.6 6l6 6-6 6"></path></svg>
             </a>
