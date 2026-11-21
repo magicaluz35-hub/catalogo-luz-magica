@@ -273,9 +273,10 @@ a, button, label, summary {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Pegado arriba: el neón empieza a unos pocos píxeles del borde. El 1%
-     deja un pelo de aire sin llegar a cortarlo ni en pantallas muy anchas. */
-  object-position: 50% 1%;
+  /* Encuadre centrado y un punto por encima del centro. La foto nueva no
+     tiene letrero pegado al borde, así que ya no hay que anclar arriba: lo
+     que sobra se reparte entre el techo y el piso, que es lo prescindible. */
+  object-position: 50% 42%;
 }
 
 /* El velo. En pantalla ancha va de izquierda a derecha: oscuro donde cae el
@@ -285,20 +286,23 @@ a, button, label, summary {
   position: absolute;
   inset: 0;
   background:
+    /* Más liviano que antes: la foto nueva tiene la mitad izquierda
+       despejada, así que no hace falta taparla para que el texto se lea.
+       Comprobado midiendo el contraste sobre los píxeles ya pintados. */
     linear-gradient(98deg,
-      rgba(32, 19, 23, 0.78) 0%,
-      rgba(32, 19, 23, 0.62) 28%,
-      rgba(32, 19, 23, 0.30) 54%,
-      rgba(32, 19, 23, 0.10) 80%,
-      rgba(32, 19, 23, 0.04) 100%),
+      rgba(32, 19, 23, 0.64) 0%,
+      rgba(32, 19, 23, 0.50) 30%,
+      rgba(32, 19, 23, 0.22) 56%,
+      rgba(32, 19, 23, 0.06) 82%,
+      rgba(32, 19, 23, 0.02) 100%),
     /* Oscuro abajo, claro arriba: el texto se apoya en la parte baja y el
        letrero de neón del local queda limpio en lo alto, que es donde está
        en la foto. */
     linear-gradient(180deg,
-      rgba(32, 19, 23, 0.10) 0%,
-      transparent 20%,
-      transparent 44%,
-      rgba(32, 19, 23, 0.52) 100%);
+      rgba(32, 19, 23, 0.08) 0%,
+      transparent 22%,
+      transparent 46%,
+      rgba(32, 19, 23, 0.44) 100%);
 }
 
 .hero__fila {
