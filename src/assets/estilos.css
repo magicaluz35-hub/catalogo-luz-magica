@@ -354,47 +354,126 @@ a, button, label, summary {
 .cifras dt { font-family: var(--display); font-size: 1.8rem; font-weight: var(--display-peso); line-height: 1; }
 .cifras dd { margin: 6px 0 0; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gris); }
 
-/* En pantalla angosta la portada se apila. La foto sigue entera y sigue
-   dentro del mismo margen que el resto del sitio. */
-@media (max-width: 900px) {
-  .hero__fila { gap: 0; }
-  /* En un teléfono la foto va PRIMERO. Abajo del texto quedaba fuera de la
-     primera pantalla, y es lo que de verdad convence: el visitante entraba a
-     un muro de letras. Va a sangre, de borde a borde, porque en una pantalla
-     angosta el margen la vuelve una estampita.
+/* ------------------------------------------------------------------
+   La portada en celular: el texto va SOBRE la foto
+   En una pantalla angosta, foto y texto uno debajo del otro no caben: la
+   foto quedaba fuera de la primera pantalla o el titular lo quedaba. Puestos
+   uno encima del otro, la portada completa —rótulo, titular, párrafo, los
+   dos botones y las cifras— cabe de una sola vez.
 
-     El margen negativo tiene que coincidir con el relleno del contenedor, o
-     aparece barra de desplazamiento horizontal. Son 20px aquí y 16px más
-     abajo de 720. */
+   El velo es lo que hace legible la letra blanca, y va en el tono tinta de
+   la marca, no en negro: la foto se oscurece pero no se enfría.
+   ------------------------------------------------------------------ */
+@media (max-width: 900px) {
+  /* La foto se sale del contenedor con margen negativo para quedar a sangre,
+     y lo que sobre se recorta aquí. Sin esto, en algunos anchos el sobrante
+     aparece como barra de desplazamiento horizontal. */
+  .hero { background: var(--tinta); overflow: hidden; }
+  /* El resplandor y el marco corrido son recursos de la versión de dos
+     columnas: aquí no tienen dónde ir. */
+  .hero__luz, .hero__foto::before { display: none; }
+
+  /* Sin alto mínimo a propósito. Si la portada es más alta que la foto,
+     "cover" la amplía y la recorta POR LOS LADOS: el letrero de neón se
+     parte. Dejando que mande el contenido, la foto entra casi a su ancho
+     completo y el letrero queda entero. */
+  .hero__fila { position: relative; display: block; }
+
+  /* La foto pasa al fondo, a sangre y cubriendo toda la portada. El margen
+     negativo tiene que coincidir con el relleno del contenedor o aparece
+     barra de desplazamiento horizontal: 20px aquí, 16px abajo de 720. */
   .hero__foto {
-    order: -1;
-    flex: 1 1 100%;
+    position: absolute;
+    inset: 0;
     margin: 0 -20px;
     padding: 0;
-    justify-content: center;
+    z-index: 0;
   }
-  /* Sin marco ni sombra: a sangre, el marco no tiene dónde apoyarse. */
-  .hero__marco { border: 0; background: none; box-shadow: none; }
-  /* Cuadrada y recortada por abajo: el neón está pegado al borde de arriba,
-     así que por arriba no se puede tocar. */
+  .hero__marco {
+    position: absolute;
+    inset: 0;
+    border: 0;
+    background: none;
+    box-shadow: none;
+  }
   .hero__marco img {
-    aspect-ratio: 1 / 1;
-    height: auto;
-    /* En una tableta la foto cuadrada se vuelve enorme y empuja el titular
-       dos pantallas abajo. El tope la deja alta pero no desmedida. */
-    max-height: min(56vh, 520px);
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    aspect-ratio: auto;
     object-fit: cover;
-    object-position: 50% 0%;
+    /* Pegado arriba y escorado a la izquierda. Arriba porque el letrero de
+       neón empieza a 4px del borde de la foto; a la izquierda porque el
+       letrero vive en esa mitad: así lo que se recorta cuando la portada
+       queda más alta que la foto es la ventana de la derecha, y el letrero
+       nunca se parte. */
+    object-position: 10% 0%;
   }
-  .hero__texto { flex: 1 1 100%; padding: 30px 0 0; }
-  .hero__caja { max-width: none; }
-  /* El marco corrido solo tiene sentido cuando hay dos columnas que coser. */
-  .hero__foto::before { display: none; }
-  .hero__luz {
-    background:
-      radial-gradient(84% 40% at 50% 74%, rgba(226, 184, 139, 0.30), transparent 70%),
-      radial-gradient(70% 28% at 50% 22%, rgba(235, 203, 204, 0.22), transparent 74%);
+  /* El velo. Más cargado arriba y abajo, que es donde cae el texto, y más
+     liviano en el medio para que el tocador se siga viendo. */
+  .hero__foto::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+      rgba(32, 19, 23, 0.58) 0%,
+      rgba(32, 19, 23, 0.62) 26%,
+      rgba(32, 19, 23, 0.44) 58%,
+      rgba(32, 19, 23, 0.56) 82%,
+      rgba(32, 19, 23, 0.76) 100%);
   }
+
+  .hero__texto {
+    position: relative;
+    z-index: 1;
+    flex: 1 1 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: inherit;
+    padding: 46px 0 40px;
+    text-align: center;
+    color: #fff;
+  }
+  .hero__caja { max-width: 30rem; margin: 0 auto; }
+
+  /* Rótulo centrado, con las lucecitas a lado y lado. */
+  .rotulo--luces { justify-content: center; color: var(--oro-claro); }
+  .rotulo--luces::after {
+    content: "";
+    flex: none;
+    width: 26px; height: 5px;
+    margin-left: 5px;
+    background: radial-gradient(circle, var(--oro-claro) 0 45%, transparent 48%) 0 50% / 10px 5px repeat-x;
+  }
+
+  .hero__titular { color: #fff; text-shadow: 0 2px 20px rgba(26, 14, 18, 0.5); }
+  .hero__entrada {
+    color: rgba(255, 252, 253, 0.92);
+    max-width: 26rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: 0 1px 14px rgba(26, 14, 18, 0.55);
+  }
+
+  /* Botones anchos, uno debajo del otro: en un pulgar se aciertan mejor. */
+  .hero__botones { flex-direction: column; gap: 10px; }
+  .hero__botones .boton { width: 100%; }
+  /* Sobre el velo oscuro, el botón negro desaparecería: se invierte. */
+  .hero .boton--oscuro { background: #fff; color: var(--tinta); }
+  .hero .boton--linea {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.55);
+    color: #fff;
+  }
+  .hero .boton--linea:hover { background: rgba(255, 255, 255, 0.14); }
+
+  .cifras {
+    justify-content: center;
+    border-top-color: rgba(255, 255, 255, 0.26);
+  }
+  .cifras dt { color: #fff; }
+  .cifras dd { color: rgba(255, 250, 251, 0.75); }
 }
 
 @media (max-width: 720px) {
@@ -402,7 +481,7 @@ a, button, label, summary {
 }
 
 @media (max-width: 420px) {
-  .hero__texto { padding: 26px 0 0; }
+  .hero__texto { padding: 42px 0 38px; }
   /* Las tres cifras, lo más cerca posible de una sola fila: partidas dejaban
      un renglón suelto. Se queda en flex —no en grid de tres columnas— para
      que en un teléfono angosto envuelvan en vez de desbordarse. */
