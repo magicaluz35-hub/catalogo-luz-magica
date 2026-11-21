@@ -65,12 +65,7 @@ permalink: /
 </section>
 {% endif %}
 
-{# "Encuentra el tuyo". Cada grupo es un espejo de tocador encendido: marco
-   doble y bombillos arriba y abajo, el mismo lenguaje del logo y de la
-   presentación de marca. Los bombillos son CSS, no imágenes: ni un archivo
-   más que descargar. Va sobre fondo oscuro porque una luz solo se ve si hay
-   penumbra: sobre blanco los bombillos serían puntos grises. #}
-<section class="seccion seccion--espejos">
+<section class="seccion">
   <div class="contenedor">
     <header class="seccion__cabeza">
       <div>
@@ -81,8 +76,6 @@ permalink: /
     <div class="atajos">
       {% for a in negocio.atajos %}
       <div class="atajo">
-        <span class="atajo__marco" aria-hidden="true"></span>
-        <span class="atajo__luces" aria-hidden="true"></span>
         <div class="atajo__cabeza">
           <span class="atajo__icono">{{ iconoAtajo(a.icono) }}</span>
           <h3 class="atajo__titulo">{{ a.titulo }}</h3>
