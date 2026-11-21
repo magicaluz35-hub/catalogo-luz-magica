@@ -361,20 +361,26 @@ a, button, label, summary {
    ------------------------------------------------------------------ */
 @media (max-width: 900px) {
   .hero__marco img {
-    /* Escorado a la izquierda además de arriba: cuando la portada queda más
-       alta que la foto, "cover" la amplía y recorta POR LOS LADOS. Anclando
-       a la izquierda, lo que se pierde es la ventana de la derecha y el
-       letrero de neón queda entero. */
-    object-position: 0% 0%;
+    /* Centrado. La foto vertical nueva ya viene en 0.58:1, casi la forma de
+       la caja, y no tiene letrero pegado a ningún borde: lo poco que sobra
+       se reparte entre la pared de arriba y la alfombra de abajo, que es lo
+       prescindible. */
+    object-position: 50% 50%;
   }
 
   .hero__foto::after {
+    /* Estos valores NO son de gusto: son los más claros que pasan la medida
+       de contraste con la foto vertical nueva. Se probaron cuatro velos
+       midiendo el fondo real detrás del texto, con el texto oculto para no
+       medir las propias letras, a 320, 360, 390 y 430px. Los tres más claros
+       dejaban el párrafo entre 2.6 y 4.0 sobre un mínimo de 4.5; este queda
+       en 4.8. Si algún día se aclara, hay que volver a medir. */
     background: linear-gradient(180deg,
-      rgba(32, 19, 23, 0.58) 0%,
-      rgba(32, 19, 23, 0.62) 26%,
-      rgba(32, 19, 23, 0.44) 58%,
-      rgba(32, 19, 23, 0.56) 82%,
-      rgba(32, 19, 23, 0.76) 100%);
+      rgba(32, 19, 23, 0.62) 0%,
+      rgba(32, 19, 23, 0.68) 26%,
+      rgba(32, 19, 23, 0.58) 58%,
+      rgba(32, 19, 23, 0.64) 82%,
+      rgba(32, 19, 23, 0.78) 100%);
   }
 
   /* Sin alto mínimo a propósito: manda el contenido, así la foto entra casi

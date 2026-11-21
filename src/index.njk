@@ -28,7 +28,7 @@ permalink: /
          El navegador descarga una sola, la que le toca. #}
       <picture>
         {% if negocio.fotoPrincipalAncha %}<source media="(min-width: 901px)" srcset="{{ negocio.fotoPrincipalAncha }}">{% endif %}
-        <img src="{{ portada }}" alt="{{ negocio.fotoPrincipalAlt or negocio.titular }}" width="765" height="1024" fetchpriority="high">
+        <img src="{{ portada }}" alt="{{ negocio.fotoPrincipalAlt or negocio.titular }}" width="1100" height="1881" fetchpriority="high">
       </picture>
     </div>
     {% endif %}
