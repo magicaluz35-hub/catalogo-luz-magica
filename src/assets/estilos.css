@@ -1,26 +1,38 @@
 /* Luz Mágica — hoja de estilos del catálogo
-   Los colores de marca están al principio: cambiarlos aquí los cambia en todo el sitio. */
+   Los colores de marca están al principio: cambiarlos aquí los cambia en todo el sitio.
+
+   Ojo con los rosas claros: un rosa muy apagado se ve lila grisáceo en pantalla,
+   y la dueña no quiere lila en la página. Por eso todos los tonos de aquí están
+   entre 342° y 350° (rosa franco) y no por debajo de 340°. El "Lila" que sí
+   existe es un color de mueble y vive en negocio.json, no aquí. */
 
 :root {
-  --tinta: #1A1416;
-  --tinta-suave: #44363B;
-  --gris: #6B5B61;
-  --rosa: #B4336B;
-  --rosa-oscuro: #8C2552;
-  --rosa-papel: #FBF1F5;
+  --tinta: #24161A;
+  --tinta-suave: #4E3038;
+  --gris: #7C5A63;
+  --rosa: #C32C66;
+  --rosa-oscuro: #9A1F4C;
+  --rosa-papel: #FEF0F5;
   /* Rosa más tenue, para franjas anchas donde el tono normal pesa mucho */
-  --rosa-tenue: #FDF8FA;
-  --rosa-tenue-linea: #F5EBF0;
-  --rosa-linea: #F0E3E9;
-  --oro: #8A5A47;
-  --oro-claro: #C79A86;
-  --crema: #FBF9F8;
-  --linea: #EFE6EA;
-  --linea-fuerte: #DCCDD4;
+  --rosa-tenue: #FFF8FA;
+  --rosa-tenue-linea: #FBE8EF;
+  --rosa-linea: #FADFE8;
+  --oro: #A35960;
+  --oro-claro: #D29CA5;
+  --crema: #FFFAFB;
+  --linea: #F7E6EC;
+  --linea-fuerte: #ECCFDA;
+  /* Tonos para las franjas oscuras: pie de página, banda de diseño.
+     También son rosados, para que el oscuro no se vea malva. */
+  --claro-fuerte: #F3EAEE;
+  --claro: #D8C6CD;
+  --claro-tenue: #A28F97;
+  --linea-oscura: #3C2E33;
   --verde: #1F7A4D;
   --papel: #FFFFFF;
-  --display: "Fraunces", Georgia, serif;
-  --texto: "Inter", system-ui, -apple-system, sans-serif;
+  --display: "Playfair Display", Georgia, serif;
+  --display-peso: 700;
+  --texto: "Jost", system-ui, -apple-system, sans-serif;
   --ancho: 1280px;
 }
 
@@ -28,13 +40,17 @@
 
 body {
   margin: 0;
+  /* Cifras parejas en todo el sitio. Varias tipografías elegantes traen por
+     defecto cifras de texto —el 9 baja, el 6 sube, los ceros quedan chicos— y
+     un precio escrito así se lee peor. Aquí los precios mandan. */
+  font-variant-numeric: lining-nums;
   font-family: var(--texto);
   color: var(--tinta);
   background: var(--papel);
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3 { font-family: var(--display); font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
+h1, h2, h3 { font-family: var(--display); font-weight: var(--display-peso); letter-spacing: -0.02em; line-height: 1.1; }
 h1 { font-size: clamp(2.1rem, 5vw, 3.2rem); margin: 0 0 1rem; }
 h2 { font-size: clamp(1.6rem, 3.6vw, 2.6rem); margin: 0 0 0.6rem; }
 h3 { font-size: 1rem; margin: 0 0 0.5rem; font-family: var(--texto); font-weight: 600; letter-spacing: 0; }
@@ -65,21 +81,21 @@ a, button, label, summary {
 .oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 .rotulo { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--oro); font-weight: 600; margin: 0 0 0.7rem; }
-.rotulo--claro { color: #E0B9A4; }
+.rotulo--claro { color: var(--oro-claro); }
 .parrafo { font-size: 1rem; line-height: 1.65; color: var(--tinta-suave); }
 .parrafo--guia { font-size: 1.05rem; max-width: 40rem; }
-.parrafo--claro { color: #C9BCC1; }
+.parrafo--claro { color: var(--claro); }
 .titulo-claro { color: #FFFFFF; }
 .nota { font-size: 0.8rem; line-height: 1.55; color: var(--gris); }
 .nota--centrada { text-align: center; }
 
 /* Barras superiores */
 .promesas {
-  background: var(--tinta); color: #F6EFF1; padding: 11px 20px;
+  background: var(--tinta); color: var(--claro-fuerte); padding: 11px 20px;
   display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px 22px;
   font-size: 0.7rem; letter-spacing: 0.13em; text-transform: uppercase; font-weight: 500;
 }
-.promesas .punto { color: #8A6B76; }
+.promesas .punto { color: var(--claro-tenue); }
 
 .asesor-barra { background: var(--rosa-papel); border-bottom: 1px solid var(--rosa-linea); padding: 9px 0; }
 .asesor-barra__fila { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 20px; }
@@ -100,16 +116,16 @@ a, button, label, summary {
 .cabecera { border-bottom: 1px solid var(--linea); background: var(--papel); }
 .cabecera__fila { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding-top: 16px; padding-bottom: 16px; }
 .marca { text-decoration: none; color: inherit; display: block; }
-.marca__nombre { font-family: var(--display); font-size: 1.6rem; font-weight: 600; line-height: 1; display: block; }
+.marca__nombre { font-family: var(--display); font-size: 1.6rem; font-weight: var(--display-peso); line-height: 1; display: block; }
 .marca__nombre--claro { color: #fff; }
 .marca__lema { font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--oro); margin-top: 5px; display: block; }
-.marca__lema--claro { color: #E0B9A4; margin-bottom: 1.2rem; }
+.marca__lema--claro { color: var(--oro-claro); margin-bottom: 1.2rem; }
 .nav { display: flex; flex-wrap: wrap; gap: 20px; font-size: 0.85rem; font-weight: 500; }
 .nav a { color: var(--tinta); text-decoration: none; }
 .nav a:hover { color: var(--rosa-oscuro); }
 .cabecera__acciones { display: flex; align-items: center; gap: 8px; }
 .buscador input {
-  width: min(240px, 46vw); height: 44px; padding: 0 16px; border: 1px solid #E4D8DE;
+  width: min(240px, 46vw); height: 44px; padding: 0 16px; border: 1px solid var(--linea-fuerte);
   border-radius: 999px; font-family: inherit; font-size: 0.85rem; color: var(--tinta); background: #fff;
 }
 .contador { background: #fff; color: var(--rosa); border-radius: 999px; min-width: 20px; padding: 0 6px; font-size: 0.72rem; }
@@ -128,7 +144,7 @@ a, button, label, summary {
 .boton--linea { background: #fff; color: var(--tinta); border-color: var(--linea-fuerte); }
 .boton--whatsapp { background: var(--verde); color: #fff; }
 .boton--claro { background: #fff; color: var(--tinta); }
-.boton--fantasma { background: transparent; color: #F7F2F3; border-color: #4A3C41; }
+.boton--fantasma { background: transparent; color: var(--claro-fuerte); border-color: var(--linea-oscura); }
 .boton--activo { background: var(--tinta); color: #fff; border-color: var(--tinta); }
 .enlace-boton { border: none; background: none; padding: 0; cursor: pointer; font-family: inherit; font-size: 0.8rem; color: var(--rosa-oscuro); text-decoration: underline; }
 /* El área que se toca con el dedo llega a 44px sin que el texto crezca ni
@@ -222,9 +238,9 @@ a, button, label, summary {
 .hero__foto { flex: 1 1 420px; min-width: 0; padding: 48px 0; }
 .hero__entrada { font-size: 1.05rem; line-height: 1.6; color: var(--tinta-suave); max-width: 30rem; margin-bottom: 2rem; }
 .hero__botones { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 2.2rem; }
-.cifras { display: flex; flex-wrap: wrap; gap: 32px; margin: 0; padding-top: 24px; border-top: 1px solid #E9DDE2; }
+.cifras { display: flex; flex-wrap: wrap; gap: 32px; margin: 0; padding-top: 24px; border-top: 1px solid var(--linea-fuerte); }
 .cifras div { margin: 0; }
-.cifras dt { font-family: var(--display); font-size: 1.8rem; font-weight: 600; line-height: 1; }
+.cifras dt { font-family: var(--display); font-size: 1.8rem; font-weight: var(--display-peso); line-height: 1; }
 .cifras dd { margin: 6px 0 0; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gris); }
 
 /* Franja de marca: una sola frase, centrada y con aire, entre la portada
@@ -286,7 +302,7 @@ a, button, label, summary {
 .atajo__titulo {
   font-family: var(--display);
   font-size: 1.18rem;
-  font-weight: 600;
+  font-weight: var(--display-peso);
   letter-spacing: 0;
   text-transform: none;
   color: var(--tinta);
@@ -399,7 +415,7 @@ a, button, label, summary {
 /* Grupos de categorías en el inicio */
 .grupo + .grupo { margin-top: 56px; }
 .grupo__cabeza { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
-.grupo__nombre { font-family: var(--display); font-size: 1.5rem; font-weight: 600; letter-spacing: -0.01em; margin: 0; }
+.grupo__nombre { font-family: var(--display); font-size: 1.5rem; font-weight: var(--display-peso); letter-spacing: -0.01em; margin: 0; }
 .grupo__cuenta { font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--oro); }
 .grupo__entrada { margin: 8px 0 22px; font-size: 0.95rem; line-height: 1.6; color: var(--tinta-suave); max-width: 44rem; }
 
@@ -412,7 +428,7 @@ a, button, label, summary {
 .tarjeta__enlace { text-decoration: none; color: inherit; display: block; flex: 1; }
 .tarjeta__sku { margin: 12px 0 0; font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--oro); }
 .tarjeta__nombre { margin: 6px 0 8px; font-size: 0.92rem; line-height: 1.35; }
-.tarjeta__precio { margin: 0 0 5px; font-family: var(--display); font-size: 1.2rem; font-weight: 600; }
+.tarjeta__precio { margin: 0 0 5px; font-family: var(--display); font-size: 1.2rem; font-weight: var(--display-peso); }
 .tarjeta__plazo { margin: 0 0 12px; font-size: 0.72rem; color: var(--oro); }
 .tarjeta[hidden] { display: none; }
 
@@ -430,7 +446,7 @@ a, button, label, summary {
   display: flex; align-items: flex-start; gap: 11px;
   font-family: var(--display);
   font-size: 0.78rem;
-  font-weight: 600;
+  font-weight: var(--display-peso);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--tinta);
@@ -466,7 +482,7 @@ a, button, label, summary {
    dejando las migas pegadas a la línea de la cabecera. */
 .migas { margin-top: 28px; margin-bottom: 20px; font-size: 0.78rem; color: var(--gris); }
 .migas a { color: var(--gris); text-decoration: none; }
-.migas span[aria-hidden] { margin: 0 8px; color: #C7B7BE; }
+.migas span[aria-hidden] { margin: 0 8px; color: #D2BAC3; }
 
 /* Listado y filtros */
 .listado__titulo { margin-top: 8px; }
@@ -487,7 +503,7 @@ a, button, label, summary {
 .resultados__barra { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 16px; border-bottom: 1px solid var(--linea); margin-bottom: 24px; }
 .resultados__barra p { margin: 0; font-size: 0.88rem; color: var(--tinta-suave); }
 .vacio { border: 1px solid var(--linea); padding: 40px; text-align: center; }
-.vacio__titulo { font-family: var(--display); font-size: 1.4rem; font-weight: 600; margin-bottom: 0.4rem; }
+.vacio__titulo { font-family: var(--display); font-size: 1.4rem; font-weight: var(--display-peso); margin-bottom: 0.4rem; }
 
 
 /* Muestras de color */
@@ -559,7 +575,7 @@ body.sin-desplazar { overflow: hidden; }
   .visor__paso--der { right: 8px; }
 }
 .ficha__datos { flex: 1 1 400px; min-width: 0; }
-.ficha__precio { font-family: var(--display); font-size: 1.8rem; font-weight: 600; margin-bottom: 1.2rem; }
+.ficha__precio { font-family: var(--display); font-size: 1.8rem; font-weight: var(--display-peso); margin-bottom: 1.2rem; }
 .ficha__secundarios { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0; }
 /* WhatsApp en segundo plano: el mismo verde de la marca, pero en el borde y
    en la letra, no rellenando el botón. Sigue siendo reconocible sin competir
@@ -580,11 +596,11 @@ body.sin-desplazar { overflow: hidden; }
 .previsualizacion > summary { cursor: pointer; margin: 0; }
 .previsualizacion > summary::marker { color: var(--oro); }
 .previsualizacion[open] > summary { margin-bottom: 10px; }
-.previsualizacion--oscura { background: #251D20; border-color: #3A2E33; }
-.previsualizacion--oscura p:last-child { color: #F0E8EA; }
+.previsualizacion--oscura { background: var(--tinta); border-color: var(--linea-oscura); }
+.previsualizacion--oscura p:last-child { color: var(--claro-fuerte); }
 
 /* Diseña el tuyo */
-.disena { background: var(--tinta); color: #F7F2F3; padding: 72px 0; }
+.disena { background: var(--tinta); color: var(--claro-fuerte); padding: 72px 0; }
 
 /* Asesores */
 .alerta { display: flex; gap: 16px; align-items: flex-start; background: var(--rosa-papel); border: 1px solid var(--rosa-linea); border-left: 4px solid var(--rosa); padding: 20px 24px; margin-bottom: 40px; }
@@ -605,7 +621,7 @@ body.sin-desplazar { overflow: hidden; }
 
 .tabla { width: 100%; border-collapse: collapse; border: 1px solid var(--linea); margin-bottom: 1.5rem; }
 .tabla th { text-align: left; font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gris); padding: 13px 18px; background: var(--crema); border-bottom: 1px solid var(--linea); }
-.tabla td { padding: 14px 18px; border-bottom: 1px solid #F4ECEF; font-size: 0.9rem; }
+.tabla td { padding: 14px 18px; border-bottom: 1px solid var(--linea); font-size: 0.9rem; }
 
 /* Equipo */
 .equipo { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; margin-bottom: 2rem; }
@@ -640,13 +656,13 @@ body.sin-desplazar { overflow: hidden; }
 .pedido__paso:hover { background: var(--crema); }
 .pedido__num { min-width: 26px; text-align: center; font-size: 0.9rem; font-weight: 600; }
 .pedido__precio { text-align: right; }
-.pedido__precio p { margin: 0 0 4px; font-family: var(--display); font-size: 1.05rem; font-weight: 600; }
+.pedido__precio p { margin: 0 0 4px; font-family: var(--display); font-size: 1.05rem; font-weight: var(--display-peso); }
 .pedido__total { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
 .pedido__total strong { font-family: var(--display); font-size: 1.4rem; }
 
 /* Formulario de datos del cliente */
 .formulario { border: 1px solid var(--linea); padding: 28px; margin: 28px 0; }
-.formulario__titulo { font-family: var(--display); font-size: 1.5rem; font-weight: 600; margin: 0 0 0.4rem; }
+.formulario__titulo { font-family: var(--display); font-size: 1.5rem; font-weight: var(--display-peso); margin: 0 0 0.4rem; }
 .formulario .nota { margin-bottom: 1.4rem; }
 .campo { margin-bottom: 16px; }
 .campo label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; }
@@ -694,15 +710,15 @@ body.sin-desplazar { overflow: hidden; }
 /* Pie */
 /* Ya no hace falta reservar espacio para el botón flotante: al llegar
    al final de la página el botón se esconde solo. */
-.pie { background: var(--tinta); color: #C9BCC1; padding: 56px 0 34px; }
-.pie__columnas { display: flex; flex-wrap: wrap; gap: 36px; padding-bottom: 36px; border-bottom: 1px solid #332A2E; }
+.pie { background: var(--tinta); color: var(--claro); padding: 56px 0 34px; }
+.pie__columnas { display: flex; flex-wrap: wrap; gap: 36px; padding-bottom: 36px; border-bottom: 1px solid var(--linea-oscura); }
 .pie__columnas > * { flex: 1 1 220px; min-width: 0; }
-.pie__titulo { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: #E0B9A4; font-weight: 600; margin-bottom: 1rem; }
+.pie__titulo { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--oro-claro); font-weight: 600; margin-bottom: 1rem; }
 .pie p { font-size: 0.85rem; margin: 0 0 0.6rem; }
-.pie a { color: #F0E8EA; text-decoration: none; }
+.pie a { color: var(--claro-fuerte); text-decoration: none; }
 .pie a:hover { text-decoration: underline; }
 .pie__redes { display: flex; align-items: center; gap: 18px; font-size: 0.85rem; }
-.pie__redes a { border-bottom: 1px solid #4A3C41; }
+.pie__redes a { border-bottom: 1px solid var(--linea-oscura); }
 /* Cuando la red muestra su logo oficial, el enlace es un disco blanco
    sin subrayado. El disco va blanco porque los logos oficiales están
    hechos para fondo claro: sobre el pie oscuro el de TikTok, que es
@@ -720,8 +736,8 @@ body.sin-desplazar { overflow: hidden; }
 .pie__redes a.pie__red:focus-visible { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35); }
 .pie__redes a.pie__red img { width: 26px; height: 26px; }
 @media (prefers-reduced-motion: reduce) { .pie__redes a.pie__red { transition: none; } .pie__redes a.pie__red:hover { transform: none; } }
-.pie__legal { font-size: 0.78rem; line-height: 1.65; color: #9A8A90; }
-.pie__creditos { margin-top: 24px; font-size: 0.78rem; color: #8A7A80; }
+.pie__legal { font-size: 0.78rem; line-height: 1.65; color: var(--claro-tenue); }
+.pie__creditos { margin-top: 24px; font-size: 0.78rem; color: var(--claro-tenue); }
 
 /* WhatsApp flotante */
 .wa-flotante {
