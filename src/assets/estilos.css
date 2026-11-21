@@ -438,13 +438,17 @@ a, button, label, summary {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
-  align-items: start;
+  /* Estiradas, no "start": una tarjeta tiene dos opciones y las otras tres,
+     y sueltas la fila quedaba despareja, como si algo se hubiera roto. */
+  align-items: stretch;
 }
 .atajo {
+  display: flex;
+  flex-direction: column;
   background: var(--papel);
   border: 1px solid var(--rosa-linea);
   border-radius: 22px;
-  padding: 24px 24px 10px;
+  padding: 24px 24px 12px;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 .atajo:hover { border-color: var(--rosa-linea); box-shadow: 0 12px 32px rgba(26, 20, 22, 0.07); }
@@ -465,15 +469,38 @@ a, button, label, summary {
   color: var(--tinta);
   margin: 0;
 }
-.atajo__lista { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rosa-linea); }
+/* La lista ocupa lo que sobre y reparte sus filas: así la tarjeta de dos
+   opciones llena su alto en vez de dejar un hueco al final. */
+.atajo__lista {
+  list-style: none; margin: 0; padding: 0;
+  border-top: 1px solid var(--rosa-linea);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.atajo__lista li { display: flex; flex: 1; }
 .atajo__lista li + li { border-top: 1px solid var(--rosa-linea); }
 .atajo__opcion {
-  display: flex; align-items: center; justify-content: space-between; gap: 14px;
-  min-height: 54px; padding: 10px 2px;
+  display: flex; align-items: center; gap: 14px;
+  width: 100%;
+  min-height: 54px; padding: 12px 2px;
   color: var(--tinta); text-decoration: none;
   font-size: 0.95rem; font-weight: 500; line-height: 1.35;
   transition: color 0.18s;
 }
+/* La cara de cada opción: la foto del producto al que lleva. Es lo que
+   convierte esta sección de un formulario en parte del catálogo. */
+.atajo__mini {
+  flex: none;
+  width: 52px; height: 65px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--rosa-papel);
+  box-shadow: 0 2px 8px rgba(122, 84, 58, 0.14);
+}
+.atajo__mini img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* El texto empuja la flecha al borde. */
+.atajo__opcion > span:not(.atajo__mini) { flex: 1; }
 .atajo__flecha { flex: none; color: var(--oro); transition: transform 0.18s; }
 .atajo__opcion:hover,
 .atajo__opcion:focus-visible { color: var(--rosa-oscuro); }

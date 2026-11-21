@@ -82,8 +82,15 @@ permalink: /
         </div>
         <ul class="atajo__lista">
           {% for o in a.opciones %}
+          {# La miniatura: la que el dueño eligió para ese atajo y, si la deja
+             vacía, la del primer producto al que lleva el enlace. Así nunca
+             queda una fila sin cara, pero se puede escoger la mejor foto. #}
+          {% set mini = o.foto or (productos | fotoAtajo(o.enlace)) %}
           <li>
             <a class="atajo__opcion" href="{{ o.enlace }}">
+              {% if mini %}
+              <span class="atajo__mini"><img src="{{ mini }}" alt="" width="52" height="65" loading="lazy"></span>
+              {% endif %}
               <span>{{ o.texto }}</span>
               <svg class="atajo__flecha" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"></path><path d="M12.6 6l6 6-6 6"></path></svg>
             </a>

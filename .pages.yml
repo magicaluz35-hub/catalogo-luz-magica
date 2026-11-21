@@ -252,6 +252,10 @@ content:
             fields:
               - { name: texto, label: Texto, type: string }
               - { name: enlace, label: Enlace, type: string }
+              - name: foto
+                label: Foto de la opción
+                description: La fotico que acompaña a esta opción en el inicio. Elige una donde el mueble se vea completo y con buena luz. Si la dejas vacía, se usa sola la foto del primer producto al que lleva el enlace.
+                type: image
       - name: logo
         label: Logo (respaldo para compartir en WhatsApp)
         description: Solo se usa si no hay foto principal. Normalmente no hay que tocarlo.
