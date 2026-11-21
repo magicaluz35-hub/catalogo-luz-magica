@@ -232,23 +232,153 @@ a, button, label, summary {
 .etiqueta--suelta { position: static; display: inline-block; margin-bottom: 14px; }
 
 /* Hero */
-.hero { background: var(--crema); border-bottom: 1px solid var(--linea); }
-.hero__fila { display: flex; flex-wrap: wrap; gap: 48px; align-items: stretch; }
-.hero__texto { flex: 1 1 420px; min-width: 0; padding: 72px 0; display: flex; flex-direction: column; justify-content: center; }
-.hero__foto { flex: 1 1 420px; min-width: 0; padding: 48px 0; }
-.hero__entrada { font-size: 1.05rem; line-height: 1.6; color: var(--tinta-suave); max-width: 30rem; margin-bottom: 2rem; }
-.hero__botones { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 2.2rem; }
-.cifras { display: flex; flex-wrap: wrap; gap: 32px; margin: 0; padding-top: 24px; border-top: 1px solid var(--linea-fuerte); }
+/* ------------------------------------------------------------------
+   Portada
+   El problema que resuelve esta sección: la foto es beige dorada (tono 27°)
+   y el papel del sitio es casi blanco con tinte rosa (tono 350°). Son
+   temperaturas opuestas, así que puestas una al lado de la otra se leen
+   como dos piezas pegadas, no como una composición.
+
+   La solución va por tres lados, y los tres importan:
+   1. El fondo sale de la foto. Los beiges de abajo están tomados de la
+      imagen misma, no elegidos a ojo.
+   2. La foto no tiene filo del lado del texto: se deshace en degradado.
+   3. Un resplandor por detrás de la foto se derrama hacia el texto, como si
+      la lámpara del tocador alumbrara el papel.
+   ------------------------------------------------------------------ */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  /* Marfil → arena, calentándose hacia donde está la foto. Abajo vuelve al
+     blanco del sitio para que no quede un escalón con la franja siguiente. */
+  background:
+    linear-gradient(to bottom, transparent 88%, var(--papel) 100%),
+    linear-gradient(104deg, #FDFAF7 0%, #FAF3EA 48%, #F3E7D8 100%);
+}
+
+.hero__luz {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    /* el calor de la lámpara, a la altura del letrero de neón */
+    radial-gradient(44% 50% at 70% 25%, rgba(255, 212, 164, 0.46), transparent 64%),
+    /* un rubor rosado bajito, para no perder la marca entre tanto beige */
+    radial-gradient(52% 58% at 56% 44%, rgba(232, 190, 193, 0.28), transparent 72%);
+}
+
+.hero__fila {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.04fr);
+  align-items: center;
+  min-height: clamp(560px, 80vh, 812px);
+}
+
+/* El texto se alinea con el borde del contenido del resto del sitio, no con
+   el borde de la pantalla: por eso el max() en vez de un padding fijo. */
+.hero__texto {
+  display: flex;
+  justify-content: flex-end;
+  padding: 72px 52px 72px max(20px, calc((100vw - var(--ancho)) / 2 + 20px));
+}
+.hero__caja { width: 100%; max-width: 33rem; }
+
+/* La foto pega con el borde de arriba, el de abajo y el de la pantalla: el
+   único filo que queda es el de la izquierda, y ese se deshace. */
+.hero__foto { position: relative; align-self: stretch; min-width: 0; }
+.hero__marco { position: absolute; inset: 0; }
+.hero__marco img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Deja ver el letrero de neón completo arriba sin cortar el tocador. */
+  object-position: 50% 18%;
+  /* El filo izquierdo se disuelve en el fondo. Son solo los primeros
+     centímetros: la planta y la pared. El neón y el tocador no se tocan. */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.45) 6%, #000 17%);
+          mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.45) 6%, #000 17%);
+}
+
+.hero__titular {
+  font-size: clamp(2.2rem, 4.4vw, 3.6rem);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  margin: 0 0 1.1rem;
+}
+.hero__entrada {
+  font-size: 1.04rem;
+  line-height: 1.75;
+  color: var(--tinta-suave);
+  max-width: 27rem;
+  margin-bottom: 2.1rem;
+}
+.hero__botones { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 2.4rem; }
+
+/* El botón de contorno, sobre el beige, necesita algo de cuerpo: si se deja
+   transparente se pierde contra el fondo cálido. */
+.hero .boton--linea {
+  background: rgba(255, 253, 251, 0.72);
+  border-color: var(--linea-fuerte);
+  backdrop-filter: blur(2px);
+}
+.hero .boton--linea:hover { background: rgba(255, 255, 255, 0.95); }
+
+/* Tres lucecitas antes del rótulo: el mismo guiño del espejo de la
+   presentación y del logo. */
+.rotulo--luces { display: flex; align-items: center; gap: 7px; }
+.rotulo--luces::before {
+  content: "";
+  flex: none;
+  width: 26px; height: 5px;
+  margin-right: 5px;
+  background: radial-gradient(circle, var(--oro-claro) 0 45%, transparent 48%) 0 50% / 10px 5px repeat-x;
+}
+
+.cifras { display: flex; flex-wrap: wrap; gap: 36px; margin: 0; padding-top: 26px; border-top: 1px solid rgba(166, 124, 110, 0.32); }
 .cifras div { margin: 0; }
 .cifras dt { font-family: var(--display); font-size: 1.8rem; font-weight: var(--display-peso); line-height: 1; }
 .cifras dd { margin: 6px 0 0; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gris); }
 
+/* En pantalla angosta la portada se apila. La foto pasa a ir de borde a
+   borde —sin márgenes, sin filo a la izquierda que deshacer— y lo que se
+   disuelve es el filo de abajo, que es alfombra y no mueble. */
+@media (max-width: 900px) {
+  .hero__fila { grid-template-columns: 1fr; min-height: 0; }
+  .hero__texto {
+    justify-content: flex-start;
+    padding: 46px 20px 34px;
+  }
+  .hero__caja { max-width: none; }
+  .hero__foto { position: static; }
+  .hero__marco { position: static; }
+  .hero__marco img {
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-position: 50% 50%;
+    -webkit-mask-image: linear-gradient(to bottom, #000 86%, transparent 100%);
+            mask-image: linear-gradient(to bottom, #000 86%, transparent 100%);
+  }
+  .hero__luz {
+    background: radial-gradient(70% 36% at 50% 72%, rgba(255, 212, 164, 0.40), transparent 68%);
+  }
+  .hero { background: linear-gradient(to bottom, #FDFAF7 0%, #F8EFE4 62%, var(--papel) 100%); }
+}
+
+@media (max-width: 420px) {
+  .hero__texto { padding: 38px 20px 28px; }
+  /* Las tres cifras, lo más cerca posible de una sola fila: partidas dejaban
+     un renglón suelto justo donde empieza la foto. Se queda en flex —no en
+     grid de tres columnas— para que en un teléfono angosto envuelvan en vez
+     de desbordarse. */
+  .cifras { gap: 14px; }
+  .cifras dt { font-size: 1.45rem; }
+  .cifras dd { font-size: 0.56rem; letter-spacing: 0.08em; }
+}
+
 /* Franja de marca: una sola frase, centrada y con aire, entre la portada
    y el catálogo. Sin fondo de color para que no compita con la foto. */
-/* La foto de portada se recorta por abajo, no por el centro: el letrero de
-   Luz Mágica va pegado al borde de arriba y el recorte centrado se lo comía. */
-.hero__foto img { object-position: top; }
-
 .marca-frase {
   border-top: 1px solid var(--rosa-linea);
   border-bottom: 1px solid var(--rosa-linea);
@@ -850,8 +980,6 @@ body.sin-desplazar { overflow: hidden; }
      no como fichas sueltas con un vacío a la derecha. */
   .rejilla--3, .rejilla--5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .equipo { grid-template-columns: 1fr; }
-  .hero__texto { padding: 44px 0 0; }
-  .hero__foto { padding: 24px 0 44px; }
   .foto--alta { min-height: 260px; }
   .galeria__texto { padding: 28px; }
   .filtros { max-width: none; flex-basis: 100%; }

@@ -8,35 +8,49 @@ permalink: /
 {% set destacados = productos | selectattr("destacado") | list %}
 {% set nuevos = productos | selectattr("nuevo") | list %}
 
+{# Portada. La foto no va "al lado" del texto: va pegada al borde de la
+   pantalla, con su filo izquierdo deshecho en degradado, y el fondo de toda
+   la sección sale de los colores de esa misma foto. Así el calor de la
+   lámpara parece derramarse sobre el papel en vez de quedar encerrado en un
+   rectángulo. Los detalles de cómo está armado están en estilos.css. #}
 <section class="hero">
-  <div class="contenedor hero__fila">
+  {# El resplandor va por detrás de la foto: se ve solo del lado del texto,
+     como luz que se escapa de la imagen. #}
+  <div class="hero__luz" aria-hidden="true"></div>
+
+  <div class="hero__fila">
     <div class="hero__texto">
-      <p class="rotulo">Fábrica y galería en Aranjuez</p>
-      <h1>{{ negocio.titular }}</h1>
-      <p class="hero__entrada">{{ negocio.presentacion }}</p>
-      <div class="hero__botones">
-        <a class="boton boton--oscuro boton--grande" href="/catalogo/">Ver el catálogo</a>
-        <a class="boton boton--linea boton--grande" href="/categoria/tocadores-120/">Ver tocadores</a>
+      <div class="hero__caja">
+        <p class="rotulo rotulo--luces">Fábrica y galería en Aranjuez</p>
+        <h1 class="hero__titular">{{ negocio.titular }}</h1>
+        <p class="hero__entrada">{{ negocio.presentacion }}</p>
+        <div class="hero__botones">
+          <a class="boton boton--oscuro boton--grande" href="/catalogo/">Ver el catálogo</a>
+          <a class="boton boton--linea boton--grande" href="/categoria/tocadores-120/">Ver tocadores</a>
+        </div>
+        <dl class="cifras">
+          <div><dt>7</dt><dd>Años en el mercado</dd></div>
+          <div><dt>{{ productos.length }}</dt><dd>Productos</dd></div>
+          <div><dt>10–15</dt><dd>Días hábiles</dd></div>
+        </dl>
       </div>
-      <dl class="cifras">
-        <div><dt>7</dt><dd>Años en el mercado</dd></div>
-        <div><dt>{{ productos.length }}</dt><dd>Productos</dd></div>
-        <div><dt>10–15</dt><dd>Días hábiles</dd></div>
-      </dl>
     </div>
+
     <div class="hero__foto">
       {% set portada = negocio.fotoPrincipal %}
       {% if not portada %}{% set portada = (productos | selectattr("destacado") | first).fotos[0] %}{% endif %}
-      <div class="foto foto--4-5">
-        {% if portada %}
+      {% if portada %}
+      <div class="hero__marco">
         <img src="{{ portada }}" alt="{{ negocio.fotoPrincipalAlt or negocio.titular }}" width="765" height="1024" fetchpriority="high">
-        {% else %}
+      </div>
+      {% else %}
+      <div class="foto foto--4-5">
         <span class="foto__vacia">
           <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="2"></rect><circle cx="8.8" cy="10" r="1.9"></circle><path d="M3.5 17.2l5-4.2 3.6 3 3-2.4 5.4 4.6"></path></svg>
           <span>Foto principal · tocador encendido</span>
         </span>
-        {% endif %}
       </div>
+      {% endif %}
     </div>
   </div>
 </section>
