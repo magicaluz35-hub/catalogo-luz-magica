@@ -127,6 +127,13 @@ discusión, la prueba está en el chat.
   los horarios que pongas ahí.
 - **Colores y enchapes disponibles:** también en *Datos del negocio*. Lo que pongas ahí
   aparece en todas las fichas y en "Diseña el tuyo".
+- **La foto grande de la portada:** son **dos** fotos de la misma escena, en
+  *Datos del negocio*. La *foto principal* es la vertical y se usa en celular;
+  la *foto principal para computador* es la horizontal. Cada visitante descarga
+  solo la que le toca. Dos cosas al cambiarlas: que el letrero de Luz Mágica
+  quede **pegado al borde de arriba** (el recorte siempre respeta esa esquina)
+  y que la mitad izquierda quede despejada, porque ahí va el texto. Si borras
+  la horizontal, en computador se usa la vertical.
 
 ---
 

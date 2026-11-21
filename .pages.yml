@@ -184,6 +184,10 @@ content:
         label: Foto principal del inicio
         description: La primera foto que ve quien entra, y la que aparece cuando alguien comparte el enlace del catálogo por WhatsApp. Súbela vertical, en proporción 4:5 (por ejemplo 1600 × 2000 px).
         type: image
+      - name: fotoPrincipalAncha
+        label: Foto principal para computador
+        description: La misma escena pero horizontal, para la portada en pantalla ancha. Súbela apaisada, en proporción 16:9 (por ejemplo 2400 × 1350 px) y con el espacio libre hacia la izquierda, que es donde va el texto. Si la dejas vacía se usa la vertical.
+        type: image
       - name: fotoPrincipalAlt
         label: Descripción de la foto principal
         description: Para quien no puede ver la foto y para los buscadores. Describe en una línea qué se ve.

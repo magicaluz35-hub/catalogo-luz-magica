@@ -15,9 +15,23 @@ permalink: /
    finísimo, corrido, cruza hacia el lado del texto. Los detalles están en
    estilos.css. #}
 <section class="hero">
-  {# El resplandor va por detrás de todo: se ve alrededor de la foto, como
-     luz que se escapa de la imagen hacia el papel. #}
-  <div class="hero__luz" aria-hidden="true"></div>
+  {# La foto va FUERA del contenedor, como hija directa de la sección: así
+     ocupa el ancho completo de la pantalla sin márgenes negativos que haya
+     que cuadrar con el relleno del contenedor en cada tamaño. #}
+  <div class="hero__foto">
+    {% set portada = negocio.fotoPrincipal %}
+    {% if not portada %}{% set portada = (productos | selectattr("destacado") | first).fotos[0] %}{% endif %}
+    {% if portada %}
+    <div class="hero__marco">
+      {# En computador entra la foto horizontal; en celular, la vertical.
+         El navegador descarga una sola, la que le toca. #}
+      <picture>
+        {% if negocio.fotoPrincipalAncha %}<source media="(min-width: 901px)" srcset="{{ negocio.fotoPrincipalAncha }}">{% endif %}
+        <img src="{{ portada }}" alt="{{ negocio.fotoPrincipalAlt or negocio.titular }}" width="765" height="1024" fetchpriority="high">
+      </picture>
+    </div>
+    {% endif %}
+  </div>
 
   <div class="contenedor hero__fila">
     <div class="hero__texto">
@@ -37,24 +51,6 @@ permalink: /
       </div>
     </div>
 
-    <div class="hero__foto">
-      {% set portada = negocio.fotoPrincipal %}
-      {% if not portada %}{% set portada = (productos | selectattr("destacado") | first).fotos[0] %}{% endif %}
-      {% if portada %}
-      {# Sin aspect-ratio a propósito: la foto manda su propio alto y así no
-         se recorta nunca, suba el dueño la foto que suba. #}
-      <div class="hero__marco">
-        <img src="{{ portada }}" alt="{{ negocio.fotoPrincipalAlt or negocio.titular }}" width="765" height="1024" fetchpriority="high">
-      </div>
-      {% else %}
-      <div class="foto foto--4-5">
-        <span class="foto__vacia">
-          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="2"></rect><circle cx="8.8" cy="10" r="1.9"></circle><path d="M3.5 17.2l5-4.2 3.6 3 3-2.4 5.4 4.6"></path></svg>
-          <span>Foto principal · tocador encendido</span>
-        </span>
-      </div>
-      {% endif %}
-    </div>
   </div>
 </section>
 

@@ -232,112 +232,6 @@ a, button, label, summary {
 .etiqueta--suelta { position: static; display: inline-block; margin-bottom: 14px; }
 
 /* Hero */
-/* ------------------------------------------------------------------
-   Portada
-   El problema: la foto es beige dorada (tono 27°) y el papel del sitio es
-   casi blanco con tinte rosa (tono 350°). Puestas lado a lado son dos
-   temperaturas opuestas y se leen como dos piezas pegadas.
-
-   Lo que las une aquí es la luz, no el recorte:
-   1. Un resplandor cálido sale de detrás de la foto y baña el papel hacia el
-      lado del texto. No hay franja de color: el resplandor se apaga antes de
-      llegar a los bordes de la sección, así que la portada no queda como un
-      bloque de otro color pegado encima de la página.
-   2. La foto mantiene su marco y sus esquinas, y usa el mismo margen que
-      todas las demás secciones. Es la misma página, no una pieza aparte.
-   3. Un segundo marco finísimo, corrido hacia abajo y hacia el texto, cruza
-      el espacio entre los dos lados. Es el guiño del espejo de la
-      presentación, y es lo que cose las dos mitades.
-
-   Regla que no se puede romper: la foto NUNCA se recorta. El letrero de neón
-   empieza a 4 píxeles del borde de arriba, así que cualquier recorte
-   vertical se lo come. Por eso la imagen manda su propio alto.
-   ------------------------------------------------------------------ */
-
-.hero { position: relative; background: var(--papel); }
-
-.hero__luz {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    /* el calor de la lámpara, centrado en la foto y derramándose al papel */
-    radial-gradient(54% 68% at 72% 48%, rgba(226, 184, 139, 0.34), transparent 66%),
-    /* un rubor rosado del lado del texto, para no perder la marca */
-    radial-gradient(48% 62% at 26% 54%, rgba(234, 198, 200, 0.34), transparent 72%);
-}
-
-.hero__fila {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 56px;
-  align-items: center;
-}
-
-.hero__texto { flex: 1 1 400px; min-width: 0; padding: 76px 0; }
-.hero__caja { width: 100%; max-width: 33rem; }
-
-.hero__foto {
-  position: relative;
-  flex: 0 1 500px;
-  min-width: 0;
-  padding: 52px 0;
-  display: flex;
-  justify-content: flex-end;
-}
-
-/* El segundo marco: corrido hacia abajo y hacia el texto, cruza el espacio
-   entre las dos mitades. Es lo que hace que no se lean como dos bloques. */
-.hero__foto::before {
-  content: "";
-  position: absolute;
-  /* Corrido 18px abajo y 18px a la izquierda de la foto. Los 52 son el
-     relleno de arriba y de abajo de .hero__foto: 52+18 para bajarlo,
-     52-18 para que sobresalga por abajo. Donde se cruza con la foto queda
-     tapado, así que lo que se ve es una ele en la esquina de abajo. */
-  top: 70px;
-  right: 18px;
-  bottom: 34px;
-  left: -18px;
-  border: 1px solid var(--oro-claro);
-  opacity: 0.55;
-  pointer-events: none;
-}
-
-.hero__marco {
-  position: relative;
-  width: 100%;
-  border: 1px solid var(--rosa-linea);
-  background: var(--rosa-papel);
-  /* La sombra es cálida, no gris: la foto queda apoyada en la luz. */
-  box-shadow: 0 36px 72px -38px rgba(122, 84, 58, 0.45),
-              0 8px 22px -14px rgba(122, 84, 58, 0.22);
-}
-/* Alto automático: la foto entra entera, sin recorte, sea cual sea su
-   proporción. Si esto se vuelve un alto fijo, el neón se corta. */
-.hero__marco img { display: block; width: 100%; height: auto; }
-
-.hero__titular {
-  font-size: clamp(2.2rem, 4.2vw, 3.4rem);
-  line-height: 1.05;
-  letter-spacing: -0.025em;
-  margin: 0 0 1.1rem;
-}
-.hero__entrada {
-  font-size: 1.04rem;
-  line-height: 1.75;
-  color: var(--tinta-suave);
-  max-width: 27rem;
-  margin-bottom: 2.1rem;
-}
-.hero__botones { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 2.4rem; }
-
-/* El botón de contorno, con el resplandor detrás, necesita algo de cuerpo
-   para no perderse. */
-.hero .boton--linea { background: rgba(255, 253, 251, 0.78); border-color: var(--linea-fuerte); }
-.hero .boton--linea:hover { background: rgba(255, 255, 255, 0.98); }
-
 /* Tres lucecitas antes del rótulo: el mismo guiño del espejo de la
    presentación y del logo. */
 .rotulo--luces { display: flex; align-items: center; gap: 7px; }
@@ -355,66 +249,118 @@ a, button, label, summary {
 .cifras dd { margin: 6px 0 0; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gris); }
 
 /* ------------------------------------------------------------------
-   La portada en celular: el texto va SOBRE la foto
-   En una pantalla angosta, foto y texto uno debajo del otro no caben: la
-   foto quedaba fuera de la primera pantalla o el titular lo quedaba. Puestos
-   uno encima del otro, la portada completa —rótulo, titular, párrafo, los
-   dos botones y las cifras— cabe de una sola vez.
+   Portada — banner con el texto sobre la foto
+   La foto es hija directa de la sección, no del contenedor: así ocupa el
+   ancho completo de la pantalla sin márgenes negativos que haya que cuadrar
+   con el relleno del contenedor en cada tamaño. Encima va un velo, y encima
+   del velo el texto.
 
-   El velo es lo que hace legible la letra blanca, y va en el tono tinta de
-   la marca, no en negro: la foto se oscurece pero no se enfría.
+   El velo va en el tono tinta de la marca, no en negro: la foto se oscurece
+   pero no se enfría, que con una paleta cálida se nota.
+
+   Dos reglas que no se pueden romper:
+   1. El letrero de neón no se parte. Está pegado al borde de arriba de las
+      dos fotos, así que el encuadre va anclado arriba y, en celular, también
+      a la izquierda, que es la mitad donde vive el letrero.
+   2. El velo tiene que dejar ver el mueble. Es lo que se vende.
+   ------------------------------------------------------------------ */
+
+.hero { position: relative; background: var(--tinta); overflow: hidden; }
+
+.hero__foto { position: absolute; inset: 0; z-index: 0; }
+.hero__marco, .hero__marco picture { position: absolute; inset: 0; display: block; }
+.hero__marco img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Pegado arriba: el neón empieza a unos pocos píxeles del borde. El 1%
+     deja un pelo de aire sin llegar a cortarlo ni en pantallas muy anchas. */
+  object-position: 50% 1%;
+}
+
+/* El velo. En pantalla ancha va de izquierda a derecha: oscuro donde cae el
+   texto, casi transparente sobre el tocador y el espejo. */
+.hero__foto::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(98deg,
+      rgba(32, 19, 23, 0.78) 0%,
+      rgba(32, 19, 23, 0.62) 28%,
+      rgba(32, 19, 23, 0.30) 54%,
+      rgba(32, 19, 23, 0.10) 80%,
+      rgba(32, 19, 23, 0.04) 100%),
+    /* Oscuro abajo, claro arriba: el texto se apoya en la parte baja y el
+       letrero de neón del local queda limpio en lo alto, que es donde está
+       en la foto. */
+    linear-gradient(180deg,
+      rgba(32, 19, 23, 0.10) 0%,
+      transparent 20%,
+      transparent 44%,
+      rgba(32, 19, 23, 0.52) 100%);
+}
+
+.hero__fila {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  /* El texto se apoya abajo: arriba, en la foto, está el letrero del local y
+     se pisaban. */
+  align-items: flex-end;
+  min-height: clamp(560px, 80vh, 800px);
+}
+.hero__texto { flex: 1 1 100%; min-width: 0; padding: 80px 0 62px; color: #fff; }
+.hero__caja { width: 100%; max-width: 34rem; }
+
+.hero__titular {
+  font-size: clamp(2.2rem, 4.2vw, 3.6rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin: 0 0 1.1rem;
+  color: #fff;
+  text-shadow: 0 2px 22px rgba(24, 13, 17, 0.45);
+}
+.hero__entrada {
+  font-size: 1.04rem;
+  line-height: 1.75;
+  color: rgba(255, 252, 253, 0.92);
+  max-width: 27rem;
+  margin-bottom: 2.1rem;
+  text-shadow: 0 1px 16px rgba(24, 13, 17, 0.5);
+}
+.hero__botones { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 2.4rem; }
+
+/* Sobre el velo oscuro el botón negro desaparecería: se invierte. */
+.hero .boton--oscuro { background: #fff; color: var(--tinta); }
+.hero .boton--oscuro:hover { background: rgba(255, 255, 255, 0.88); }
+.hero .boton--linea {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.55);
+  color: #fff;
+}
+.hero .boton--linea:hover { background: rgba(255, 255, 255, 0.14); }
+
+.hero .rotulo--luces { color: var(--oro-claro); }
+.hero .cifras { border-top-color: rgba(255, 255, 255, 0.26); }
+.hero .cifras dt { color: #fff; }
+.hero .cifras dd { color: rgba(255, 250, 251, 0.75); }
+
+/* ------------------------------------------------------------------
+   La portada en celular
+   Entra la foto vertical y el texto se centra. El velo deja de ser de lado
+   a lado y pasa a ser de arriba abajo, que es como cae el texto aquí.
    ------------------------------------------------------------------ */
 @media (max-width: 900px) {
-  /* La foto se sale del contenedor con margen negativo para quedar a sangre,
-     y lo que sobre se recorta aquí. Sin esto, en algunos anchos el sobrante
-     aparece como barra de desplazamiento horizontal. */
-  .hero { background: var(--tinta); overflow: hidden; }
-  /* El resplandor y el marco corrido son recursos de la versión de dos
-     columnas: aquí no tienen dónde ir. */
-  .hero__luz, .hero__foto::before { display: none; }
-
-  /* Sin alto mínimo a propósito. Si la portada es más alta que la foto,
-     "cover" la amplía y la recorta POR LOS LADOS: el letrero de neón se
-     parte. Dejando que mande el contenido, la foto entra casi a su ancho
-     completo y el letrero queda entero. */
-  .hero__fila { position: relative; display: block; }
-
-  /* La foto pasa al fondo, a sangre y cubriendo toda la portada. El margen
-     negativo tiene que coincidir con el relleno del contenedor o aparece
-     barra de desplazamiento horizontal: 20px aquí, 16px abajo de 720. */
-  .hero__foto {
-    position: absolute;
-    inset: 0;
-    margin: 0 -20px;
-    padding: 0;
-    z-index: 0;
-  }
-  .hero__marco {
-    position: absolute;
-    inset: 0;
-    border: 0;
-    background: none;
-    box-shadow: none;
-  }
   .hero__marco img {
-    width: 100%;
-    height: 100%;
-    max-height: none;
-    aspect-ratio: auto;
-    object-fit: cover;
-    /* Pegado arriba y escorado a la izquierda. Arriba porque el letrero de
-       neón empieza a 4px del borde de la foto; a la izquierda porque el
-       letrero vive en esa mitad: así lo que se recorta cuando la portada
-       queda más alta que la foto es la ventana de la derecha, y el letrero
-       nunca se parte. */
-    object-position: 10% 0%;
+    /* Escorado a la izquierda además de arriba: cuando la portada queda más
+       alta que la foto, "cover" la amplía y recorta POR LOS LADOS. Anclando
+       a la izquierda, lo que se pierde es la ventana de la derecha y el
+       letrero de neón queda entero. */
+    object-position: 0% 0%;
   }
-  /* El velo. Más cargado arriba y abajo, que es donde cae el texto, y más
-     liviano en el medio para que el tocador se siga viendo. */
+
   .hero__foto::after {
-    content: "";
-    position: absolute;
-    inset: 0;
     background: linear-gradient(180deg,
       rgba(32, 19, 23, 0.58) 0%,
       rgba(32, 19, 23, 0.62) 26%,
@@ -423,22 +369,14 @@ a, button, label, summary {
       rgba(32, 19, 23, 0.76) 100%);
   }
 
-  .hero__texto {
-    position: relative;
-    z-index: 1;
-    flex: 1 1 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: inherit;
-    padding: 46px 0 40px;
-    text-align: center;
-    color: #fff;
-  }
+  /* Sin alto mínimo a propósito: manda el contenido, así la foto entra casi
+     a su ancho completo y el letrero no se parte. */
+  .hero__fila { min-height: 0; align-items: center; }
+  .hero__texto { padding: 46px 0 40px; text-align: center; }
   .hero__caja { max-width: 30rem; margin: 0 auto; }
 
   /* Rótulo centrado, con las lucecitas a lado y lado. */
-  .rotulo--luces { justify-content: center; color: var(--oro-claro); }
+  .rotulo--luces { justify-content: center; }
   .rotulo--luces::after {
     content: "";
     flex: none;
@@ -447,37 +385,13 @@ a, button, label, summary {
     background: radial-gradient(circle, var(--oro-claro) 0 45%, transparent 48%) 0 50% / 10px 5px repeat-x;
   }
 
-  .hero__titular { color: #fff; text-shadow: 0 2px 20px rgba(26, 14, 18, 0.5); }
-  .hero__entrada {
-    color: rgba(255, 252, 253, 0.92);
-    max-width: 26rem;
-    margin-left: auto;
-    margin-right: auto;
-    text-shadow: 0 1px 14px rgba(26, 14, 18, 0.55);
-  }
+  .hero__entrada { max-width: 26rem; margin-left: auto; margin-right: auto; }
 
   /* Botones anchos, uno debajo del otro: en un pulgar se aciertan mejor. */
   .hero__botones { flex-direction: column; gap: 10px; }
   .hero__botones .boton { width: 100%; }
-  /* Sobre el velo oscuro, el botón negro desaparecería: se invierte. */
-  .hero .boton--oscuro { background: #fff; color: var(--tinta); }
-  .hero .boton--linea {
-    background: transparent;
-    border-color: rgba(255, 255, 255, 0.55);
-    color: #fff;
-  }
-  .hero .boton--linea:hover { background: rgba(255, 255, 255, 0.14); }
 
-  .cifras {
-    justify-content: center;
-    border-top-color: rgba(255, 255, 255, 0.26);
-  }
-  .cifras dt { color: #fff; }
-  .cifras dd { color: rgba(255, 250, 251, 0.75); }
-}
-
-@media (max-width: 720px) {
-  .hero__foto { margin: 0 -16px; }
+  .hero .cifras { justify-content: center; }
 }
 
 @media (max-width: 420px) {
