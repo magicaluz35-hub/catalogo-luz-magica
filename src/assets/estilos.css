@@ -860,3 +860,175 @@ body.sin-desplazar { overflow: hidden; }
   .wa-flotante__corto { display: inline; }
   .tabla th, .tabla td { padding: 11px 12px; font-size: 0.82rem; }
 }
+
+
+/* ==========================================================================
+   Presentación de marca — el letrero que se enciende
+   --------------------------------------------------------------------------
+   El logo de Luz Mágica es un neón dentro de un marco de bombillos. Aquí se
+   dibuja ese marco, se encienden los bombillos en círculo, aparece el nombre
+   y el telón sube para destapar la página. Dura 3,3 segundos.
+
+   Para ajustar los tiempos no hay que tocar los fotogramas: las cuatro
+   variables de abajo mandan sobre toda la secuencia.
+
+   Importante: el telón sube con una animación de CSS, no con JavaScript. Si
+   el JavaScript falla, la página igual queda destapada.
+   ========================================================================== */
+
+/* Apagada mientras el <html> no traiga la clase. Sin JavaScript esa clase
+   nunca llega, así que el visitante entra directo al catálogo. */
+.intro { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .con-intro .intro { display: none; }
+}
+
+.con-intro .intro {
+  --enciende: 820ms;   /* cuándo se prende el primer bombillo */
+  --paso: 28ms;        /* cuánto espera cada bombillo al anterior */
+  --espera: 2600ms;    /* cuándo empieza a subir el telón */
+  --telon: 680ms;      /* cuánto tarda en subir */
+
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--tinta);
+  animation: intro-telon var(--telon) cubic-bezier(0.76, 0, 0.24, 1) var(--espera) forwards;
+}
+
+/* El resplandor del fondo: da la sensación de cuarto oscuro con una luz
+   encendida, no de pantalla negra. */
+.intro__halo {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background:
+    radial-gradient(58% 52% at 50% 47%, rgba(195, 44, 102, 0.26), transparent 70%),
+    radial-gradient(38% 34% at 50% 50%, rgba(210, 156, 165, 0.18), transparent 72%);
+  animation: intro-aparece 700ms ease-out 60ms forwards;
+}
+
+.intro__letrero {
+  position: relative;
+  width: min(78vw, 460px);
+  aspect-ratio: 1.42;
+  display: grid;
+  place-items: center;
+  animation: intro-letrero 440ms cubic-bezier(0.5, 0, 0.9, 0.4)
+             calc(var(--espera) - 180ms) forwards;
+}
+
+/* El marco: cuatro líneas que crecen una tras otra, girando a favor del
+   reloj. Cada una arranca donde terminó la anterior, así que se lee como un
+   solo trazo continuo. */
+.intro__linea { position: absolute; background: var(--oro-claro); opacity: 0.78; }
+.intro__linea--arriba, .intro__linea--abajo { left: 0; right: 0; height: 1px; transform: scaleX(0); }
+.intro__linea--izq, .intro__linea--der { top: 0; bottom: 0; width: 1px; transform: scaleY(0); }
+
+.intro__linea--arriba {
+  top: 0; transform-origin: left center;
+  animation: intro-ancho 230ms ease-out 150ms forwards;
+}
+.intro__linea--der {
+  right: 0; transform-origin: center top;
+  animation: intro-alto 160ms ease-out 380ms forwards;
+}
+.intro__linea--abajo {
+  bottom: 0; transform-origin: right center;
+  animation: intro-ancho 230ms ease-out 540ms forwards;
+}
+.intro__linea--izq {
+  left: 0; transform-origin: center bottom;
+  animation: intro-alto 160ms ease-out 770ms forwards;
+}
+
+/* Bombillos: puntos de luz, no imágenes. El resplandor es fijo y lo único
+   que se anima es la opacidad y el tamaño, que es lo barato de animar. */
+.intro__bombillo {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  margin: -3.5px 0 0 -3.5px;
+  border-radius: 50%;
+  background: #FFEAD7;
+  box-shadow: 0 0 10px 2px rgba(255, 206, 150, 0.45);
+  opacity: 0;
+  animation: intro-bombillo 420ms cubic-bezier(0.2, 0.8, 0.3, 1)
+             calc(var(--enciende) + var(--n) * var(--paso)) forwards;
+}
+
+.intro__texto {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 0.7rem;
+  padding: 0 9%;
+  text-align: center;
+}
+
+.intro__nombre {
+  font-family: var(--display);
+  font-weight: var(--display-peso);
+  font-size: clamp(2rem, 8vw, 3.3rem);
+  line-height: 1;
+  color: #FFF5F8;
+  text-shadow: 0 0 20px rgba(255, 138, 180, 0.45), 0 0 52px rgba(195, 44, 102, 0.38);
+  opacity: 0;
+  animation: intro-nombre 700ms cubic-bezier(0.22, 1, 0.36, 1) 1060ms forwards;
+}
+
+.intro__lema {
+  font-size: clamp(0.55rem, 2vw, 0.7rem);
+  text-transform: uppercase;
+  color: var(--oro-claro);
+  /* El espaciado deja un hueco sobrante a la derecha y descentra la línea:
+     este margen negativo se lo quita. */
+  margin-right: -0.34em;
+  opacity: 0;
+  animation: intro-lema 740ms cubic-bezier(0.22, 1, 0.36, 1) 1360ms forwards;
+}
+
+/* Saltarla: cualquier toque, tecla o intento de bajar la apaga de una.
+   Se corta la animación y se desvanece. */
+.con-intro .intro.intro--saltar {
+  animation: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 260ms ease-out;
+}
+
+@keyframes intro-aparece { to { opacity: 1; } }
+@keyframes intro-ancho   { to { transform: scaleX(1); } }
+@keyframes intro-alto    { to { transform: scaleY(1); } }
+@keyframes intro-bombillo {
+  0%   { opacity: 0; transform: scale(0.35); }
+  60%  { opacity: 1; transform: scale(1.3); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes intro-nombre {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes intro-lema {
+  from { opacity: 0; letter-spacing: 0.08em; }
+  to   { opacity: 0.92; letter-spacing: 0.34em; }
+}
+@keyframes intro-letrero {
+  to { opacity: 0; transform: translateY(-14px) scale(1.05); }
+}
+@keyframes intro-telon {
+  to { transform: translateY(-100%); pointer-events: none; }
+}
+
+/* En pantallas bajas y acostadas el letrero no cabe cómodo: se angosta y se
+   vuelve más cuadrado. */
+@media (max-height: 460px) {
+  .con-intro .intro__letrero { width: min(58vw, 380px); aspect-ratio: 1.9; }
+}
+@media (max-width: 720px) {
+  .con-intro .intro__bombillo { width: 6px; height: 6px; margin: -3px 0 0 -3px; }
+}

@@ -40,7 +40,11 @@ for arch in ["categorias", "negocio", "asesores", "grupos"]:
 
 for f in sorted((R/"src").rglob("*.njk")):
     t = f.read_text()
-    for pat in [r"\{#.*?#\}", r"\{\{.*?\}\}", r"\{%.*?%\}", r"<svg.*?</svg>", r"^---.*?^---"]:
+    # Fuera los comentarios, las expresiones de la plantilla, los dibujos y el
+    # código: nada de eso lo lee el visitante. El <script> suelto de la
+    # cabecera entra aquí, si no el revisor marca "try" y "window".
+    for pat in [r"\{#.*?#\}", r"\{\{.*?\}\}", r"\{%.*?%\}", r"<svg.*?</svg>",
+                r"<script\b.*?</script>", r"^---.*?^---"]:
         t = re.sub(pat, " ", t, flags=re.S|re.M)
     t = re.sub(r"<[^>]+>", "\n", t)
     for l in t.split("\n"):
@@ -52,6 +56,9 @@ js = re.sub(r"//.*", " ", (R/"src/assets/catalogo.js").read_text())
 for m in re.finditer(r'"((?:[^"\\]|\\.){8,})"', js):
     s = m.group(1)
     if re.search(r"[áéíóúñ¡¿]", s) or re.search(r"\b(el|la|los|las|de|que|para|con|tu|te|no|un|una)\b", s):
+        # Sin espacios no es una frase: es un nombre de clase o una llave
+        # ("con-intro", "lm_pedido"). El visitante nunca las lee.
+        if " " not in s: continue
         if not re.search(r"[<>{}\[\]]|data-|\.js|\bvar\b", s): textos.append(("catalogo.js", s))
 
 PROPIAS = {"magica","mágica","wpc","led","leds","rh","sku","whatsapp","aranjuez","carvalo","solterón",

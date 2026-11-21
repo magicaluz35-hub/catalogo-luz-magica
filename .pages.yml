@@ -172,6 +172,11 @@ content:
     fields:
       - { name: nombre, label: Nombre del negocio, type: string }
       - { name: lema, label: Lema, type: string }
+      - name: introMarca
+        label: Presentación de marca al entrar
+        description: "El letrero de Luz Mágica que se enciende a pantalla completa cuando alguien entra al catálogo. Dura tres segundos, se puede saltar tocando la pantalla y solo aparece una vez por visita. Desmárcalo para que el visitante entre directo."
+        type: boolean
+        default: true
       - { name: dominio, label: Dirección del sitio, type: string }
       - { name: titular, label: Titular de la página de inicio, type: string }
       - { name: presentacion, label: Texto de presentación, type: text }

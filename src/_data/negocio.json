@@ -1,6 +1,7 @@
 {
   "nombre": "Luz Mágica",
   "lema": "Tocadores y espejos",
+  "introMarca": true,
   "dominio": "https://catalogo-luz-magica.luzmagica.workers.dev",
   "titular": "Tu tocador, en tus colores",
   "presentacion": "Tocadores Hollywood, espejos LED, asientos, nocheros y variedad de mobiliario para tu hogar. Eliges color y enchape, nosotros lo fabricamos para ti y te lo llevamos hasta tu residencia.",

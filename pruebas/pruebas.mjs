@@ -72,6 +72,18 @@ const navegador = await chromium.launch();
 const ctxEsc = await navegador.newContext({ viewport: { width: 1280, height: 900 } });
 const ctxCel = await navegador.newContext({ ...devices["iPhone 13"] });
 
+// La presentación de marca tapa el sitio los primeros tres segundos. Si se
+// dejara puesta, cada prueba de aquí abajo tendría que esperarla o chocaría
+// contra el telón. Se le deja marcado al navegador que ya la vio, que es
+// exactamente lo que pasa con un visitante de verdad en su segunda página.
+// La presentación tiene su propio bloque de pruebas más abajo, con un
+// navegador sin estrenar.
+const saltarIntro = (c) => c.addInitScript(() => {
+  try { sessionStorage.setItem("lm_intro", "1"); } catch (e) { /* nada */ }
+});
+await saltarIntro(ctxEsc);
+await saltarIntro(ctxCel);
+
 // ---------- 1. Todas las páginas cargan y nada está roto ----------
 {
   const p = await ctxEsc.newPage();
@@ -783,6 +795,118 @@ const ctxCel = await navegador.newContext({ ...devices["iPhone 13"] });
     return t === productos[0].nombre ? true : `muestra "${t}"`;
   });
   await ctx.close();
+}
+
+// ---------- 11. Presentación de marca ----------
+// Tapa el sitio entero los primeros tres segundos, así que lo que de verdad
+// hay que probar no es que se vea bonita: es que SIEMPRE se quite.
+{
+  const AREA = "Presentación de marca";
+  const DURA = 3280;   // --espera (2600) + --telon (680)
+
+  // Navegador sin estrenar: es la primera vez que este visitante entra.
+  const ctx = await navegador.newContext({ viewport: { width: 1280, height: 900 } });
+  const p = await ctx.newPage();
+  await nav(p, "/");
+
+  // ¿Hay algo del tamaño de la pantalla tapando el centro de la página?
+  const tapando = (pag) => pag.evaluate(() => {
+    const el = document.elementFromPoint(innerWidth / 2, innerHeight / 2);
+    return !!(el && el.closest("[data-intro]"));
+  });
+
+  await revisar(AREA, "Aparece al entrar por primera vez", async () => {
+    const hay = await p.evaluate(() =>
+      document.documentElement.classList.contains("con-intro") && !!document.querySelector("[data-intro]"));
+    return hay ? true : "no apareció";
+  });
+
+  await revisar(AREA, "Ocupa toda la pantalla y tapa la página", async () => {
+    if (!(await tapando(p))) return "no está tapando el centro";
+    const m = await p.evaluate(() => {
+      const r = document.querySelector("[data-intro]").getBoundingClientRect();
+      return { ancho: Math.round(r.width), alto: Math.round(r.height), vw: innerWidth, vh: innerHeight };
+    });
+    return (m.ancho === m.vw && m.alto === m.vh) ? true : `mide ${m.ancho}×${m.alto} y la pantalla es ${m.vw}×${m.vh}`;
+  });
+
+  await revisar(AREA, "Se quita sola y deja la página usable", async () => {
+    await p.waitForTimeout(DURA + 400);
+    if (await tapando(p)) return "a los 3,7 segundos todavía tapa la página";
+    const queda = await p.evaluate(() => !!document.querySelector("[data-intro]"));
+    if (queda) return "el telón se quitó pero el elemento quedó en la página";
+    // Prueba de verdad: que se pueda tocar algo.
+    await p.click('.cabecera a[href="/catalogo/"]');
+    return p.url().endsWith("/catalogo/") ? true : `el clic no llevó a ninguna parte (${p.url()})`;
+  });
+
+  await revisar(AREA, "No vuelve a aparecer al cambiar de sección", async () => {
+    const vistas = [];
+    for (const r of ["/", "/pedido/", "/catalogo/"]) {
+      await nav(p, r);
+      if (await p.evaluate(() => document.documentElement.classList.contains("con-intro"))) vistas.push(r);
+    }
+    return vistas.length ? `volvió a salir en ${vistas.join(", ")}` : true;
+  });
+  await ctx.close();
+
+  await revisar(AREA, "Se puede saltar tocando la pantalla", async () => {
+    const c = await navegador.newContext({ viewport: { width: 1280, height: 900 } });
+    const pg = await c.newPage();
+    await nav(pg, "/");
+    await pg.waitForTimeout(700);
+    await pg.mouse.click(640, 450);
+    await pg.waitForTimeout(500);          // muy antes de los 3,3 segundos
+    const sigue = await pg.evaluate(() => {
+      const el = document.elementFromPoint(innerWidth / 2, innerHeight / 2);
+      return !!(el && el.closest("[data-intro]"));
+    });
+    await c.close();
+    return sigue ? "el toque no la quitó" : true;
+  });
+
+  // La red falla, el archivo de JavaScript no llega: el telón tiene que subir
+  // igual, porque lo sube el CSS. Si esto se rompe, el visitante se queda
+  // mirando una pantalla oscura encima del catálogo.
+  await revisar(AREA, "Aunque no cargue el JavaScript, el telón igual sube", async () => {
+    const c = await navegador.newContext({ viewport: { width: 1280, height: 900 } });
+    await c.route("**/catalogo.js", (r) => r.abort());
+    const pg = await c.newPage();
+    await pg.goto(BASE + "/", { waitUntil: "domcontentloaded" });
+    const salio = await pg.evaluate(() => !!document.querySelector("[data-intro]"));
+    await pg.waitForTimeout(DURA + 400);
+    const tapa = await pg.evaluate(() => {
+      const el = document.elementFromPoint(innerWidth / 2, innerHeight / 2);
+      return !!(el && el.closest("[data-intro]"));
+    });
+    await c.close();
+    if (!salio) return "ni siquiera apareció";
+    return tapa ? "se quedó tapando la página" : true;
+  });
+
+  await revisar(AREA, "No aparece si el visitante pidió menos animaciones", async () => {
+    const c = await navegador.newContext({ viewport: { width: 1280, height: 900 }, reducedMotion: "reduce" });
+    const pg = await c.newPage();
+    await nav(pg, "/");
+    const tapa = await pg.evaluate(() => {
+      const el = document.elementFromPoint(innerWidth / 2, innerHeight / 2);
+      return !!(el && el.closest("[data-intro]"));
+    });
+    await c.close();
+    return tapa ? "apareció de todas formas" : true;
+  });
+
+  await revisar(AREA, "Sin JavaScript no aparece y se entra directo", async () => {
+    const c = await navegador.newContext({ viewport: { width: 1280, height: 900 }, javaScriptEnabled: false });
+    const pg = await c.newPage();
+    await pg.goto(BASE + "/", { waitUntil: "domcontentloaded" });
+    const tapa = await pg.evaluate(() => {
+      const el = document.elementFromPoint(innerWidth / 2, innerHeight / 2);
+      return !!(el && el.closest("[data-intro]"));
+    });
+    await c.close();
+    return tapa ? "tapó la página de un visitante sin JavaScript" : true;
+  });
 }
 
 await navegador.close();

@@ -1,12 +1,13 @@
 /* Luz Mágica — lógica del catálogo
    Todo corre en el navegador del cliente. No hay servidor ni base de datos.
 
-   Hace cinco cosas:
+   Hace seis cosas:
    1. Atribución de asesor por enlace (?a=07) — la comisión es del primero.
    2. Estado del horario en vivo.
    3. Armado de los mensajes de WhatsApp.
    4. Filtros y orden del listado.
    5. Pedido guardado, verificador de números y códigos QR del equipo.
+   6. Saltar la presentación de marca (el telón lo sube el CSS, no esto).
 */
 (function () {
   "use strict";
@@ -877,6 +878,7 @@
   }
 
   function iniciar() {
+    iniciarIntro();
     iniciarBotonFlotante();
     pintarAsesor();
     pintarHorario();
@@ -894,6 +896,57 @@
     document.querySelectorAll("[data-opciones]").forEach(function (f) {
       f.addEventListener("change", actualizarEnlacesWA);
     });
+  }
+
+  // ---------- 6. Presentación de marca ----------
+  // El telón sube solo, con animaciones de CSS. Esto no lo levanta: solo
+  // deja saltarlo y después borra el elemento para dejar el DOM limpio.
+  // Si este código no corriera, la presentación igual terminaría.
+  function iniciarIntro() {
+    var intro = document.querySelector("[data-intro]");
+    if (!intro) return;
+    if (!document.documentElement.classList.contains("con-intro")) {
+      intro.parentNode.removeChild(intro);
+      return;
+    }
+
+    // Debe coincidir con --espera + --telon de la hoja de estilos.
+    var ESPERA = 2600, TELON = 680, MARGEN = 120;
+    var sucesos = ["pointerdown", "keydown", "wheel", "touchmove"];
+    var terminada = false;
+
+    function quitar() {
+      if (intro.parentNode) intro.parentNode.removeChild(intro);
+      document.documentElement.classList.remove("con-intro");
+    }
+
+    function saltar() {
+      if (terminada) return;
+      terminada = true;
+      soltar();
+      intro.classList.add("intro--saltar");
+      setTimeout(quitar, 320);
+    }
+
+    function soltar() {
+      for (var i = 0; i < sucesos.length; i++) {
+        window.removeEventListener(sucesos[i], saltar);
+      }
+    }
+
+    for (var i = 0; i < sucesos.length; i++) {
+      window.addEventListener(sucesos[i], saltar, { passive: true });
+    }
+
+    // Pasada la salida ya no hay nada que saltar: se sueltan los oyentes
+    // para no quedar escuchando cada rueda del mouse en todo el sitio.
+    setTimeout(function () {
+      if (terminada) return;
+      terminada = true;
+      soltar();
+    }, ESPERA);
+
+    setTimeout(quitar, ESPERA + TELON + MARGEN);
   }
 
   if (document.readyState === "loading") {

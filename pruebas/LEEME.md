@@ -1,8 +1,9 @@
 # Pruebas del catálogo
 
-72 pruebas que recorren el sitio como lo haría un visitante: entran con el
-enlace de un asesor, arman un pedido, llenan el formulario, abren el visor de
-fotos, filtran el catálogo y revisan que ninguna foto esté rota.
+82 pruebas que recorren el sitio como lo haría un visitante: entran con el
+enlace de un asesor, ven la presentación de marca, arman un pedido, llenan el
+formulario, abren el visor de fotos, filtran el catálogo y revisan que ninguna
+foto esté rota.
 
 ## Cómo correrlas
 
@@ -32,13 +33,20 @@ escriba al número correcto, el carrito, el formulario obligatorio campo por
 campo, los filtros, la búsqueda, el visor de fotos, el sitio sin JavaScript, y
 que en celular nada se desborde ni quede un botón más chico que el dedo.
 
+De la presentación de marca lo que se prueba no es que se vea bonita —eso hay
+que mirarlo— sino que **siempre se quite**: que se vaya sola, que se pueda
+saltar tocando, que no vuelva a salir al cambiar de sección, que no le
+aparezca a quien pidió menos animaciones, y que el telón suba incluso si el
+archivo de JavaScript no llega a cargar. Es lo único del sitio que puede dejar
+al visitante mirando una pantalla oscura, así que tiene red doble.
+
 **No cubren:** que WhatsApp abra de verdad en un teléfono, que el asesor reciba
 el mensaje, que una foto se vea bonita, que un precio esté al día, ni que el
 mapa lleve a la dirección correcta. Eso hay que probarlo a mano.
 
 ## Revisar la ortografía
 
-Aparte de las 74 pruebas, hay un revisor de ortografía que lee todo el texto que ve
+Aparte de las 82 pruebas, hay un revisor de ortografía que lee todo el texto que ve
 el visitante: los nombres y descripciones de los 115 productos, los datos del negocio,
 las plantillas y los mensajes del JavaScript.
 

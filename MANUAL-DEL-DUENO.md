@@ -130,6 +130,34 @@ discusión, la prueba está en el chat.
 
 ---
 
+## La presentación de marca
+
+Es el letrero de Luz Mágica que se enciende a pantalla completa cuando alguien
+entra al catálogo: se dibuja el marco, se prenden los bombillos uno por uno,
+aparece el nombre y el telón sube para mostrar la página.
+
+Cómo se porta:
+
+- **Dura tres segundos** y se puede saltar tocando la pantalla.
+- **Sale una sola vez por visita.** Si la persona entra, mira tocadores, abre
+  un espejo y vuelve al inicio, no la vuelve a ver. Solo reaparece si cierra
+  el navegador y entra otro día.
+- **No le sale a todo el mundo.** A quien tiene activada la opción de "reducir
+  animaciones" en su teléfono —la usa mucha gente que se marea con el
+  movimiento— se le entra directo al catálogo.
+- **No usa ninguna foto.** Los bombillos son puntos dibujados por el navegador,
+  así que no hay nada que descargar y no pone la página más lenta.
+
+Para apagarla: *Datos del negocio* → desmarca **Presentación de marca al
+entrar**. El visitante pasa derecho al catálogo y nada más cambia.
+
+Una cosa que vale la pena pensar: cuando un asesor manda el enlace de un
+mueble puntual, al cliente también le sale la presentación antes de ver ese
+mueble. Son tres segundos y se salta tocando, pero si en algún momento sientes
+que estorba para vender, apágala desde ahí mismo.
+
+---
+
 ## Si algo sale mal
 
 **Guardé un cambio y el catálogo sigue igual.**

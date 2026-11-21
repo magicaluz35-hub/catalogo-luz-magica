@@ -21,10 +21,33 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Jost:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="/assets/estilos.css">
 
+{% if negocio.introMarca != false %}
+{# Decide si va la presentación de marca. Este pedacito suelto tiene que
+   correr ANTES de que se pinte la página: si esperara al archivo de
+   JavaScript, el visitante alcanzaría a ver el catálogo y encima le caería
+   el telón. Son cuatro líneas, no pide ningún archivo y no frena la carga.
+
+   No se muestra por tres razones: ya se vio en esta visita, el visitante
+   pidió menos animaciones en su teléfono, o el navegador no deja guardar
+   nada (modo privado). En los tres casos se entra directo al catálogo. #}
+<script>
+(function () {
+  try {
+    if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (sessionStorage.getItem("lm_intro")) return;
+    sessionStorage.setItem("lm_intro", "1");
+    document.documentElement.classList.add("con-intro");
+  } catch (e) { /* sin memoria de sesión: se entra directo */ }
+})();
+</script>
+{% endif %}
+
 <script type="application/json" id="datos-asesores">{{ asesores | dump | safe }}</script>
 <script type="application/json" id="datos-negocio">{{ { "whatsapp": negocio.telefonoWhatsapp, "regla": negocio.atribucion.regla, "dias": negocio.atribucion.diasVigencia, "horario": negocio.horario } | dump | safe }}</script>
 </head>
 <body>
+
+{% if negocio.introMarca != false %}{% include "intro.njk" %}{% endif %}
 
 <div class="promesas">
   {% for p in negocio.promesas %}<span>{{ p }}</span>{% if not loop.last %}<span aria-hidden="true" class="punto">·</span>{% endif %}{% endfor %}
