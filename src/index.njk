@@ -8,17 +8,18 @@ permalink: /
 {% set destacados = productos | selectattr("destacado") | list %}
 {% set nuevos = productos | selectattr("nuevo") | list %}
 
-{# Portada. La foto no va "al lado" del texto: va pegada al borde de la
-   pantalla, con su filo izquierdo deshecho en degradado, y el fondo de toda
-   la sección sale de los colores de esa misma foto. Así el calor de la
-   lámpara parece derramarse sobre el papel en vez de quedar encerrado en un
-   rectángulo. Los detalles de cómo está armado están en estilos.css. #}
+{# Portada. La foto se muestra entera —nunca recortada, para que el letrero
+   de neón no pierda ni un bombillo— y conserva su marco. Lo que une la foto
+   con el texto no es pegarlos: es la luz. Un resplandor cálido sale de
+   detrás de la imagen y baña el papel hacia la izquierda, y un segundo marco
+   finísimo, corrido, cruza hacia el lado del texto. Los detalles están en
+   estilos.css. #}
 <section class="hero">
-  {# El resplandor va por detrás de la foto: se ve solo del lado del texto,
-     como luz que se escapa de la imagen. #}
+  {# El resplandor va por detrás de todo: se ve alrededor de la foto, como
+     luz que se escapa de la imagen hacia el papel. #}
   <div class="hero__luz" aria-hidden="true"></div>
 
-  <div class="hero__fila">
+  <div class="contenedor hero__fila">
     <div class="hero__texto">
       <div class="hero__caja">
         <p class="rotulo rotulo--luces">Fábrica y galería en Aranjuez</p>
@@ -40,6 +41,8 @@ permalink: /
       {% set portada = negocio.fotoPrincipal %}
       {% if not portada %}{% set portada = (productos | selectattr("destacado") | first).fotos[0] %}{% endif %}
       {% if portada %}
+      {# Sin aspect-ratio a propósito: la foto manda su propio alto y así no
+         se recorta nunca, suba el dueño la foto que suba. #}
       <div class="hero__marco">
         <img src="{{ portada }}" alt="{{ negocio.fotoPrincipalAlt or negocio.titular }}" width="765" height="1024" fetchpriority="high">
       </div>
