@@ -105,9 +105,11 @@
     document.querySelectorAll("[data-asesor-codigo]").forEach(function (n) { n.textContent = ASESOR.codigo; });
     var origen = document.querySelector("[data-asesor-origen]");
     if (origen) {
+      // Al cliente no se le cuenta la mecánica de los enlaces ni de las
+      // comisiones: eso es asunto interno. Solo quién lo atiende.
       origen.textContent = ASIGNADO.origen === "enlace"
-        ? "Llegaste con el enlace de " + ASESOR.nombre + ", así que te acompaña durante toda la visita."
-        : "Entraste sin un enlace de asesor, así que te asignamos uno del equipo.";
+        ? ASESOR.nombre + " te acompaña durante toda tu compra."
+        : "Te asignamos una línea del equipo para acompañarte durante toda tu compra.";
     }
   }
 

@@ -205,15 +205,19 @@ permalink: /
 <section class="seccion" id="asesores">
   <div class="contenedor dos-columnas">
     <div>
-      <p class="rotulo">{% set nAs = asesores | activos | length %}{{ nAs }} línea{{ "s" if nAs != 1 }} autorizada{{ "s" if nAs != 1 }}</p>
-      <h2>Te atiende una persona</h2>
-      <p class="parrafo">Cada asesor tiene su propio enlace del catálogo. Quien te lo haya enviado te acompaña en todo el recorrido: el catálogo lo recuerda y todos los botones de WhatsApp le escriben a esa persona.</p>
-      <a class="boton boton--linea" href="/asesores/">Ver los asesores autorizados</a>
+      {# Aquí NO se explica cómo se reparten las comisiones. El visitante es un
+         cliente, no un vendedor: lo que le sirve saber es que lo atiende un
+         equipo y que siempre le responde la misma persona. El reparto es un
+         asunto interno y vive en /equipo/, que va con noindex. #}
+      <p class="rotulo">{% set nAs = asesores | activos | length %}{{ nAs }} línea{{ "s" if nAs != 1 }} de atención</p>
+      <h2>Te atiende nuestro equipo</h2>
+      <p class="parrafo">Resolvemos dudas de medidas, colores y enchapes, confirmamos el domicilio y te damos seguimiento hasta que el mueble esté en tu casa. La misma persona te acompaña durante toda la compra.</p>
+      <a class="boton boton--linea" href="/asesores/">Ver las líneas autorizadas</a>
     </div>
     <div class="caja">
-      <h3 class="rotulo">Tu asesor en esta visita</h3>
+      <h3 class="rotulo">Tu línea de atención</h3>
       <p class="caja__dato"><strong data-asesor-nombre>{{ negocio.nombre }}</strong></p>
-      <p class="caja__nota" data-asesor-origen>Estás viendo el catálogo sin un enlace de asesor, así que te atiende la línea principal.</p>
+      <p class="caja__nota" data-asesor-origen>Te atiende nuestra línea principal de atención.</p>
       <a class="boton boton--whatsapp" href="#" data-wa data-wa-texto="¡Hola {{ negocio.nombre }}! Quiero hacer un pedido:">Escribir por WhatsApp</a>
       <p class="caja__nota">{{ negocio.atribucion.notaRegla }}</p>
     </div>

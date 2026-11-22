@@ -35,7 +35,7 @@ descripcion: Los únicos números autorizados para vender Luz Mágica. Verifica 
 
   <section>
     <h2>El equipo</h2>
-    <p class="parrafo">{{ activos.length }} línea{{ "s" if activos.length != 1 }} activa{{ "s" if activos.length != 1 }}. El dueño agrega, cambia o desactiva cualquiera desde el panel; esta lista se actualiza sola.</p>
+    <p class="parrafo">{{ activos.length }} línea{{ "s" if activos.length != 1 }} activa{{ "s" if activos.length != 1 }}. Si una línea deja de estar autorizada, desaparece de esta lista el mismo día.</p>
 
     <table class="tabla">
       <thead>
@@ -52,7 +52,10 @@ descripcion: Los únicos números autorizados para vender Luz Mágica. Verifica 
       </tbody>
     </table>
 
-    <p class="nota">¿Eres del equipo? Tu enlace personal y tu código QR están en <a href="/equipo/">{{ negocio.dominio | replace("https://", "") }}/equipo</a>. Comparte siempre ese enlace: es el que mantiene tu comisión.</p>
+    {# Aquí iba una nota para el equipo con la regla de las comisiones. Se
+       quitó: esta página la lee un cliente que está verificando un número,
+       y las instrucciones internas en una página pública restan seriedad.
+       El equipo llega a sus enlaces por /equipo/, que está en el manual. #}
   </section>
 
 </div>

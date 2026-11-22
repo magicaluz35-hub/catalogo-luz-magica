@@ -273,6 +273,7 @@ content:
           - { name: tiktok, label: TikTok, type: string }
       - name: atribucion
         label: Comisiones de los asesores
+        description: "Ajustes internos. Lo único de aquí que ve el cliente es la nota del final."
         type: object
         fields:
           - name: regla
@@ -283,4 +284,7 @@ content:
                 - { value: primero, label: Del primero que envió el enlace }
                 - { value: ultimo, label: Del último enlace que abrió el cliente }
           - { name: diasVigencia, label: Días que dura la asignación, type: number }
-          - { name: notaRegla, label: Explicación que se muestra en la web, type: text }
+          - name: notaRegla
+            label: Nota que ve el cliente en el inicio
+            description: "Va en el recuadro 'Tu línea de atención' de la página de inicio. La lee un cliente, no un asesor: escribe qué gana él —que siempre le responde la misma persona—, no cómo se reparten las comisiones. El reparto es interno y se explica en la página del equipo."
+            type: text
