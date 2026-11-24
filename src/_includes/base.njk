@@ -41,14 +41,13 @@
     // sí es una entrada, y ahí la presentación tiene sentido.
     if (location.pathname !== "/") return;
 
-    // localStorage y no sessionStorage: sessionStorage vive por PESTAÑA, así
-    // que al abrir cualquier enlace en una pestaña nueva la presentación
-    // volvía a salir. Con una ventana de horas, se ve una vez por visita de
-    // verdad y vuelve a verse si el cliente regresa otro día.
-    var VENTANA = 6 * 60 * 60 * 1000;
-    var visto = Number(localStorage.getItem("lm_intro") || 0);
-    if (visto && Date.now() - visto < VENTANA) return;
-    localStorage.setItem("lm_intro", String(Date.now()));
+    // sessionStorage y no localStorage: sessionStorage vive por PESTAÑA. Así
+    // la presentación no se repite mientras el visitante recorre el catálogo
+    // —que era la molestia—, pero sí vuelve a salir si entra al inicio en una
+    // pestaña nueva, que es una entrada nueva de verdad. Es también la forma
+    // de volver a verla sin tocar nada: abrir el inicio en otra pestaña.
+    if (sessionStorage.getItem("lm_intro")) return;
+    sessionStorage.setItem("lm_intro", "1");
 
     document.documentElement.classList.add("con-intro");
   } catch (e) { /* sin memoria: se entra directo */ }

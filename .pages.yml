@@ -174,7 +174,7 @@ content:
       - { name: lema, label: Lema, type: string }
       - name: introMarca
         label: Presentación de marca al entrar
-        description: "El letrero de Luz Mágica que se enciende a pantalla completa cuando alguien entra al inicio del catálogo. Dura tres segundos, se puede saltar tocando la pantalla y sale una sola vez por visita. No sale cuando el cliente llega directo a un mueble por el enlace de un asesor. Desmárcalo para que el visitante entre directo siempre."
+        description: "El letrero de Luz Mágica que se enciende a pantalla completa cuando alguien entra al inicio del catálogo. Dura tres segundos y se puede saltar tocando la pantalla. No se repite mientras la persona recorre el catálogo, y no sale cuando el cliente llega directo a un mueble por el enlace de un asesor. Para volver a verla, abre el inicio en una pestaña nueva. Desmárcalo para que el visitante entre directo siempre."
         type: boolean
         default: true
       - { name: dominio, label: Dirección del sitio, type: string }

@@ -79,7 +79,7 @@ const ctxCel = await navegador.newContext({ ...devices["iPhone 13"] });
 // La presentación tiene su propio bloque de pruebas más abajo, con un
 // navegador sin estrenar.
 const saltarIntro = (c) => c.addInitScript(() => {
-  try { localStorage.setItem("lm_intro", String(Date.now())); } catch (e) { /* nada */ }
+  try { sessionStorage.setItem("lm_intro", "1"); } catch (e) { /* nada */ }
 });
 await saltarIntro(ctxEsc);
 await saltarIntro(ctxCel);
@@ -849,14 +849,26 @@ await saltarIntro(ctxCel);
     return vistas.length ? `volvió a salir en ${vistas.join(", ")}` : true;
   });
 
-  // Antes se recordaba en sessionStorage, que vive por PESTAÑA: cada enlace
-  // abierto en pestaña nueva repetía la presentación.
-  await revisar(AREA, "No se repite al abrir otra pestaña", async () => {
+  // Se recuerda por PESTAÑA a propósito: una pestaña nueva en el inicio es
+  // una entrada nueva, y es además la manera de volver a verla sin tocar
+  // nada. Lo que no debe repetirse es mientras se recorre el catálogo, y eso
+  // lo cubre la prueba de arriba.
+  await revisar(AREA, "Vuelve a aparecer en una pestaña nueva del inicio", async () => {
     const otra = await ctx.newPage();
     await nav(otra, "/");
     const sale = await otra.evaluate(() => document.documentElement.classList.contains("con-intro"));
     await otra.close();
-    return sale ? "volvió a salir en una pestaña nueva" : true;
+    return sale ? true : "no salió en una pestaña nueva del inicio";
+  });
+
+  // Pero una pestaña nueva de un MUEBLE sigue sin telón: ahí es donde cae el
+  // enlace del asesor y donde estorba.
+  await revisar(AREA, "Una pestaña nueva de un mueble sigue sin presentación", async () => {
+    const otra = await ctx.newPage();
+    await nav(otra, "/producto/lm-012/");
+    const sale = await otra.evaluate(() => document.documentElement.classList.contains("con-intro"));
+    await otra.close();
+    return sale ? "salió en una pestaña nueva de un mueble" : true;
   });
   await ctx.close();
 

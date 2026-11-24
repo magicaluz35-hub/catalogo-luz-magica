@@ -158,9 +158,11 @@ Cómo se porta:
   puntual, el cliente entra derecho a ese mueble: ahí viene a ver *ese*
   tocador y un telón de tres segundos estorba justo en el momento de más
   ganas. El inicio sí es una entrada, y ahí la presentación tiene sentido.
-- **Sale una sola vez por visita.** Si la persona entra, mira tocadores, abre
-  un espejo y vuelve al inicio, no la vuelve a ver — tampoco si abre algo en
-  una pestaña nueva. Vuelve a verla si regresa al otro día.
+- **No se repite mientras la persona recorre el catálogo.** Si entra, mira
+  tocadores, abre un espejo y vuelve al inicio, no la vuelve a ver.
+- **Sí vuelve a salir si abre el inicio en una pestaña nueva**, porque esa es
+  una entrada nueva. Es también la manera más fácil de volver a verla cuando
+  quieras mostrarla a alguien: abre el inicio en otra pestaña.
 - **No le sale a todo el mundo.** A quien tiene activada la opción de "reducir
   animaciones" en su teléfono —la usa mucha gente que se marea con el
   movimiento— se le entra directo al catálogo.
