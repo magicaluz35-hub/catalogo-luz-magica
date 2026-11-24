@@ -8,7 +8,7 @@
   "plazoDesde": null,
   "plazoHasta": 25,
   "iluminacion": "led",
-  "destacado": true,
+  "destacado": false,
   "nuevo": false,
   "fotos": [
     "/img/p028-1.webp"

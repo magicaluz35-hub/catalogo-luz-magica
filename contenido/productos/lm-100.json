@@ -8,7 +8,7 @@
   "plazoDesde": 15,
   "plazoHasta": 20,
   "iluminacion": "ninguna",
-  "destacado": true,
+  "destacado": false,
   "nuevo": false,
   "fotos": [
     "/img/p100-1.webp",

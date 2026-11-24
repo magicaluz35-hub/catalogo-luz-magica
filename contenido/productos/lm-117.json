@@ -8,7 +8,7 @@
   "plazoDesde": null,
   "plazoHasta": null,
   "iluminacion": "led",
-  "destacado": true,
+  "destacado": false,
   "nuevo": false,
   "fotos": [
     "/img/p117-1.webp",
