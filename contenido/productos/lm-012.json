@@ -8,11 +8,11 @@
   "plazoDesde": null,
   "plazoHasta": null,
   "iluminacion": "ninguna",
-  "destacado": false,
+  "destacado": true,
   "nuevo": false,
   "fotos": [
-    "/img/p012-1.webp",
     "/img/p012-2.webp",
+    "/img/p012-1.webp",
     "/img/p012-3.webp",
     "/img/p012-4.webp",
     "/img/p012-5.webp"
