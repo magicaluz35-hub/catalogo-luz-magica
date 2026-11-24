@@ -37,6 +37,16 @@
 <div class="contenedor">
   <h1 class="listado__titulo">{{ c.nombre if c else "Todo el catálogo" }}</h1>
   <p class="listado__entrada">{{ c.descripcion if c else (("El único producto de " + negocio.nombre) if productos.length == 1 else ("Los " + (productos.length | string) + " productos de " + negocio.nombre)) + ". Filtra por precio o por luz LED para encontrar el tuyo." }}</p>
+
+  {# Las tarjetas ya no prometen días: no todos los muebles tardan lo mismo y
+     una cifra sola en la tarjeta terminaba siendo mentira en uno de cada
+     cinco. El rango va aquí, una vez, y el dato exacto en cada ficha. #}
+  {% if negocio.plazoNota %}
+  <p class="listado__plazo">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="8.6"></circle><path d="M12 7.4V12l3 1.8"></path></svg>
+    <span>{{ negocio.plazoNota }}</span>
+  </p>
+  {% endif %}
 </div>
 
 <div class="contenedor listado">

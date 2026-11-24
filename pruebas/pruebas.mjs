@@ -630,6 +630,39 @@ await saltarIntro(ctxCel);
     return ajenos.length ? `${ajenos.length} son de otra categoría` : true;
   });
 
+  // 21 de los 115 muebles tardan más de 15 días. La tarjeta es la misma para
+  // todos, así que cualquier cifra ahí es una promesa que el taller no puede
+  // cumplir en uno de cada cinco.
+  await revisar("Plazos", "Ninguna tarjeta promete un número de días", async () => {
+    await nav(p, "/catalogo/");
+    const malas = await p.evaluate(() =>
+      [...document.querySelectorAll(".tarjeta__plazo")]
+        .map((e) => e.textContent.trim())
+        .filter((t) => /\d/.test(t))
+        .slice(0, 3));
+    return malas.length ? `dicen "${malas.join('", "')}"` : true;
+  });
+
+  await revisar("Plazos", "El catálogo avisa que el plazo cambia según el mueble", async () => {
+    const t = await p.evaluate(() => document.querySelector(".listado__plazo")?.textContent.trim() || "");
+    if (!t) return "no hay nota de plazo en el catálogo";
+    return /\d+\s*(y|a|–|-)\s*\d+/.test(t) ? true : `la nota no da un rango: "${t}"`;
+  });
+
+  // Lo que de verdad protege al cliente: que el mueble lento diga su plazo
+  // y no el general.
+  await revisar("Plazos", "El mueble con plazo propio muestra el suyo en la ficha", async () => {
+    const lentos = productos.filter((x) => (x.plazo || "").trim());
+    if (!lentos.length) return "ningún producto tiene plazo propio: la prueba ya no mide nada";
+    const malos = [];
+    for (const m of lentos.slice(0, 6)) {
+      await nav(p, `/producto/${m.sku.toLowerCase()}/`);
+      const t = await p.evaluate(() => document.querySelector(".aviso-plazo")?.textContent.trim() || "");
+      if (t.replace(/\s+/g, " ") !== m.plazo.replace(/\s+/g, " ")) malos.push(`${m.sku}: "${t}"`);
+    }
+    return malos.length ? malos.join("; ") : true;
+  });
+
   await revisar("Ficha", "Todos los precios salen formateados en pesos", async () => {
     const malos = [];
     for (const sku of productos.slice(0, 15).map((x) => x.sku)) {

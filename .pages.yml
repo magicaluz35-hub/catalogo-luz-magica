@@ -68,7 +68,7 @@ content:
         type: text
       - name: plazo
         label: Plazo de fabricación propio
-        description: Déjalo vacío si el mueble se entrega en el plazo normal de 10 a 15 días hábiles. Llénalo solo cuando este producto tarde distinto.
+        description: "Déjalo vacío si el mueble se entrega en el plazo normal de 10 a 15 días hábiles. Llénalo solo cuando este tarde distinto, con la frase completa: Fabricación bajo pedido: entrega de 15 a 20 días hábiles."
         type: string
       - name: fotos
         label: Fotos
@@ -214,8 +214,22 @@ content:
           - { name: desde, label: Abre (24h, ej. 08:00), type: string }
           - { name: hasta, label: Cierra (24h, ej. 17:30), type: string }
           - { name: nota, label: Nota en vez de horario, type: string }
-      - { name: plazoFabricacion, label: Texto del plazo de fabricación, type: text }
-      - { name: plazoCorto, label: Plazo corto para las tarjetas, type: string }
+      - name: plazoFabricacion
+        label: Texto del plazo de fabricación
+        description: El que sale en la ficha de los muebles que NO tienen plazo propio. Si cambia el plazo normal del taller, cámbialo aquí y cámbialo también en la nota del catálogo y en la cifra de la portada.
+        type: text
+      - name: plazoCorto
+        label: Texto bajo el precio en las tarjetas
+        description: "No pongas días aquí. La tarjeta es igual para los 115 muebles y hay 21 que tardan más de 15 días: una cifra sola acá termina siendo una promesa que el taller no puede cumplir. Los días van en la nota del catálogo y en la ficha de cada mueble."
+        type: string
+      - name: plazoNota
+        label: Nota del plazo en el catálogo
+        description: La línea que explica que el plazo cambia según el mueble. Sale arriba de las tarjetas, en el catálogo y en cada línea. Déjala vacía para que no salga.
+        type: text
+      - name: cifraPlazo
+        label: Cifra de días en la portada
+        description: "El número grande de la portada, junto a los años y los productos. Va el rango completo, por ejemplo 10–25, no solo el plazo corto."
+        type: string
       - { name: formasDePago, label: Formas de pago, type: text }
       - { name: domicilios, label: Texto de domicilios, type: text }
       - { name: retiro, label: Texto de retiro en tienda, type: text }

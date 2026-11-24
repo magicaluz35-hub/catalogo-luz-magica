@@ -122,6 +122,19 @@ discusión, la prueba está en el chat.
 ## Cambiar precios, horarios o políticas
 
 - **Precios:** en cada producto.
+- **Plazos de entrega:** hay dos niveles, y conviene entender por qué.
+  - El **plazo normal** (hoy, de 10 a 15 días hábiles) está en *Datos del negocio →
+    Texto del plazo de fabricación*. Sale en la ficha de todos los muebles que no
+    tengan plazo propio.
+  - Un **mueble que tarde distinto** lleva su propio plazo, en *Productos → Plazo de
+    fabricación propio*. Hoy hay 21 así: 11 de 15 a 20 días y 10 de hasta 25. Ese
+    texto reemplaza al normal solo en ese mueble.
+  - **Las tarjetas del catálogo no dicen días a propósito.** La tarjeta es idéntica
+    para los 115 muebles, así que cualquier cifra ahí sería mentira en uno de cada
+    cinco. Dicen solo *Hecho a pedido*, y arriba de las tarjetas va una nota con el
+    rango completo (*Datos del negocio → Nota del plazo en el catálogo*).
+  - Si cambia el plazo del taller, hay que tocar **tres** campos: el texto del plazo
+    normal, la nota del catálogo y la cifra grande de la portada.
 - **Horarios, dirección, teléfono, formas de pago, texto de domicilios:** en
   *Datos del negocio*. El letrero de "Abierto / Cerrado" del catálogo se calcula solo con
   los horarios que pongas ahí.

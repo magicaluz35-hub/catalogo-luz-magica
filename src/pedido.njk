@@ -20,6 +20,10 @@ descripcion: Revisa los muebles que escogiste, déjanos tus datos y envía el pe
   <div data-pedido-pie hidden>
     <p class="pedido__total">Total productos: <strong data-pedido-total></strong></p>
     <p class="nota">{{ negocio.domicilios }}</p>
+    {# El plazo también aquí: es el último momento antes de mandar el pedido,
+       y un cliente que cuenta con quince días y recibe a los veinticinco
+       reclama con razón. #}
+    {% if negocio.plazoNota %}<p class="nota">{{ negocio.plazoNota }}</p>{% endif %}
 
     <form class="formulario" data-datos-cliente autocomplete="on" novalidate>
       <h2 class="formulario__titulo">Tus datos para la entrega</h2>
