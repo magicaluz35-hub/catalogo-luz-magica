@@ -154,9 +154,13 @@ nombre y el telón sube para mostrar la página.
 Cómo se porta:
 
 - **Dura tres segundos** y se puede saltar tocando la pantalla.
+- **Solo sale en el inicio.** Cuando un asesor manda el enlace de un mueble
+  puntual, el cliente entra derecho a ese mueble: ahí viene a ver *ese*
+  tocador y un telón de tres segundos estorba justo en el momento de más
+  ganas. El inicio sí es una entrada, y ahí la presentación tiene sentido.
 - **Sale una sola vez por visita.** Si la persona entra, mira tocadores, abre
-  un espejo y vuelve al inicio, no la vuelve a ver. Solo reaparece si cierra
-  el navegador y entra otro día.
+  un espejo y vuelve al inicio, no la vuelve a ver — tampoco si abre algo en
+  una pestaña nueva. Vuelve a verla si regresa al otro día.
 - **No le sale a todo el mundo.** A quien tiene activada la opción de "reducir
   animaciones" en su teléfono —la usa mucha gente que se marea con el
   movimiento— se le entra directo al catálogo.
@@ -165,11 +169,6 @@ Cómo se porta:
 
 Para apagarla: *Datos del negocio* → desmarca **Presentación de marca al
 entrar**. El visitante pasa derecho al catálogo y nada más cambia.
-
-Una cosa que vale la pena pensar: cuando un asesor manda el enlace de un
-mueble puntual, al cliente también le sale la presentación antes de ver ese
-mueble. Son tres segundos y se salta tocando, pero si en algún momento sientes
-que estorba para vender, apágala desde ahí mismo.
 
 ---
 

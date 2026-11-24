@@ -79,7 +79,7 @@ const ctxCel = await navegador.newContext({ ...devices["iPhone 13"] });
 // La presentación tiene su propio bloque de pruebas más abajo, con un
 // navegador sin estrenar.
 const saltarIntro = (c) => c.addInitScript(() => {
-  try { sessionStorage.setItem("lm_intro", "1"); } catch (e) { /* nada */ }
+  try { localStorage.setItem("lm_intro", String(Date.now())); } catch (e) { /* nada */ }
 });
 await saltarIntro(ctxEsc);
 await saltarIntro(ctxCel);
@@ -848,7 +848,28 @@ await saltarIntro(ctxCel);
     }
     return vistas.length ? `volvió a salir en ${vistas.join(", ")}` : true;
   });
+
+  // Antes se recordaba en sessionStorage, que vive por PESTAÑA: cada enlace
+  // abierto en pestaña nueva repetía la presentación.
+  await revisar(AREA, "No se repite al abrir otra pestaña", async () => {
+    const otra = await ctx.newPage();
+    await nav(otra, "/");
+    const sale = await otra.evaluate(() => document.documentElement.classList.contains("con-intro"));
+    await otra.close();
+    return sale ? "volvió a salir en una pestaña nueva" : true;
+  });
   await ctx.close();
+
+  // Un enlace de asesor cae casi siempre en un tocador puntual: ahí el
+  // cliente viene a ver ESE mueble y el telón estorba.
+  await revisar(AREA, "Solo aparece en el inicio, no en un producto", async () => {
+    const c = await navegador.newContext({ viewport: { width: 1280, height: 900 } });
+    const pg = await c.newPage();
+    await nav(pg, "/producto/lm-012/");
+    const sale = await pg.evaluate(() => document.documentElement.classList.contains("con-intro"));
+    await c.close();
+    return sale ? "salió al entrar directo a un producto" : true;
+  });
 
   await revisar(AREA, "Se puede saltar tocando la pantalla", async () => {
     const c = await navegador.newContext({ viewport: { width: 1280, height: 900 } });

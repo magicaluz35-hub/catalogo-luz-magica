@@ -34,10 +34,24 @@
 (function () {
   try {
     if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    if (sessionStorage.getItem("lm_intro")) return;
-    sessionStorage.setItem("lm_intro", "1");
+
+    // Solo en el inicio. Un enlace de asesor cae casi siempre en un tocador
+    // puntual: ahí el cliente viene a ver ESE mueble, y meterle tres
+    // segundos de telón en el momento de más ganas cuesta ventas. El inicio
+    // sí es una entrada, y ahí la presentación tiene sentido.
+    if (location.pathname !== "/") return;
+
+    // localStorage y no sessionStorage: sessionStorage vive por PESTAÑA, así
+    // que al abrir cualquier enlace en una pestaña nueva la presentación
+    // volvía a salir. Con una ventana de horas, se ve una vez por visita de
+    // verdad y vuelve a verse si el cliente regresa otro día.
+    var VENTANA = 6 * 60 * 60 * 1000;
+    var visto = Number(localStorage.getItem("lm_intro") || 0);
+    if (visto && Date.now() - visto < VENTANA) return;
+    localStorage.setItem("lm_intro", String(Date.now()));
+
     document.documentElement.classList.add("con-intro");
-  } catch (e) { /* sin memoria de sesión: se entra directo */ }
+  } catch (e) { /* sin memoria: se entra directo */ }
 })();
 </script>
 {% endif %}
