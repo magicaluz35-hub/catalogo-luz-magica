@@ -155,5 +155,7 @@
     "diasVigencia": 90,
     "notaRegla": "Te responde siempre la misma persona, así no tienes que volver a explicar tu caso."
   },
-  "logo": "/img/logo.webp"
+  "logo": "/img/logo.webp",
+  "logoLetrero": "/img/logo-letrero.webp",
+  "introFondo": "#000000"
 }

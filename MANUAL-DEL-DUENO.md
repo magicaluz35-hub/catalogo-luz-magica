@@ -165,10 +165,9 @@ discusión, la prueba está en el chat.
 
 ## La presentación de marca
 
-Es el letrero de Luz Mágica que se enciende a pantalla completa cuando alguien
-entra al catálogo: se dibuja el marco de doble línea, se prenden los bombillos
-uno por uno en la franja del medio —como un espejo de tocador—, aparece el
-nombre y el telón sube para mostrar la página.
+Es el logo de Luz Mágica que se enciende a pantalla completa cuando alguien
+entra al inicio: aparece apagado, titila como un neón que arranca, se queda
+prendido alumbrando el cuarto, y el telón sube para mostrar la página.
 
 Cómo se porta:
 
@@ -185,8 +184,15 @@ Cómo se porta:
 - **No le sale a todo el mundo.** A quien tiene activada la opción de "reducir
   animaciones" en su teléfono —la usa mucha gente que se marea con el
   movimiento— se le entra directo al catálogo.
-- **No usa ninguna foto.** Los bombillos son puntos dibujados por el navegador,
-  así que no hay nada que descargar y no pone la página más lenta.
+- **Usa el archivo del logo**, en *Datos del negocio → Logo de la presentación*.
+  Son 55 KB y el catálogo lo pide antes que todo lo demás, así que ya está
+  cargado cuando la pantalla aparece.
+- **Si cambias ese logo, cambia también el color del fondo.** El negro del
+  archivo se funde con el fondo de la pantalla, y por eso el letrero se ve
+  flotando en la luz en vez de pegado sobre un recuadro. Los dos campos están
+  juntos en *Datos del negocio*: si subes un logo con fondo de otro color, hay
+  que poner ese mismo color en *Color del fondo de la presentación*. La versión
+  del logo que va aquí es la acostada y con fondo negro, no la cuadrada.
 
 Para apagarla: *Datos del negocio* → desmarca **Presentación de marca al
 entrar**. El visitante pasa derecho al catálogo y nada más cambia.

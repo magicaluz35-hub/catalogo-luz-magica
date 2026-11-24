@@ -16,6 +16,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <meta name="theme-color" content="#FFFFFF">
+{% if negocio.introFondo %}<style>:root { --intro-fondo: {{ negocio.introFondo }}; }</style>{% endif %}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..700&family=Jost:wght@400;500;600&display=swap">
@@ -55,6 +56,7 @@
 </script>
 {% endif %}
 
+{% if page.url == "/" %}<link rel="preload" as="image" href="{{ negocio.logoLetrero or negocio.logo }}" fetchpriority="high">{% endif %}
 <script type="application/json" id="datos-asesores">{{ asesores | dump | safe }}</script>
 <script type="application/json" id="datos-negocio">{{ { "whatsapp": negocio.telefonoWhatsapp, "regla": negocio.atribucion.regla, "dias": negocio.atribucion.diasVigencia, "horario": negocio.horario } | dump | safe }}</script>
 </head>

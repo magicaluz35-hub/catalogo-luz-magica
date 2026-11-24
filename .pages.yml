@@ -285,6 +285,14 @@ content:
         label: Logo (respaldo para compartir en WhatsApp)
         description: Solo se usa si no hay foto principal. Normalmente no hay que tocarlo.
         type: image
+      - name: logoLetrero
+        label: Logo de la presentación
+        description: "El letrero que se enciende cuando alguien entra al inicio. Tiene que ser la versión con FONDO NEGRO y acostada: el negro del archivo se funde con el fondo de la pantalla y por eso el letrero se ve flotando. Si subes una con fondo blanco se va a ver un recuadro."
+        type: image
+      - name: introFondo
+        label: Color del fondo de la presentación
+        description: "Tiene que ser el mismo color del fondo del logo de arriba, o se nota el recuadro. Con el logo actual va #000000, que es negro."
+        type: string
       - name: fraseMarca
         label: Frase de marca (franja del inicio)
         description: Una sola frase sobre el negocio. Sale centrada entre la portada y el catálogo. Si la dejas vacía, la franja desaparece.
