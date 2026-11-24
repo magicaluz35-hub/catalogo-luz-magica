@@ -75,9 +75,11 @@ eleventyComputed:
           <legend class="rotulo">Color del mueble</legend>
           <div class="muestras">
             {% for c in negocio.colores %}
+            {# Si el color tiene foto del tablero real, se usa la foto. Un
+               círculo de color plano nunca va a parecerse a un veteado. #}
             <label class="muestra">
               <input type="radio" name="color" value="{{ c.nombre }}" {{ "checked" if loop.first }}>
-              <span class="muestra__disco" style="background: {{ c.hex }}"></span>
+              <span class="muestra__disco" style="{% if c.foto %}background-image: url('{{ c.foto }}'){% else %}background: {{ c.hex }}{% endif %}"></span>
               <span class="oculto">{{ c.nombre }}</span>
             </label>
             {% endfor %}

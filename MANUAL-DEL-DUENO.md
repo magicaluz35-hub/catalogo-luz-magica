@@ -127,6 +127,13 @@ discusión, la prueba está en el chat.
   los horarios que pongas ahí.
 - **Colores y enchapes disponibles:** también en *Datos del negocio*. Lo que pongas ahí
   aparece en todas las fichas y en "Diseña el tuyo".
+- **La foto de cada color.** Cada color puede llevar **una foto del tablero**, y es lo
+  que de verdad se parece a lo que vendes. Un círculo de color plano nunca va a
+  parecerse a un veteado: por definición un veteado tiene vetas y un color plano no.
+  Para tomarlas: el tablero de frente, bien plano, **con luz de día** y lejos de
+  lámparas de color —una luz LED rosada tiñe hasta un mueble blanco—, y recorta un
+  pedazo donde solo se vea el material, sin bordes ni fondo. Si un color no tiene foto,
+  se usa su código de color.
 - **La foto grande de la portada:** son **dos** fotos de la misma escena, en
   *Datos del negocio*. La *foto principal* es la vertical y se usa en celular;
   la *foto principal para computador* es la horizontal. Cada visitante descarga

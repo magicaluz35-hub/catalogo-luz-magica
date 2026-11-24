@@ -744,7 +744,16 @@ a, button, label, summary {
 .muestras--informativas { gap: 9px; margin-bottom: 24px; }
 .muestra { display: inline-block; cursor: pointer; }
 .muestra input { position: absolute; opacity: 0; width: 0; height: 0; }
-.muestra__disco { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--linea-fuerte); display: block; }
+/* El disco de color acepta una foto del tablero: los colores veteados no
+   se pueden representar con un color plano. Si no hay foto, usa el hex. */
+.muestra__disco {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--linea-fuerte);
+  display: block;
+  background-size: cover;
+  background-position: center;
+}
 .muestras--informativas .muestra__disco { width: 30px; height: 30px; }
 .muestra input:checked + .muestra__disco { box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--rosa); }
 .muestra:focus-within .muestra__disco { outline: 2px solid var(--rosa); outline-offset: 4px; }

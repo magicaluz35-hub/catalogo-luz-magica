@@ -226,7 +226,14 @@ content:
         list: true
         fields:
           - { name: nombre, label: Nombre del color, type: string }
-          - { name: hex, label: "Color (código #RRGGBB)", type: string }
+          - name: foto
+            label: Foto del tablero
+            description: "Lo mejor para que el cliente vea el color de verdad. Toma el tablero de frente, bien plano, con luz de día y sin lámparas de color; recorta un pedazo donde solo se vea el material. Es lo único que muestra bien un veteado. Si la dejas vacía, se usa el código de color de abajo."
+            type: image
+          - name: hex
+            label: "Color (código #RRGGBB)"
+            description: "Solo se usa cuando el color no tiene foto. Un color plano nunca se va a parecer a un tablero veteado."
+            type: string
       - { name: enchapes, label: Enchapes disponibles, type: string, list: true }
       - { name: medidas, label: Medidas disponibles, type: string, list: true }
       - name: atajos

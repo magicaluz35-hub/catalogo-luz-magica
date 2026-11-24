@@ -66,7 +66,7 @@
     <p class="nota">Todos se fabrican en cualquiera de estos colores.</p>
     <div class="muestras muestras--informativas">
       {% for col in negocio.colores %}
-      <span class="muestra__disco" title="{{ col.nombre }}" style="background: {{ col.hex }}"></span>
+      <span class="muestra__disco" title="{{ col.nombre }}" style="{% if col.foto %}background-image: url('{{ col.foto }}'){% else %}background: {{ col.hex }}{% endif %}"></span>
       {% endfor %}
     </div>
 
