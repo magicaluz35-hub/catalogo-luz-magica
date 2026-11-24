@@ -30,7 +30,14 @@
   --linea-oscura: #3C2E33;
   --verde: #1F7A4D;
   --papel: #FFFFFF;
-  --display: "Playfair Display", Georgia, serif;
+  /* Bodoni Moda: la letra de la referencia que trajo la dueña. Es una
+     didona —trazo grueso y trazo finísimo en la misma letra—, y ese
+     contraste es lo que la hace verse de boutique al lado de la Playfair,
+     que es más pareja. Playfair queda de respaldo por si Bodoni no carga.
+     El eje opsz hace sola la corrección óptica: afina los trazos en los
+     títulos grandes y los engorda en el precio de la tarjeta, que es el
+     tamaño donde una didona se rompe. */
+  --display: "Bodoni Moda", "Playfair Display", Georgia, serif;
   --display-peso: 700;
   --texto: "Jost", system-ui, -apple-system, sans-serif;
   --ancho: 1280px;
