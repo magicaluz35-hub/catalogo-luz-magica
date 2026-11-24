@@ -5,8 +5,9 @@
   "precio": 680000,
   "categoria": "tocadores-120",
   "descripcion": "Tocador Hollywood con espejo de ojos de buey y enchape. Medidas: 1,75 m de alto × 1,20 m de ancho. Botones de cristal.",
-  "plazo": "",
-  "led": false,
+  "plazoDesde": null,
+  "plazoHasta": null,
+  "iluminacion": "ojos",
   "destacado": false,
   "nuevo": false,
   "fotos": [

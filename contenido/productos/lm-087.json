@@ -5,8 +5,9 @@
   "precio": 880000,
   "categoria": "hello-kitty",
   "descripcion": "Tocador Hello Kitty con espejo táctil (digital) y enchape. Medidas: 1,75 m de alto × 1 m de ancho. Espejo corredizo y botones de cristal.",
-  "plazo": "",
-  "led": false,
+  "plazoDesde": null,
+  "plazoHasta": null,
+  "iluminacion": "ninguna",
   "destacado": false,
   "nuevo": false,
   "fotos": [

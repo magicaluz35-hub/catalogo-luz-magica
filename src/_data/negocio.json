@@ -45,10 +45,9 @@
       "nota": "No se labora"
     }
   ],
-  "plazoFabricacion": "Fabricación bajo pedido: entrega de 10 a 15 días hábiles según disponibilidad.",
+  "plazoDesde": 10,
+  "plazoHasta": 15,
   "plazoCorto": "Hecho a pedido",
-  "plazoNota": "El plazo depende del mueble: la mayoría se entrega entre 10 y 15 días hábiles y algunos tardan hasta 25. El plazo de cada uno está en su ficha.",
-  "cifraPlazo": "10–25",
   "formasDePago": "Pago contra entrega. Se pide abono solo cuando es más de un producto, diseños especiales, modulares, diseños en RH o combos. No se hace devolución de dinero después de iniciada la fabricación.",
   "domicilios": "El valor del domicilio depende del barrio, el piso y las indicaciones de entrega. Te lo confirmamos por WhatsApp antes de fabricar.",
   "retiro": "También puedes retirar tu pedido en la galería de Aranjuez.",

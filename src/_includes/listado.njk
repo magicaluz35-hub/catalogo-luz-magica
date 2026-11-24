@@ -36,15 +36,16 @@
 
 <div class="contenedor">
   <h1 class="listado__titulo">{{ c.nombre if c else "Todo el catálogo" }}</h1>
-  <p class="listado__entrada">{{ c.descripcion if c else (("El único producto de " + negocio.nombre) if productos.length == 1 else ("Los " + (productos.length | string) + " productos de " + negocio.nombre)) + ". Filtra por precio o por luz LED para encontrar el tuyo." }}</p>
+  <p class="listado__entrada">{{ c.descripcion if c else (("El único producto de " + negocio.nombre) if productos.length == 1 else ("Los " + (productos.length | string) + " productos de " + negocio.nombre)) + ". Filtra por precio o por tipo de iluminación para encontrar el tuyo." }}</p>
 
   {# Las tarjetas ya no prometen días: no todos los muebles tardan lo mismo y
      una cifra sola en la tarjeta terminaba siendo mentira en uno de cada
      cinco. El rango va aquí, una vez, y el dato exacto en cada ficha. #}
-  {% if negocio.plazoNota %}
+  {% set notaPlazo = productos | notaEntrega(negocio) %}
+  {% if notaPlazo %}
   <p class="listado__plazo">
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="8.6"></circle><path d="M12 7.4V12l3 1.8"></path></svg>
-    <span>{{ negocio.plazoNota }}</span>
+    <span>{{ notaPlazo }}</span>
   </p>
   {% endif %}
 </div>
@@ -65,11 +66,15 @@
       <button type="button" class="opcion" data-filtro="precio" data-valor="alto">Más de $1.000.000</button>
     </div>
 
-    <h3 class="filtros__titulo">Luz LED</h3>
+{# No es "tiene luz o no": los ojos de buey son luz, y un cliente que
+       busca espejo iluminado los quiere ver. Antes caían en "Sin LED" y
+       quedaban escondidos para quien más los buscaba. #}
+    <h3 class="filtros__titulo">Iluminación</h3>
     <div class="fichas">
-      <button type="button" class="ficha ficha--activa" data-filtro="led" data-valor="todos">Todos</button>
-      <button type="button" class="ficha" data-filtro="led" data-valor="si">Con LED</button>
-      <button type="button" class="ficha" data-filtro="led" data-valor="no">Sin LED</button>
+      <button type="button" class="ficha ficha--activa" data-filtro="luz" data-valor="todos">Todas</button>
+      <button type="button" class="ficha" data-filtro="luz" data-valor="led">Luz LED</button>
+      <button type="button" class="ficha" data-filtro="luz" data-valor="ojos">Ojos de buey</button>
+      <button type="button" class="ficha" data-filtro="luz" data-valor="ninguna">Sin luz</button>
     </div>
 
     <h3 class="filtros__titulo">Color del mueble</h3>

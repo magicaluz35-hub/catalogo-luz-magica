@@ -5,8 +5,9 @@
   "precio": 560000,
   "categoria": "tocadores-metro-mini",
   "descripcion": "Tocador mini con espejo diámetro LED. Medidas: 1,60 m de alto × 80 cm de ancho.",
-  "plazo": "",
-  "led": true,
+  "plazoDesde": null,
+  "plazoHasta": null,
+  "iluminacion": "led",
   "destacado": false,
   "nuevo": false,
   "fotos": [

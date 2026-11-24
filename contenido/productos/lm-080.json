@@ -5,8 +5,9 @@
   "precio": 580000,
   "categoria": "hello-kitty",
   "descripcion": "Tocador mini LED con espejo Hello Kitty. Medidas: 1,60 m de alto × 80 cm de ancho.",
-  "plazo": "",
-  "led": true,
+  "plazoDesde": null,
+  "plazoHasta": null,
+  "iluminacion": "led",
   "destacado": false,
   "nuevo": false,
   "fotos": [

@@ -5,8 +5,9 @@
   "precio": 570000,
   "categoria": "espejos",
   "descripcion": "Espejo tapizado con luz LED. Medidas: 1,70 m de alto × 70 cm de ancho. Se fabrica en cualquier medida (el precio varía según la medida). Color y tela a elección según disponibilidad.",
-  "plazo": "",
-  "led": true,
+  "plazoDesde": null,
+  "plazoHasta": null,
+  "iluminacion": "led",
   "destacado": true,
   "nuevo": false,
   "fotos": [

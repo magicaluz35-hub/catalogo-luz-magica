@@ -5,8 +5,9 @@
   "precio": 420000,
   "categoria": "espejos",
   "descripcion": "Espejo corredizo con ojos de buey. Medidas: 1,75 m de alto × 80 cm de ancho.",
-  "plazo": "",
-  "led": false,
+  "plazoDesde": null,
+  "plazoHasta": null,
+  "iluminacion": "ojos",
   "destacado": false,
   "nuevo": false,
   "fotos": [

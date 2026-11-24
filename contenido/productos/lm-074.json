@@ -5,8 +5,9 @@
   "precio": 680000,
   "categoria": "tocadores-metro-mini",
   "descripcion": "Tocador Hollywood con espejo de ojos de buey y enchape. Medidas: 1,75 m de alto × 1 m de ancho. Espejo corredizo y botones de cristal.",
-  "plazo": "",
-  "led": false,
+  "plazoDesde": null,
+  "plazoHasta": null,
+  "iluminacion": "ojos",
   "destacado": false,
   "nuevo": false,
   "fotos": [

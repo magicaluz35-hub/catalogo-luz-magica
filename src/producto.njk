@@ -67,7 +67,7 @@ eleventyComputed:
 
       <p class="aviso-plazo">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="8.6"></circle><path d="M12 7.4V12l3 1.8"></path></svg>
-        <span>{{ p.plazo if p.plazo else negocio.plazoFabricacion }}</span>
+        <span>{{ (p.plazoDesde | fraseEntrega(p.plazoHasta)) or (negocio.plazoDesde | fraseEntrega(negocio.plazoHasta)) }}</span>
       </p>
 
       <form class="opciones" data-opciones>

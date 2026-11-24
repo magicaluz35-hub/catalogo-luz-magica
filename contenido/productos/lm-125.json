@@ -5,8 +5,9 @@
   "precio": 280000,
   "categoria": "espejos",
   "descripcion": "Espejo medio arco con luz de una sola tonalidad. Medidas: 1,60 m de alto × 60 cm de ancho. También en otras medidas o multicolor (el precio varía). Con matizado: $300.000.",
-  "plazo": "",
-  "led": true,
+  "plazoDesde": null,
+  "plazoHasta": null,
+  "iluminacion": "led",
   "destacado": false,
   "nuevo": false,
   "fotos": [

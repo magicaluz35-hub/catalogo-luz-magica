@@ -5,8 +5,9 @@
   "precio": 100000,
   "categoria": "sillas-puffs",
   "descripcion": "Puff en gamuza. Color a elección según disponibilidad. Disponibilidad de colores y telas se confirma por WhatsApp.",
-  "plazo": "",
-  "led": false,
+  "plazoDesde": null,
+  "plazoHasta": null,
+  "iluminacion": "ninguna",
   "destacado": false,
   "nuevo": true,
   "fotos": [

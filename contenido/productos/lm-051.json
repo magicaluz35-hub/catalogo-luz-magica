@@ -5,8 +5,9 @@
   "precio": 860000,
   "categoria": "carvalo-solteron",
   "descripcion": "Carvalo con espejo táctil (digital) y enchape. Medidas: 1,80 m de alto × 1 m de ancho. Espejo corredizo, repisas y botones de cristal.",
-  "plazo": "",
-  "led": false,
+  "plazoDesde": null,
+  "plazoHasta": null,
+  "iluminacion": "ninguna",
   "destacado": false,
   "nuevo": false,
   "fotos": [

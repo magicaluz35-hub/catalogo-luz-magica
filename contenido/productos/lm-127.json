@@ -5,8 +5,9 @@
   "precio": 300000,
   "categoria": "espejos",
   "descripcion": "Espejo con 10 ojos de buey. Medidas: 1,75 m de alto × 75 cm de ancho.",
-  "plazo": "",
-  "led": false,
+  "plazoDesde": null,
+  "plazoHasta": null,
+  "iluminacion": "ojos",
   "destacado": false,
   "nuevo": false,
   "fotos": [

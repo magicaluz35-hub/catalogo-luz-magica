@@ -5,8 +5,9 @@
   "precio": 180000,
   "categoria": "sillas-puffs",
   "descripcion": "Puff baúl en peluche premium. Color a elección según disponibilidad. Disponibilidad de colores y telas se confirma por WhatsApp.",
-  "plazo": "",
-  "led": false,
+  "plazoDesde": null,
+  "plazoHasta": null,
+  "iluminacion": "ninguna",
   "destacado": false,
   "nuevo": false,
   "fotos": [

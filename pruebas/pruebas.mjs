@@ -53,6 +53,7 @@ const productos = fs.readdirSync(path.join(RAIZ, "contenido/productos"))
   .sort((a, b) => (a.orden ?? Infinity) - (b.orden ?? Infinity) || String(a.sku).localeCompare(String(b.sku)));
 const asesores = JSON.parse(fs.readFileSync(path.join(RAIZ, "src/_data/asesores.json")));
 const categorias = JSON.parse(fs.readFileSync(path.join(RAIZ, "src/_data/categorias.json")));
+const negocio = JSON.parse(fs.readFileSync(path.join(RAIZ, "src/_data/negocio.json")));
 
 const nav = async (p, ruta) => p.goto(BASE + ruta, { waitUntil: "networkidle" });
 
@@ -457,6 +458,37 @@ await saltarIntro(ctxCel);
     return n === productos.length ? true : `muestra ${n} de ${productos.length}`;
   });
 
+  // Los ojos de buey son luz. Antes había un solo filtro, "Con LED / Sin
+  // LED", y los 15 muebles de ojos de buey caían en "Sin LED": quedaban
+  // escondidos justo para el cliente que buscaba un espejo iluminado.
+  await revisar("Catálogo", "Cada tipo de luz muestra exactamente sus muebles", async () => {
+    const esperado = (v) => productos.filter((x) =>
+      v === "ninguna" ? (x.iluminacion || "ninguna") === "ninguna"
+                      : x.iluminacion === v || x.iluminacion === "ambas").length;
+    const malos = [];
+    for (const v of ["led", "ojos", "ninguna"]) {
+      await nav(p, "/catalogo/");
+      await p.click(`[data-filtro="luz"][data-valor="${v}"]`);
+      await p.waitForTimeout(250);
+      const n = await cuenta(), e = esperado(v);
+      if (n !== e) malos.push(`${v}: muestra ${n} y debería mostrar ${e}`);
+    }
+    // Se devuelve la página sin filtros: las pruebas de abajo siguen en esta
+    // misma pestaña y contarían sobre la lista filtrada.
+    await nav(p, "/catalogo/");
+    return malos.length ? malos.join("; ") : true;
+  });
+
+  // Un valor escrito a mano que el filtro no conozca deja al mueble fuera de
+  // las cuatro listas: no sale en ninguna y nadie se entera.
+  await revisar("Catálogo", "Ningún mueble tiene un tipo de luz desconocido", async () => {
+    const validos = ["led", "ojos", "ambas", "ninguna"];
+    const raros = productos
+      .filter((x) => x.iluminacion != null && !validos.includes(x.iluminacion))
+      .map((x) => `${x.sku}: "${x.iluminacion}"`);
+    return raros.length ? raros.join("; ") : true;
+  });
+
   await revisar("Catálogo", "El filtro de precio reduce la lista y Limpiar la devuelve", async () => {
     const todos = await cuenta();
     await p.click("text=Hasta $500.000");
@@ -650,17 +682,46 @@ await saltarIntro(ctxCel);
   });
 
   // Lo que de verdad protege al cliente: que el mueble lento diga su plazo
-  // y no el general.
+  // y no el general. La frase la arma el sitio a partir de dos números, así
+  // que aquí se arma igual y se compara.
+  const frase = (d, h) =>
+    d && h ? `Fabricación bajo pedido: entrega de ${d} a ${h} días hábiles.`
+    : h ? `Fabricación bajo pedido: entrega hasta ${h} días hábiles.`
+    : d ? `Fabricación bajo pedido: entrega desde ${d} días hábiles.` : "";
+
   await revisar("Plazos", "El mueble con plazo propio muestra el suyo en la ficha", async () => {
-    const lentos = productos.filter((x) => (x.plazo || "").trim());
+    const lentos = productos.filter((x) => x.plazoDesde || x.plazoHasta);
     if (!lentos.length) return "ningún producto tiene plazo propio: la prueba ya no mide nada";
     const malos = [];
     for (const m of lentos.slice(0, 6)) {
       await nav(p, `/producto/${m.sku.toLowerCase()}/`);
       const t = await p.evaluate(() => document.querySelector(".aviso-plazo")?.textContent.trim() || "");
-      if (t.replace(/\s+/g, " ") !== m.plazo.replace(/\s+/g, " ")) malos.push(`${m.sku}: "${t}"`);
+      const esperado = frase(m.plazoDesde, m.plazoHasta);
+      if (t.replace(/\s+/g, " ") !== esperado) malos.push(`${m.sku}: dice "${t}" y debería decir "${esperado}"`);
     }
     return malos.length ? malos.join("; ") : true;
+  });
+
+  await revisar("Plazos", "El mueble normal muestra el plazo del taller", async () => {
+    const normal = productos.find((x) => !x.plazoDesde && !x.plazoHasta);
+    if (!normal) return "todos los productos tienen plazo propio: la prueba ya no mide nada";
+    await nav(p, `/producto/${normal.sku.toLowerCase()}/`);
+    const t = await p.evaluate(() => document.querySelector(".aviso-plazo")?.textContent.trim() || "");
+    const esperado = frase(negocio.plazoDesde, negocio.plazoHasta);
+    return t.replace(/\s+/g, " ") === esperado ? true : `dice "${t}" y debería decir "${esperado}"`;
+  });
+
+  // La razón de calcular el tope en vez de escribirlo: si alguien carga un
+  // mueble más lento, la nota y la portada tienen que corregirse solas.
+  await revisar("Plazos", "La nota y la portada llegan hasta el mueble más lento", async () => {
+    const tope = Math.max(negocio.plazoHasta || 0, ...productos.map((x) => x.plazoHasta || 0));
+    await nav(p, "/catalogo/");
+    const nota = await p.evaluate(() => document.querySelector(".listado__plazo")?.textContent.trim() || "");
+    if (!nota.includes(String(tope))) return `el mueble más lento es de ${tope} días y la nota dice "${nota}"`;
+    await nav(p, "/");
+    const cifra = await p.evaluate(() =>
+      [...document.querySelectorAll(".cifras div")].find((d) => /Días/.test(d.textContent))?.querySelector("dt")?.textContent.trim() || "");
+    return cifra.includes(String(tope)) ? true : `la portada dice "${cifra}" y el tope es ${tope}`;
   });
 
   await revisar("Ficha", "Todos los precios salen formateados en pesos", async () => {

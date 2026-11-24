@@ -5,8 +5,9 @@
   "precio": 570000,
   "categoria": "carvalo-solteron",
   "descripcion": "Carvalo con espejo de ojos de buey. Medidas: 1,75 m de alto × 1 m de ancho. Espejo corredizo y repisas.",
-  "plazo": "",
-  "led": false,
+  "plazoDesde": null,
+  "plazoHasta": null,
+  "iluminacion": "ojos",
   "destacado": false,
   "nuevo": false,
   "fotos": [

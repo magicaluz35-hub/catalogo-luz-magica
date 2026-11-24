@@ -5,8 +5,9 @@
   "precio": 2200000,
   "categoria": "madera-rh",
   "descripcion": "En madera RH: espejo con bombillos, mesa de 1,40 m con 13 cajones enchapados y repisas en RH enchapadas. Medidas: 1,75 m de alto × 1,40 m de ancho. Botones brillantes de cristal. Combo completo: tocador y repisas.",
-  "plazo": "Fabricación bajo pedido: entrega hasta 25 días hábiles.",
-  "led": true,
+  "plazoDesde": null,
+  "plazoHasta": 25,
+  "iluminacion": "led",
   "destacado": true,
   "nuevo": false,
   "fotos": [

@@ -26,9 +26,12 @@ Cada vez que guardas algo, el catálogo se actualiza solo en menos de un minuto.
    texto general, pero es mejor escribirla.
 4. Sube las fotos. **La primera es la más importante**: es la que se ve en el catálogo y
    la que aparece cuando alguien comparte el enlace por WhatsApp.
-5. Marca las casillas que apliquen: *tiene luz LED*, *favoritos de la casa*,
-   *recién llegados*.
-6. Guarda.
+5. Elige la **iluminación**: *sin luz*, *luz LED*, *ojos de buey* o las dos. Los ojos
+   de buey son los bombillos redondos alrededor del espejo, estilo camerino, y el
+   cliente los busca aparte de la cinta LED: de esto depende en qué filtro del
+   catálogo aparece el mueble.
+6. Marca las casillas que apliquen: *favoritos de la casa*, *recién llegados*.
+7. Guarda.
 
 ### Sobre el código SKU
 
@@ -122,19 +125,22 @@ discusión, la prueba está en el chat.
 ## Cambiar precios, horarios o políticas
 
 - **Precios:** en cada producto.
-- **Plazos de entrega:** hay dos niveles, y conviene entender por qué.
-  - El **plazo normal** (hoy, de 10 a 15 días hábiles) está en *Datos del negocio →
-    Texto del plazo de fabricación*. Sale en la ficha de todos los muebles que no
-    tengan plazo propio.
-  - Un **mueble que tarde distinto** lleva su propio plazo, en *Productos → Plazo de
-    fabricación propio*. Hoy hay 21 así: 11 de 15 a 20 días y 10 de hasta 25. Ese
-    texto reemplaza al normal solo en ese mueble.
+- **Plazos de entrega:** solo se escriben **números**, nunca frases. Las frases que
+  lee el cliente las arma el catálogo solo, y por eso siempre están escritas igual.
+  - El **plazo normal del taller** está en *Datos del negocio*, en dos campos:
+    *desde* y *hasta* (hoy, 10 y 15). Vale para todos los muebles que no tengan
+    plazo propio.
+  - Un **mueble que tarde distinto** lleva sus dos números en *Productos → Días de
+    entrega, desde y hasta*. Si son de 15 a 20 días, va 15 y 20. Si el plazo es solo
+    un tope —hasta 25 días—, deja *desde* vacío y pon 25 en *hasta*. Hoy hay 21
+    muebles así: 11 de 15 a 20 días y 10 de hasta 25.
   - **Las tarjetas del catálogo no dicen días a propósito.** La tarjeta es idéntica
     para los 115 muebles, así que cualquier cifra ahí sería mentira en uno de cada
-    cinco. Dicen solo *Hecho a pedido*, y arriba de las tarjetas va una nota con el
-    rango completo (*Datos del negocio → Nota del plazo en el catálogo*).
-  - Si cambia el plazo del taller, hay que tocar **tres** campos: el texto del plazo
-    normal, la nota del catálogo y la cifra grande de la portada.
+    cinco. Dicen solo *Hecho a pedido*.
+  - **Lo demás se calcula solo.** La nota de arriba de las tarjetas, la línea de la
+    página del pedido y la cifra grande de la portada salen del mueble más lento que
+    haya cargado. Si mañana entra uno de 30 días, los tres se corrigen solos. No hay
+    nada que acordarse de cambiar.
 - **Horarios, dirección, teléfono, formas de pago, texto de domicilios:** en
   *Datos del negocio*. El letrero de "Abierto / Cerrado" del catálogo se calcula solo con
   los horarios que pongas ahí.

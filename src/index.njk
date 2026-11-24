@@ -47,7 +47,7 @@ permalink: /
         <dl class="cifras">
           <div><dt>7</dt><dd>Años en el mercado</dd></div>
           <div><dt>{{ productos.length }}</dt><dd>Productos</dd></div>
-          <div><dt>{{ negocio.cifraPlazo }}</dt><dd>Días hábiles</dd></div>
+          <div><dt>{{ productos | cifraEntrega(negocio) }}</dt><dd>Días hábiles</dd></div>
         </dl>
       </div>
     </div>
@@ -197,7 +197,7 @@ permalink: /
     </div>
     <div class="pilar">
       <h3 class="pilar__titulo"><span class="pilar__icono">{{ iconoPilar("reloj") }}</span>Fabricación bajo pedido</h3>
-      <p>{{ negocio.plazoFabricacion }}</p>
+      <p>{{ productos | notaEntrega(negocio) }}</p>
     </div>
   </div>
 </section>

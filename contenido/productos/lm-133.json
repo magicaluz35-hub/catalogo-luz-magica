@@ -5,8 +5,9 @@
   "precio": 180000,
   "categoria": "sillas-puffs",
   "descripcion": "Silla con espaldar. Color y tela a elección según disponibilidad; el valor puede variar según la tela. Disponibilidad de colores y telas se confirma por WhatsApp.",
-  "plazo": "",
-  "led": false,
+  "plazoDesde": null,
+  "plazoHasta": null,
+  "iluminacion": "ninguna",
   "destacado": false,
   "nuevo": false,
   "fotos": [

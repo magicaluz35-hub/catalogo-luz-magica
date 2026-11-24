@@ -5,8 +5,9 @@
   "precio": 560000,
   "categoria": "espejos",
   "descripcion": "Espejo de bombillos. Medidas: 1,70 m de alto × 80 cm de ancho. También en otras medidas, luz de 3 tonos o multicolor (el precio varía).",
-  "plazo": "",
-  "led": true,
+  "plazoDesde": null,
+  "plazoHasta": null,
+  "iluminacion": "led",
   "destacado": false,
   "nuevo": false,
   "fotos": [

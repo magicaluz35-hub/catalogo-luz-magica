@@ -5,8 +5,9 @@
   "precio": 740000,
   "categoria": "tocadores-120",
   "descripcion": "Tocador Hollywood con espejo táctil de metro (digital) y mesa lisa. Medidas: 1,75 m de alto × 1,20 m de ancho. Con botones brillantes: $760.000.",
-  "plazo": "",
-  "led": false,
+  "plazoDesde": null,
+  "plazoHasta": null,
+  "iluminacion": "ninguna",
   "destacado": false,
   "nuevo": false,
   "fotos": [

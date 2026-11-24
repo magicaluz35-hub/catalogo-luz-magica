@@ -5,8 +5,9 @@
   "precio": 340000,
   "categoria": "repisas",
   "descripcion": "Repisa con luz y cajones. Medidas: 1,80 m de alto × 30 cm de ancho × 40 cm de fondo.",
-  "plazo": "",
-  "led": true,
+  "plazoDesde": null,
+  "plazoHasta": null,
+  "iluminacion": "led",
   "destacado": false,
   "nuevo": false,
   "fotos": [

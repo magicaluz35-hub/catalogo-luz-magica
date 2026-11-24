@@ -4,7 +4,7 @@
          data-nombre="{{ p.nombre }}"
          data-precio="{{ p.precio }}"
          data-categoria="{{ p.categoria }}"
-         data-led="{{ 'si' if p.led else 'no' }}">
+         data-luz="{{ p.iluminacion or 'ninguna' }}">
   <a class="tarjeta__enlace" href="/producto/{{ p.sku | lower }}/">
     <div class="foto foto--4-5">
       {% if p.fotos and p.fotos.length %}

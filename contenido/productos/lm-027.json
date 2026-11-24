@@ -5,8 +5,9 @@
   "precio": 650000,
   "categoria": "carvalo-solteron",
   "descripcion": "Solterón LED con espejo táctil ovalado. Medidas: 1,80 m de alto × 80 cm de ancho. Espejo corredizo, repisas, 3 cajones y botones de cristal.",
-  "plazo": "",
-  "led": true,
+  "plazoDesde": null,
+  "plazoHasta": null,
+  "iluminacion": "led",
   "destacado": false,
   "nuevo": false,
   "fotos": [

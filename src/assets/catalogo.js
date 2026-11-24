@@ -293,7 +293,7 @@
     if (!rejilla) return;
 
     var tarjetas = Array.prototype.slice.call(rejilla.querySelectorAll("[data-producto]"));
-    var estado = { precio: "todos", led: "todos", orden: "destacados", q: "" };
+    var estado = { precio: "todos", luz: "todos", orden: "destacados", q: "" };
 
     var params = new URLSearchParams(window.location.search);
     if (params.get("precio")) estado.precio = params.get("precio");
@@ -306,6 +306,14 @@
       return true;
     }
 
+    // Un mueble con los dos tipos de luz tiene que salir en las dos listas:
+    // quien busca LED lo quiere ver y quien busca ojos de buey también.
+    function pasaLuz(luz) {
+      if (estado.luz === "todos") return true;
+      if (estado.luz === "ninguna") return luz === "ninguna";
+      return luz === estado.luz || luz === "ambas";
+    }
+
     function normalizar(t) {
       return String(t).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
     }
@@ -314,10 +322,10 @@
       var visibles = 0;
       tarjetas.forEach(function (t) {
         var precio = Number(t.dataset.precio) || 0;
-        var led = t.dataset.led;
+        var luz = t.dataset.luz;
         var nombre = normalizar(t.dataset.nombre + " " + t.dataset.sku);
         var pasa = enRango(precio)
-          && (estado.led === "todos" || led === estado.led)
+          && pasaLuz(luz)
           && (!estado.q || nombre.indexOf(normalizar(estado.q)) !== -1);
         t.hidden = !pasa;
         if (pasa) visibles++;
@@ -365,7 +373,7 @@
 
     document.querySelectorAll("[data-limpiar]").forEach(function (b) {
       b.addEventListener("click", function () {
-        estado.precio = "todos"; estado.led = "todos"; estado.q = "";
+        estado.precio = "todos"; estado.luz = "todos"; estado.q = "";
         document.querySelectorAll("[data-filtro]").forEach(function (o) {
           o.classList.remove("opcion--activa", "ficha--activa");
           if (o.dataset.valor === "todos") o.classList.add(o.classList.contains("opcion") ? "opcion--activa" : "ficha--activa");

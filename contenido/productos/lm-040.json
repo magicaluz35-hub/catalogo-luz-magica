@@ -5,8 +5,9 @@
   "precio": 730000,
   "categoria": "tocadores-120",
   "descripcion": "Mesa lisa de 1,20 m con espejo táctil colgante de metro (digital). Medidas: 1,75 m de alto × 1,20 m de ancho. Con botones brillantes: $750.000.",
-  "plazo": "",
-  "led": false,
+  "plazoDesde": null,
+  "plazoHasta": null,
+  "iluminacion": "ninguna",
   "destacado": false,
   "nuevo": false,
   "fotos": [
