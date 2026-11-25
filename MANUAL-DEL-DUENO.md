@@ -80,14 +80,15 @@ enlace viejo cae en el mueble equivocado.
   catálogo: fotos parejas se ven como una marca, fotos revueltas se ven improvisadas.
 - Fondo limpio y buena luz. Si es un mueble con LED, que se vea encendido.
 - Primero la foto del mueble solo; después, si hay, una en el showroom.
-- **Verticales, en proporción 4 de ancho por 5 de alto** (por ejemplo 1600 × 2000 píxeles).
-  Esa es la forma del recuadro del catálogo: lo que sobre se recorta solo, y ahí es donde se
-  pierde la base del mueble o el borde del espejo.
-- **En JPG o WebP.** El panel no acepta otros formatos a propósito: los HEIC que hacen los
-  iPhone no se ven en muchos navegadores.
-- **Que no pesen más de 1 MB cada una.** El panel no las reduce: la foto llega al catálogo
-  tal como sale del teléfono, y una de 4 MB hace que la página tarde en cargar con datos
-  móviles, que es como entra casi todo el mundo.
+- **Tómalas con la cámara en 3:4**, que es como viene de fábrica y es la forma exacta del
+  recuadro del catálogo: la foto encaja sin que se recorte nada. Si la tomas en 9:16 o
+  cuadrada, el catálogo recorta lo que sobra y ahí se pierde la base del mueble o el borde
+  del espejo.
+- **No te preocupes por el peso ni por el tamaño.** Súbelas tal como salen del teléfono: el
+  catálogo las aligera solo antes de publicarlas. Una foto de 2 MB queda en unos 270 KB sin
+  que se note la diferencia en pantalla.
+- **El panel solo acepta JPG, PNG y WebP.** Si tu iPhone intenta subir un HEIC, no lo va a
+  dejar: ese formato no se ve en muchos navegadores.
 
 ---
 

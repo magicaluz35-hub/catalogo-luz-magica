@@ -123,7 +123,7 @@ permalink: /
         {% for c in delGrupo %}
         {% set cuantos = productos | deCategoria(c.slug) | length %}
         <a class="categoria" href="/categoria/{{ c.slug }}/">
-          <div class="foto foto--4-5">
+          <div class="foto foto--3-4">
             {% if c.foto %}
             <img src="{{ c.foto }}" alt="{{ c.nombre }}" loading="lazy" width="400" height="500">
             {% else %}

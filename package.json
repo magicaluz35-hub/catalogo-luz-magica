@@ -10,6 +10,7 @@
     "probar": "node pruebas/pruebas.mjs"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^3.0.0"
+    "@11ty/eleventy": "^3.0.0",
+    "@11ty/eleventy-img": "^7.1.1"
   }
 }

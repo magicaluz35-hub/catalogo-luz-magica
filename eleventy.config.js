@@ -4,6 +4,7 @@
 
 import fs from "node:fs";
 import { revisarDatos, informar } from "./pruebas/revisar-datos.mjs";
+import { prepararFotos, informarFotos } from "./pruebas/preparar-fotos.mjs";
 
 export default function (eleventyConfig) {
   // Antes de construir, se revisan los datos. Si hay algo imposible —un
@@ -15,6 +16,14 @@ export default function (eleventyConfig) {
   // Vale la pena el susto: sin esto, esos errores se publican y la página
   // se ve perfecta. Nadie se entera hasta que un cliente lo encuentra.
   // La lista de lo que se revisa está en pruebas/revisar-datos.mjs.
+  // Las fotos nuevas se aligeran antes de nada. El panel las guarda tal como
+  // salen del teléfono —tres o cuatro megas— y así una ficha no cargaría con
+  // datos móviles. Va primero para que la revisión mida el peso ya corregido.
+  eleventyConfig.on("eleventy.before", async () => {
+    try { informarFotos(await prepararFotos()); }
+    catch (e) { console.log("[Fotos] No se pudieron preparar: " + e.message); }
+  });
+
   {
     const resultado = revisarDatos();
     const cuantos = informar(resultado);

@@ -460,7 +460,7 @@
         if (p.enchape) variante.push(escapar(p.enchape));
 
         var foto = p.foto
-          ? '<img src="' + escapar(p.foto) + '" alt="" width="72" height="90" loading="lazy">'
+          ? '<img src="' + escapar(p.foto) + '" alt="" width="72" height="96" loading="lazy">'
           : '<span class="pedido__sinfoto" aria-hidden="true"></span>';
 
         var fila = document.createElement("article");

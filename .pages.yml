@@ -79,7 +79,7 @@ content:
         type: number
       - name: fotos
         label: Fotos
-        description: "VERTICALES, en proporción 4 de ancho por 5 de alto (por ejemplo 1600 × 2000 píxeles). Esa es la forma exacta del recuadro del catálogo: una foto más alta o más ancha se recorta sola por los lados que sobran, y ahí es donde se pierde la base del mueble o el borde del espejo. En JPG o WebP, no en HEIC. La PRIMERA es la que se ve en el catálogo y en la vista previa de WhatsApp."
+        description: "VERTICALES, tomadas con la cámara en 3:4, que es como viene de fábrica. Esa es la forma exacta del recuadro del catálogo, así que la foto encaja sin recortarse. Si la tomas en 9:16 o cuadrada, el catálogo recorta lo que sobra y ahí se pierde la base del mueble o el borde del espejo. La PRIMERA es la que se ve en el catálogo y en la vista previa de WhatsApp."
         type: image
         list: true
         options:
@@ -315,7 +315,7 @@ content:
       # ---- Fotos y marca ----
       - name: fotoPrincipal
         label: Foto principal del inicio
-        description: La primera foto que ve quien entra, y la que aparece cuando alguien comparte el enlace del catálogo por WhatsApp. Súbela vertical, en proporción 4:5 (por ejemplo 1600 × 2000 px).
+        description: La primera foto que ve quien entra, y la que aparece cuando alguien comparte el enlace del catálogo por WhatsApp. Súbela vertical, en proporción 3:4 (por ejemplo 1500 × 2000 px).
         type: image
       - name: fotoPrincipalAncha
         label: Foto principal para computador

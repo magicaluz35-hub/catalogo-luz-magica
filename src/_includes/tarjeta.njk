@@ -6,7 +6,7 @@
          data-categoria="{{ p.categoria }}"
          data-luz="{{ p.iluminacion or 'ninguna' }}">
   <a class="tarjeta__enlace" href="/producto/{{ p.sku | lower }}/">
-    <div class="foto foto--4-5">
+    <div class="foto foto--3-4">
       {% if p.fotos and p.fotos.length %}
       <img src="{{ p.fotos[0] }}" alt="{{ p.nombre }}" loading="lazy" width="480" height="600">
       {% if p.fotos.length > 1 %}
