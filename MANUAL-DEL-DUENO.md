@@ -216,9 +216,18 @@ El motivo está escrito en español y dice qué corregir. Lo arreglas en el pane
 otra vez, y se publica.
 
 **Sigue igual después de varios minutos.**
-Puede que se haya agotado el límite mensual de reconstrucciones (500 al mes, que son unas
-16 por día). Entra a Cloudflare → Workers & Pages → el proyecto → Deployments y mira si
-el último falló.
+Entra a Cloudflare → Workers & Pages → el proyecto → Deployments y mira si el último
+falló. Si falló, el motivo está ahí escrito.
+
+**¿Cuántos cambios puedo hacer al día?**
+Los que necesites. El plan gratuito da **3.000 minutos de reconstrucción al mes**, y cada
+reconstrucción de este catálogo tarda menos de un minuto: son del orden de **cincuenta o
+más cambios por día**, todos los días del mes, sin acercarse al límite.
+
+Dos cosas que ayudan a gastar menos: **guardar varios campos de una vez cuenta como un
+solo cambio**, así que es mejor arreglar todo un producto y guardar una vez que guardar
+cinco veces seguidas. Y si guardas dos cosas muy seguidas, la segunda espera a que
+termine la primera: no se pierde, solo tarda un poco más.
 
 **El panel no me deja entrar.**
 Revisa que estés usando la cuenta de GitHub del negocio.
