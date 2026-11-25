@@ -592,6 +592,34 @@ await saltarIntro(ctxCel);
   const p = await ctxEsc.newPage();
   const conVarias = productos.find((x) => (x.fotos || []).length > 2);
 
+  // La lupa amplía y SIGUE al cursor. Mirar solo que crezca no bastaría: si
+  // el origen no se moviera, se ampliaría siempre el mismo punto y la lupa
+  // no serviría para revisar una manija o el veteado.
+  await revisar("Ficha", "La lupa amplía la foto y sigue al cursor", async () => {
+    await nav(p, "/producto/lm-012/");
+    const caja = await p.$(".ficha__principal");
+    const r = await caja.boundingBox();
+    const mirar = () => p.evaluate(() => {
+      const i = document.querySelector(".ficha__principal img"), c = getComputedStyle(i);
+      return { t: c.transform, o: c.transformOrigin };
+    });
+    if ((await mirar()).t !== "none") return "la foto ya estaba ampliada sin pasar el mouse";
+
+    await p.mouse.move(r.x + r.width * 0.25, r.y + r.height * 0.25);
+    await p.waitForTimeout(320);
+    const a = await mirar();
+    if (a.t === "none") return "no amplió al pasar el mouse";
+
+    await p.mouse.move(r.x + r.width * 0.78, r.y + r.height * 0.78);
+    await p.waitForTimeout(320);
+    const b = await mirar();
+    if (b.o === a.o) return `el punto ampliado no se movió con el cursor (${a.o})`;
+
+    await p.mouse.move(r.x - 80, r.y - 80);
+    await p.waitForTimeout(320);
+    return (await mirar()).t === "none" ? true : "quedó ampliada después de sacar el mouse";
+  });
+
   await revisar("Ficha", "La foto grande abre el visor a pantalla completa", async () => {
     await nav(p, `/producto/${conVarias.sku.toLowerCase()}/`);
     await p.click("[data-galeria-abrir]");
@@ -814,6 +842,15 @@ await saltarIntro(ctxCel);
     const sobra = await p.evaluate(() => Math.round(document.documentElement.scrollHeight -
       (document.querySelector(".pie").getBoundingClientRect().bottom + window.scrollY)));
     return Math.abs(sobra) <= 2 ? true : `sobran ${sobra}px`;
+  });
+
+  // La lupa del escritorio no debe armarse en el teléfono: no hay cursor que
+  // seguir, y el toque ya abre el visor, que ahí sirve mucho más.
+  await revisar("Celular", "La foto no lleva la lupa de escritorio", async () => {
+    await nav(p, "/producto/lm-012/");
+    const puesta = await p.evaluate(() =>
+      document.querySelector(".ficha__principal")?.classList.contains("ficha__principal--lupa"));
+    return puesta ? "la lupa de escritorio quedó puesta en el teléfono" : true;
   });
 
   await revisar("Celular", "El buscador se abre desde la lupa", async () => {

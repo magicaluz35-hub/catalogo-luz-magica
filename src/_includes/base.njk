@@ -16,6 +16,14 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <meta name="theme-color" content="#FFFFFF">
+
+{# El icono de la pestaña. Es el logo sin fondo, recortado a la parte que
+   sobrevive al tamaño de una pestaña: a 16 píxeles de alto, el letrero
+   completo deja cinco píxeles para la caligrafía y queda una mancha.
+   El .ico trae 16, 32 y 48 px porque cada navegador pide el suyo. #}
+<link rel="icon" href="/img/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="256x256" href="/img/icono.png">
+<link rel="apple-touch-icon" href="/img/icono-apple.png">
 {% if negocio.introFondo %}<style>:root { --intro-fondo: {{ negocio.introFondo }}; }</style>{% endif %}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

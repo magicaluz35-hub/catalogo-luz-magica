@@ -787,6 +787,29 @@ a, button, label, summary {
 }
 .ficha__principal:hover .ficha__lupa { background: rgba(26, 20, 22, 0.88); }
 
+/* La lupa al pasar el mouse.
+   --------------------------------------------------------------------------
+   La clase la pone el JavaScript, y solo en computador: en un teléfono no hay
+   cursor que seguir y el toque abre el visor, que ahí sirve más.
+
+   El punto que se amplía es el transform-origin, que el guion mueve con el
+   cursor. Lo único que se anima es una escala, que es de lo más barato que
+   puede mover un navegador, y el recorte ya lo hace .foto con su overflow. */
+.ficha__principal--lupa { cursor: zoom-in; }
+.ficha__principal--lupa img {
+  /* El origen NO se anima a propósito: si se animara, la foto se arrastraría
+     detrás del cursor y la lupa se sentiría pegajosa. */
+  transition: transform 0.22s ease-out;
+  will-change: transform;
+}
+.ficha__principal--cerca img { transform: scale(1.9); }
+/* Estorba encima de la foto ampliada, y además ya cumplió: avisó que se
+   podía ampliar. */
+.ficha__principal--cerca .ficha__lupa { opacity: 0; transition: opacity 0.18s; }
+/* Para quien pidió menos movimiento: la lupa funciona igual, pero llega de
+   una en vez de deslizarse. */
+.ficha__principal--seca img { transition: none; }
+
 .miniatura { display: block; cursor: pointer; border: 1px solid var(--rosa-linea); transition: border-color 0.18s, opacity 0.18s; opacity: 0.72; }
 .miniatura:hover { opacity: 1; }
 .miniatura--activa { border-color: var(--rosa); opacity: 1; box-shadow: 0 0 0 1px var(--rosa); }

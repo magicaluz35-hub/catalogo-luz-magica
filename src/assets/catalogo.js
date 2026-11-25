@@ -656,6 +656,46 @@
       : (principal ? [principal.getAttribute("src")] : []);
     if (!fotos.length) return;
 
+    // La lupa al pasar el mouse. Es lo mismo que hace una tienda grande: la
+    // foto crece y lo que se ve sigue al cursor, así el cliente revisa el
+    // veteado o una manija sin tener que abrir nada.
+    //
+    // Solo en computador. En un teléfono no hay cursor que seguir, y el toque
+    // ya abre el visor a pantalla completa, que ahí es mucho mejor.
+    if (principal && abrir && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      // Quien pidió menos animaciones igual tiene lupa: es una herramienta
+      // para ver, no un adorno. Lo que se le quita es el deslizamiento.
+      var suave = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      abrir.classList.add("ficha__principal--lupa");
+      if (!suave) abrir.classList.add("ficha__principal--seca");
+
+      var seguir = function (e) {
+        var r = abrir.getBoundingClientRect();
+        // En porcentaje y no en píxeles: así el punto que se mira sigue
+        // siendo el mismo cuando la caja cambia de tamaño.
+        var x = ((e.clientX - r.left) / r.width) * 100;
+        var y = ((e.clientY - r.top) / r.height) * 100;
+        principal.style.transformOrigin =
+          Math.max(0, Math.min(100, x)) + "% " + Math.max(0, Math.min(100, y)) + "%";
+      };
+
+      abrir.addEventListener("pointerenter", function (e) {
+        if (e.pointerType !== "mouse") return;
+        seguir(e);
+        abrir.classList.add("ficha__principal--cerca");
+      });
+      abrir.addEventListener("pointermove", function (e) {
+        if (e.pointerType !== "mouse") return;
+        seguir(e);
+      });
+      abrir.addEventListener("pointerleave", function () {
+        abrir.classList.remove("ficha__principal--cerca");
+        // El origen vuelve al centro para que la foto se encoja hacia el
+        // medio y no hacia la esquina donde quedó el cursor.
+        principal.style.transformOrigin = "";
+      });
+    }
+
     var actual = 0;
     var visor = null;
     var visorImg = null;
