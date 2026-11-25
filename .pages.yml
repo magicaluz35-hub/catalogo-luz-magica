@@ -21,15 +21,11 @@ content:
       fields: [nombre, sku, categoria, precio, fotos]
       primary: nombre
       search: [nombre, sku, descripcion, categoria]
-      sort: [orden, nombre, precio, sku, categoria]
+      sort: [sku, nombre, precio, categoria]
       default:
-        sort: orden
+        sort: sku
         order: asc
     fields:
-      - name: orden
-        label: Posición en el catálogo
-        description: Número que decide en qué puesto sale. Más bajo, más arriba. Van de diez en diez para poder meter uno en medio sin renumerar los demás.
-        type: number
       - name: nombre
         label: Nombre del producto
         description: "Sale en la tarjeta, en la ficha y en el mensaje de WhatsApp. Si pasa de unas 60 letras, en la tarjeta se corta con puntos suspensivos."

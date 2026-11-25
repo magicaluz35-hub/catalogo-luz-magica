@@ -5,9 +5,17 @@
 // ordenar cuando el contenido viene de una carpeta. Con los 115 en un
 // solo archivo había que bajar por la lista entera para encontrar uno.
 //
-// El sitio los muestra en el orden del campo "orden" (10, 20, 30...),
-// que el dueño puede cambiar desde el panel para mover un mueble
-// adelante. Los que no lo traigan quedan de últimos.
+// El orden sale SOLO del código, no de un campo que alguien tenga que
+// llenar. El número del SKU es el número de la página en el catálogo
+// impreso, que es de donde salió todo: LM-005 va antes que LM-030.
+//
+// Antes esto era un campo "Posición en el catálogo" con números de diez en
+// diez. Era un detalle del funcionamiento asomándose al panel: nadie que
+// administre un catálogo de muebles tiene por qué entender por qué el
+// tercer mueble se llama 70. Se calcula y listo.
+//
+// Las parejas A/B —el mismo mueble en dos acabados— quedan juntas y en
+// orden: LM-034A antes que LM-034B.
 import fs from "node:fs";
 import path from "node:path";
 
@@ -37,13 +45,17 @@ export default function () {
     );
   }
 
+  // LM-034A → 3400, LM-034B → 3401. El número del código manda, y la letra
+  // del final solo desempata para que la pareja quede junta.
+  const posicion = (sku) => {
+    const m = String(sku).match(/^[A-Za-z]+-?(\d+)([A-Za-z]*)$/);
+    if (!m) return Number.MAX_SAFE_INTEGER;
+    const letra = m[2] ? m[2].toUpperCase().charCodeAt(0) - 64 : 0;
+    return Number(m[1]) * 100 + letra;
+  };
+
   return productos
     .filter((p) => p.sku)
-    .sort((a, b) => {
-      const oa = Number.isFinite(a.orden) ? a.orden : Infinity;
-      const ob = Number.isFinite(b.orden) ? b.orden : Infinity;
-      // A igual orden (o sin orden), por SKU, para que la lista no baile
-      // entre una construcción y la siguiente.
-      return oa - ob || String(a.sku).localeCompare(String(b.sku));
-    });
+    .map((p) => ({ ...p, orden: posicion(p.sku) }))
+    .sort((a, b) => a.orden - b.orden || String(a.sku).localeCompare(String(b.sku)));
 }

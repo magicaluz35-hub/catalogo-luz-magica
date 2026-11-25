@@ -60,14 +60,13 @@ costosa. Así están las 7 parejas que ya existen — por ejemplo `LM-034A` ($1.
 enchape plata) y `LM-034B` ($1.300.000, gris humo u oro rosa). Un mueble con un solo
 precio no lleva letra.
 
-**La posición de un mueble es el número de su código, por diez.** LM-005 va en la
-posición 50, LM-149 en la 1490. Así el catálogo web queda en el mismo orden del PDF
-impreso, que es de donde salen los códigos: el número del código es el número de la
-página. Si agregas el LM-150, su posición es 1500 y queda de último en su línea.
+**El orden del catálogo lo decide el código, solo.** El LM-005 va antes que el LM-030, y
+ese es el mismo orden del PDF impreso, que es de donde salen los códigos: el número del
+código es el número de la página. No hay nada que configurar. Si agregas el LM-150, queda
+de último en su línea porque su número es el más alto.
 
-Puedes adelantar un mueble poniéndole un número menor — entre la posición 50 y la 60
-caben nueve sin tocar los demás. Eso se sale del orden del PDF a propósito, y está bien
-mientras sea una decisión tuya.
+Las parejas que comparten número y se diferencian por la letra —el LM-034A y el LM-034B—
+quedan siempre juntas y en ese orden.
 
 **Nunca repitas un código** ni reutilices el de un mueble descontinuado: quien tenga el
 enlace viejo cae en el mueble equivocado.
