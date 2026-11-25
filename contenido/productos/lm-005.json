@@ -1,19 +1,17 @@
 {
-  "sku": "LM-005",
-  "nombre": "Tocador Imperia",
   "orden": 50,
-  "precio": 1050000,
+  "nombre": "Tocador Imperia",
+  "sku": "LM-005",
+  "precio": 1500000,
   "categoria": "tocadores-120",
   "descripcion": "Tocador Hollywood con espejo táctil y WPC. Medidas: 1,75 m de alto × 1,20 m de ancho. Espejo corredizo, repisas y botones brillantes de cristal.",
-  "plazoDesde": null,
-  "plazoHasta": null,
-  "iluminacion": "ninguna",
-  "destacado": false,
-  "nuevo": false,
   "fotos": [
     "/img/p005-1.webp",
     "/img/p005-2.webp",
     "/img/p005-3.webp",
     "/img/p005-4.webp"
-  ]
+  ],
+  "iluminacion": "ninguna",
+  "destacado": false,
+  "nuevo": false
 }
