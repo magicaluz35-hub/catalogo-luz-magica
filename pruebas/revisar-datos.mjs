@@ -66,6 +66,16 @@ export function revisarDatos() {
     for (const f of p.fotos || [])
       if (!existe(f)) errores.push(`${d}: la foto ${f} no está. Saldría el ícono de imagen rota.`);
 
+    // El panel no reduce las fotos: la que sube el dueño llega tal cual al
+    // catálogo. Una de 4 MB desde el teléfono hace que la ficha tarde en
+    // cargar con datos móviles, que es como entra casi todo el mundo.
+    for (const f of p.fotos || []) {
+      const ruta = path.join(RAIZ, f.replace(/^\//, ""));
+      if (!fs.existsSync(ruta)) continue;
+      const mb = fs.statSync(ruta).size / 1024 / 1024;
+      if (mb > 1) avisos.push(`${d}: la foto ${f.split("/").pop()} pesa ${mb.toFixed(1)} MB. Conviene bajarla de 1 MB o la ficha tarda en cargar con datos móviles.`);
+    }
+
     if (!(p.fotos || []).length) avisos.push(`${d}: sin fotos. Sale el marco gris.`);
     if (!p.descripcion) avisos.push(`${d}: sin descripción. Sale un texto general.`);
   }

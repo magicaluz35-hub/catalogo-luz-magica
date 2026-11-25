@@ -80,7 +80,14 @@ enlace viejo cae en el mueble equivocado.
   catálogo: fotos parejas se ven como una marca, fotos revueltas se ven improvisadas.
 - Fondo limpio y buena luz. Si es un mueble con LED, que se vea encendido.
 - Primero la foto del mueble solo; después, si hay, una en el showroom.
-- No hace falta reducirlas: el panel las procesa.
+- **Verticales, en proporción 4 de ancho por 5 de alto** (por ejemplo 1600 × 2000 píxeles).
+  Esa es la forma del recuadro del catálogo: lo que sobre se recorta solo, y ahí es donde se
+  pierde la base del mueble o el borde del espejo.
+- **En JPG o WebP.** El panel no acepta otros formatos a propósito: los HEIC que hacen los
+  iPhone no se ven en muchos navegadores.
+- **Que no pesen más de 1 MB cada una.** El panel no las reduce: la foto llega al catálogo
+  tal como sale del teléfono, y una de 4 MB hace que la página tarde en cargar con datos
+  móviles, que es como entra casi todo el mundo.
 
 ---
 

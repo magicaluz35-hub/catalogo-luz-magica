@@ -82,6 +82,8 @@ content:
         description: "VERTICALES, en proporción 4 de ancho por 5 de alto (por ejemplo 1600 × 2000 píxeles). Esa es la forma exacta del recuadro del catálogo: una foto más alta o más ancha se recorta sola por los lados que sobran, y ahí es donde se pierde la base del mueble o el borde del espejo. En JPG o WebP, no en HEIC. La PRIMERA es la que se ve en el catálogo y en la vista previa de WhatsApp."
         type: image
         list: true
+        options:
+          extensions: [jpg, jpeg, png, webp]
       - name: iluminacion
         label: Iluminación
         description: "Los ojos de buey son los bombillos redondos alrededor del espejo, al estilo camerino. No son lo mismo que la cinta LED, y el cliente los busca por separado: con esto el mueble sale en el filtro correcto del catálogo."
