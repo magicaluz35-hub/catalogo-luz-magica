@@ -17,10 +17,17 @@
 
 <meta name="theme-color" content="#FFFFFF">
 
-{# El icono de la pestaña. Es el logo sin fondo, recortado a la parte que
-   sobrevive al tamaño de una pestaña: a 16 píxeles de alto, el letrero
-   completo deja cinco píxeles para la caligrafía y queda una mancha.
-   El .ico trae 16, 32 y 48 px porque cada navegador pide el suyo. #}
+{# El icono de la pestaña: el logo sobre un cuadro negro redondeado.
+
+   Dos recortes hechos a propósito. Primero, va solo "Luz" con su marco de
+   bombillos: el letrero completo es 3,4 veces más ancho que alto, así que
+   dentro de un cuadrado le quedan cinco píxeles de alto a la caligrafía y
+   queda una mancha. Segundo, lleva el fondo negro del archivo original: sin
+   fondo, el rosa claro casi desaparece en la barra blanca de Chrome.
+
+   El .ico trae 16, 32 y 48 px porque cada navegador pide el suyo. El de iOS
+   va cuadrado y no redondeado: el teléfono le pone su propia esquina, y si
+   ya viene redondeada quedan esquinas transparentes dentro del recorte. #}
 <link rel="icon" href="/img/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="256x256" href="/img/icono.png">
 <link rel="apple-touch-icon" href="/img/icono-apple.png">
