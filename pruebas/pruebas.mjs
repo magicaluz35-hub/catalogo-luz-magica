@@ -238,33 +238,34 @@ await saltarIntro(ctxCel);
     return /Ref A-03\s*$/.test(txt.trim()) ? true : `termina en: "${txt.trim().slice(-40)}"`;
   });
 
-  await revisar("WhatsApp", "El mensaje lleva nombre, SKU, precio y enchape", async () => {
+  await revisar("WhatsApp", "El mensaje lleva nombre, SKU, precio y enlace", async () => {
     const w = await leerWA(p);
     const txt = decodeURIComponent(new URL(w.href).searchParams.get("text") || "");
     const falt = [];
     if (!txt.includes(productos[0].nombre)) falt.push("nombre");
     if (!txt.toUpperCase().includes(productos[0].sku)) falt.push("SKU");
     if (!/\$/.test(txt)) falt.push("precio");
-    if (!/Enchape:/i.test(txt)) falt.push("enchape");
     if (!txt.includes("/producto/")) falt.push("enlace al producto");
     return falt.length ? "le falta: " + falt.join(", ") : true;
   });
 
-  // El color salió de la página a propósito: con algunos cambia el precio, y
-  // una paleta fija prometía uno que el taller no siempre puede sostener. Si
-  // alguien la devuelve sin resolver el precio, esta prueba avisa.
-  await revisar("WhatsApp", "El mensaje no promete un color que la página no cobró", async () => {
+  // Color y enchape salieron de la página a propósito: con varios de ellos
+  // cambia el precio, y la ficha los ofrecía todos al precio de la ficha. Si
+  // alguien los devuelve sin resolver antes el precio, estas dos avisan.
+  await revisar("WhatsApp", "El mensaje no promete opciones que la página no cobró", async () => {
     const w = await leerWA(p);
     const txt = decodeURIComponent(new URL(w.href).searchParams.get("text") || "");
-    return /Color:/i.test(txt) ? "el mensaje manda un color elegido en la página" : true;
+    const malas = ["Color:", "Enchape:"].filter((k) => new RegExp(k, "i").test(txt));
+    return malas.length ? `el mensaje manda ${malas.join(" y ")} elegido en la página` : true;
   });
 
-  await revisar("Ficha", "No hay paleta de colores, y se dice por qué", async () => {
+  await revisar("Ficha", "No se eligen color ni enchape, y se dice por qué", async () => {
     await nav(p, "/producto/lm-012/");
-    const hay = await p.evaluate(() => document.querySelectorAll(".muestra, [name='color']").length);
-    if (hay) return `quedaron ${hay} restos del selector de color`;
+    const restos = await p.evaluate(() =>
+      document.querySelectorAll(".muestra, [name='color'], [name='enchape']").length);
+    if (restos) return `quedaron ${restos} restos de los selectores`;
     const aviso = await p.evaluate(() => document.querySelector(".opciones__aviso")?.textContent.trim() || "");
-    return /asesora/i.test(aviso) ? true : `el aviso no explica quién resuelve el color: "${aviso}"`;
+    return /asesora/i.test(aviso) ? true : `el aviso no explica quién lo resuelve: "${aviso}"`;
   });
 
   await revisar("WhatsApp", "En la ficha no hay botón flotante duplicado", async () => {

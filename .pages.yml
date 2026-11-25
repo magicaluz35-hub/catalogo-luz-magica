@@ -246,7 +246,6 @@ content:
         label: Aviso sobre los colores
         description: "Sale en la ficha de cada mueble, arriba del botón de pedir, y también en el catálogo y en la portada. Reemplazó a la paleta de colores: como con algunos colores y enchapes cambia el precio, una paleta fija prometía un precio que el taller no siempre puede sostener. Si lo dejas vacío, el aviso no sale."
         type: text
-      - { name: enchapes, label: Enchapes disponibles, type: string, list: true }
       - { name: medidas, label: Medidas disponibles, type: string, list: true }
       - name: atajos
         label: Atajos de "Encuentra el tuyo"

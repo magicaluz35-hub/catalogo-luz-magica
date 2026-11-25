@@ -65,7 +65,7 @@ eleventyComputed:
       {% if p.descripcion %}
       <p class="parrafo">{{ p.descripcion }}</p>
       {% else %}
-      <p class="parrafo">Se fabrica a pedido en el color y el enchape que elijas.</p>
+      <p class="parrafo">Se fabrica a pedido, en el color y el enchape que acuerdes con tu asesora.</p>
       {% endif %}
 
       <p class="aviso-plazo">
@@ -73,26 +73,20 @@ eleventyComputed:
         <span>{{ (p.plazoDesde | fraseEntrega(p.plazoHasta)) or (negocio.plazoDesde | fraseEntrega(negocio.plazoHasta)) }}</span>
       </p>
 
-      <form class="opciones" data-opciones>
-        <fieldset>
-          <legend class="rotulo">Enchape</legend>
-          <div class="fichas">
-            {% for e in negocio.enchapes %}
-            <label class="ficha ficha--radio">
-              <input type="radio" name="enchape" value="{{ e }}" {{ "checked" if loop.first }}>
-              <span>{{ e }}</span>
-            </label>
-            {% endfor %}
-          </div>
-        </fieldset>
+      {# Aquí había dos selectores, color y enchape. Los dos se fueron por lo
+         mismo: con varias de esas opciones cambia el precio, y la ficha las
+         ofrecía todas al precio de la ficha. El cliente podía elegir la cara
+         y mandar el pedido al precio de la barata.
 
-        {# Se dice aquí y no en el pie: es donde el cliente está eligiendo, y
-           es el momento en que la duda aparece. #}
-        <p class="opciones__aviso">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="8.6"></circle><path d="M12 10.8v5"></path><path d="M12 7.8h.01"></path></svg>
-          <span>{{ negocio.avisoColores }}</span>
-        </p>
-      </form>
+         Queda el aviso, pegado al botón de pedir, que es donde la duda
+         aparece. Lo demás lo resuelve la asesora, que es quien sabe qué hay
+         en el taller y cuánto vale. #}
+      {% if negocio.avisoColores %}
+      <p class="opciones__aviso">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="8.6"></circle><path d="M12 10.8v5"></path><path d="M12 7.8h.01"></path></svg>
+        <span>{{ negocio.avisoColores }}</span>
+      </p>
+      {% endif %}
 
       {# El pedido es la acción principal: deja juntar varios muebles y llega
          al asesor con los datos de entrega ya puestos. WhatsApp queda al lado,

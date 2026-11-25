@@ -181,6 +181,10 @@
   }
 
   function textoFicha(boton) {
+    // Ya no hay selectores en la ficha: color y enchape los acuerda el
+    // cliente con su asesora. Esto se queda porque un carrito guardado en el
+    // navegador de un cliente que entró antes todavía puede traerlos, y es
+    // mejor que su pedido siga diciendo lo que él eligió aquel día.
     var form = document.querySelector("[data-opciones]");
     var o = opcionesDe(form);
     var lineas = ["¡Hola Luz Mágica! Me interesa:"];

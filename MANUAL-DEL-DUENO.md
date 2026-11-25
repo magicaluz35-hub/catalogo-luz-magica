@@ -150,8 +150,10 @@ discusión, la prueba está en el chat.
   dice qué hay disponible y cuánto vale es la asesora, y la página se lo advierte al
   cliente en cada ficha. Ese texto se cambia en *Datos del negocio → Aviso sobre los
   colores*; si lo dejas vacío, el aviso desaparece.
-- **Enchapes disponibles:** siguen en *Datos del negocio*, y son los que el cliente
-  puede marcar en la ficha.
+- **Los enchapes tampoco se eligen en la página**, por la misma razón: el gris humo
+  cuesta más que el plata, y la ficha los ofrecía todos al mismo precio. Además 42
+  muebles ya dicen *con enchape* en su propio nombre y 29 dicen *sin enchape*, así que
+  el selector se contradecía con el producto. El mismo aviso cubre las dos cosas.
 - **La foto grande de la portada:** son **dos** fotos de la misma escena, en
   *Datos del negocio*. La *foto principal* es la vertical y se usa en celular;
   la *foto principal para computador* es la horizontal. Cada visitante descarga
