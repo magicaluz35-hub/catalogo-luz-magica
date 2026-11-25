@@ -896,6 +896,14 @@ body.sin-desplazar { overflow: hidden; }
 .tabla { width: 100%; border-collapse: collapse; border: 1px solid var(--linea); margin-bottom: 1.5rem; }
 .tabla th { text-align: left; font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gris); padding: 13px 18px; background: var(--crema); border-bottom: 1px solid var(--linea); }
 .tabla td { padding: 14px 18px; border-bottom: 1px solid var(--linea); font-size: 0.9rem; }
+/* En un teléfono angosto la tabla de asesores se salía 8 px y arrastraba
+   toda la página de lado. El número es lo que no cabe —no tiene dónde
+   partirse—, así que en pantallas chicas se aprieta el relleno y se le deja
+   partir. Mejor un número en dos renglones que una página que se mueve. */
+@media (max-width: 400px) {
+  .tabla th, .tabla td { padding: 10px 8px; }
+  .tabla td { font-size: 0.84rem; overflow-wrap: anywhere; }
+}
 
 /* Equipo */
 .equipo { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; margin-bottom: 2rem; }

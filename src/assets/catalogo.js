@@ -39,8 +39,14 @@
   var DIAS = (NEGOCIO.dias || 90) * 24 * 60 * 60 * 1000;
 
   function buscarAsesor(codigo) {
+    // Se limpia antes de comparar: un enlace copiado a mano llega con
+    // espacios o en mayúsculas más seguido de lo que uno cree, y si no
+    // coincide la comisión se va al reparto automático sin que nadie note
+    // que el enlace del asesor no sirvió.
+    var limpio = String(codigo == null ? "" : codigo).trim().toUpperCase();
+    if (!limpio) return null;
     for (var i = 0; i < ASESORES.length; i++) {
-      if (String(ASESORES[i].codigo) === String(codigo)) return ASESORES[i];
+      if (String(ASESORES[i].codigo).trim().toUpperCase() === limpio) return ASESORES[i];
     }
     return null;
   }

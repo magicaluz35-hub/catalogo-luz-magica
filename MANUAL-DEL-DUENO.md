@@ -207,6 +207,17 @@ entrar**. El visitante pasa derecho al catálogo y nada más cambia.
 
 ---
 
+## Para quien le dé mantenimiento
+
+El catálogo trae dos series de pruebas automáticas. No hay que correrlas para
+usar el panel: son para quien toque el código.
+
+    node pruebas/pruebas.mjs         95 pruebas de que todo funciona
+    node pruebas/pruebas-borde.mjs   26 casos raros que no deben romperlo
+    node pruebas/revisar-datos.mjs   la misma revisión que corre al publicar
+
+---
+
 ## Si algo sale mal
 
 **Guardé un cambio y el catálogo sigue igual.**
