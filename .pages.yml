@@ -286,6 +286,9 @@ content:
         description: "SOLO NÚMEROS, con indicativo y sin el signo + ni espacios: 573242117323. Si le pones + o espacios, TODOS los botones de WhatsApp del sitio dejan de funcionar y la página se sigue viendo bien, así que nadie se entera."
         type: string
         required: true
+        pattern:
+          regex: "^[0-9]{10,15}$"
+          message: "Solo números, con indicativo y sin el signo + ni espacios. Ejemplo: 573242117323"
       - name: telefono
         label: Teléfono para mostrar
         description: "Este sí se escribe bonito, como lo lee el cliente: +57 324 211 7323. No se usa para los enlaces."
@@ -374,3 +377,6 @@ content:
         label: Dirección del sitio
         description: "La dirección completa, con https. Se usa para armar los enlaces que se comparten. Si queda mal, las vistas previas de WhatsApp dejan de mostrar la foto."
         type: string
+        pattern:
+          regex: "^https://[^\\s/]+(/.*)?$"
+          message: "Tiene que empezar por https:// y no llevar espacios."

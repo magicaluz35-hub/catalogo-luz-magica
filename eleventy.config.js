@@ -3,29 +3,28 @@
 // El dueño NO necesita tocar este archivo.
 
 import fs from "node:fs";
+import { revisarDatos, informar } from "./pruebas/revisar-datos.mjs";
 
 export default function (eleventyConfig) {
-  // Un producto nunca debe mostrar una foto que no está en el repositorio:
-  // el navegador pinta el ícono de imagen rota y parece un sitio abandonado.
-  // Aquí se descartan antes de construir y se avisa en el registro, para que
-  // quede claro cuál hay que volver a subir.
-  (function avisarFotosPerdidas() {
-    const dir = "contenido/productos";
-    const lista = fs.readdirSync(dir).filter((f) => f.endsWith(".json"))
-      .map((f) => JSON.parse(fs.readFileSync(dir + "/" + f, "utf8")));
-    const perdidas = [];
-    for (const p of lista) {
-      for (const f of p.fotos || []) if (!fs.existsSync("." + f)) perdidas.push(`${p.sku} → ${f}`);
-    }
-    if (perdidas.length) {
-      console.warn(
-        `\n[Luz Mágica] ¡OJO! ${perdidas.length} foto(s) de productos no están en img/.\n  ` +
-        perdidas.join("\n  ") +
-        "\n  El navegador va a mostrar el ícono de imagen rota. Sube la foto o quita\n" +
-        "  esa línea del producto en el panel.\n"
+  // Antes de construir, se revisan los datos. Si hay algo imposible —un
+  // precio en cero, una línea que no existe, un WhatsApp mal escrito— la
+  // construcción se detiene aquí y Cloudflare deja publicada la versión
+  // anterior, que estaba bien. El dueño ve el motivo en el registro del
+  // despliegue, escrito en sus palabras.
+  //
+  // Vale la pena el susto: sin esto, esos errores se publican y la página
+  // se ve perfecta. Nadie se entera hasta que un cliente lo encuentra.
+  // La lista de lo que se revisa está en pruebas/revisar-datos.mjs.
+  {
+    const resultado = revisarDatos();
+    const cuantos = informar(resultado);
+    if (cuantos) {
+      throw new Error(
+        `No se publicó: hay ${cuantos} error${cuantos === 1 ? "" : "es"} en los datos. ` +
+        "El detalle está arriba, en el registro. El catálogo anterior sigue en línea."
       );
     }
-  })();
+  }
 
   // ¿Existe este archivo en el repositorio?
   // Lo usa el pie de página para mostrar el logo oficial de una red

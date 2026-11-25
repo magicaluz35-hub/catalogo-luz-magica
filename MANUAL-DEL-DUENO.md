@@ -205,6 +205,16 @@ entrar**. El visitante pasa derecho al catálogo y nada más cambia.
 **Guardé un cambio y el catálogo sigue igual.**
 Espera un minuto y recarga la página. El sitio se reconstruye después de cada cambio.
 
+Si pasado ese minuto sigue igual, puede ser que el catálogo **se haya negado a publicar**
+porque encontró un dato imposible: un precio en cero, una línea que no existe, un WhatsApp
+escrito con signo más, un plazo al revés, una foto que falta. Eso es a propósito y es lo
+que te protege: **el catálogo que estaba publicado sigue en línea y no le pasó nada**, en
+vez de salir con un tocador a cero pesos.
+
+Para ver qué fue: Cloudflare → Workers & Pages → el proyecto → Deployments → el último.
+El motivo está escrito en español y dice qué corregir. Lo arreglas en el panel, guardas
+otra vez, y se publica.
+
 **Sigue igual después de varios minutos.**
 Puede que se haya agotado el límite mensual de reconstrucciones (500 al mes, que son unas
 16 por día). Entra a Cloudflare → Workers & Pages → el proyecto → Deployments y mira si
