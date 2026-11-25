@@ -32,6 +32,7 @@ content:
         type: number
       - name: nombre
         label: Nombre del producto
+        description: "Sale en la tarjeta, en la ficha y en el mensaje de WhatsApp. Si pasa de unas 60 letras, en la tarjeta se corta con puntos suspensivos."
         type: string
         required: true
       - name: sku
@@ -43,11 +44,13 @@ content:
           regex: "^[A-Za-z0-9-]+$"
           message: Solo letras, números y guiones. Sin espacios ni tildes.
       - name: precio
-        label: Precio en pesos (solo números, sin puntos)
+        label: Precio en pesos
+        description: "Solo el número, sin puntos ni signo de pesos: escribe 1400000, no $1.400.000. El catálogo le pone el formato."
         type: number
         required: true
       - name: categoria
         label: Línea
+        description: "Decide en qué línea del catálogo aparece el mueble y qué dirección web tiene su línea. Un mueble solo puede estar en una."
         type: select
         required: true
         options:
@@ -92,9 +95,11 @@ content:
             - { value: ambas, label: "Luz LED y ojos de buey" }
       - name: destacado
         label: Mostrar en "Favoritos de la casa"
+        description: "OJO: la portada muestra SOLO CUATRO. Si marcas un quinto no aparece y parece que la casilla está dañada. Para rotar, desmarca uno antes de marcar otro."
         type: boolean
       - name: nuevo
         label: Mostrar en "Recién llegados"
+        description: "También muestra solo cuatro en la portada: los de código más alto entre los marcados."
         type: boolean
 
   - name: asesores
@@ -113,6 +118,7 @@ content:
     fields:
       - name: nombre
         label: Nombre del asesor
+        description: "Como lo ve el cliente en la barra de arriba y en el directorio público de números autorizados. Nombre y apellido o solo el nombre, como prefiera cada uno."
         type: string
         required: true
       - name: whatsapp
@@ -122,6 +128,7 @@ content:
         pattern:
           regex: "^[0-9]*$"
           message: Solo números, sin el signo + ni espacios.
+        required: true
       - name: codigo
         label: Código (NO LO CAMBIES después de repartir el enlace)
         description: Es el que arma el enlace personal del asesor. Si lo cambias, pierde los clientes que ya tenía asignados.
@@ -133,9 +140,11 @@ content:
         type: boolean
       - name: enRotacion
         label: Recibe clientes que llegan sin enlace
+        description: "Marcado, entra en el reparto automático: cuando alguien llega al catálogo sin el enlace de nadie, le toca uno de estos. La línea de la galería va desmarcada para que no le caigan clientes del reparto."
         type: boolean
       - name: nota
         label: Nota interna
+        description: "Solo la ves tú en este panel. El cliente nunca la ve."
         type: string
 
   - name: categorias
@@ -154,6 +163,7 @@ content:
     fields:
       - name: nombre
         label: Nombre de la línea
+        description: "Como sale en el menú del catálogo y en el título de la página de esa línea."
         type: string
         required: true
       - name: grupo
@@ -172,9 +182,11 @@ content:
         required: true
       - name: descripcion
         label: Descripción
+        description: "El párrafo que va arriba de las tarjetas en la página de esa línea. Si lo dejas vacío sale un texto general con el número de muebles."
         type: text
       - name: foto
         label: Foto de portada
+        description: "La que representa la línea en el inicio. Elige una que se entienda en chiquito: en celular se ve del tamaño de una tarjeta."
         type: image
 
   - name: negocio
@@ -182,50 +194,31 @@ content:
     type: file
     path: src/_data/negocio.json
     fields:
-      - { name: nombre, label: Nombre del negocio, type: string }
-      - { name: lema, label: Lema, type: string }
-      - name: introMarca
-        label: Presentación de marca al entrar
-        description: "El letrero de Luz Mágica que se enciende a pantalla completa cuando alguien entra al inicio del catálogo. Dura tres segundos y se puede saltar tocando la pantalla. No se repite mientras la persona recorre el catálogo, y no sale cuando el cliente llega directo a un mueble por el enlace de un asesor. Para volver a verla, abre el inicio en una pestaña nueva. Desmárcalo para que el visitante entre directo siempre."
-        type: boolean
-        default: true
-      - { name: dominio, label: Dirección del sitio, type: string }
-      - { name: titular, label: Titular de la página de inicio, type: string }
-      - { name: presentacion, label: Texto de presentación, type: text }
-      - name: fotoPrincipal
-        label: Foto principal del inicio
-        description: La primera foto que ve quien entra, y la que aparece cuando alguien comparte el enlace del catálogo por WhatsApp. Súbela vertical, en proporción 4:5 (por ejemplo 1600 × 2000 px).
-        type: image
-      - name: fotoPrincipalAncha
-        label: Foto principal para computador
-        description: La misma escena pero horizontal, para la portada en pantalla ancha. Súbela apaisada, en proporción 16:9 (por ejemplo 2400 × 1350 px) y con el espacio libre hacia la izquierda, que es donde va el texto. Si la dejas vacía se usa la vertical.
-        type: image
-      - name: fotoPrincipalAlt
-        label: Descripción de la foto principal
-        description: Para quien no puede ver la foto y para los buscadores. Describe en una línea qué se ve.
-        type: string
-      - { name: descripcionCorta, label: Descripción para buscadores y WhatsApp, type: text }
-      - { name: promesas, label: Promesas de la barra superior, type: string, list: true }
-      - { name: direccion, label: Dirección de la galería, type: string }
-      - name: latitud
-        label: Latitud de la galería
-        description: Para el mapa. Si se mudan, abre Google Maps, haz clic derecho sobre el punto exacto y copia los dos números que aparecen. El primero va aquí.
-        type: string
-      - name: longitud
-        label: Longitud de la galería
-        description: El segundo de los dos números. Siempre empieza con signo menos en Colombia.
-        type: string
-      - { name: telefono, label: Teléfono para mostrar, type: string }
-      - { name: telefonoWhatsapp, label: WhatsApp de la línea principal (solo números), type: string }
+      # ---- Lo que más se cambia, primero ----
       - name: horario
-        label: Horario
+        label: Horario de atención
+        description: "De aquí sale solo el letrero de Abierto / Cerrado que ve el cliente en la barra de arriba. Si el horario queda mal escrito, el letrero miente."
         type: object
         list: true
         fields:
           - { name: dias, label: Días, type: string }
-          - { name: desde, label: Abre (24h, ej. 08:00), type: string }
-          - { name: hasta, label: Cierra (24h, ej. 17:30), type: string }
-          - { name: nota, label: Nota en vez de horario, type: string }
+          - { name: desde, label: "Abre (24h, ej. 08:00)", type: string }
+          - { name: hasta, label: "Cierra (24h, ej. 17:30)", type: string }
+          - name: nota
+            label: Nota en vez de horario
+            description: "Para un día especial. Si la llenas, sale esta nota y no las horas."
+            type: string
+      - name: formasDePago
+        label: Formas de pago
+        description: "Sale en la página del pedido y en la portada."
+        type: text
+      - name: domicilios
+        label: Texto de domicilios
+        description: "Sale en la portada y junto al total del pedido. No hay calculadora de domicilios: el valor se acuerda con la asesora, así que este texto es el que fija la expectativa."
+        type: text
+      - name: retiro
+        label: Texto de retiro en la galería
+        type: text
       - name: plazoDesde
         label: Plazo normal del taller — desde
         description: "Los días hábiles que tarda un mueble corriente, el mínimo. Vale para todos los muebles que no tengan su propio plazo cargado."
@@ -234,19 +227,35 @@ content:
         label: Plazo normal del taller — hasta
         description: "El máximo del plazo normal. Con estos dos números el catálogo arma solo las frases de las fichas, la nota de arriba de las tarjetas y la cifra grande de la portada: no hay que escribirlas en ninguna parte ni acordarse de cambiarlas."
         type: number
-      - name: plazoCorto
-        label: Texto bajo el precio en las tarjetas
-        description: "No pongas días aquí. La tarjeta es igual para los 115 muebles y hay 21 que tardan más que el plazo normal: una cifra sola acá termina siendo una promesa que el taller no puede cumplir. Los días salen solos en la nota del catálogo y en la ficha de cada mueble."
+
+      # ---- Textos de la portada ----
+      - name: titular
+        label: Titular de la página de inicio
+        description: "La frase grande sobre la foto. Dos líneas como máximo en computador; si la haces muy larga, empuja los botones hacia abajo."
         type: string
-      - { name: formasDePago, label: Formas de pago, type: text }
-      - { name: domicilios, label: Texto de domicilios, type: text }
-      - { name: retiro, label: Texto de retiro en tienda, type: text }
-      - { name: avisoWhatsapp, label: Aviso bajo los botones de WhatsApp, type: text }
+      - name: presentacion
+        label: Texto bajo el titular
+        type: text
+      - name: promesas
+        label: Promesas de la barra superior
+        description: "Las frases cortas de la cinta negra de arriba. Tres o cuatro como mucho: en celular se vuelven ilegibles si son más."
+        type: string
+        list: true
+      - name: fraseMarca
+        label: Frase de marca (franja del inicio)
+        description: Una sola frase sobre el negocio. Sale centrada entre la portada y el catálogo. Si la dejas vacía, la franja desaparece.
+        type: text
+      - name: trayectoria
+        label: Años en el mercado (línea bajo la frase)
+        description: Va en mayúsculas debajo de la frase de marca. Déjalo vacío si no quieres que salga.
+        type: string
       - name: avisoColores
         label: Aviso sobre los colores
         description: "Sale en la ficha de cada mueble, arriba del botón de pedir, y también en el catálogo y en la portada. Reemplazó a la paleta de colores: como con algunos colores y enchapes cambia el precio, una paleta fija prometía un precio que el taller no siempre puede sostener. Si lo dejas vacío, el aviso no sale."
         type: text
-      - { name: medidas, label: Medidas disponibles, type: string, list: true }
+      - name: avisoWhatsapp
+        label: Aviso bajo los botones de WhatsApp
+        type: text
       - name: atajos
         label: Atajos de "Encuentra el tuyo"
         type: object
@@ -270,25 +279,25 @@ content:
             fields:
               - { name: texto, label: Texto, type: string }
               - { name: enlace, label: Enlace, type: string }
-      - name: logo
-        label: Logo (respaldo para compartir en WhatsApp)
-        description: Solo se usa si no hay foto principal. Normalmente no hay que tocarlo.
-        type: image
-      - name: logoLetrero
-        label: Logo de la presentación
-        description: "El letrero que se enciende cuando alguien entra al inicio. Tiene que ser la versión con FONDO NEGRO y acostada: el negro del archivo se funde con el fondo de la pantalla y por eso el letrero se ve flotando. Si subes una con fondo blanco se va a ver un recuadro."
-        type: image
-      - name: introFondo
-        label: Color del fondo de la presentación
-        description: "Tiene que ser el mismo color del fondo del logo de arriba, o se nota el recuadro. Con el logo actual va #000000, que es negro."
+
+      # ---- Contacto y ubicación ----
+      - name: telefonoWhatsapp
+        label: WhatsApp de la línea principal
+        description: "SOLO NÚMEROS, con indicativo y sin el signo + ni espacios: 573242117323. Si le pones + o espacios, TODOS los botones de WhatsApp del sitio dejan de funcionar y la página se sigue viendo bien, así que nadie se entera."
         type: string
-      - name: fraseMarca
-        label: Frase de marca (franja del inicio)
-        description: Una sola frase sobre el negocio. Sale centrada entre la portada y el catálogo. Si la dejas vacía, la franja desaparece.
-        type: text
-      - name: trayectoria
-        label: Años en el mercado (línea bajo la frase)
-        description: Va en mayúsculas debajo de la frase de marca. Déjalo vacío si no quieres que salga.
+        required: true
+      - name: telefono
+        label: Teléfono para mostrar
+        description: "Este sí se escribe bonito, como lo lee el cliente: +57 324 211 7323. No se usa para los enlaces."
+        type: string
+      - { name: direccion, label: Dirección de la galería, type: string }
+      - name: latitud
+        label: Latitud de la galería
+        description: Para el mapa. Si se mudan, abre Google Maps, haz clic derecho sobre el punto exacto y copia los dos números que aparecen. El primero va aquí.
+        type: string
+      - name: longitud
+        label: Longitud de la galería
+        description: El segundo de los dos números. Siempre empieza con signo menos en Colombia.
         type: string
       - name: redes
         label: Redes sociales
@@ -297,20 +306,71 @@ content:
           - { name: instagram, label: Instagram, type: string }
           - { name: facebook, label: Facebook, type: string }
           - { name: tiktok, label: TikTok, type: string }
+
+      # ---- Fotos y marca ----
+      - name: fotoPrincipal
+        label: Foto principal del inicio
+        description: La primera foto que ve quien entra, y la que aparece cuando alguien comparte el enlace del catálogo por WhatsApp. Súbela vertical, en proporción 4:5 (por ejemplo 1600 × 2000 px).
+        type: image
+      - name: fotoPrincipalAncha
+        label: Foto principal para computador
+        description: La misma escena pero horizontal, para la portada en pantalla ancha. Súbela apaisada, en proporción 16:9 (por ejemplo 2400 × 1350 px) y con el espacio libre hacia la izquierda, que es donde va el texto. Si la dejas vacía se usa la vertical.
+        type: image
+      - name: fotoPrincipalAlt
+        label: Descripción de la foto principal
+        description: Para quien no puede ver la foto y para los buscadores. Describe en una línea qué se ve.
+        type: string
+      - name: introMarca
+        label: Presentación de marca al entrar
+        description: "El letrero de Luz Mágica que se enciende a pantalla completa cuando alguien entra al inicio del catálogo. Dura tres segundos y se puede saltar tocando la pantalla. No se repite mientras la persona recorre el catálogo, y no sale cuando el cliente llega directo a un mueble por el enlace de un asesor. Para volver a verla, abre el inicio en una pestaña nueva. Desmárcalo para que el visitante entre directo siempre."
+        type: boolean
+        default: true
+      - name: logoLetrero
+        label: Logo de la presentación
+        description: "El letrero que se enciende cuando alguien entra al inicio. Tiene que ser la versión con FONDO NEGRO y acostada: el negro del archivo se funde con el fondo de la pantalla y por eso el letrero se ve flotando. Si subes una con fondo blanco se va a ver un recuadro."
+        type: image
+      - name: introFondo
+        label: Color del fondo de la presentación
+        description: "Tiene que ser el mismo color del fondo del logo de arriba, o se nota el recuadro. Con el logo actual va #000000, que es negro."
+        type: string
+      - name: logo
+        label: Logo (respaldo para compartir en WhatsApp)
+        description: Solo se usa si no hay foto principal. Normalmente no hay que tocarlo.
+        type: image
+      - name: plazoCorto
+        label: Texto bajo el precio en las tarjetas
+        description: "No pongas días aquí. La tarjeta es igual para los 115 muebles y hay 21 que tardan más que el plazo normal: una cifra sola acá termina siendo una promesa que el taller no puede cumplir. Los días salen solos en la nota del catálogo y en la ficha de cada mueble."
+        type: string
+
+      # ---- Casi nunca se tocan ----
       - name: atribucion
         label: Comisiones de los asesores
-        description: "Ajustes internos. Lo único de aquí que ve el cliente es la nota del final."
+        description: "Ajustes internos y delicados: de aquí depende de quién es la comisión. No los cambies sin hablarlo con el equipo. Lo único que ve el cliente es la nota del final."
         type: object
         fields:
           - name: regla
             label: ¿De quién es la comisión?
+            description: "Hoy está en 'del primero'. Si un cliente abre el enlace de Ana y después el de Juan, la venta es de Ana. Cambiarlo a 'del último' le daría la venta a Juan, y eso cambia cómo cobra todo el equipo."
             type: select
             options:
               values:
                 - { value: primero, label: Del primero que envió el enlace }
                 - { value: ultimo, label: Del último enlace que abrió el cliente }
-          - { name: diasVigencia, label: Días que dura la asignación, type: number }
+          - name: diasVigencia
+            label: Días que dura la asignación
+            description: "Cuántos días un cliente sigue siendo del asesor que lo trajo. Hoy son 90. Si lo bajas, los clientes quedan libres antes y pueden caerle a otro asesor."
+            type: number
           - name: notaRegla
             label: Nota que ve el cliente en el inicio
             description: "Va en el recuadro 'Tu línea de atención' de la página de inicio. La lee un cliente, no un asesor: escribe qué gana él —que siempre le responde la misma persona—, no cómo se reparten las comisiones. El reparto es interno y se explica en la página del equipo."
             type: text
+      - { name: nombre, label: Nombre del negocio, type: string }
+      - { name: lema, label: Lema, type: string }
+      - name: descripcionCorta
+        label: Descripción para buscadores y WhatsApp
+        description: "El texto que aparece bajo el título cuando alguien comparte el enlace del catálogo. Dos líneas."
+        type: text
+      - name: dominio
+        label: Dirección del sitio
+        description: "La dirección completa, con https. Se usa para armar los enlaces que se comparten. Si queda mal, las vistas previas de WhatsApp dejan de mostrar la foto."
+        type: string

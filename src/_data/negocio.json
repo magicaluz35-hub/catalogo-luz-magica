@@ -53,11 +53,6 @@
   "domicilios": "El valor del domicilio depende del barrio, el piso y las indicaciones de entrega. Te lo confirmamos por WhatsApp antes de fabricar.",
   "retiro": "También puedes retirar tu pedido en la galería de Aranjuez.",
   "avisoWhatsapp": "Abrir WhatsApp no confirma tu pedido: se confirma en la conversación.",
-  "medidas": [
-    "1.20 m",
-    "Metro",
-    "Mini"
-  ],
   "atajos": [
     {
       "titulo": "Por espacio",
