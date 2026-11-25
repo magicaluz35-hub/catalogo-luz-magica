@@ -238,25 +238,33 @@ await saltarIntro(ctxCel);
     return /Ref A-03\s*$/.test(txt.trim()) ? true : `termina en: "${txt.trim().slice(-40)}"`;
   });
 
-  await revisar("WhatsApp", "El mensaje lleva nombre, SKU, precio, color y enchape", async () => {
+  await revisar("WhatsApp", "El mensaje lleva nombre, SKU, precio y enchape", async () => {
     const w = await leerWA(p);
     const txt = decodeURIComponent(new URL(w.href).searchParams.get("text") || "");
     const falt = [];
     if (!txt.includes(productos[0].nombre)) falt.push("nombre");
     if (!txt.toUpperCase().includes(productos[0].sku)) falt.push("SKU");
     if (!/\$/.test(txt)) falt.push("precio");
-    if (!/Color:/i.test(txt)) falt.push("color");
     if (!/Enchape:/i.test(txt)) falt.push("enchape");
     if (!txt.includes("/producto/")) falt.push("enlace al producto");
     return falt.length ? "le falta: " + falt.join(", ") : true;
   });
 
-  await revisar("WhatsApp", "Cambiar el color cambia lo que dice el mensaje", async () => {
-    const antes = await p.evaluate(() => document.querySelector("[data-wa-previo]").textContent);
-    await p.click('.muestra:nth-child(3)');
-    await p.waitForTimeout(200);
-    const despues = await p.evaluate(() => document.querySelector("[data-wa-previo]").textContent);
-    return antes !== despues ? true : "el texto no cambió al elegir otro color";
+  // El color salió de la página a propósito: con algunos cambia el precio, y
+  // una paleta fija prometía uno que el taller no siempre puede sostener. Si
+  // alguien la devuelve sin resolver el precio, esta prueba avisa.
+  await revisar("WhatsApp", "El mensaje no promete un color que la página no cobró", async () => {
+    const w = await leerWA(p);
+    const txt = decodeURIComponent(new URL(w.href).searchParams.get("text") || "");
+    return /Color:/i.test(txt) ? "el mensaje manda un color elegido en la página" : true;
+  });
+
+  await revisar("Ficha", "No hay paleta de colores, y se dice por qué", async () => {
+    await nav(p, "/producto/lm-012/");
+    const hay = await p.evaluate(() => document.querySelectorAll(".muestra, [name='color']").length);
+    if (hay) return `quedaron ${hay} restos del selector de color`;
+    const aviso = await p.evaluate(() => document.querySelector(".opciones__aviso")?.textContent.trim() || "");
+    return /asesora/i.test(aviso) ? true : `el aviso no explica quién resuelve el color: "${aviso}"`;
   });
 
   await revisar("WhatsApp", "En la ficha no hay botón flotante duplicado", async () => {

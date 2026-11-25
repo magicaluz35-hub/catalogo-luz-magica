@@ -77,13 +77,10 @@
       <button type="button" class="ficha" data-filtro="luz" data-valor="ninguna">Sin luz</button>
     </div>
 
+    {% if negocio.avisoColores %}
     <h3 class="filtros__titulo">Color del mueble</h3>
-    <p class="nota">Todos se fabrican en cualquiera de estos colores.</p>
-    <div class="muestras muestras--informativas">
-      {% for col in negocio.colores %}
-      <span class="muestra__disco" title="{{ col.nombre }}" style="{% if col.foto %}background-image: url('{{ col.foto }}'){% else %}background: {{ col.hex }}{% endif %}"></span>
-      {% endfor %}
-    </div>
+    <p class="nota">{{ negocio.avisoColores }}</p>
+    {% endif %}
 
     <div class="caja caja--rosa">
       <p><strong>¿No encuentras la medida?</strong></p>

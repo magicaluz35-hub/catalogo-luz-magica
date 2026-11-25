@@ -48,36 +48,11 @@
   "plazoDesde": 10,
   "plazoHasta": 15,
   "plazoCorto": "Hecho a pedido",
+  "avisoColores": "Los muebles se fabrican en varios colores y enchapes. Tu asesora te confirma cuáles hay disponibles y si alguno cambia el precio.",
   "formasDePago": "Pago contra entrega. Se pide abono solo cuando es más de un producto, diseños especiales, modulares, diseños en RH o combos. No se hace devolución de dinero después de iniciada la fabricación.",
   "domicilios": "El valor del domicilio depende del barrio, el piso y las indicaciones de entrega. Te lo confirmamos por WhatsApp antes de fabricar.",
   "retiro": "También puedes retirar tu pedido en la galería de Aranjuez.",
   "avisoWhatsapp": "Abrir WhatsApp no confirma tu pedido: se confirma en la conversación.",
-  "colores": [
-    {
-      "nombre": "Blanco",
-      "hex": "#FFFFFF"
-    },
-    {
-      "nombre": "Negro",
-      "hex": "#1C1C1C"
-    },
-    {
-      "nombre": "Beige veteado",
-      "hex": "#D9C7AE"
-    },
-    {
-      "nombre": "Gris veteado",
-      "hex": "#A9A6A1"
-    },
-    {
-      "nombre": "Rosado",
-      "hex": "#E8B9CB"
-    },
-    {
-      "nombre": "Lila",
-      "hex": "#C6B5DE"
-    }
-  ],
   "enchapes": [
     "Oro rosa",
     "Gris humo",

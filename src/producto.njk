@@ -59,10 +59,13 @@ eleventyComputed:
       <h1>{{ p.nombre }}</h1>
       <p class="ficha__precio">{{ p.precio | pesos }}</p>
 
+      {# Ya no se listan los colores: con algunos cambia el precio, y una
+         lista fija en la ficha prometía un precio que el taller no siempre
+         puede sostener. Quién dice qué hay y a qué precio: la asesora. #}
       {% if p.descripcion %}
-      <p class="parrafo">{{ p.descripcion }} Disponible en {% for c in negocio.colores %}{{ c.nombre | lower }}{% if loop.revindex == 2 %} o {% elif not loop.last %}, {% endif %}{% endfor %}.</p>
+      <p class="parrafo">{{ p.descripcion }}</p>
       {% else %}
-      <p class="parrafo">Se fabrica en {% for c in negocio.colores %}{{ c.nombre | lower }}{% if loop.revindex == 2 %} o {% elif not loop.last %}, {% endif %}{% endfor %}, con el enchape que elijas.</p>
+      <p class="parrafo">Se fabrica a pedido en el color y el enchape que elijas.</p>
       {% endif %}
 
       <p class="aviso-plazo">
@@ -71,22 +74,6 @@ eleventyComputed:
       </p>
 
       <form class="opciones" data-opciones>
-        <fieldset>
-          <legend class="rotulo">Color del mueble</legend>
-          <div class="muestras">
-            {% for c in negocio.colores %}
-            {# Si el color tiene foto del tablero real, se usa la foto. Un
-               círculo de color plano nunca va a parecerse a un veteado. #}
-            <label class="muestra">
-              <input type="radio" name="color" value="{{ c.nombre }}" {{ "checked" if loop.first }}>
-              <span class="muestra__disco" style="{% if c.foto %}background-image: url('{{ c.foto }}'){% else %}background: {{ c.hex }}{% endif %}"></span>
-              <span class="oculto">{{ c.nombre }}</span>
-            </label>
-            {% endfor %}
-          </div>
-          <p class="opciones__elegido">Elegido: <strong data-elegido-color>{{ negocio.colores[0].nombre }}</strong></p>
-        </fieldset>
-
         <fieldset>
           <legend class="rotulo">Enchape</legend>
           <div class="fichas">
@@ -98,6 +85,13 @@ eleventyComputed:
             {% endfor %}
           </div>
         </fieldset>
+
+        {# Se dice aquí y no en el pie: es donde el cliente está eligiendo, y
+           es el momento en que la duda aparece. #}
+        <p class="opciones__aviso">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="8.6"></circle><path d="M12 10.8v5"></path><path d="M12 7.8h.01"></path></svg>
+          <span>{{ negocio.avisoColores }}</span>
+        </p>
       </form>
 
       {# El pedido es la acción principal: deja juntar varios muebles y llega

@@ -144,15 +144,14 @@ discusión, la prueba está en el chat.
 - **Horarios, dirección, teléfono, formas de pago, texto de domicilios:** en
   *Datos del negocio*. El letrero de "Abierto / Cerrado" del catálogo se calcula solo con
   los horarios que pongas ahí.
-- **Colores y enchapes disponibles:** también en *Datos del negocio*. Lo que pongas ahí
-  aparece en todas las fichas y en "Diseña el tuyo".
-- **La foto de cada color.** Cada color puede llevar **una foto del tablero**, y es lo
-  que de verdad se parece a lo que vendes. Un círculo de color plano nunca va a
-  parecerse a un veteado: por definición un veteado tiene vetas y un color plano no.
-  Para tomarlas: el tablero de frente, bien plano, **con luz de día** y lejos de
-  lámparas de color —una luz LED rosada tiñe hasta un mueble blanco—, y recorta un
-  pedazo donde solo se vea el material, sin bordes ni fondo. Si un color no tiene foto,
-  se usa su código de color.
+- **Los colores ya no se muestran en la página.** Antes había una paleta con los seis
+  colores, y se quitó: con algunos colores y enchapes **cambia el precio**, así que una
+  paleta fija prometía un precio que el taller no siempre puede sostener. Ahora quien
+  dice qué hay disponible y cuánto vale es la asesora, y la página se lo advierte al
+  cliente en cada ficha. Ese texto se cambia en *Datos del negocio → Aviso sobre los
+  colores*; si lo dejas vacío, el aviso desaparece.
+- **Enchapes disponibles:** siguen en *Datos del negocio*, y son los que el cliente
+  puede marcar en la ficha.
 - **La foto grande de la portada:** son **dos** fotos de la misma escena, en
   *Datos del negocio*. La *foto principal* es la vertical y se usa en celular;
   la *foto principal para computador* es la horizontal. Cada visitante descarga

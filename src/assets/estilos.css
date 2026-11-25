@@ -750,25 +750,18 @@ a, button, label, summary {
 .vacio__titulo { font-family: var(--display); font-size: 1.4rem; font-weight: var(--display-peso); margin-bottom: 0.4rem; }
 
 
-/* Muestras de color */
-.muestras { display: flex; flex-wrap: wrap; gap: 12px; }
-.muestras--informativas { gap: 9px; margin-bottom: 24px; }
-.muestra { display: inline-block; cursor: pointer; }
-.muestra input { position: absolute; opacity: 0; width: 0; height: 0; }
-/* El disco de color acepta una foto del tablero: los colores veteados no
-   se pueden representar con un color plano. Si no hay foto, usa el hex. */
-.muestra__disco {
-  width: 44px; height: 44px;
-  border-radius: 50%;
-  border: 1px solid var(--linea-fuerte);
-  display: block;
-  background-size: cover;
-  background-position: center;
+/* Aviso de los colores.
+   --------------------------------------------------------------------------
+   Aquí vivían los discos de color. Se quitaron porque con algunos colores y
+   enchapes cambia el precio, y una paleta fija en la ficha prometía un precio
+   que el taller no siempre puede sostener. Ahora lo resuelve la asesora, y
+   esto es lo que se lo dice al cliente donde está decidiendo. */
+.opciones__aviso {
+  display: flex; align-items: flex-start; gap: 8px;
+  margin: 14px 0 0;
+  font-size: 0.82rem; line-height: 1.55; color: var(--tinta-suave);
 }
-.muestras--informativas .muestra__disco { width: 30px; height: 30px; }
-.muestra input:checked + .muestra__disco { box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--rosa); }
-.muestra:focus-within .muestra__disco { outline: 2px solid var(--rosa); outline-offset: 4px; }
-.opciones__elegido { font-size: 0.82rem; color: var(--gris); margin: 10px 0 0; }
+.opciones__aviso svg { flex: none; margin-top: 2px; color: var(--oro); }
 
 /* Ficha de producto */
 .ficha { }

@@ -189,7 +189,7 @@ permalink: /
     </div>
     <div class="pilar">
       <h3 class="pilar__titulo"><span class="pilar__icono">{{ iconoPilar("corazon") }}</span>En tus colores</h3>
-      <p>Se fabrica en {% for c in negocio.colores %}{{ c.nombre | lower }}{% if not loop.last %}, {% endif %}{% endfor %}, con enchape {% for e in negocio.enchapes %}{{ e | lower }}{% if not loop.last %}, {% endif %}{% endfor %}.</p>
+      <p>{{ negocio.avisoColores }}</p>
     </div>
     <div class="pilar">
       <h3 class="pilar__titulo"><span class="pilar__icono">{{ iconoPilar("camion") }}</span>Domicilios en Medellín</h3>

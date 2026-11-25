@@ -242,20 +242,10 @@ content:
       - { name: domicilios, label: Texto de domicilios, type: text }
       - { name: retiro, label: Texto de retiro en tienda, type: text }
       - { name: avisoWhatsapp, label: Aviso bajo los botones de WhatsApp, type: text }
-      - name: colores
-        label: Colores disponibles
-        type: object
-        list: true
-        fields:
-          - { name: nombre, label: Nombre del color, type: string }
-          - name: foto
-            label: Foto del tablero
-            description: "Lo mejor para que el cliente vea el color de verdad. Toma el tablero de frente, bien plano, con luz de día y sin lámparas de color; recorta un pedazo donde solo se vea el material. Es lo único que muestra bien un veteado. Si la dejas vacía, se usa el código de color de abajo."
-            type: image
-          - name: hex
-            label: "Color (código #RRGGBB)"
-            description: "Solo se usa cuando el color no tiene foto. Un color plano nunca se va a parecer a un tablero veteado."
-            type: string
+      - name: avisoColores
+        label: Aviso sobre los colores
+        description: "Sale en la ficha de cada mueble, arriba del botón de pedir, y también en el catálogo y en la portada. Reemplazó a la paleta de colores: como con algunos colores y enchapes cambia el precio, una paleta fija prometía un precio que el taller no siempre puede sostener. Si lo dejas vacío, el aviso no sale."
+        type: text
       - { name: enchapes, label: Enchapes disponibles, type: string, list: true }
       - { name: medidas, label: Medidas disponibles, type: string, list: true }
       - name: atajos

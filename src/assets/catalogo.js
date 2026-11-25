@@ -274,12 +274,6 @@
     var previoPedido = document.querySelector("[data-wa-previo-pedido]");
     if (previoPedido) previoPedido.textContent = textoPedido();
 
-    var elegido = document.querySelector("[data-elegido-color]");
-    var form = document.querySelector("[data-opciones]");
-    if (elegido && form) {
-      var o = opcionesDe(form);
-      if (o.color) elegido.textContent = o.color;
-    }
   }
 
   function pesos(v) {
