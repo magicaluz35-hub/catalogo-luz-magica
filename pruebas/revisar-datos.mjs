@@ -39,7 +39,7 @@ export function revisarDatos() {
     .map((f) => ({ archivo: f, ...JSON.parse(fs.readFileSync(path.join(dirProd, f), "utf8")) }));
 
   const slugs = new Set(categorias.map((c) => c.slug));
-  const LUCES = ["ninguna", "led", "ojos", "ambas"];
+  const LUCES = ["ninguna", "led", "ojos"];
 
   // ---- Productos ----
   const vistos = new Map();
@@ -61,7 +61,7 @@ export function revisarDatos() {
       errores.push(`${d}: los días de entrega están al revés (desde ${desde}, hasta ${hasta}). La ficha diría "de ${desde} a ${hasta} días".`);
 
     if (p.iluminacion && !LUCES.includes(p.iluminacion))
-      errores.push(`${d}: la iluminación "${p.iluminacion}" no es ninguna de las cuatro. El mueble no sale en ningún filtro.`);
+      errores.push(`${d}: la iluminación "${p.iluminacion}" no es ninguna de las tres (sin luz, luz LED, ojos de buey). El mueble no sale en ningún filtro.`);
 
     for (const f of p.fotos || [])
       if (!existe(f)) errores.push(`${d}: la foto ${f} no está. Saldría el ícono de imagen rota.`);

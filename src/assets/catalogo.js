@@ -310,12 +310,11 @@
       return true;
     }
 
-    // Un mueble con los dos tipos de luz tiene que salir en las dos listas:
-    // quien busca LED lo quiere ver y quien busca ojos de buey también.
+    // Cada mueble tiene un solo tipo de luz y sale en una sola lista.
     function pasaLuz(luz) {
       if (estado.luz === "todos") return true;
       if (estado.luz === "ninguna") return luz === "ninguna";
-      return luz === estado.luz || luz === "ambas";
+      return luz === estado.luz;
     }
 
     function normalizar(t) {

@@ -473,7 +473,7 @@ await saltarIntro(ctxCel);
   await revisar("Catálogo", "Cada tipo de luz muestra exactamente sus muebles", async () => {
     const esperado = (v) => productos.filter((x) =>
       v === "ninguna" ? (x.iluminacion || "ninguna") === "ninguna"
-                      : x.iluminacion === v || x.iluminacion === "ambas").length;
+                      : x.iluminacion === v).length;
     const malos = [];
     for (const v of ["led", "ojos", "ninguna"]) {
       await nav(p, "/catalogo/");
@@ -491,7 +491,7 @@ await saltarIntro(ctxCel);
   // Un valor escrito a mano que el filtro no conozca deja al mueble fuera de
   // las cuatro listas: no sale en ninguna y nadie se entera.
   await revisar("Catálogo", "Ningún mueble tiene un tipo de luz desconocido", async () => {
-    const validos = ["led", "ojos", "ambas", "ninguna"];
+    const validos = ["led", "ojos", "ninguna"];
     const raros = productos
       .filter((x) => x.iluminacion != null && !validos.includes(x.iluminacion))
       .map((x) => `${x.sku}: "${x.iluminacion}"`);

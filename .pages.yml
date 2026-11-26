@@ -90,7 +90,6 @@ content:
             - { value: ninguna, label: Sin luz }
             - { value: led, label: Luz LED }
             - { value: ojos, label: Ojos de buey }
-            - { value: ambas, label: "Luz LED y ojos de buey" }
       - name: destacado
         label: Mostrar en "Favoritos de la casa"
         description: "OJO: la portada muestra SOLO CUATRO. Si marcas un quinto no aparece y parece que la casilla está dañada. Para rotar, desmarca uno antes de marcar otro."

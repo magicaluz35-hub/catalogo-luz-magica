@@ -26,7 +26,7 @@ Cada vez que guardas algo, el catálogo se actualiza solo en menos de un minuto.
    texto general, pero es mejor escribirla.
 4. Sube las fotos. **La primera es la más importante**: es la que se ve en el catálogo y
    la que aparece cuando alguien comparte el enlace por WhatsApp.
-5. Elige la **iluminación**: *sin luz*, *luz LED*, *ojos de buey* o las dos. Los ojos
+5. Elige la **iluminación**: *sin luz*, *luz LED* u *ojos de buey*. Los ojos
    de buey son los bombillos redondos alrededor del espejo, estilo camerino, y el
    cliente los busca aparte de la cinta LED: de esto depende en qué filtro del
    catálogo aparece el mueble.
