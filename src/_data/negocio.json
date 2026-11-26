@@ -1,30 +1,8 @@
 {
-  "nombre": "Luz Mágica",
-  "lema": "Tocadores y espejos",
-  "introMarca": true,
-  "dominio": "https://catalogo-luz-magica.luzmagica.workers.dev",
-  "titular": "El tocador de tus sueños",
-  "presentacion": "Tocadores Hollywood, espejos LED, asientos, nocheros y variedad de mobiliario para tu hogar. Eliges color y enchape, nosotros lo fabricamos para ti y te lo llevamos hasta tu residencia.",
-  "fraseMarca": "En Luz Mágica transformamos ideas en mobiliarios que combinan elegancia, confort y estilo",
-  "trayectoria": "7 años en el mercado trabajando con mucho amor",
-  "fotoPrincipal": "/img/principal.webp",
-  "fotoPrincipalAncha": "/img/principal-ancha.webp",
-  "fotoPrincipalAlt": "Tocador blanco con espejo cuadrado retroiluminado, repisas y cajones con manijas de cristal, junto a un espejo de cuerpo entero con bombillos y un puff",
-  "descripcionCorta": "Tocadores Hollywood, espejos LED y muebles fabricados en tus colores, con pago contra entrega y domicilios en Medellín.",
-  "promesas": [
-    "Pago contra entrega",
-    "Ventas al detal y al por mayor",
-    "Domicilios en Medellín"
-  ],
-  "direccion": "Carrera 51B Nº 90-42, Aranjuez, Medellín",
-  "latitud": "6.2824467",
-  "longitud": "-75.5623571",
-  "telefono": "+57 324 211 7323",
-  "telefonoWhatsapp": "573242117323",
   "horario": [
     {
       "dias": "Lunes a viernes",
-      "desde": "08:00",
+      "desde": "08:30",
       "hasta": "17:30"
     },
     {
@@ -34,24 +12,28 @@
     },
     {
       "dias": "Domingos",
-      "desde": "",
-      "hasta": "",
       "nota": "Solo domicilios"
     },
     {
       "dias": "Festivos",
-      "desde": "",
-      "hasta": "",
       "nota": "No se labora"
     }
   ],
-  "plazoDesde": 10,
-  "plazoHasta": 15,
-  "plazoCorto": "Hecho a pedido",
-  "avisoColores": "Los muebles se fabrican en varios colores y enchapes. Tu asesora te confirma cuáles hay disponibles y si alguno cambia el precio.",
   "formasDePago": "Pago contra entrega. Se pide abono solo cuando es más de un producto, diseños especiales, modulares, diseños en RH o combos. No se hace devolución de dinero después de iniciada la fabricación.",
   "domicilios": "El valor del domicilio depende del barrio, el piso y las indicaciones de entrega. Te lo confirmamos por WhatsApp antes de fabricar.",
   "retiro": "También puedes retirar tu pedido en la galería de Aranjuez.",
+  "plazoDesde": 10,
+  "plazoHasta": 15,
+  "titular": "El tocador de tus sueños",
+  "presentacion": "Tocadores Hollywood, espejos LED, asientos, nocheros y variedad de mobiliario para tu hogar. Eliges color y enchape, nosotros lo fabricamos para ti y te lo llevamos hasta tu residencia.",
+  "promesas": [
+    "Pago contra entrega",
+    "Ventas al detal y al por mayor",
+    "Domicilios en Medellín"
+  ],
+  "fraseMarca": "En Luz Mágica transformamos ideas en mobiliarios que combinan elegancia, confort y estilo",
+  "trayectoria": "7 años en el mercado trabajando con mucho amor",
+  "avisoColores": "Los muebles se fabrican en varios colores y enchapes. Tu asesora te confirma cuáles hay disponibles y si alguno cambia el precio.",
   "avisoWhatsapp": "Abrir WhatsApp no confirma tu pedido: se confirma en la conversación.",
   "atajos": [
     {
@@ -109,17 +91,31 @@
       ]
     }
   ],
+  "telefonoWhatsapp": "573242117323",
+  "telefono": "+57 324 211 7323",
+  "direccion": "Carrera 51B Nº 90-42, Aranjuez, Medellín",
+  "latitud": "6.2824467",
+  "longitud": "-75.5623571",
   "redes": {
     "instagram": "https://instagram.com/luz_magica__",
     "facebook": "https://facebook.com/profile.php?id=61594714269382",
     "tiktok": "https://tiktok.com/@luz_magica__"
   },
+  "fotoPrincipal": "/img/principal.webp",
+  "fotoPrincipalAncha": "/img/principal-ancha.webp",
+  "fotoPrincipalAlt": "Tocador blanco con espejo cuadrado retroiluminado, repisas y cajones con manijas de cristal, junto a un espejo de cuerpo entero con bombillos y un puff",
+  "introMarca": true,
+  "logoLetrero": "/img/logo-letrero.webp",
+  "introFondo": "#000000",
+  "logo": "/img/logo.webp",
+  "plazoCorto": "Hecho a pedido",
   "atribucion": {
     "regla": "primero",
     "diasVigencia": 90,
     "notaRegla": "Te responde siempre la misma persona, así no tienes que volver a explicar tu caso."
   },
-  "logo": "/img/logo.webp",
-  "logoLetrero": "/img/logo-letrero.webp",
-  "introFondo": "#000000"
+  "nombre": "Luz Mágica",
+  "lema": "Tocadores y espejos",
+  "descripcionCorta": "Tocadores Hollywood, espejos LED y muebles fabricados en tus colores, con pago contra entrega y domicilios en Medellín.",
+  "dominio": "https://catalogo-luz-magica.luzmagica.workers.dev"
 }
