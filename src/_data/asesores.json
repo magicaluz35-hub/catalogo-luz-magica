@@ -69,5 +69,12 @@
     "codigo": "09",
     "activo": true,
     "enRotacion": true
+  },
+  {
+    "nombre": "Manuel",
+    "whatsapp": "573025373775",
+    "codigo": "10",
+    "activo": true,
+    "enRotacion": true
   }
 ]
