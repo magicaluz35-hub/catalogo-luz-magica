@@ -104,6 +104,14 @@ export function revisarDatos() {
       errores.push(`${d}: está activo pero su WhatsApp ("${a.whatsapp || "vacío"}") no sirve. Tiene que ser solo números con indicativo. Los clientes que le asignen no van a poder escribirle.`);
 
   }
+  // La línea principal es el respaldo de todo el reparto: si queda desmarcada,
+  // un visitante sin enlace puede terminar sin nadie a quién escribirle.
+  const casa = asesores.find((a) => String(a.codigo).trim() === "00");
+  if (!casa)
+    errores.push("Asesores: no está la línea principal (código 00). Es el respaldo de todo el reparto: sin ella, un cliente que entre sin enlace puede quedarse sin a quién escribirle.");
+  else if (casa.activo === false)
+    errores.push("Asesores: la línea principal (código 00) está desmarcada como Activo. Es el respaldo del reparto y tiene que estar siempre encendida.");
+
   // Agrupados: trece líneas iguales taparían los avisos que sí son distintos.
   const relleno = asesores.filter((a) => String(a.nombre || "").startsWith("["));
   if (relleno.length)

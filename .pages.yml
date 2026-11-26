@@ -128,12 +128,12 @@ content:
         required: true
       - name: codigo
         label: Código (NO LO CAMBIES después de repartir el enlace)
-        description: Es el que arma el enlace personal del asesor. Si lo cambias, pierde los clientes que ya tenía asignados.
+        description: "Es el que arma el enlace personal del asesor. Si lo cambias, pierde los clientes que ya tenía asignados. Al que entre nuevo dale el siguiente número libre hacia arriba: NUNCA reutilices el de alguien que se fue, porque los clientes que todavía lo tienen guardado pasarían solos a la persona nueva, y los enlaces viejos que esa persona repartió no caducan nunca."
         type: string
         required: true
       - name: activo
         label: Activo
-        description: Desmárcalo cuando alguien salga del equipo. Desaparece de la lista pública y su enlace deja de asignarle clientes.
+        description: "Desmárcalo cuando alguien salga del equipo: lo apaga por completo (lista pública, enlace, verificador de números) y los clientes que tenía pasan al reparto. NO lo uses para vacaciones: al prenderlo otra vez esos clientes ya no le vuelven. Y nunca borres el registro de quien se fue, para que su código quede ocupado y nadie se lo dé a otra persona."
         type: boolean
       - name: enRotacion
         label: Recibe clientes que llegan sin enlace

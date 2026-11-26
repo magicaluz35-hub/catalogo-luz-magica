@@ -93,24 +93,50 @@ enlace viejo cae en el mueble equivocado.
 
 ## Agregar o quitar un asesor
 
-En **Asesores** cada persona tiene cuatro datos:
+En **Asesores** cada persona tiene seis datos:
 
 - **Nombre** — como lo ve el cliente.
 - **WhatsApp** — con indicativo y solo números: `573001234567`. Sin el signo `+` y sin
   espacios.
 - **Código** — dos dígitos. Es lo que arma su enlace personal.
 - **Activo** — la casilla que lo prende y lo apaga.
+- **Recibe clientes que llegan sin enlace** — si entra o no en el reparto automático de
+  los visitantes que llegan al catálogo por su cuenta.
+- **Nota interna** — para ti. El cliente no la ve.
 
-**Cuando alguien entra al equipo:** agrégalo, ponle un código que no esté usado, marca
-*Activo* y pásale su enlace. Lo encuentra solo en `luzmagica.com/equipo`, junto con su
+**Cuando alguien entra al equipo:** agrégalo, ponle **el siguiente código libre hacia
+arriba** (nunca uno que ya se haya usado antes, aunque se vea libre), marca *Activo* y
+pásale su enlace. Lo encuentra solo en `luzmagica.com/equipo`, junto con su
 código QR.
 
-**Cuando alguien se va:** desmarca *Activo*. Desaparece de la lista pública, deja de
-recibir clientes nuevos y su enlace deja de asignarle a nadie. No lo borres: así queda
-el registro de las comisiones viejas.
+**Cuando alguien se va:** desmarca *Activo*. Eso lo apaga por completo: desaparece de la
+lista pública, su enlace deja de asignarle clientes nuevos, los que ya tenía pasan al
+reparto de la casa, y si alguien verifica su número en `luzmagica.com/asesores` el sitio
+responde que no es del equipo.
+
+**Nunca borres el registro de alguien que se fue.** Déjalo ahí, apagado. Así su código
+queda ocupado para siempre y a la vista, con el nombre de quien lo tuvo. Es lo que impide
+que dentro de dos años alguien se lo dé a otra persona sin saber lo que viene abajo.
+
+**Nunca reutilices el código de alguien que se fue.** Si el 04 queda libre y se lo das a
+alguien nuevo, todos los clientes que todavía tienen el 04 guardado pasan a la persona
+nueva, sin que nadie lo decida. Y los enlaces no caducan: cada `?a=04` que la anterior
+mandó por WhatsApp, puso en su estado o dejó impreso en un QR sigue funcionando para
+siempre y de ahí en adelante le acredita a la nueva. Además se daña el historial: el
+`Ref A-04` que viaja en cada mensaje de pedido dejaría de identificar a una sola persona.
+**El que entre después arranca en el siguiente número libre hacia arriba.** Hay 100
+códigos de dos dígitos y se están usando 13: da para muchos años.
+
+**La casilla no sirve para vacaciones ni incapacidades.** Si la apagas dos semanas y la
+vuelves a prender, los clientes que tenía ya quedaron repartidos entre otras y no le
+vuelven. Para una ausencia corta no toques nada: su WhatsApp sigue funcionando y ella
+responde cuando vuelva, o una compañera le cubre por interno.
 
 **No cambies el código** de alguien que ya repartió su enlace: perdería los clientes que
 tenía asignados.
+
+**La línea principal (código 00) va siempre encendida.** Es el respaldo de todo el
+reparto. Si la desmarcas, la publicación se frena y te avisa.
 
 ---
 
@@ -262,7 +288,8 @@ Mándale al cliente `luzmagica.com/asesores`: ahí puede verificar cualquier nú
 ## Lo que nunca hay que cambiar
 
 1. El **SKU** de un producto que ya se publicó.
-2. El **código** de un asesor que ya repartió su enlace.
+2. El **código** de un asesor que ya repartió su enlace. Y nunca dárselo a otra persona,
+   ni aunque el anterior lleve años fuera.
 3. El **identificador web** de una línea del catálogo.
 
 Todo lo demás se puede cambiar cuantas veces quieras.

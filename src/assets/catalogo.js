@@ -38,6 +38,20 @@
   // ---------- 1. Atribución de asesor ----------
   var DIAS = (NEGOCIO.dias || 90) * 24 * 60 * 60 * 1000;
 
+  // Desmarcar "Activo" en el panel apaga a la persona POR COMPLETO: su
+  // enlace deja de asignar, los clientes que ya tenía pasan al reparto, y
+  // desaparece del directorio y del verificador de números.
+  //
+  // Antes no era así y el cliente veía una contradicción: la página le decía
+  // "te acompaña Fulana" con su WhatsApp, y si verificaba ese mismo número en
+  // /asesores/ el sitio le contestaba que no era del equipo y que no
+  // compartiera sus datos. Lo estábamos mandando a una línea que el propio
+  // catálogo marcaba como sospechosa.
+  //
+  // El registro de la persona NO se borra del panel aunque se vaya: apagado,
+  // su código queda ocupado para siempre y nadie se lo da a otra persona por
+  // error. Si se reutilizara, los clientes que todavía lo tienen guardado
+  // pasarían solos al dueño nuevo del código.
   function buscarAsesor(codigo) {
     // Se limpia antes de comparar: un enlace copiado a mano llega con
     // espacios o en mayúsculas más seguido de lo que uno cree, y si no
@@ -46,6 +60,7 @@
     var limpio = String(codigo == null ? "" : codigo).trim().toUpperCase();
     if (!limpio) return null;
     for (var i = 0; i < ASESORES.length; i++) {
+      if (ASESORES[i].activo === false) continue;
       if (String(ASESORES[i].codigo).trim().toUpperCase() === limpio) return ASESORES[i];
     }
     return null;
@@ -53,7 +68,14 @@
 
   function asesorPorDefecto() {
     var activos = ASESORES.filter(function (a) { return a.activo !== false && a.enRotacion && a.whatsapp; });
-    if (!activos.length) return buscarAsesor("00") || ASESORES[0] || null;
+    // Sin nadie en rotación: la línea principal. Y si hasta esa quedó
+    // desmarcada, cualquiera que siga encendido — nunca uno apagado, que es
+    // justo a quien no queremos mandarle clientes. Si no queda ninguno, el
+    // catálogo cae al WhatsApp del negocio (más abajo).
+    if (!activos.length) {
+      return buscarAsesor("00") ||
+        ASESORES.filter(function (a) { return a.activo !== false && a.whatsapp; })[0] || null;
+    }
     // Reparto parejo: al mismo visitante siempre le toca el mismo.
     var i = Math.floor(Math.random() * activos.length);
     return activos[i];

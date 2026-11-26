@@ -190,6 +190,68 @@ await saltarIntro(ctxCel);
     return c && c.length === 2 ? true : `quedó sin asesor (${c})`;
   });
 
+  // Desmarcar "Activo" apaga a la persona por completo. Antes no era así: su
+  // enlace seguía asignando clientes nuevos y el cliente terminaba viendo un
+  // número que el verificador del propio sitio marcaba como no autorizado.
+  //
+  // Para probarlo sin volver a construir el sitio, se intercepta el HTML y se
+  // apaga al 03 en la lista que lee el navegador: es exactamente lo que vería
+  // el visitante el día que la dueña desmarque la casilla y se republique.
+  const apagando = async (codigo, fn) => {
+    const ruta = async (route, req) => {
+      // Solo las páginas del sitio local. Interceptar todo alcanzaría también
+      // a las tipografías de Google, que en las pruebas no tienen red.
+      if (req.resourceType() !== "document") return route.continue();
+      const r = await route.fetch();
+      let h = await r.text();
+      h = h.replace(
+        /(<script type="application\/json" id="datos-asesores">)(.*?)(<\/script>)/s,
+        (_, a, json, z) => a + JSON.stringify(
+          JSON.parse(json).map((x) => (x.codigo === codigo ? { ...x, activo: false, enRotacion: false } : x))
+        ) + z
+      );
+      await route.fulfill({ response: r, body: h });
+    };
+    await p.route(BASE + "/**", ruta);
+    try { return await fn(); } finally { await p.unroute(BASE + "/**", ruta); }
+  };
+
+  await revisar("Asesores", "Un asesor desmarcado deja de recibir clientes por su enlace", async () => {
+    return await apagando("03", async () => {
+      await nav(p, "/"); await p.evaluate(() => localStorage.clear());
+      await nav(p, "/?a=03");
+      const c = await p.evaluate(() => document.querySelector("[data-asesor-codigo]")?.textContent.trim());
+      if (c === "03") return "el enlace del desmarcado siguió asignándole clientes";
+      return c && c.length === 2 ? true : `el cliente quedó sin asesor (${c})`;
+    });
+  });
+
+  await revisar("Asesores", "Los clientes que ya tenía un desmarcado pasan al reparto", async () => {
+    await nav(p, "/"); await p.evaluate(() => localStorage.clear());
+    await nav(p, "/?a=03");                      // el cliente ya venía con la 03
+    return await apagando("03", async () => {    // y al día siguiente la desmarcan
+      await nav(p, "/catalogo/");
+      const r = await p.evaluate(() => ({
+        codigo: document.querySelector("[data-asesor-codigo]")?.textContent.trim(),
+        guardado: JSON.parse(localStorage.getItem("lm_asesor") || "null")
+      }));
+      if (r.codigo === "03") return "siguió escribiéndole a la persona desmarcada";
+      if (r.guardado?.origen !== "reparto") return `no quedó en el reparto (${r.guardado?.origen})`;
+      return true;
+    });
+  });
+
+  await revisar("Asesores", "El WhatsApp que ve el cliente nunca es el de un desmarcado", async () => {
+    const suyo = asesores.find((a) => a.codigo === "03")?.whatsapp;
+    return await apagando("03", async () => {
+      await nav(p, "/"); await p.evaluate(() => localStorage.clear());
+      await nav(p, "/?a=03");
+      const n = await p.evaluate(() =>
+        (document.querySelector('a[href*="wa.me"]')?.href || "").match(/wa\.me\/(\d+)/)?.[1]);
+      return n && n !== suyo ? true : `el botón escribe al número del desmarcado (${n})`;
+    });
+  });
+
   await revisar("Asesores", "La página de asesores lista los 14 números autorizados", async () => {
     await nav(p, "/asesores/");
     const n = await p.evaluate(() => document.querySelectorAll('a[href*="wa.me"]').length);
