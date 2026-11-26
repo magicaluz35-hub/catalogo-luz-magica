@@ -1,0 +1,17 @@
+{
+  "nombre": "Carvalo corredizo digital repisa giratoria sin enchape",
+  "sku": "LM-150",
+  "precio": 800000,
+  "categoria": "carvalo-solteron",
+  "descripcion": "Carvalo con espejo digital, Medidas 1.75 cm de alto x 1 m ancho, espejo corredizo, REPISA GIRATORIA, y botones de cristal ",
+  "plazoDesde": 10,
+  "plazoHasta": 15,
+  "fotos": [
+    "/img/55B0DACD-579D-482F-B6E7-870D4BF1DD03.jpeg",
+    "/img/8C74825A-D83C-4ECF-A70E-057C5E31B83A.jpeg",
+    "/img/2F0AFE41-4986-4D72-B859-A703BD544FAA-1.jpeg"
+  ],
+  "iluminacion": "led",
+  "destacado": false,
+  "nuevo": true
+}
