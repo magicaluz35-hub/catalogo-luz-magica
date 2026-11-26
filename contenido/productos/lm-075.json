@@ -1,18 +1,16 @@
 {
-  "sku": "LM-075",
   "nombre": "Tocador de metro corredizo ojos de buey sin enchape",
-  "precio": 570000,
+  "sku": "LM-075",
+  "precio": 550000,
   "categoria": "tocadores-metro-mini",
   "descripcion": "Tocador Hollywood con espejo de ojos de buey. Medidas: 1,75 m de alto × 1 m de ancho. Espejo corredizo.",
-  "plazoDesde": null,
-  "plazoHasta": null,
-  "iluminacion": "ojos",
-  "destacado": false,
-  "nuevo": false,
   "fotos": [
     "/img/p075-1.webp",
     "/img/p075-2.webp",
     "/img/p075-3.webp",
     "/img/p075-4.webp"
-  ]
+  ],
+  "iluminacion": "ojos",
+  "destacado": false,
+  "nuevo": false
 }
